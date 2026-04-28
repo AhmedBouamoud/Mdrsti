@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مدرستي | الأستاذ أحمد بوعمود</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E8661A;
+    --orange-light: #FFF0E5;
+    --orange-mid: #F4883A;
+    --blue: #1A4FA0;
+    --blue-light: #E8F0FB;
+    --blue-mid: #2E6CC7;
+    --dark: #1A1A2E;
+    --gray: #F5F6FA;
+    --gray2: #E8EAF0;
+    --text: #2C2C4A;
+    --text2: #6B7280;
+    --white: #FFFFFF;
+    --green: #10B981;
+    --red: #EF4444;
+    --shadow: 0 4px 24px rgba(26,79,160,0.10);
+    --shadow-lg: 0 8px 40px rgba(26,79,160,0.15);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Cairo',sans-serif; background:var(--gray); color:var(--text); direction:rtl; }
+
+  /* ===== HEADER ===== */
+  .app-header {
+    background: linear-gradient(135deg, var(--blue) 0%, #0D2B6B 100%);
+    color:#fff; padding:0 20px; position:sticky; top:0; z-index:100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+  .header-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .app-logo { font-size:1.3rem; font-weight:900; letter-spacing:-0.5px; }
+  .app-logo span { color:var(--orange-mid); }
+  .header-tabs { display:flex; gap:4px; }
+  .htab { background:rgba(255,255,255,0.1); border:none; color:rgba(255,255,255,0.8);
+    padding:6px 16px; border-radius:20px; cursor:pointer; font-family:'Cairo',sans-serif;
+    font-size:0.85rem; transition:all 0.2s; }
+  .htab.active, .htab:hover { background:var(--orange); color:#fff; }
+  .teacher-btn { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+    color:#fff; padding:6px 14px; border-radius:20px; cursor:pointer;
+    font-family:'Cairo',sans-serif; font-size:0.8rem; transition:all 0.2s; }
+  .teacher-btn:hover { background:rgba(255,255,255,0.25); }
+
+  /* ===== SCREENS ===== */
+  .screen { display:none; max-width:900px; margin:0 auto; padding:20px; min-height:calc(100vh - 60px); }
+  .screen.active { display:block; }
+
+  /* ===== STUDENT HOME ===== */
+  .welcome-box {
+    background: linear-gradient(135deg, var(--orange) 0%, #D4521A 100%);
+    color:#fff; border-radius:var(--radius); padding:28px; margin-bottom:20px;
+    position:relative; overflow:hidden;
+  }
+  .welcome-box::after { content:'📚'; position:absolute; left:20px; top:50%; transform:translateY(-50%); font-size:4rem; opacity:0.2; }
+  .welcome-box h2 { font-size:1.4rem; font-weight:900; margin-bottom:6px; }
+  .welcome-box p { opacity:0.9; font-size:0.9rem; }
+
+  .level-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+  .level-tab { background:#fff; border:2px solid var(--gray2); color:var(--text2);
+    padding:8px 18px; border-radius:20px; cursor:pointer; font-family:'Cairo',sans-serif;
+    font-size:0.85rem; font-weight:600; transition:all 0.2s; }
+  .level-tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+  .section-title { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:12px;
+    display:flex; align-items:center; gap:8px; }
+  .section-title::before { content:''; width:4px; height:20px; background:var(--orange); border-radius:2px; }
+
+  .cards-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:14px; margin-bottom:24px; }
+
+  .lesson-card {
+    background:#fff; border-radius:var(--radius-sm); padding:18px; cursor:pointer;
+    border:2px solid transparent; transition:all 0.2s; box-shadow:var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  .lesson-card:hover { border-color:var(--orange); transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+  .lesson-card .card-icon { font-size:1.8rem; margin-bottom:10px; }
+  .lesson-card h3 { font-size:0.95rem; font-weight:700; margin-bottom:6px; line-height:1.4; }
+  .lesson-card .card-meta { font-size:0.8rem; color:var(--text2); display:flex; gap:8px; flex-wrap:wrap; }
+  .badge { background:var(--blue-light); color:var(--blue); padding:2px 8px; border-radius:10px; font-size:0.75rem; font-weight:600; }
+  .badge.orange { background:var(--orange-light); color:var(--orange); }
+  .badge.green { background:#D1FAE5; color:#065F46; }
+
+  .empty-state { text-align:center; padding:40px 20px; color:var(--text2); }
+  .empty-state .emoji { font-size:3rem; margin-bottom:12px; }
+
+  /* ===== QUIZ CARDS ===== */
+  .quiz-card { background:#fff; border-radius:var(--radius-sm); padding:18px; box-shadow:var(--shadow); }
+  .quiz-card h3 { font-size:1rem; font-weight:700; margin-bottom:8px; }
+  .quiz-option { background:var(--gray); border:2px solid transparent; border-radius:8px;
+    padding:10px 14px; cursor:pointer; margin-bottom:8px; font-size:0.9rem; transition:all 0.15s; }
+  .quiz-option:hover { border-color:var(--blue); }
+  .quiz-option.correct { background:#D1FAE5; border-color:var(--green); }
+  .quiz-option.wrong { background:#FEE2E2; border-color:var(--red); }
+  .quiz-exp { background:var(--blue-light); color:var(--blue); padding:10px 14px;
+    border-radius:8px; font-size:0.85rem; margin-top:8px; display:none; }
+
+  /* ===== LESSON DETAIL ===== */
+  .lesson-detail { background:#fff; border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); }
+  .lesson-detail h2 { font-size:1.2rem; font-weight:900; color:var(--blue); margin-bottom:6px; }
+  .lesson-detail .lesson-body { line-height:1.9; font-size:0.95rem; white-space:pre-wrap; color:var(--text); margin-top:16px; }
+  .back-btn { background:none; border:none; color:var(--blue); cursor:pointer;
+    font-family:'Cairo',sans-serif; font-size:0.9rem; font-weight:600; margin-bottom:16px;
+    display:flex; align-items:center; gap:6px; }
+
+  /* ===== TEACHER DASHBOARD ===== */
+  .teacher-header { background:linear-gradient(135deg,var(--dark) 0%,#2C2C4A 100%);
+    color:#fff; border-radius:var(--radius); padding:24px; margin-bottom:20px; }
+  .teacher-header h2 { font-size:1.2rem; font-weight:900; }
+  .teacher-header p { opacity:0.7; font-size:0.85rem; margin-top:4px; }
+
+  .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+  .stat-box { background:#fff; border-radius:var(--radius-sm); padding:16px; text-align:center;
+    box-shadow:var(--shadow); border-top:3px solid var(--orange); }
+  .stat-box .num { font-size:1.8rem; font-weight:900; color:var(--blue); }
+  .stat-box .lbl { font-size:0.75rem; color:var(--text2); margin-top:4px; }
+
+  .teacher-tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+  .ttab { background:#fff; border:2px solid var(--gray2); color:var(--text2);
+    padding:8px 18px; border-radius:20px; cursor:pointer; font-family:'Cairo',sans-serif;
+    font-size:0.85rem; font-weight:600; transition:all 0.2s; }
+  .ttab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+  .add-btn { background:var(--orange); color:#fff; border:none; padding:10px 20px;
+    border-radius:var(--radius-sm); cursor:pointer; font-family:'Cairo',sans-serif;
+    font-size:0.9rem; font-weight:700; margin-bottom:16px; transition:all 0.2s; }
+  .add-btn:hover { background:#D4521A; transform:translateY(-1px); }
+
+  /* ===== FORM ===== */
+  .form-box { background:#fff; border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:20px; }
+  .form-box h3 { font-size:1rem; font-weight:700; margin-bottom:16px; color:var(--blue); }
+  .form-group { margin-bottom:14px; }
+  .form-group label { display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px; color:var(--text); }
+  .form-group input, .form-group select, .form-group textarea {
+    width:100%; padding:10px 14px; border:2px solid var(--gray2); border-radius:8px;
+    font-family:'Cairo',sans-serif; font-size:0.9rem; color:var(--text);
+    background:#fff; transition:border-color 0.2s; outline:none; direction:rtl;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--blue); }
+  .form-group textarea { min-height:120px; resize:vertical; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .form-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:16px; }
+  .btn-save { background:var(--blue); color:#fff; border:none; padding:10px 24px;
+    border-radius:8px; cursor:pointer; font-family:'Cairo',sans-serif; font-size:0.9rem; font-weight:700; }
+  .btn-cancel { background:var(--gray); color:var(--text); border:none; padding:10px 20px;
+    border-radius:8px; cursor:pointer; font-family:'Cairo',sans-serif; font-size:0.9rem; }
+
+  /* ===== ITEMS LIST ===== */
+  .item-row { background:#fff; border-radius:var(--radius-sm); padding:14px 18px; margin-bottom:10px;
+    display:flex; align-items:center; justify-content:space-between; box-shadow:var(--shadow);
+    border-right:4px solid var(--orange); }
+  .item-row .item-info h4 { font-size:0.9rem; font-weight:700; margin-bottom:4px; }
+  .item-row .item-info p { font-size:0.8rem; color:var(--text2); }
+  .item-actions { display:flex; gap:8px; flex-shrink:0; }
+  .btn-del { background:#FEE2E2; color:var(--red); border:none; width:32px; height:32px;
+    border-radius:8px; cursor:pointer; font-size:0.9rem; }
+  .btn-edit { background:var(--blue-light); color:var(--blue); border:none; width:32px; height:32px;
+    border-radius:8px; cursor:pointer; font-size:0.9rem; }
+
+  /* ===== QUIZ BUILDER ===== */
+  .q-builder { background:var(--gray); border-radius:8px; padding:16px; margin-bottom:12px; border:1px solid var(--gray2); }
+  .q-builder input { width:100%; padding:8px 12px; border:1px solid var(--gray2); border-radius:6px;
+    font-family:'Cairo',sans-serif; font-size:0.85rem; margin-bottom:8px; direction:rtl; }
+  .q-builder .opts-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .q-builder .opt-item { display:flex; align-items:center; gap:6px; }
+  .q-builder .opt-item input[type=text] { flex:1; margin:0; }
+  .q-builder .opt-item input[type=radio] { flex-shrink:0; width:16px; height:16px; }
+  .add-q-btn { background:var(--blue-light); color:var(--blue); border:none; padding:8px 16px;
+    border-radius:8px; cursor:pointer; font-family:'Cairo',sans-serif; font-size:0.85rem; font-weight:600; }
+
+  /* ===== TOAST ===== */
+  .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(80px);
+    background:var(--dark); color:#fff; padding:12px 24px; border-radius:30px;
+    font-size:0.9rem; opacity:0; transition:all 0.3s; z-index:9999; pointer-events:none; }
+  .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+
+  /* ===== PROGRESS ===== */
+  .progress-bar { background:var(--gray2); border-radius:10px; height:8px; overflow:hidden; }
+  .progress-fill { background:linear-gradient(90deg,var(--orange),var(--orange-mid)); height:100%; border-radius:10px; transition:width 0.4s; }
+
+  @media(max-width:600px){
+    .stats-row { grid-template-columns:repeat(2,1fr); }
+    .form-row { grid-template-columns:1fr; }
+    .header-tabs { display:none; }
+    .htab.active { display:flex; }
+    .cards-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="app-logo">مدرستي<span>.ma</span></div>
+    <div class="header-tabs">
+      <button class="htab active" onclick="showScreen('student')">🎓 التلميذ</button>
+      <button class="htab" onclick="showScreen('quizzes')">📝 الاختبارات</button>
+    </div>
+    <button class="teacher-btn" onclick="showScreen('teacher')">⚙️ المعلم</button>
+  </div>
+</header>
+
+<!-- ===== STUDENT SCREEN ===== -->
+<div id="screen-student" class="screen active">
+  <div class="welcome-box">
+    <h2>مرحباً بك في منصة مدرستي 📚</h2>
+    <p>الأستاذ أحمد بوعمود | مؤسسة الحنان | التاريخ والجغرافيا والاجتماعيات</p>
+  </div>
+
+  <div class="level-tabs" id="levelTabs">
+    <button class="level-tab active" onclick="filterLevel('all',this)">الكل</button>
+    <button class="level-tab" onclick="filterLevel('3AC',this)">الثالثة إعدادي</button>
+    <button class="level-tab" onclick="filterLevel('TC',this)">الجذع المشترك</button>
+    <button class="level-tab" onclick="filterLevel('1Bac',this)">الأولى باك</button>
+    <button class="level-tab" onclick="filterLevel('2Bac',this)">الثانية باك</button>
+  </div>
+
+  <div id="lessonsSection">
+    <div class="section-title">الدروس</div>
+    <div class="cards-grid" id="lessonsGrid"></div>
+  </div>
+
+  <div id="exercisesSection">
+    <div class="section-title">التمارين</div>
+    <div class="cards-grid" id="exercisesGrid"></div>
+  </div>
+</div>
+
+<!-- LESSON DETAIL -->
+<div id="screen-lesson" class="screen">
+  <button class="back-btn" onclick="showScreen('student')">← رجوع</button>
+  <div class="lesson-detail">
+    <div id="lessonDetailContent"></div>
+  </div>
+</div>
+
+<!-- ===== QUIZZES SCREEN ===== -->
+<div id="screen-quizzes" class="screen">
+  <div class="section-title" style="margin-bottom:16px;">الاختبارات التفاعلية</div>
+  <div id="quizzesList"></div>
+</div>
+
+<!-- QUIZ ACTIVE -->
+<div id="screen-quiz-active" class="screen">
+  <button class="back-btn" onclick="showScreen('quizzes')">← رجوع</button>
+  <div class="quiz-card">
+    <div id="quizContent"></div>
+  </div>
+</div>
+
+<!-- ===== TEACHER SCREEN ===== -->
+<div id="screen-teacher" class="screen">
+  <div class="teacher-header">
+    <h2>⚙️ لوحة التحكم — الأستاذ أحمد بوعمود</h2>
+    <p>مؤسسة الحنان | التاريخ والجغرافيا والاجتماعيات | 2025-2026</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="num" id="statLessons">0</div><div class="lbl">درس</div></div>
+    <div class="stat-box"><div class="num" id="statExercises">0</div><div class="lbl">تمرين</div></div>
+    <div class="stat-box"><div class="num" id="statQuizzes">0</div><div class="lbl">اختبار</div></div>
+    <div class="stat-box"><div class="num" id="statQuestions">0</div><div class="lbl">سؤال</div></div>
+  </div>
+
+  <div class="teacher-tabs">
+    <button class="ttab active" onclick="switchTeacherTab('lessons',this)">📖 الدروس</button>
+    <button class="ttab" onclick="switchTeacherTab('exercises',this)">✏️ التمارين</button>
+    <button class="ttab" onclick="switchTeacherTab('quizzes',this)">📝 الاختبارات</button>
+  </div>
+
+  <!-- LESSONS TAB -->
+  <div id="ttab-lessons" class="tpanel">
+    <button class="add-btn" onclick="openLessonForm()">+ إضافة درس</button>
+    <div id="lessonForm" style="display:none;">
+      <div class="form-box">
+        <h3>📖 درس جديد</h3>
+        <div class="form-group"><label>عنوان الدرس</label><input type="text" id="lTitle" placeholder="مثال: التحولات الاقتصادية في القرن 19"></div>
+        <div class="form-row">
+          <div class="form-group"><label>المادة</label>
+            <select id="lSubject">
+              <option>التاريخ</option><option>الجغرافيا</option><option>التربية على المواطنة</option>
+            </select>
+          </div>
+          <div class="form-group"><label>المستوى</label>
+            <select id="lLevel">
+              <option value="3AC">الثالثة إعدادي</option><option value="TC">الجذع المشترك</option>
+              <option value="1Bac">الأولى باك</option><option value="2Bac">الثانية باك</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>محتوى الدرس</label><textarea id="lContent" placeholder="اكتب محتوى الدرس هنا..."></textarea></div>
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="closeForms()">إلغاء</button>
+          <button class="btn-save" onclick="saveLesson()">💾 حفظ الدرس</button>
+        </div>
+      </div>
+    </div>
+    <div id="teacherLessonsList"></div>
+  </div>
+
+  <!-- EXERCISES TAB -->
+  <div id="ttab-exercises" class="tpanel" style="display:none;">
+    <button class="add-btn" onclick="openExerciseForm()">+ إضافة تمرين</button>
+    <div id="exerciseForm" style="display:none;">
+      <div class="form-box">
+        <h3>✏️ تمرين جديد</h3>
+        <div class="form-group"><label>عنوان التمرين</label><input type="text" id="eTitle" placeholder="مثال: تحليل وثيقة تاريخية"></div>
+        <div class="form-row">
+          <div class="form-group"><label>المادة</label>
+            <select id="eSubject"><option>التاريخ</option><option>الجغرافيا</option><option>التربية على المواطنة</option></select>
+          </div>
+          <div class="form-group"><label>المستوى</label>
+            <select id="eLevel">
+              <option value="3AC">الثالثة إعدادي</option><option value="TC">الجذع المشترك</option>
+              <option value="1Bac">الأولى باك</option><option value="2Bac">الثانية باك</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>وصف التمرين والأسئلة</label><textarea id="eContent" placeholder="اكتب التمرين والأسئلة هنا..."></textarea></div>
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="closeForms()">إلغاء</button>
+          <button class="btn-save" onclick="saveExercise()">💾 حفظ التمرين</button>
+        </div>
+      </div>
+    </div>
+    <div id="teacherExercisesList"></div>
+  </div>
+
+  <!-- QUIZZES TAB -->
+  <div id="ttab-quizzes" class="tpanel" style="display:none;">
+    <button class="add-btn" onclick="openQuizForm()">+ إضافة اختبار</button>
+    <div id="quizForm" style="display:none;">
+      <div class="form-box">
+        <h3>📝 اختبار جديد</h3>
+        <div class="form-group"><label>عنوان الاختبار</label><input type="text" id="qTitle" placeholder="مثال: اختبار التاريخ - الأولى باك"></div>
+        <div class="form-row">
+          <div class="form-group"><label>المادة</label>
+            <select id="qSubject"><option>التاريخ</option><option>الجغرافيا</option><option>التربية على المواطنة</option></select>
+          </div>
+          <div class="form-group"><label>المستوى</label>
+            <select id="qLevel">
+              <option value="3AC">الثالثة إعدادي</option><option value="TC">الجذع المشترك</option>
+              <option value="1Bac">الأولى باك</option><option value="2Bac">الثانية باك</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:12px;"><b style="font-size:0.9rem;">الأسئلة:</b></div>
+        <div id="questionsContainer"></div>
+        <button class="add-q-btn" onclick="addQuestion()">+ إضافة سؤال</button>
+        <div class="form-actions" style="margin-top:16px;">
+          <button class="btn-cancel" onclick="closeForms()">إلغاء</button>
+          <button class="btn-save" onclick="saveQuiz()">💾 حفظ الاختبار</button>
+        </div>
+      </div>
+    </div>
+    <div id="teacherQuizzesList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+const SUBJECT_ICONS = {التاريخ:'⚔️', الجغرافيا:'🌍', 'التربية على المواطنة':'🏛️'};
+const LEVEL_COLORS = {'3AC':'orange','TC':'green','1Bac':'','2Bac':''};
+let currentLevel = 'all';
+let editingId = null;
+
+function getData() {
+  return {
+    lessons: JSON.parse(localStorage.getItem('mdrsti_lessons') || '[]'),
+    exercises: JSON.parse(localStorage.getItem('mdrsti_exercises') || '[]'),
+    quizzes: JSON.parse(localStorage.getItem('mdrsti_quizzes') || '[]')
+  };
+}
+function saveData(key, arr) { localStorage.setItem('mdrsti_' + key, JSON.stringify(arr)); }
+
+// ===== NAVIGATION =====
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.querySelectorAll('.htab').forEach(t => t.classList.remove('active'));
+  if (name === 'student') { document.querySelectorAll('.htab')[0].classList.add('active'); renderStudent(); }
+  if (name === 'quizzes') { document.querySelectorAll('.htab')[1].classList.add('active'); renderQuizzes(); }
+  if (name === 'teacher') { renderTeacher(); updateStats(); }
+}
+
+// ===== STUDENT RENDER =====
+function filterLevel(level, btn) {
+  currentLevel = level;
+  document.querySelectorAll('.level-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderStudent();
+}
+
+function renderStudent() {
+  const {lessons, exercises} = getData();
+  const lg = document.getElementById('lessonsGrid');
+  const eg = document.getElementById('exercisesGrid');
+  const fl = currentLevel === 'all' ? lessons : lessons.filter(l => l.level === currentLevel);
+  const fe = currentLevel === 'all' ? exercises : exercises.filter(e => e.level === currentLevel);
+
+  lg.innerHTML = fl.length ? fl.map(l => `
+    <div class="lesson-card" onclick="showLesson('${l.id}')">
+      <div class="card-icon">${SUBJECT_ICONS[l.subject] || '📄'}</div>
+      <h3>${l.title}</h3>
+      <div class="card-meta">
+        <span class="badge ${LEVEL_COLORS[l.level] || ''}">${l.level}</span>
+        <span class="badge">${l.subject}</span>
+      </div>
+    </div>`) : '<div class="empty-state"><div class="emoji">📭</div><p>لا توجد دروس حالياً</p></div>';
+
+  eg.innerHTML = fe.length ? fe.map(e => `
+    <div class="lesson-card" onclick="showExercise('${e.id}')">
+      <div class="card-icon">✏️</div>
+      <h3>${e.title}</h3>
+      <div class="card-meta">
+        <span class="badge ${LEVEL_COLORS[e.level] || ''}">${e.level}</span>
+        <span class="badge">${e.subject}</span>
+      </div>
+    </div>`) : '<div class="empty-state"><div class="emoji">📝</div><p>لا توجد تمارين حالياً</p></div>';
+}
+
+function showLesson(id) {
+  const {lessons} = getData();
+  const l = lessons.find(x => x.id === id);
+  if (!l) return;
+  document.getElementById('lessonDetailContent').innerHTML = `
+    <h2>${SUBJECT_ICONS[l.subject] || '📄'} ${l.title}</h2>
+    <div class="card-meta" style="margin-bottom:16px;margin-top:8px;">
+      <span class="badge ${LEVEL_COLORS[l.level] || ''}">${l.level}</span>
+      <span class="badge">${l.subject}</span>
+    </div>
+    <hr style="border:none;border-top:2px solid var(--gray2);margin-bottom:16px;">
+    <div class="lesson-body">${l.content || 'لا يوجد محتوى'}</div>`;
+  showScreen('lesson');
+}
+
+function showExercise(id) {
+  const {exercises} = getData();
+  const e = exercises.find(x => x.id === id);
+  if (!e) return;
+  document.getElementById('lessonDetailContent').innerHTML = `
+    <h2>✏️ ${e.title}</h2>
+    <div class="card-meta" style="margin-bottom:16px;margin-top:8px;">
+      <span class="badge ${LEVEL_COLORS[e.level] || ''}">${e.level}</span>
+      <span class="badge">${e.subject}</span>
+    </div>
+    <hr style="border:none;border-top:2px solid var(--gray2);margin-bottom:16px;">
+    <div class="lesson-body">${e.content || 'لا يوجد محتوى'}</div>`;
+  showScreen('lesson');
+}
+
+// ===== QUIZZES =====
+function renderQuizzes() {
+  const {quizzes} = getData();
+  const el = document.getElementById('quizzesList');
+  el.innerHTML = quizzes.length ? quizzes.map(q => `
+    <div class="lesson-card" onclick="startQuiz('${q.id}')" style="margin-bottom:12px;">
+      <div class="card-icon">📝</div>
+      <h3>${q.title}</h3>
+      <div class="card-meta">
+        <span class="badge ${LEVEL_COLORS[q.level] || ''}">${q.level}</span>
+        <span class="badge">${q.subject}</span>
+        <span class="badge green">${(q.questions||[]).length} سؤال</span>
+      </div>
+    </div>`) : '<div class="empty-state"><div class="emoji">📭</div><p>لا توجد اختبارات حالياً</p></div>';
+}
+
+let quizState = {quiz:null, idx:0, score:0, answered:false};
+
+function startQuiz(id) {
+  const {quizzes} = getData();
+  const q = quizzes.find(x => x.id === id);
+  if (!q || !q.questions || !q.questions.length) { toast('الاختبار فارغ'); return; }
+  quizState = {quiz:q, idx:0, score:0, answered:false};
+  showScreen('quiz-active');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const {quiz, idx} = quizState;
+  const q = quiz.questions[idx];
+  const total = quiz.questions.length;
+  const pct = Math.round(idx / total * 100);
+  document.getElementById('quizContent').innerHTML = `
+    <div style="margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <span style="font-size:0.85rem;color:var(--text2);">السؤال ${idx+1} من ${total}</span>
+        <span style="font-size:0.85rem;color:var(--orange);font-weight:700;">النتيجة: ${quizState.score}/${idx}</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div style="font-size:1rem;font-weight:700;margin-bottom:16px;line-height:1.6;">${q.q}</div>
+    <div id="optionsContainer">
+      ${q.opts.map((o,i) => `<div class="quiz-option" onclick="answerQuiz(${i})">${o}</div>`).join('')}
+    </div>
+    <div class="quiz-exp" id="quizExp">${q.exp || ''}</div>`;
+  quizState.answered = false;
+}
+
+function answerQuiz(i) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const q = quizState.quiz.questions[quizState.idx];
+  const opts = document.querySelectorAll('.quiz-option');
+  opts[i].classList.add(i === q.ans ? 'correct' : 'wrong');
+  opts[q.ans].classList.add('correct');
+  if (i === q.ans) quizState.score++;
+  document.getElementById('quizExp').style.display = 'block';
+  setTimeout(() => {
+    quizState.idx++;
+    if (quizState.idx < quizState.quiz.questions.length) renderQuestion();
+    else showQuizResult();
+  }, 1800);
+}
+
+function showQuizResult() {
+  const {score, quiz} = quizState;
+  const total = quiz.questions.length;
+  const pct = Math.round(score/total*100);
+  document.getElementById('quizContent').innerHTML = `
+    <div style="text-align:center;padding:20px 0;">
+      <div style="font-size:4rem;margin-bottom:12px;">${pct>=70?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2 style="font-size:1.3rem;margin-bottom:8px;">انتهى الاختبار!</h2>
+      <div style="font-size:2rem;font-weight:900;color:var(--blue);margin-bottom:8px;">${score} / ${total}</div>
+      <div class="progress-bar" style="margin:0 auto 16px;max-width:200px;"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <p style="color:var(--text2);margin-bottom:20px;">${pct>=70?'أحسنت، نتيجة ممتازة!':pct>=50?'جيد، واصل التحسين!':'تحتاج مزيداً من المراجعة'}</p>
+      <button class="btn-save" onclick="startQuiz('${quiz.id}')">🔄 إعادة المحاولة</button>
+    </div>`;
+}
+
+// ===== TEACHER =====
+function updateStats() {
+  const d = getData();
+  const qCount = d.quizzes.reduce((s,q) => s + (q.questions||[]).length, 0);
+  document.getElementById('statLessons').textContent = d.lessons.length;
+  document.getElementById('statExercises').textContent = d.exercises.length;
+  document.getElementById('statQuizzes').textContent = d.quizzes.length;
+  document.getElementById('statQuestions').textContent = qCount;
+}
+
+function switchTeacherTab(tab, btn) {
+  document.querySelectorAll('.ttab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tpanel').forEach(p => p.style.display='none');
+  document.getElementById('ttab-' + tab).style.display = 'block';
+  renderTeacher();
+}
+
+function renderTeacher() {
+  renderTeacherLessons();
+  renderTeacherExercises();
+  renderTeacherQuizzes();
+}
+
+function renderTeacherLessons() {
+  const {lessons} = getData();
+  document.getElementById('teacherLessonsList').innerHTML = lessons.length
+    ? lessons.map(l => `<div class="item-row">
+        <div class="item-info"><h4>${SUBJECT_ICONS[l.subject]||'📄'} ${l.title}</h4>
+          <p>${l.subject} | ${l.level}</p></div>
+        <div class="item-actions">
+          <button class="btn-del" onclick="deleteItem('lessons','${l.id}')">🗑️</button>
+        </div></div>`).join('')
+    : '<div class="empty-state"><div class="emoji">📭</div><p>لا توجد دروس</p></div>';
+}
+
+function renderTeacherExercises() {
+  const {exercises} = getData();
+  document.getElementById('teacherExercisesList').innerHTML = exercises.length
+    ? exercises.map(e => `<div class="item-row">
+        <div class="item-info"><h4>✏️ ${e.title}</h4>
+          <p>${e.subject} | ${e.level}</p></div>
+        <div class="item-actions">
+          <button class="btn-del" onclick="deleteItem('exercises','${e.id}')">🗑️</button>
+        </div></div>`).join('')
+    : '<div class="empty-state"><div class="emoji">📭</div><p>لا توجد تمارين</p></div>';
+}
+
+function renderTeacherQuizzes() {
+  const {quizzes} = getData();
+  document.getElementById('teacherQuizzesList').innerHTML = quizzes.length
+    ? quizzes.map(q => `<div class="item-row">
+        <div class="item-info"><h4>📝 ${q.title}</h4>
+          <p>${q.subject} | ${q.level} | ${(q.questions||[]).length} سؤال</p></div>
+        <div class="item-actions">
+          <button class="btn-del" onclick="deleteItem('quizzes','${q.id}')">🗑️</button>
+        </div></div>`).join('')
+    : '<div class="empty-state"><div class="emoji">📭</div><p>لا توجد اختبارات</p></div>';
+}
+
+// ===== FORMS =====
+function openLessonForm() { document.getElementById('lessonForm').style.display='block'; }
+function openExerciseForm() { document.getElementById('exerciseForm').style.display='block'; }
+function openQuizForm() {
+  document.getElementById('quizForm').style.display='block';
+  document.getElementById('questionsContainer').innerHTML='';
+  addQuestion();
+}
+function closeForms() {
+  ['lessonForm','exerciseForm','quizForm'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.style.display='none';
+  });
+  ['lTitle','lContent','eTitle','eContent','qTitle'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value='';
+  });
+  document.getElementById('questionsContainer').innerHTML='';
+}
+
+function saveLesson() {
+  const title = document.getElementById('lTitle').value.trim();
+  const content = document.getElementById('lContent').value.trim();
+  if (!title) { toast('أدخل عنوان الدرس'); return; }
+  const {lessons} = getData();
+  lessons.push({
+    id: Date.now().toString(),
+    title,
+    subject: document.getElementById('lSubject').value,
+    level: document.getElementById('lLevel').value,
+    content,
+    date: new Date().toLocaleDateString('ar')
+  });
+  saveData('lessons', lessons);
+  closeForms();
+  renderTeacherLessons();
+  updateStats();
+  toast('✅ تم حفظ الدرس');
+}
+
+function saveExercise() {
+  const title = document.getElementById('eTitle').value.trim();
+  const content = document.getElementById('eContent').value.trim();
+  if (!title) { toast('أدخل عنوان التمرين'); return; }
+  const {exercises} = getData();
+  exercises.push({
+    id: Date.now().toString(),
+    title,
+    subject: document.getElementById('eSubject').value,
+    level: document.getElementById('eLevel').value,
+    content
+  });
+  saveData('exercises', exercises);
+  closeForms();
+  renderTeacherExercises();
+  updateStats();
+  toast('✅ تم حفظ التمرين');
+}
+
+let qIdx = 0;
+function addQuestion() {
+  qIdx++;
+  const id = 'q' + qIdx;
+  const div = document.createElement('div');
+  div.className = 'q-builder';
+  div.id = id;
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+      <b style="font-size:0.85rem;color:var(--blue);">السؤال ${qIdx}</b>
+      <button onclick="document.getElementById('${id}').remove()" style="background:none;border:none;cursor:pointer;color:var(--red);font-size:0.9rem;">✕</button>
+    </div>
+    <input type="text" placeholder="اكتب السؤال هنا..." class="qtext">
+    <div class="opts-row">
+      ${[0,1,2,3].map(i => `
+        <div class="opt-item">
+          <input type="radio" name="${id}_ans" value="${i}">
+          <input type="text" placeholder="الخيار ${i+1}" class="otext">
+        </div>`).join('')}
+    </div>
+    <input type="text" placeholder="شرح الإجابة (اختياري)..." class="qexp" style="margin-top:8px;">`;
+  document.getElementById('questionsContainer').appendChild(div);
+}
+
+function saveQuiz() {
+  const title = document.getElementById('qTitle').value.trim();
+  if (!title) { toast('أدخل عنوان الاختبار'); return; }
+  const qBuilders = document.querySelectorAll('.q-builder');
+  const questions = [];
+  qBuilders.forEach(qb => {
+    const qtext = qb.querySelector('.qtext').value.trim();
+    if (!qtext) return;
+    const opts = Array.from(qb.querySelectorAll('.otext')).map(i => i.value.trim()).filter(v=>v);
+    const radios = qb.querySelectorAll('input[type=radio]');
+    let ans = 0;
+    radios.forEach((r,i) => { if(r.checked) ans=i; });
+    const exp = qb.querySelector('.qexp').value.trim();
+    if (opts.length >= 2) questions.push({q:qtext, opts, ans, exp});
+  });
+  if (!questions.length) { toast('أضف سؤالاً على الأقل'); return; }
+  const {quizzes} = getData();
+  quizzes.push({
+    id: Date.now().toString(),
+    title,
+    subject: document.getElementById('qSubject').value,
+    level: document.getElementById('qLevel').value,
+    questions
+  });
+  saveData('quizzes', quizzes);
+  closeForms();
+  renderTeacherQuizzes();
+  updateStats();
+  qIdx = 0;
+  toast(`✅ تم حفظ الاختبار (${questions.length} أسئلة)`);
+}
+
+function deleteItem(key, id) {
+  if (!confirm('هل تريد حذف هذا العنصر؟')) return;
+  const arr = getData()[key].filter(x => x.id !== id);
+  saveData(key, arr);
+  renderTeacher();
+  updateStats();
+  toast('🗑️ تم الحذف');
+}
+
+// ===== TOAST =====
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ===== PRELOAD DEFAULT DATA =====
+function loadDefaultData() {
+  const existing = localStorage.getItem('mdrsti_lessons');
+  if (existing && JSON.parse(existing).length > 0) return; // لا تحمّل إذا كانت هناك بيانات
+
+  const defaultLessons = [
+    {
+      id: 'l001', level: '1Bac', subject: 'التاريخ',
+      title: 'التحولات الاقتصادية والاجتماعية في العالم الرأسمالي خلال ق19',
+      content: `📌 الإشكالية:
+ما هي التحولات الاقتصادية والاجتماعية والفكرية التي عرفها العالم خلال القرن 19م؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+⚔️ أولاً: التحولات الاقتصادية
+
+▪ الثورة الصناعية:
+انطلقت من إنجلترا في النصف الثاني من ق18م، واتسمت بـ:
+- اختراع الآلة البخارية (جيمس واط 1769)
+- ظهور المصانع وتطور السكك الحديدية
+- انتقال الإنتاج من المنزل إلى المصنع
+
+▪ تطور الرأسمالية:
+انتقلت من الرأسمالية التجارية → الصناعية → المالية
+- بروز الأبناك والشركات المساهمة
+- تصدير الرساميل نحو المناطق الفقيرة
+- ظهور الاحتكارات (تروستات وكارتيلات)
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🏙️ ثانياً: التحولات الاجتماعية
+
+▪ ظهور طبقتين اجتماعيتين جديدتين:
+- البورجوازية: أصحاب المصانع والرساميل
+- البروليتاريا: العمال المُستغَلون
+
+▪ أوضاع العمال:
+- ساعات عمل طويلة (12-16 ساعة/يوم)
+- أجور زهيدة وظروف صحية سيئة
+- استغلال عمالة النساء والأطفال
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+💡 ثالثاً: التحولات الفكرية
+
+▪ الفكر الاشتراكي:
+- الاشتراكية الطوباوية: سان سيمون، فورييه (أفكار مثالية)
+- الاشتراكية العلمية: ماركس وإنغلز (المانيفست الشيوعي 1848)
+
+▪ الحركة النقابية:
+- ظهور النقابات للدفاع عن حقوق العمال
+- الإضرابات وتنظيم صفوف الطبقة العاملة
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📝 خلاصة:
+أفرز القرن 19م تحولات عميقة أعادت تشكيل المجتمعات الأوروبية وأرست أسس التنافس الإمبريالي لاحقاً.`
+    },
+    {
+      id: 'l002', level: '1Bac', subject: 'التاريخ',
+      title: 'التنافس الإمبريالي واندلاع الحرب العالمية الأولى',
+      content: `📌 الإشكالية:
+ما مظاهر التنافس الإمبريالي؟ وما علاقته باندلاع الحرب العالمية الأولى؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🌍 أولاً: مظاهر التنافس الإمبريالي
+
+▪ التنافس الاقتصادي:
+- صراع على الأسواق والمواد الأولية
+- ظهور قوى جديدة: ألمانيا، اليابان، الولايات المتحدة
+- منافسة إنجلترا وفرنسا في المستعمرات
+
+▪ التنافس السياسي:
+- فرنسا وألمانيا: النزاع على الألزاس واللورين والمغرب
+- النمسا وصربيا: الصراع حول البلقان
+- إيطاليا: أطماع في ليبيا
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🤝 ثانياً: وسائل التنافس
+
+▪ منظومة الأحلاف:
+- الوفاق الثلاثي: فرنسا + روسيا + إنجلترا
+- التحالف الثلاثي: ألمانيا + النمسا + إيطاليا
+
+▪ التسابق نحو التسلح:
+- ارتفاع النفقات العسكرية
+- قانون الخدمة العسكرية الإجبارية
+- تطوير الصناعة الحربية
+
+▪ الأزمات الدولية:
+- أزمتا المغرب: 1905 و1911
+- أزمات البلقان: 1908-1912
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+💥 ثالثاً: اندلاع الحرب (1914)
+
+- اغتيال ولي عهد النمسا فرانز فرديناند 28 يونيو 1914 بسراييفو
+- سلسلة إعلانات الحرب بسبب الأحلاف
+- الحرب: 1914 → 1918
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📝 خلاصة:
+التنافس الإمبريالي + الأحلاف + التسلح + الأزمات = فتيل الحرب العالمية الأولى.`
+    },
+    {
+      id: 'l003', level: '1Bac', subject: 'التاريخ',
+      title: 'الضغوط الاستعمارية على المغرب ومحاولات الإصلاح',
+      content: `📌 الإشكالية:
+ما أشكال الضغوط الاستعمارية على المغرب؟ وما مدى نجاح إصلاحات المخزن في مواجهتها؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+⚔️ أولاً: الضغوط العسكرية
+
+▪ من طرف فرنسا:
+- معركة إيسلي 1844
+- احتلال تيزنيت وبعض مناطق الجنوب
+
+▪ من طرف إسبانيا:
+- حرب تطوان 1859-1860
+- اتفاقية إفران 1860 (ديون وتعويضات ضخمة)
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📜 ثانياً: الضغوط الدبلوماسية والاقتصادية
+
+▪ معاهدات مُجحفة:
+- اتفاقية للامغنية 1845 مع فرنسا
+- معاهدة مدريد 1880: أقرّت حق الحمايات القنصلية
+
+▪ الحمايات القنصلية:
+تمكين بعض المغاربة من الانضواء تحت حماية القناصل الأجانب للتهرب من الضرائب والقضاء المغربي.
+
+▪ مؤتمر الجزيرة الخضراء 1906:
+وضع المغرب تحت وصاية دولية فعلية.
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 ثالثاً: إصلاحات المخزن ومحدوديتها
+
+▪ الإصلاحات:
+- العسكرية: تشكيل الجيش النظامي (الجيش العسكري)
+- الاقتصادية: محاولة تطوير التجارة والجمارك
+- الإدارية: تعيين قواد جدد
+- التعليمية: إنشاء مدارس عصرية
+
+▪ أسباب الفشل:
+- الضغوط الخارجية المتواصلة
+- مقاومة التقليديين للتغيير
+- شُح الموارد المالية (ديون متراكمة)
+- غياب التماسك الداخلي
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📅 معاهدة الحماية 30 مارس 1912:
+فرضت فرنسا حمايتها على المغرب بعد سنوات من الضغط المتواصل.`
+    },
+    {
+      id: 'l004', level: '1Bac', subject: 'الجغرافيا',
+      title: 'مفهوم التنمية — المقاربات والتقسيمات الكبرى للعالم',
+      content: `📌 الإشكالية:
+ما مفهوم التنمية؟ وما المقاربات المعتمدة في دراستها؟ وكيف تتوزع مستويات التنمية على الصعيد العالمي؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📖 أولاً: مفهوم التنمية
+
+▪ التنمية الاقتصادية:
+نمو وتطور أحجام الإنتاج والرفع من المداخيل، مع تحسين مستوى معيشة الأفراد.
+
+▪ التنمية البشرية:
+تجعل الإنسان محوراً وغاية لا وسيلة. تقيسها 3 معايير:
+- الصحة: أمد الحياة
+- التعليم: نسبة التمدرس ومحاربة الأمية
+- المعيشة: الدخل الفردي
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🔬 ثانياً: مقاربات دراسة التنمية
+
+| المقاربة | المؤشرات |
+|----------|----------|
+| الاقتصادية | الناتج الداخلي الخام، الدخل الفردي |
+| الاجتماعية | نسبة الفقر، الأمية، التأطير الطبي |
+| الديموغرافية | أمد الحياة، نسبة الولادات والوفيات |
+| السياسية | الديمقراطية، حقوق الإنسان |
+| البيئية | التنمية المستدامة |
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🌍 ثالثاً: مؤشر التنمية البشرية (IDH)
+
+تصنيف الدول:
+- IDH > 0.800 → تنمية مرتفعة جداً (النرويج، أمريكا...)
+- 0.500 - 0.799 → تنمية متوسطة (المغرب، مصر...)
+- IDH < 0.500 → تنمية ضعيفة (دول أفريقيا جنوب الصحراء)
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🗺️ رابعاً: التقسيمات الكبرى للعالم
+
+▪ دول الشمال (المتقدمة):
+أمريكا الشمالية، أوروبا الغربية، اليابان، أستراليا
+→ تهيمن على 80% من ثروات العالم
+
+▪ دول الجنوب (النامية):
+تنقسم إلى:
+- اقتصادات صاعدة: الصين، الهند، البرازيل
+- اقتصادات بترولية: دول الخليج، الجزائر
+- سائرة في طريق النمو: المغرب، تونس، مصر
+- أقل نمواً: دول الساحل الأفريقي`
+    },
+    {
+      id: 'l005', level: '3AC', subject: 'التاريخ',
+      title: 'الرأسمالية والثورة الصناعية',
+      content: `📌 الإشكالية:
+ما هي الرأسمالية؟ وما مراحل تطورها؟ وما علاقتها بالثورة الصناعية؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+💰 أولاً: مفهوم الرأسمالية
+
+نظام اقتصادي قائم على:
+- الملكية الخاصة لوسائل الإنتاج
+- البحث عن الربح
+- حرية السوق والمنافسة
+
+▪ مراحل تطور الرأسمالية:
+1. التجارية (ق15-18): تجارة عبر البحار
+2. الصناعية (ق19): المصانع والآلات
+3. المالية (ق20): البنوك والاحتكارات
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🏭 ثانياً: الثورة الصناعية
+
+▪ انطلاقها: إنجلترا، النصف الثاني من ق18م
+
+▪ أسباب انطلاقها من إنجلترا:
+- توفر الفحم الحجري والحديد
+- مستعمرات واسعة (مواد أولية وأسواق)
+- الاستقرار السياسي والحرية الاقتصادية
+
+▪ أبرز الاختراعات:
+- الآلة البخارية: جيمس واط (1769)
+- النول الميكانيكي: كارترايت (1785)
+- القاطرة البخارية: ستيفنسون (1814)
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🌍 ثالثاً: انتشار الثورة الصناعية
+
+انتقلت من إنجلترا إلى:
+- بلجيكا وفرنسا (أوائل ق19)
+- ألمانيا والولايات المتحدة (منتصف ق19)
+- اليابان وروسيا (نهاية ق19)
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📝 خلاصة:
+الثورة الصناعية + الرأسمالية = نمو اقتصادي هائل + ظهور طبقتي البورجوازية والبروليتاريا.`
+    },
+    {
+      id: 'l006', level: '3AC', subject: 'الجغرافيا',
+      title: 'المغرب العربي: الوحدة في التنوع',
+      content: `📌 الإشكالية:
+ما مظاهر الوحدة والتنوع في المغرب العربي؟ وما التحديات التي تواجه اندماجه؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🗺️ أولاً: دول المغرب العربي الخمس
+
+1. 🇲🇦 المملكة المغربية — الرباط
+2. 🇩🇿 الجمهورية الجزائرية — الجزائر
+3. 🇹🇳 الجمهورية التونسية — تونس
+4. 🇱🇾 الجماهيرية الليبية — طرابلس
+5. 🇲🇷 الجمهورية الموريتانية — نواكشوط
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🤝 ثانياً: مظاهر الوحدة
+
+▪ الموقع الجغرافي:
+- موقع متوسطي متميز (بين البحر الأبيض والصحراء الكبرى)
+- واجهتان: المتوسط والأطلسي
+
+▪ الوحدة الحضارية والثقافية:
+- اللغة العربية والأمازيغية
+- الدين الإسلامي
+- الموروث التاريخي المشترك (الأمازيغ، الرومان، العرب)
+
+▪ التشابه الاقتصادي:
+- الفلاحة والصيد البحري
+- المحروقات (الجزائر وليبيا)
+- السياحة
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🔀 ثالثاً: مظاهر التنوع
+
+▪ التنوع الطبيعي:
+- المناطق الساحلية (مناخ متوسطي)
+- الجبال (الأطلس، الأوراس)
+- الصحراء الكبرى
+
+▪ التباين الديموغرافي:
+- المغرب: 37 مليون نسمة
+- الجزائر: 45 مليون نسمة
+- تونس: 12 مليون نسمة
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ رابعاً: عوائق الاندماج المغاربي
+
+- النزاع حول الصحراء المغربية
+- إغلاق الحدود بين المغرب والجزائر
+- تباين الأنظمة السياسية
+- التنافس الاقتصادي`
+    },
+    {
+      id: 'l007', level: '3AC', subject: 'التربية على المواطنة',
+      title: 'مؤسسة محمد الخامس للتضامن',
+      content: `📌 الإشكالية:
+ما دور مؤسسة محمد الخامس للتضامن في تحقيق التضامن الاجتماعي؟
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🏛️ أولاً: التعريف والتأسيس
+
+▪ التأسيس: أُسست عام 1999 بمبادرة من الملك محمد السادس
+▪ الطابع: مؤسسة ملكية خيرية غير حكومية
+▪ الهدف: تحقيق التضامن الاجتماعي ودعم الفئات الهشة
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 ثانياً: مجالات التدخل
+
+▪ في المجال الاجتماعي:
+- مساعدة الأسر المعوزة
+- دعم دور الأيتام والمسنين
+- برامج محاربة الفقر والتهميش
+
+▪ في حالات الطوارئ:
+- التدخل الفوري أثناء الكوارث الطبيعية
+- توزيع المساعدات على المنكوبين
+- إعادة التأهيل بعد الكوارث
+
+▪ في شهر رمضان:
+- برنامج "مائدة الرحمة"
+- توزيع حصص غذائية على المحتاجين
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+💪 ثالثاً: مساهمة المواطن
+
+▪ الطوعية والتبرع:
+- التبرع بالمال والملابس والغذاء
+- المشاركة في الحملات التضامنية
+
+▪ العمل التطوعي:
+- المشاركة في مشاريع التنمية المحلية
+- دعم المبادرات الخيرية
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📝 خلاصة:
+مؤسسة محمد الخامس للتضامن نموذج للتضامن الوطني الذي يجسّد قيم المواطنة والتماسك الاجتماعي.`
+    }
+  ];
+
+  const defaultExercises = [
+    {
+      id: 'e001', level: '1Bac', subject: 'التاريخ',
+      title: 'تحليل وثيقة — الثورة الصناعية',
+      content: `📄 الوثيقة:
+"شهدت إنجلترا في النصف الثاني من القرن 18م ثورة صناعية حقيقية، أسهمت في تحويل بنية الاقتصاد الأوروبي بأسره. فمع اختراع الآلة البخارية وتطور السكك الحديدية، أصبح الإنتاج الصناعي يفوق الإنتاج الزراعي، وتدفقت الثروات نحو أصحاب المصانع في حين عانى العمال من ظروف قاسية."
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+❓ الأسئلة:
+
+1️⃣ ضع الوثيقة في سياقها التاريخي. (الزمن، المكان، الموضوع) — (1 نقطة)
+
+2️⃣ اشرح تاريخياً المفاهيم التالية:
+   • الثورة الصناعية
+   • الآلة البخارية
+   — (2 نقطة)
+
+3️⃣ استخرج من الوثيقة:
+   • مظهرين من مظاهر الثورة الصناعية
+   • نتيجة اجتماعية واحدة
+   — (2 نقطة)
+
+4️⃣ ركّب الفكرة الأساس للوثيقة في جملة أو جملتين. — (1 نقطة)
+
+5️⃣ انطلاقاً من مكتسباتك، اكتب فقرة تبين فيها أسباب انطلاق الثورة الصناعية من إنجلترا. — (2 نقطة)
+
+━━━━━━━━━━━━━━━━━━━━━━
+💡 إجمالي: 8 نقاط`
+    },
+    {
+      id: 'e002', level: '1Bac', subject: 'الجغرافيا',
+      title: 'موضوع مقالي — مفهوم التنمية وتقسيمات العالم',
+      content: `📝 الموضوع:
+"يتسم المجال العالمي بتفاوت كبير في مستويات التنمية."
+
+انطلاقاً من هذه العبارة، اكتب موضوعاً مقالياً تبرز فيه:
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🗂️ عناصر الإجابة المطلوبة:
+
+1️⃣ تعريف التنمية البشرية ومؤشرها (IDH)
+
+2️⃣ المقاربات المعتمدة في دراسة التنمية
+   (الاقتصادية، الاجتماعية، الديموغرافية، البيئية)
+
+3️⃣ التقسيمات الكبرى للعالم:
+   • دول الشمال المتقدمة
+   • دول الجنوب النامية
+   • موقع المغرب ضمن هذه التقسيمات
+
+4️⃣ النظريات المفسّرة لتباين مستويات التنمية
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📋 منهجية الإجابة:
+
+✅ مقدمة: تأطير الموضوع + إشكالية
+✅ عرض: 3 محاور منظمة
+✅ خاتمة: خلاصة واستنتاج
+
+━━━━━━━━━━━━━━━━━━━━━━
+⏱️ المدة المقترحة: 40 دقيقة`
+    }
+  ];
+
+  const defaultQuizzes = [
+    {
+      id: 'qz001', level: '1Bac', subject: 'التاريخ',
+      title: 'اختبار — التحولات الاقتصادية ق19',
+      questions: [
+        {
+          q: 'من أين انطلقت الثورة الصناعية؟',
+          opts: ['فرنسا', 'إنجلترا', 'ألمانيا', 'إيطاليا'],
+          ans: 1,
+          exp: 'انطلقت الثورة الصناعية من إنجلترا في النصف الثاني من القرن 18م بسبب توفر الفحم الحديد والاستقرار السياسي.'
+        },
+        {
+          q: 'من اخترع الآلة البخارية؟',
+          opts: ['نيوتن', 'داروين', 'جيمس واط', 'ستيفنسون'],
+          ans: 2,
+          exp: 'اخترع جيمس واط الآلة البخارية عام 1769، وهو اختراع غيّر وجه الصناعة.'
+        },
+        {
+          q: 'ما الطبقة الاجتماعية التي تملك وسائل الإنتاج؟',
+          opts: ['البروليتاريا', 'الفلاحون', 'البورجوازية', 'رجال الدين'],
+          ans: 2,
+          exp: 'البورجوازية هي طبقة أصحاب المصانع والرساميل الذين يملكون وسائل الإنتاج.'
+        },
+        {
+          q: 'ما الكتاب الذي أصدره ماركس وإنغلز عام 1848؟',
+          opts: ['البيان الشيوعي', 'ثروة الأمم', 'رأس المال', 'العقد الاجتماعي'],
+          ans: 0,
+          exp: 'المانيفست الشيوعي (البيان الشيوعي) صدر عام 1848 ودعا إلى ثورة البروليتاريا.'
+        },
+        {
+          q: 'ما المرحلة الثالثة للرأسمالية؟',
+          opts: ['التجارية', 'الصناعية', 'المالية', 'الرقمية'],
+          ans: 2,
+          exp: 'الرأسمالية المالية هي المرحلة الثالثة، تميزت بهيمنة البنوك والاحتكارات (التروستات والكارتيلات).'
+        }
+      ]
+    },
+    {
+      id: 'qz002', level: '1Bac', subject: 'الجغرافيا',
+      title: 'اختبار — التنمية البشرية والتقسيمات الكبرى',
+      questions: [
+        {
+          q: 'ما عدد المعايير التي يعتمدها مؤشر التنمية البشرية (IDH)؟',
+          opts: ['2', '3', '4', '5'],
+          ans: 1,
+          exp: 'يعتمد IDH 3 معايير: الصحة (أمد الحياة) + التعليم (التمدرس) + المعيشة (الدخل الفردي).'
+        },
+        {
+          q: 'أي قيمة IDH تصنّف الدولة ضمن التنمية المرتفعة جداً؟',
+          opts: ['أقل من 0.5', 'بين 0.5 و0.7', 'بين 0.7 و0.8', 'أكثر من 0.8'],
+          ans: 3,
+          exp: 'الدول ذات IDH > 0.800 تصنّف في خانة التنمية المرتفعة جداً كالنرويج والولايات المتحدة.'
+        },
+        {
+          q: 'ما نسبة ثروات العالم التي تهيمن عليها دول الشمال؟',
+          opts: ['50%', '60%', '80%', '95%'],
+          ans: 2,
+          exp: 'تهيمن دول الشمال على حوالي 80% من ثروات العالم رغم أنها لا تضم سوى 20% من سكانه.'
+        },
+        {
+          q: 'ضمن أي مجموعة يُصنَّف المغرب في خريطة التنمية؟',
+          opts: ['دول الشمال المتقدمة', 'الاقتصادات الصاعدة', 'السائرة في طريق النمو', 'الأقل نمواً'],
+          ans: 2,
+          exp: 'يُصنَّف المغرب ضمن البلدان السائرة في طريق النمو مع تونس ومصر.'
+        },
+        {
+          q: 'ما التنمية المستدامة؟',
+          opts: ['التنمية التي تهتم بالاقتصاد فقط', 'التنمية التي تلبي حاجات الحاضر دون المساس بحقوق المستقبل', 'التنمية الصناعية', 'التنمية الفلاحية'],
+          ans: 1,
+          exp: 'التنمية المستدامة هي التنمية التي تلبي احتياجات الحاضر دون المساس بقدرة الأجيال القادمة على تلبية احتياجاتها.'
+        }
+      ]
+    },
+    {
+      id: 'qz003', level: '3AC', subject: 'التاريخ',
+      title: 'اختبار — الرأسمالية والثورة الصناعية',
+      questions: [
+        {
+          q: 'في أي قرن انطلقت الثورة الصناعية؟',
+          opts: ['القرن 16', 'القرن 17', 'القرن 18', 'القرن 19'],
+          ans: 2,
+          exp: 'انطلقت الثورة الصناعية في النصف الثاني من القرن الثامن عشر (18م).'
+        },
+        {
+          q: 'ما أول مرحلة من مراحل الرأسمالية؟',
+          opts: ['الصناعية', 'المالية', 'التجارية', 'الرقمية'],
+          ans: 2,
+          exp: 'الرأسمالية التجارية هي أولى المراحل، ظهرت في القرنين 15-18 مع التجارة البحرية الدولية.'
+        },
+        {
+          q: 'ما الطبقة الاجتماعية التي تبيع قوة عملها لدى البورجوازية؟',
+          opts: ['الأرستقراطية', 'البروليتاريا', 'الفلاحون', 'رجال الدين'],
+          ans: 1,
+          exp: 'البروليتاريا هي طبقة العمال الذين لا يملكون وسائل الإنتاج فيضطرون لبيع قوة عملهم.'
+        },
+        {
+          q: 'ما أبرز خصائص الاقتصاد الرأسمالي؟',
+          opts: ['الملكية العامة لوسائل الإنتاج', 'الملكية الخاصة والبحث عن الربح', 'التخطيط المركزي', 'المساواة في الثروات'],
+          ans: 1,
+          exp: 'يقوم الاقتصاد الرأسمالي على الملكية الخاصة لوسائل الإنتاج والبحث عن الربح في السوق الحرة.'
+        }
+      ]
+    }
+  ];
+
+  saveData('lessons', defaultLessons);
+  saveData('exercises', defaultExercises);
+  saveData('quizzes', defaultQuizzes);
+}
+
+// ===== INIT =====
+loadDefaultData();
+renderStudent();
+</script>
+</body>
+</html>
