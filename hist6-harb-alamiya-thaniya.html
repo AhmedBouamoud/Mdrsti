@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحرب العالمية الثانية | مدرستي.ma</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#f97316;--ol:#fed7aa;--od:#c2410c;--blue:#1d4ed8;--bl:#dbeafe;--bd:#1e3a8a;--green:#16a34a;--red:#dc2626;--purple:#7c3aed;--teal:#0d9488;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;direction:rtl}
+.topnav{padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.logo{color:#fff;font-size:1.2rem;font-weight:900;text-decoration:none}.logo span{color:var(--ol)}
+.breadcrumb{font-size:.82rem}.breadcrumb a{text-decoration:none}
+.hero{padding:48px 24px 36px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{padding:4px 14px;border-radius:50px;font-size:.78rem;font-weight:700}
+.b1{background:var(--orange);color:#fff}.b2{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)}.b3{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2)}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:900;margin-bottom:10px;line-height:1.3}.hero h1 span{opacity:.85}
+.hero p{opacity:.85;font-size:1rem;max-width:600px;margin-bottom:20px}
+.hero-stats{display:flex;gap:14px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);padding:7px 14px;border-radius:8px;font-size:.85rem;color:rgba(255,255,255,.8)}.stat strong{color:#fff}
+.container{max-width:960px;margin:0 auto;padding:28px 18px;display:grid;grid-template-columns:1fr 255px;gap:26px;align-items:start}
+@media(max-width:768px){.container{grid-template-columns:1fr}.sidebar{order:-1}}
+.sidebar{position:sticky;top:68px}
+.scard{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.stitle{color:#fff;padding:11px 15px;font-size:.88rem;font-weight:700}
+.toc{list-style:none;padding:8px 0}
+.toc li a{display:flex;align-items:center;gap:8px;padding:8px 15px;color:var(--text);text-decoration:none;font-size:.85rem;transition:.2s;border-right:3px solid transparent}
+.toc-n{width:20px;height:20px;border-radius:50%;color:#fff;font-size:.68rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.kinfo{padding:13px 15px}.krow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:.83rem}.krow:last-child{border-bottom:none}
+.klabel{color:var(--muted)}.kval{font-weight:700}.kval.or{color:var(--od)}
+.block{background:var(--card);border-radius:16px;border:1px solid var(--border);margin-bottom:22px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);animation:fu .4s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.block:nth-child(1){animation-delay:.05s}.block:nth-child(2){animation-delay:.1s}.block:nth-child(3){animation-delay:.15s}.block:nth-child(4){animation-delay:.2s}.block:nth-child(5){animation-delay:.25s}
+.bhead{display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#f8fafc,#fff)}
+.bicon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ib{background:var(--bl)}.io{background:var(--ol)}.ig{background:#dcfce7}.ip{background:#f3e8ff}.it{background:#ccfbf1}.ir{background:#fee2e2}
+.bhead .bnum{font-size:.73rem;color:var(--muted);font-weight:600}
+.bbody{padding:20px}.bbody p{margin-bottom:11px;font-size:.95rem}
+.intro-hl{color:#fff;border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.intro-hl p{font-size:1rem;font-weight:600;line-height:1.9;margin:0}
+.def{border-radius:12px;padding:16px 18px;margin:14px 0;position:relative}
+.def::before{position:absolute;top:-11px;right:14px;color:#fff;padding:2px 11px;border-radius:50px;font-size:.73rem;font-weight:700}
+.def p{margin:0;font-size:.95rem;line-height:1.9}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:14px 0}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:14px 0}
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
+.ic{border-radius:12px;padding:14px;border:1px solid var(--border)}
+.ic h4{font-size:.88rem;font-weight:700;margin-bottom:8px}
+.ic ul{list-style:none;padding:0}
+.ic ul li{font-size:.85rem;padding:3px 0;border-bottom:1px dashed #e2e8f0;display:flex;align-items:flex-start;gap:5px;line-height:1.6}
+.ic ul li:last-child{border-bottom:none}
+.ic ul li::before{content:'◆';font-size:.48rem;margin-top:7px;flex-shrink:0}
+.cb{background:#eff6ff;border-color:#bfdbfe}.cb h4{color:var(--bd)}.cb li::before{color:var(--blue)}
+.co{background:#fff7ed;border-color:#fed7aa}.co h4{color:var(--od)}.co li::before{color:var(--orange)}
+.cg{background:#f0fdf4;border-color:#bbf7d0}.cg h4{color:#15803d}.cg li::before{color:var(--green)}
+.cp{background:#faf5ff;border-color:#e9d5ff}.cp h4{color:#6d28d9}.cp li::before{color:var(--purple)}
+.cr{background:#fff1f2;border-color:#fecdd3}.cr h4{color:#991b1b}.cr li::before{color:var(--red)}
+.ct{background:#f0fdfa;border-color:#99f6e4}.ct h4{color:#0f766e}.ct li::before{color:var(--teal)}
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem;border-radius:10px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+.tbl thead th{color:#fff;padding:11px 14px;text-align:center;font-weight:700}
+.tbl thead th:first-child{text-align:right}
+.tbl tbody td{padding:9px 13px;border-bottom:1px solid var(--border);text-align:center}
+.tbl tbody td:first-child{text-align:right;font-weight:600}
+.tbl tbody tr:nth-child(even){background:#f8fafc}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tl{position:relative;padding-right:18px;margin:14px 0}
+.tl::before{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;border-radius:2px}
+.tli{position:relative;padding:9px 18px 9px 0;margin-bottom:6px}
+.tli::before{content:'';position:absolute;right:-5px;top:15px;width:10px;height:10px;border-radius:50%;border:2px solid #fff}
+.tly{font-weight:700;font-size:.83rem;margin-bottom:1px}.tlt{font-size:.85rem;color:var(--muted)}
+.note{border-radius:10px;padding:13px 15px;margin:12px 0;display:flex;gap:9px;align-items:flex-start;font-size:.88rem}
+.ni{font-size:1rem;flex-shrink:0}.nt{line-height:1.7}
+.quiz-s{border-radius:16px;padding:22px;color:#fff;margin-bottom:22px}
+.quiz-s h3{font-size:1.05rem;font-weight:900;margin-bottom:4px}.quiz-s .qsub{font-size:.83rem;opacity:.75;margin-bottom:18px}
+.qq{background:rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid rgba(255,255,255,.12)}
+.qqt{font-size:.92rem;font-weight:600;margin-bottom:10px;line-height:1.6}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+@media(max-width:480px){.qopts{grid-template-columns:1fr}}
+.qo{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:9px 13px;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.85rem;text-align:right;transition:.2s}
+.qo:hover{background:rgba(255,255,255,.2)}.qo.correct{background:#16a34a;border-color:#4ade80}.qo.wrong{background:#dc2626;border-color:#f87171}
+.qfb{font-size:.8rem;margin-top:7px;padding:7px 11px;border-radius:8px;display:none}.qfb.show{display:block}
+.qfb.ok{background:rgba(22,163,74,.25);color:#86efac}.qfb.no{background:rgba(220,38,38,.25);color:#fca5a5}
+.qscore{text-align:center;padding:14px;background:rgba(255,255,255,.1);border-radius:12px;font-size:1.05rem;font-weight:700;display:none;margin-top:14px}
+.gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}
+@media(max-width:480px){.gl-grid{grid-template-columns:1fr}}
+.gl-item{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:11px 13px}
+.gl-term{font-weight:700;font-size:.88rem;margin-bottom:3px}.gl-def{font-size:.8rem;color:var(--muted);line-height:1.6}
+.footer{color:#fff;text-align:center;padding:22px;border-radius:12px;margin-top:10px}
+.footer p{font-size:.85rem;opacity:.75;margin-bottom:3px}.footer strong{color:var(--ol)}
+html{scroll-behavior:smooth}
+</style>
+<style>
+.topnav{background:linear-gradient(135deg,#1c1917,#44403c);}
+.breadcrumb{color:#d6d3d1;}.breadcrumb a{color:#d6d3d1;}
+.hero{background:linear-gradient(135deg,#1c1917,#292524,#7f1d1d);}
+.stitle{background:#1c1917;}
+.toc li a:hover{background:#f5f5f4;border-right-color:#78716c;color:#1c1917;}
+.toc-n{background:#78716c;}
+.kval{color:#1c1917;}
+.bhead h2{color:#1c1917;}
+.intro-hl{background:linear-gradient(135deg,#1c1917,#292524);}
+.def{border:2px solid #78716c;background:#fafaf9;}
+.def::before{content:'تعريف';background:#78716c;}
+.tl::before{background:linear-gradient(to bottom,#78716c,#dc2626);}
+.tli::before{background:#dc2626;box-shadow:0 0 0 2px #dc2626;}
+.tly{color:#1c1917;}
+.gl-item{border-right:4px solid #78716c;}
+.gl-term{color:#1c1917;}
+.quiz-s{background:linear-gradient(135deg,#1c1917,#292524);}
+.footer{background:#1c1917;}
+.tbl thead th{background:#1c1917;}
+.tbl tbody td:first-child{color:#1c1917;background:#f5f5f4;}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <a class="logo" href="index.html">🏫 مدرستي<span>.ma</span></a>
+  <div class="breadcrumb"><a href="bac1.html">الأولى باكالوريا</a> › الحرب العالمية الثانية</div>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badges"><span class="badge b1">🏆 الأولى باكالوريا</span><span class="badge b2">📜 التاريخ</span><span class="badge b3">الوحدة 6</span></div>
+    <h1>الحرب العالمية <span>الثانية (1939–1945)</span></h1>
+    <p>دراسة شاملة لأكبر نزاع مسلح في التاريخ: أسبابه ومراحله وأبرز معاركه ونتائجه التي أعادت رسم خريطة العالم.</p>
+    <div class="hero-stats"><div class="stat">📖 <strong>5</strong> محاور</div><div class="stat">✏️ <strong>5</strong> أسئلة</div><div class="stat">📚 <strong>10</strong> مصطلحات</div><div class="stat">⏱️ <strong>~35</strong> دقيقة</div></div>
+  </div>
+</div>
+<div class="container">
+<aside class="sidebar">
+  <div class="scard"><div class="stitle">📋 محتوى الدرس</div>
+    <ul class="toc">
+      <li><a href="#intro"><span class="toc-n">1</span> تمهيد</a></li>
+      <li><a href="#causes"><span class="toc-n">2</span> الأسباب</a></li>
+      <li><a href="#phases"><span class="toc-n">3</span> مراحل الحرب</a></li>
+      <li><a href="#holocaust"><span class="toc-n">4</span> الهولوكوست</a></li>
+      <li><a href="#results"><span class="toc-n">5</span> النتائج</a></li>
+      <li><a href="#quiz"><span class="toc-n">✓</span> الاختبار</a></li>
+      <li><a href="#glossary"><span class="toc-n">📖</span> المصطلحات</a></li>
+    </ul>
+  </div>
+  <div class="scard"><div class="stitle">ℹ️ معلومات الدرس</div>
+    <div class="kinfo">
+      <div class="krow"><span class="klabel">المادة</span><span class="kval">التاريخ</span></div>
+      <div class="krow"><span class="klabel">الوحدة</span><span class="kval">الوحدة 6</span></div>
+      <div class="krow"><span class="klabel">الحقبة</span><span class="kval">1939 – 1945</span></div>
+      <div class="krow"><span class="klabel">السنة</span><span class="kval or">2025–2026</span></div>
+      <div class="krow"><span class="klabel">الأستاذ</span><span class="kval">أ. أحمد بوعمود</span></div>
+    </div>
+  </div>
+</aside>
+<main>
+  <div class="block" id="intro">
+    <div class="bhead"><div class="bicon ir">💥</div><div><div class="bnum">المحور الأول</div><h2>تمهيد وإشكالية الدرس</h2></div></div>
+    <div class="bbody">
+      <div class="intro-hl"><p>تُعدّ الحرب العالمية الثانية (1939–1945) أضخم نزاع مسلح في التاريخ البشري، راح ضحيتها ما بين 70 و85 مليون شخص، وأسفرت عن تحولات جيوسياسية جذرية غيّرت ملامح العالم وأفضت إلى النظام الدولي القائم اليوم.</p></div>
+      <div class="note" style="background:#f5f5f4;border-right:4px solid #78716c;"><span class="ni">❓</span><div class="nt"><strong>إشكالية الدرس:</strong> ما أسباب اندلاع الحرب العالمية الثانية؟ وما أبرز مراحلها؟ وما النتائج التي خلّفتها على العالم؟</div></div>
+    </div>
+  </div>
+  <div class="block" id="causes">
+    <div class="bhead"><div class="bicon io">⚠️</div><div><div class="bnum">المحور الثاني</div><h2>أسباب الحرب العالمية الثانية</h2></div></div>
+    <div class="bbody">
+      <div class="g2">
+        <div class="ic cr"><h4>📜 أسباب بعيدة</h4><ul><li>شروط فرساي المجحفة على ألمانيا</li><li>أزمة 1929 وتداعياتها الاجتماعية</li><li>صعود الأنظمة الشمولية</li><li>ضعف عصبة الأمم</li><li>السياسة الاسترضائية الغربية</li></ul></div>
+        <div class="ic co"><h4>⚡ أسباب مباشرة</h4><ul><li>غزو ألمانيا لبولندا 1 سبتمبر 1939</li><li>إعلان بريطانيا وفرنسا الحرب على ألمانيا</li><li>توسع ياباني في آسيا</li><li>هجوم اليابان على بيرل هاربر 1941</li><li>دخول أمريكا الحرب</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="block" id="phases">
+    <div class="bhead"><div class="bicon ib">🗓️</div><div><div class="bnum">المحور الثالث</div><h2>مراحل الحرب</h2></div></div>
+    <div class="bbody">
+      <table class="tbl">
+        <thead><tr><th>المرحلة</th><th>الفترة</th><th>أبرز الأحداث</th><th>النتيجة</th></tr></thead>
+        <tbody>
+          <tr><td>انتصارات المحور</td><td>1939–1942</td><td>سقوط فرنسا، معركة بريطانيا، الزحف الألماني</td><td>هيمنة المحور</td></tr>
+          <tr><td>منعطف الحرب</td><td>1942–1943</td><td>ستالينغراد، العلمين، انزال صقلية</td><td>تحول لصالح الحلفاء</td></tr>
+          <tr><td>انتصار الحلفاء</td><td>1944–1945</td><td>إنزال نورماندي، سقوط برلين، القنبلة الذرية</td><td>استسلام المحور</td></tr>
+        </tbody>
+      </table>
+      <div class="tl">
+        <div class="tli"><div class="tly">1 سبتمبر 1939 — غزو بولندا</div><div class="tlt">اندلاع الحرب الرسمي، بريطانيا وفرنسا تعلنان الحرب على ألمانيا.</div></div>
+        <div class="tli"><div class="tly">يونيو 1940 — سقوط فرنسا</div><div class="tlt">هزيمة فرنسا في 6 أسابيع، الجنرال ديغول يعلن المقاومة من لندن.</div></div>
+        <div class="tli"><div class="tly">22 يونيو 1941 — الهجوم على السوفييت</div><div class="tlt">عملية بارباروسا: هتلر يغزو الاتحاد السوفيتي ناقضاً معاهدة عدم الاعتداء.</div></div>
+        <div class="tli"><div class="tly">7 ديسمبر 1941 — بيرل هاربر</div><div class="tlt">اليابان تهاجم الأسطول الأمريكي، أمريكا تدخل الحرب.</div></div>
+        <div class="tli"><div class="tly">1942–1943 — ستالينغراد</div><div class="tlt">هزيمة مدوّية لألمانيا أمام السوفييت، منعطف حقيقي في الحرب.</div></div>
+        <div class="tli"><div class="tly">6 يونيو 1944 — إنزال نورماندي</div><div class="tlt">أكبر عملية إنزال بحري في التاريخ، تحرير فرنسا يبدأ.</div></div>
+        <div class="tli"><div class="tly">8 مايو 1945 — استسلام ألمانيا</div><div class="tlt">سقوط برلين ونهاية الحرب في أوروبا.</div></div>
+        <div class="tli"><div class="tly">6 و9 أغسطس 1945 — القنبلتان الذريتان</div><div class="tlt">هيروشيما وناغازاكي، استسلام اليابان ونهاية الحرب.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="block" id="holocaust">
+    <div class="bhead"><div class="bicon ir">✡️</div><div><div class="bnum">المحور الرابع</div><h2>الهولوكوست والجرائم ضد الإنسانية</h2></div></div>
+    <div class="bbody">
+      <div class="def"><p><strong>الهولوكوست (المحرقة)</strong> عملية الإبادة الجماعية المنهجية التي نفّذها النازيون ضد اليهود وجماعات أخرى، راح ضحيتها ما يزيد على 6 ملايين يهودي.</p></div>
+      <div class="g2">
+        <div class="ic cr"><h4>😔 أبعاد المحرقة</h4><ul><li>اعتقال اليهود في الجيتوات</li><li>معسكرات التركيز والاعتقال</li><li>الحل النهائي (معسكرات الإبادة)</li><li>أوشفيتز وتريبلينكا وغيرها</li><li>أكثر من 6 ملايين ضحية يهودية</li></ul></div>
+        <div class="ic co"><h4>⚖️ محاكمات نورمبرغ 1945</h4><ul><li>أول محاكمة دولية لجرائم الحرب</li><li>محاكمة قادة النازية الناجين</li><li>تعريف الجريمة ضد الإنسانية</li><li>إرساء أسس القانون الدولي</li><li>12 حكم إعدام بحق المجرمين</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="block" id="results">
+    <div class="bhead"><div class="bicon ig">🌐</div><div><div class="bnum">المحور الخامس</div><h2>نتائج الحرب العالمية الثانية</h2></div></div>
+    <div class="bbody">
+      <div class="g3">
+        <div class="ic cr"><h4>💀 الخسائر البشرية</h4><ul><li>70 – 85 مليون قتيل</li><li>ملايين الجرحى والمعاقين</li><li>نزوح وتشريد جماعي</li><li>دمار كامل لمدن كبرى</li></ul></div>
+        <div class="ic cb"><h4>🗺️ التحولات السياسية</h4><ul><li>نظام ثنائي القطب (أمريكا/سوفييت)</li><li>تأسيس الأمم المتحدة 1945</li><li>استقلال الشعوب المستعمَرة</li><li>قيام دولة إسرائيل 1948</li></ul></div>
+        <div class="ic cg"><h4>🔬 إرث علمي وقانوني</h4><ul><li>الطاقة النووية والفضاء</li><li>إعلان حقوق الإنسان 1948</li><li>القانون الدولي الإنساني</li><li>إعادة بناء أوروبا (مشروع مارشال)</li></ul></div>
+      </div>
+      <div class="note" style="background:#f5f5f4;border-right:4px solid #78716c;"><span class="ni">🌍</span><div class="nt"><strong>الحرب الباردة:</strong> ولّدت الحرب العالمية الثانية صراعاً جديداً بين المعسكرين الأمريكي والسوفييتي سيمتد حتى انهيار الاتحاد السوفيتي 1991.</div></div>
+    </div>
+  </div>
+  <div class="quiz-s" id="quiz">
+    <h3>✏️ اختبر معلوماتك</h3><p class="qsub">5 أسئلة — الحرب العالمية الثانية</p>
+    <div class="qq"><div class="qqt">1 — متى اندلعت الحرب العالمية الثانية رسمياً؟</div>
+      <div class="qopts"><button class="qo" onclick="chk(1,this,false)">يونيو 1939</button><button class="qo" onclick="chk(1,this,true)">1 سبتمبر 1939</button><button class="qo" onclick="chk(1,this,false)">ديسمبر 1941</button><button class="qo" onclick="chk(1,this,false)">مارس 1938</button></div>
+      <div class="qfb" id="fb1"></div></div>
+    <div class="qq"><div class="qqt">2 — ما المعركة التي شكّلت منعطفاً حقيقياً في الحرب لصالح الحلفاء؟</div>
+      <div class="qopts"><button class="qo" onclick="chk(2,this,false)">معركة بريطانيا</button><button class="qo" onclick="chk(2,this,false)">إنزال نورماندي</button><button class="qo" onclick="chk(2,this,true)">معركة ستالينغراد</button><button class="qo" onclick="chk(2,this,false)">معركة العلمين</button></div>
+      <div class="qfb" id="fb2"></div></div>
+    <div class="qq"><div class="qqt">3 — أين أُلقيت أولى القنبلتين الذريتين؟</div>
+      <div class="qopts"><button class="qo" onclick="chk(3,this,false)">طوكيو</button><button class="qo" onclick="chk(3,this,true)">هيروشيما</button><button class="qo" onclick="chk(3,this,false)">ناغازاكي</button><button class="qo" onclick="chk(3,this,false)">أوساكا</button></div>
+      <div class="qfb" id="fb3"></div></div>
+    <div class="qq"><div class="qqt">4 — ما المنظمة الدولية التي أُسست عقب الحرب العالمية الثانية؟</div>
+      <div class="qopts"><button class="qo" onclick="chk(4,this,false)">عصبة الأمم</button><button class="qo" onclick="chk(4,this,false)">حلف الناتو</button><button class="qo" onclick="chk(4,this,true)">الأمم المتحدة</button><button class="qo" onclick="chk(4,this,false)">الاتحاد الأوروبي</button></div>
+      <div class="qfb" id="fb4"></div></div>
+    <div class="qq"><div class="qqt">5 — ما الهولوكوست؟</div>
+      <div class="qopts"><button class="qo" onclick="chk(5,this,false)">غزو الاتحاد السوفيتي</button><button class="qo" onclick="chk(5,this,false)">قصف مدن ألمانيا</button><button class="qo" onclick="chk(5,this,true)">الإبادة الجماعية النازية لليهود</button><button class="qo" onclick="chk(5,this,false)">إنزال نورماندي</button></div>
+      <div class="qfb" id="fb5"></div></div>
+    <div class="qscore" id="qs"></div>
+  </div>
+  <div class="block" id="glossary">
+    <div class="bhead"><div class="bicon io">📖</div><div><div class="bnum">المصطلحات</div><h2>معجم الدرس</h2></div></div>
+    <div class="bbody">
+      <div class="gl-grid">
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">المحور</div><div class="gl-def">تحالف ألمانيا وإيطاليا واليابان في الحرب العالمية الثانية.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">الحلفاء</div><div class="gl-def">تحالف بريطانيا وفرنسا والاتحاد السوفيتي وأمريكا ضد المحور.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">الهولوكوست</div><div class="gl-def">الإبادة الجماعية النازية لأكثر من 6 ملايين يهودي وجماعات أخرى.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">ستالينغراد</div><div class="gl-def">معركة حاسمة 1942–1943 هزم فيها السوفييت الجيش الألماني ومثّلت منعطف الحرب.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">نورماندي</div><div class="gl-def">إنزال الحلفاء في فرنسا 6 يونيو 1944 لفتح جبهة غربية.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">بيرل هاربر</div><div class="gl-def">هجوم ياباني مفاجئ على القاعدة البحرية الأمريكية 7 ديسمبر 1941.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">الحل النهائي</div><div class="gl-def">المخطط النازي للإبادة الشاملة لليهود في معسكرات الموت.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">القنبلة الذرية</div><div class="gl-def">أقوى سلاح دمار شامل استُخدم لأول مرة ضد اليابان 1945.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">محاكمات نورمبرغ</div><div class="gl-def">محاكمات دولية لمجرمي الحرب النازيين أسّست للقانون الجنائي الدولي.</div></div>
+        <div class="gl-item" style="border-right:4px solid #78716c;"><div class="gl-term" style="color:#1c1917;">الحرب الباردة</div><div class="gl-def">صراع سياسي وأيديولوجي بين أمريكا والاتحاد السوفيتي عقب 1945.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>إعداد: <strong>الأستاذ أحمد بوعمود</strong> — مؤسسة الحنان للتعليم الخاص</p>
+    <p>الأولى باكالوريا — علوم ورياضيات — <strong>2025–2026</strong></p>
+  </div>
+</main>
+</div>
+<script>
+let ans={},tot=0;
+function chk(n,btn,ok){if(ans[n]!==undefined)return;ans[n]=ok;tot++;const c=btn.closest('.qq');c.querySelectorAll('.qo').forEach(o=>o.disabled=true);btn.classList.add(ok?'correct':'wrong');if(!ok)c.querySelectorAll('.qo').forEach(o=>{if(o.onclick.toString().includes('true'))o.classList.add('correct')});const fb=document.getElementById('fb'+n);fb.classList.add('show',ok?'ok':'no');fb.textContent=ok?'✅ إجابة صحيحة!':'❌ إجابة خاطئة، راجع الدرس.';if(tot===5){const s=Object.values(ans).filter(Boolean).length;const sc=document.getElementById('qs');sc.style.display='block';sc.innerHTML=`نتيجتك: <strong style="font-size:1.3rem">${s}/5</strong> (${Math.round(s/5*100)}%) ${s>=3?'🎉 أحسنت!':'📖 راجع الدرس'}`;}}
+</script>
+</body>
+</html>
