@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مدرستي | الأستاذ أحمد بوعمود</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#F4711A;--orange-dark:#D05A0E;--blue:#1A3A6B;--blue-mid:#1E4D8C;--blue-light:#2556A8;--gold:#F5A623;--green:#2A7D4F;--purple:#7B2D8B;--gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-400:#9CA3AF;--gray-600:#4B5563;--gray-800:#1F2937;--sh:0 2px 12px rgba(26,58,107,.10);--shl:0 8px 40px rgba(26,58,107,.18);--r:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--gray-50);color:var(--gray-800);min-height:100vh}
+header{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-mid) 70%,var(--blue-light) 100%);position:sticky;top:0;z-index:200;box-shadow:0 4px 20px rgba(26,58,107,.35)}
+.h-top{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--orange),var(--gold));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(244,113,26,.4);flex-shrink:0}
+.logo-text h1{color:#fff;font-size:1.2rem;font-weight:900;line-height:1.1}
+.logo-text p{color:rgba(255,255,255,.7);font-size:.68rem}
+.h-tabs{display:flex;padding:0 20px;gap:2px;overflow-x:auto;scrollbar-width:none}
+.h-tabs::-webkit-scrollbar{display:none}
+.tab{padding:9px 16px;background:none;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.6);font-family:'Cairo',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap}
+.tab.on{color:#fff;border-bottom-color:var(--orange)}
+.tab:hover:not(.on){color:rgba(255,255,255,.9)}
+.filters{display:flex;gap:8px;padding:14px 18px;background:#fff;border-bottom:1px solid var(--gray-200);overflow-x:auto;scrollbar-width:none;position:sticky;top:95px;z-index:100}
+.filters::-webkit-scrollbar{display:none}
+.chip{padding:6px 15px;border-radius:20px;border:2px solid var(--gray-200);background:#fff;font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:600;color:var(--gray-600);cursor:pointer;transition:.2s;white-space:nowrap}
+.chip.on{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 3px 10px rgba(244,113,26,.3)}
+.wrap{max-width:960px;margin:0 auto;padding:22px 14px 70px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.stat{background:#fff;border-radius:12px;padding:14px 10px;text-align:center;border:1px solid var(--gray-200);box-shadow:var(--sh)}
+.stat-n{font-size:1.7rem;font-weight:900;color:var(--orange);line-height:1}
+.stat-l{font-size:.72rem;color:var(--gray-400);margin-top:3px}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:11px;border-bottom:2px solid var(--gray-200)}
+.sec-head h3{font-size:1rem;font-weight:700;color:var(--blue)}
+.badge{background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:9px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+.card{background:#fff;border-radius:var(--r);border:1px solid var(--gray-200);box-shadow:var(--sh);cursor:pointer;transition:transform .22s,box-shadow .22s;animation:up .35s ease both;overflow:hidden}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shl)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.card-top{height:76px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;position:relative}
+.card-top.h{background:linear-gradient(135deg,var(--blue),var(--blue-light))}
+.card-top.g{background:linear-gradient(135deg,var(--green),#3DAA6C)}
+.card-top.c{background:linear-gradient(135deg,var(--purple),#A94EC0)}
+.card-top.e{background:linear-gradient(135deg,var(--orange-dark),var(--orange))}
+.lvl-badge{position:absolute;top:7px;left:8px;background:rgba(255,255,255,.22);color:#fff;font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:7px}
+.card-body{padding:13px 15px}
+.card-title{font-size:.93rem;font-weight:700;line-height:1.4;color:var(--gray-800)}
+.card-desc{font-size:.77rem;color:var(--gray-400);margin-top:5px;line-height:1.5}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.subj-tag{font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:7px}
+.subj-tag.h{background:#EBF0FF;color:var(--blue)}
+.subj-tag.g{background:#E8F7EE;color:var(--green)}
+.subj-tag.c{background:#F3E8F9;color:var(--purple)}
+.subj-tag.e{background:#FFF0E8;color:var(--orange-dark)}
+.type-tag{font-size:.7rem;color:var(--gray-400)}
+.card-link{display:block;margin-top:11px;padding:7px;background:var(--gray-100);border-radius:8px;text-align:center;color:var(--blue);font-size:.78rem;font-weight:600;text-decoration:none;transition:.18s}
+.card-link:hover{background:var(--orange);color:#fff}
+.empty{text-align:center;padding:60px 20px;color:var(--gray-400)}
+.empty-ico{font-size:2.8rem;margin-bottom:10px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:500;align-items:center;justify-content:center;padding:16px}
+.overlay.on{display:flex}
+.modal{background:#fff;border-radius:18px;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:min .28s ease}
+@keyframes min{from{opacity:0;transform:scale(.94) translateY(18px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
+.modal-head h3{font-size:1.05rem;font-weight:700;color:var(--blue);line-height:1.3}
+.modal-x{width:30px;height:30px;border-radius:50%;border:none;background:var(--gray-200);cursor:pointer;font-size:.95rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.18s;margin-right:10px}
+.modal-x:hover{background:var(--orange);color:#fff}
+.modal-body{padding:18px 22px 22px}
+.mrow{display:flex;gap:8px;margin-bottom:10px;font-size:.88rem}
+.mrow strong{color:var(--blue);min-width:75px;flex-shrink:0}
+.mdesc{background:var(--gray-100);border-radius:10px;padding:13px;font-size:.85rem;line-height:1.8;color:var(--gray-600);margin:12px 0}
+.mbtn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;background:var(--orange);color:#fff;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:.18s}
+.mbtn:hover{background:var(--orange-dark)}
+@media(max-width:580px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.h-top{padding:10px 13px}.wrap{padding:16px 11px 60px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="h-top">
+    <a class="logo" href="#">
+      <div class="logo-icon">📚</div>
+      <div class="logo-text"><h1>مدرستي.ma</h1><p>الأستاذ أحمد بوعمود | مؤسسة الحنان | 2025-2026</p></div>
+    </a>
+  </div>
+  <div class="h-tabs">
+    <button class="tab on" onclick="setTab('all',this)">📋 الكل</button>
+    <button class="tab" onclick="setTab('درس',this)">📖 الدروس</button>
+    <button class="tab" onclick="setTab('تمرين',this)">✏️ التمارين</button>
+    <button class="tab" onclick="setTab('اختبار',this)">📝 الاختبارات</button>
+    <a class="tab" href="/infographie-fixed.html">🎨 الإنفوغرافيا</a>
+  </div>
+</header>
+<div class="filters">
+  <button class="chip on" onclick="setLvl('all',this)">الكل</button>
+  <button class="chip" onclick="setLvl('3AC',this)">3 إعدادي</button>
+  <button class="chip" onclick="setLvl('TC',this)">الجذع المشترك</button>
+  <button class="chip" onclick="setLvl('BAC1',this)">الأولى باك</button>
+  <button class="chip" onclick="setLvl('BAC2',this)">الثانية باك</button>
+</div>
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="stat-n" id="sL">0</div><div class="stat-l">درس</div></div>
+    <div class="stat"><div class="stat-n" id="sE">0</div><div class="stat-l">تمرين</div></div>
+    <div class="stat"><div class="stat-n" id="sX">0</div><div class="stat-l">اختبار</div></div>
+    <div class="stat"><div class="stat-n" id="sP">0</div><div class="stat-l">ملف PDF</div></div>
+  </div>
+  <div id="out"></div>
+</div>
+<div class="overlay" id="ov" onclick="closeIfBg(event)">
+  <div class="modal">
+    <div class="modal-head"><h3 id="mt">—</h3><button class="modal-x" onclick="closeM()">✕</button></div>
+    <div class="modal-body" id="mb"></div>
+  </div>
+</div>
+<script>
+const DB=[
+  {t:"الثورة الصناعية والرأسمالية",m:"h",l:"3AC",n:"درس",u:"",d:"ظهور الرأسمالية والثورة الصناعية في أوروبا القرن 18-19"},
+  {t:"الإمبريالية الأوروبية",m:"h",l:"3AC",n:"درس",u:"",d:"توسع الدول الأوروبية واستعمار أفريقيا وآسيا"},
+  {t:"الضغوطات الاستعمارية على المغرب",m:"h",l:"3AC",n:"درس",u:"",d:"المراحل والمعاهدات التي أفضت إلى فرض الحماية 1912"},
+  {t:"الحرب العالمية الأولى",m:"h",l:"3AC",n:"درس",u:"",d:"أسباب ومجريات ونتائج الحرب 1914–1918"},
+  {t:"الأنظمة الديكتاتورية",m:"h",l:"3AC",n:"درس",u:"",d:"الفاشية في إيطاليا والنازية في ألمانيا"},
+  {t:"الحرب العالمية الثانية",m:"h",l:"3AC",n:"درس",u:"",d:"أسباب ومجريات ونتائج الحرب 1939–1945"},
+  {t:"المسألة الفلسطينية",m:"h",l:"3AC",n:"درس",u:"",d:"نشأة المسألة الفلسطينية والصراع العربي الإسرائيلي"},
+  {t:"نضال المغرب من أجل الاستقلال",m:"h",l:"3AC",n:"درس",u:"",d:"مراحل الكفاح الوطني المسلح وعودة الملك محمد الخامس"},
+  {t:"بناء الدولة المغربية الحديثة",m:"h",l:"3AC",n:"درس",u:"",d:"مسيرة بناء مؤسسات الدولة بعد الاستقلال 1956"},
+  {t:"المغرب — وحدة وتنوع",m:"g",l:"3AC",n:"درس",u:"",d:"التنوع الجغرافي والبشري للمغرب وعوامل وحدته"},
+  {t:"اتحاد المغرب العربي",m:"g",l:"3AC",n:"درس",u:"",d:"نشأة الاتحاد وتحدياته وآفاق المستقبل"},
+  {t:"الاتحاد الأوروبي",m:"g",l:"3AC",n:"درس",u:"",d:"بناء الاتحاد الأوروبي وتكامله الاقتصادي والسياسي"},
+  {t:"الولايات المتحدة الأمريكية",m:"g",l:"3AC",n:"درس",u:"",d:"القوة الأمريكية الاقتصادية والعسكرية والتكنولوجية"},
+  {t:"اليابان",m:"g",l:"3AC",n:"درس",u:"",d:"النموذج الاقتصادي الياباني وتحدياته"},
+  {t:"روسيا الاتحادية",m:"g",l:"3AC",n:"درس",u:"",d:"روسيا بعد تفكك الاتحاد السوفياتي وموقعها في العالم"},
+  {t:"مصر",m:"g",l:"3AC",n:"درس",u:"",d:"مصر قوة إقليمية في العالم العربي والأفريقي"},
+  {t:"نيجيريا",m:"g",l:"3AC",n:"درس",u:"",d:"نيجيريا قوة صاعدة في أفريقيا جنوب الصحراء"},
+  {t:"المشاركة المدنية",m:"c",l:"3AC",n:"درس",u:"",d:"مفهوم المشاركة وأشكالها في الحياة المدنية"},
+  {t:"التراث الثقافي",m:"c",l:"3AC",n:"درس",u:"",d:"التراث المادي واللامادي وأهمية الحفاظ عليه"},
+  {t:"الموارد الطبيعية والبيئة",m:"c",l:"3AC",n:"درس",u:"",d:"حماية الموارد الطبيعية والتنمية المستدامة"},
+  {t:"المغرب والحوار الحضاري",m:"c",l:"3AC",n:"درس",u:"",d:"انخراط المغرب في الحوار بين الثقافات والحضارات"},
+  {t:"المواطنة والإعلام",m:"c",l:"3AC",n:"درس",u:"",d:"دور الإعلام في تشكيل الوعي المواطن"},
+  {t:"التحولات الاقتصادية والاجتماعية في القرن 19",m:"h",l:"BAC1",n:"درس",u:"",d:"الثورة الصناعية والرأسمالية وانعكاساتها الاجتماعية على أوروبا"},
+  {t:"الإمبريالية الأوروبية",m:"h",l:"BAC1",n:"درس",u:"",d:"أسباب الإمبريالية ومظاهرها وانعكاساتها على الشعوب المستعمَرة"},
+  {t:"الحرب العالمية الأولى وتداعياتها",m:"h",l:"BAC1",n:"درس",u:"",d:"أسباب الحرب ومجرياتها ونتائجها ومعاهداتها (1914-1918)"},
+  {t:"الأزمة الاقتصادية العالمية 1929",m:"h",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/1XSr6f3Q4kzp-OwUHauPjWnq6YOQDkxOr/view",d:"أسباب الأزمة وانعكاساتها على أوروبا والعالم — مع نموذج امتحان جهوي"},
+  {t:"الأنظمة الشمولية والديكتاتوريات",m:"h",l:"BAC1",n:"درس",u:"",d:"الفاشية في إيطاليا والنازية في ألمانيا — المقاربة والمقارنة"},
+  {t:"الحرب العالمية الثانية ونتائجها",m:"h",l:"BAC1",n:"درس",u:"",d:"مجريات الحرب 1939-1945 ونتائجها السياسية والاقتصادية والبشرية"},
+  {t:"الضغوطات الاستعمارية على المغرب ومحاولات الإصلاح",m:"h",l:"BAC1",n:"درس",u:"",d:"الضغوط العسكرية والتجارية والدبلوماسية على المغرب ومحاولات مقاومتها"},
+  {t:"المغرب من الحماية إلى الاستقلال",m:"h",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/16Fz7LP1g6v4IyzTMNzfBJLjLLbN3L8s_/view",d:"مراحل الكفاح الوطني والمسلح من 1912 إلى الاستقلال 1956"},
+  {t:"استكمال الوحدة الترابية",m:"h",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/17zpL9tF8Mu8CTz6eITC-9VHGW_gqUpPg/view",d:"استرجاع الأقاليم الجنوبية والمسيرة الخضراء 1975"},
+  {t:"بناء دولة الاستقلال",m:"h",l:"BAC1",n:"درس",u:"",d:"مسار بناء المؤسسات وتحديث المغرب بعد 1956"},
+  {t:"مفهوم التنمية والتقسيمات الكبرى للعالم",m:"g",l:"BAC1",n:"درس",u:"",d:"مفهوم التنمية البشرية والمقاربات الكبرى وتقسيمات العالم"},
+  {t:"المجال المغربي — الموارد الطبيعية والبشرية",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04OTJ3YmpyczBnLVk/view",d:"وضعية الموارد الطبيعية والبشرية بالمغرب وأساليب تدبيرها"},
+  {t:"الاختيارات الكبرى لسياسة إعداد التراب الوطني",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04WXRlN3R6dkdqVXc/view",d:"أهداف ومبادئ سياسة إعداد التراب وأبرز الاختيارات الكبرى"},
+  {t:"التهيئة الحضرية والريفية",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04ODZCbkx5SHRYbTQ/view",d:"مظاهر أزمة المدينة والريف بالمغرب وأشكال التدخل"},
+  {t:"العالم العربي — مشكل الماء وظاهرة التصحر",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04ZHA5cmV4bmVrRTA/view",d:"توزيع الموارد المائية بالعالم العربي وظاهرة التصحر وسبل مواجهتها"},
+  {t:"الولايات المتحدة الأمريكية — قوة اقتصادية عظمى",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04QndQUzgxLTFTZVE/view",d:"مقومات القوة الأمريكية الاقتصادية ومظاهرها وتحدياتها"},
+  {t:"الاتحاد الأوروبي — نحو اندماج شامل",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04bng4UlAzQ0RNa2M/view",d:"بناء الاتحاد الأوروبي وتكامله الاقتصادي والسياسي"},
+  {t:"الصين — قوة اقتصادية صاعدة",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04d2ljbS1QWUVNSGs/view",d:"مظاهر وأسس الصعود الاقتصادي الصيني وأبرز التحديات"},
+  {t:"التحولات الاقتصادية العالمية",m:"g",l:"BAC1",n:"درس",u:"",d:"العولمة الاقتصادية وتحولات الاقتصاد العالمي"},
+  {t:"التنمية البشرية والتفاوتات",m:"g",l:"BAC1",n:"درس",u:"",d:"مؤشرات التنمية البشرية والتفاوتات في العالم"},
+  {t:"البيئة والتنمية المستدامة",m:"g",l:"BAC1",n:"درس",u:"",d:"قضايا البيئة ومفهوم التنمية المستدامة"},
+  {t:"الوحدة المغاربية",m:"g",l:"BAC1",n:"درس",u:"",d:"مقومات الوحدة المغاربية وتحديات الاندماج"},
+  {t:"المغرب والتجارة الخارجية",m:"g",l:"BAC1",n:"درس",u:"",d:"بنية التجارة الخارجية للمغرب وانعكاساتها"},
+  {t:"تمرين — الثورة الصناعية",m:"h",l:"3AC",n:"تمرين",u:"",d:"أسئلة وثائقية حول الثورة الصناعية والرأسمالية"},
+  {t:"تمرين — الإمبريالية",m:"h",l:"3AC",n:"تمرين",u:"",d:"أسئلة وثائقية حول التوسع الاستعماري الأوروبي"},
+  {t:"تمرين — الولايات المتحدة",m:"g",l:"3AC",n:"تمرين",u:"",d:"أسئلة حول مقومات القوة الأمريكية"},
+  {t:"تمرين — الأزمة الاقتصادية 1929",m:"h",l:"BAC1",n:"تمرين",u:"",d:"أسئلة وثائقية حول أزمة 1929"},
+  {t:"تمرين — التنمية البشرية",m:"g",l:"BAC1",n:"تمرين",u:"",d:"أسئلة حول مؤشر التنمية البشرية"},
+  {t:"اختبار — الفصل الأول (تاريخ)",m:"e",l:"3AC",n:"اختبار",u:"",d:"اختبار شامل لدروس الفصل الأول في التاريخ"},
+  {t:"اختبار — الفصل الثاني (جغرافيا)",m:"e",l:"3AC",n:"اختبار",u:"",d:"اختبار شامل لدروس الفصل الثاني في الجغرافيا"},
+  {t:"اختبار جهوي نموذجي — BAC1",m:"e",l:"BAC1",n:"اختبار",u:"",d:"اختبار جهوي نموذجي في التاريخ والجغرافيا"},
+];
+const SUBJ={h:'تاريخ',g:'جغرافيا',c:'التربية على المواطنة',e:'اختبارات'};
+const LVL={'3AC':'3 إعدادي','TC':'جذع مشترك','BAC1':'أولى باك','BAC2':'ثانية باك'};
+const ICO={h:'⚔️',g:'🌍',c:'🏛️',e:'📝'};
+let curTab='all',curLvl='all';
+function filtered(){return DB.filter(r=>(curTab==='all'||r.n===curTab)&&(curLvl==='all'||r.l===curLvl))}
+function stats(){
+  document.getElementById('sL').textContent=DB.filter(r=>r.n==='درس').length;
+  document.getElementById('sE').textContent=DB.filter(r=>r.n==='تمرين').length;
+  document.getElementById('sX').textContent=DB.filter(r=>r.n==='اختبار').length;
+  document.getElementById('sP').textContent=DB.filter(r=>r.u&&r.u.length>4).length;
+}
+function render(){
+  const list=filtered(),out=document.getElementById('out');
+  if(!list.length){out.innerHTML='<div class="empty"><div class="empty-ico">📭</div><p>لا توجد عناصر في هذا التصنيف</p></div>';return}
+  const label=curTab==='all'?'جميع المحتويات':curTab==='درس'?'الدروس':curTab==='تمرين'?'التمارين':'الاختبارات';
+  out.innerHTML=`<div class="sec-head"><h3>${label}</h3><span class="badge">${list.length}</span></div><div class="grid">${list.map((r,i)=>`<div class="card" style="animation-delay:${i*.04}s" onclick="openM(${DB.indexOf(r)})"><div class="card-top ${r.m}">${ICO[r.m]||'📚'}<span class="lvl-badge">${LVL[r.l]||r.l}</span></div><div class="card-body"><div class="card-title">${r.t}</div>${r.d?`<div class="card-desc">${r.d.slice(0,72)}${r.d.length>72?'...':''}</div>`:''}<div class="card-foot"><span class="subj-tag ${r.m}">${SUBJ[r.m]||'عام'}</span><span class="type-tag">${r.n}</span></div>${r.u?`<a class="card-link" href="${r.u}" target="_blank" onclick="event.stopPropagation()">📎 فتح الملف</a>`:''}</div></div>`).join('')}</div>`;
+}
+function openM(i){
+  const r=DB[i];
+  document.getElementById('mt').textContent=r.t;
+  document.getElementById('mb').innerHTML=`<div class="mrow"><strong>المادة:</strong><span>${SUBJ[r.m]||'—'}</span></div><div class="mrow"><strong>المستوى:</strong><span>${LVL[r.l]||r.l}</span></div><div class="mrow"><strong>النوع:</strong><span>${r.n}</span></div>${r.d?`<div class="mdesc">${r.d}</div>`:''}${r.u?`<a class="mbtn" href="${r.u}" target="_blank">📎 فتح / تحميل الملف</a>`:`<p style="color:var(--gray-400);font-size:.83rem">لم يُضَف رابط بعد — سيُتاح قريباً.</p>`}`;
+  document.getElementById('ov').classList.add('on');
+}
+function closeM(){document.getElementById('ov').classList.remove('on')}
+function closeIfBg(e){if(e.target===document.getElementById('ov'))closeM()}
+function setTab(v,el){curTab=v;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');render()}
+function setLvl(v,el){curLvl=v;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');render()}
+stats();render();
+</script>
+</body>
+</html>
