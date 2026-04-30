@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>السنة الأولى باكالوريا – علوم | مدرستي.ma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #F97316;
+      --orange-light: #FED7AA;
+      --orange-dark: #C2410C;
+      --blue: #1D4ED8;
+      --blue-light: #DBEAFE;
+      --blue-dark: #1E3A8A;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-600: #475569;
+      --gray-800: #1E293B;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.11);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.15);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Cairo',sans-serif; background:var(--gray-50); color:var(--gray-800); direction:rtl; }
+
+    /* HEADER */
+    header { background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 60%,#2563EB 100%); color:white; position:relative; overflow:hidden; }
+    header::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; background:rgba(249,115,22,.12); border-radius:50%; }
+    header::after  { content:''; position:absolute; bottom:-60px; left:-40px; width:220px; height:220px; background:rgba(255,255,255,.05); border-radius:50%; }
+    .header-inner { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:20px 24px 0; }
+
+    .site-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
+    .site-logo { font-size:1.5rem; font-weight:900; color:white; text-decoration:none; }
+    .site-logo span { color:var(--orange); }
+    .nav-links { display:flex; gap:6px; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.8); text-decoration:none; font-size:.88rem; padding:6px 14px; border-radius:20px; transition:all .2s; }
+    .nav-links a:hover { background:rgba(255,255,255,.15); color:white; }
+    .nav-links a.active { background:var(--orange); color:white; }
+
+    .hero-content { padding:10px 0 44px; text-align:center; }
+    .level-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(249,115,22,.2); border:1px solid rgba(249,115,22,.4); color:#FED7AA; padding:5px 16px; border-radius:20px; font-size:.82rem; font-weight:700; margin-bottom:14px; }
+    .hero-title { font-size:clamp(1.7rem,4vw,2.6rem); font-weight:900; line-height:1.25; margin-bottom:10px; }
+    .hero-title .hl { color:var(--orange); }
+    .hero-sub { color:rgba(255,255,255,.7); font-size:.95rem; margin-bottom:26px; }
+    .stats-row { display:flex; justify-content:center; gap:36px; }
+    .stat-num { font-size:1.7rem; font-weight:900; color:var(--orange); display:block; }
+    .stat-lbl { font-size:.75rem; color:rgba(255,255,255,.6); }
+
+    /* TABS */
+    .tabs-wrap { max-width:1100px; margin:-22px auto 0; padding:0 24px; position:relative; z-index:10; }
+    .tabs-bar { display:flex; background:white; border-radius:var(--radius); box-shadow:var(--shadow-md); overflow:hidden; }
+    .tab-btn { flex:1; border:none; background:transparent; padding:17px 20px; font-family:'Cairo',sans-serif; font-size:.98rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; transition:all .25s; color:var(--gray-600); border-bottom:3px solid transparent; }
+    .tab-btn:hover { background:var(--gray-50); }
+    .tab-btn.active.hist { color:var(--orange-dark); border-bottom-color:var(--orange); background:#FFF7ED; }
+    .tab-btn.active.geo  { color:var(--blue-dark);   border-bottom-color:var(--blue);   background:var(--blue-light); }
+
+    /* MAIN */
+    main { max-width:1100px; margin:0 auto; padding:32px 24px 60px; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; animation:fadeIn .35s ease; }
+
+    /* SEMESTER */
+    .semester-block { margin-bottom:40px; }
+    .semester-header { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+    .sem-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 22px; border-radius:30px; font-weight:800; font-size:.92rem; white-space:nowrap; color:white; }
+    .sem-badge.s1 { background:linear-gradient(135deg,var(--orange),var(--orange-dark)); box-shadow:0 4px 14px rgba(249,115,22,.35); }
+    .sem-badge.s2 { background:linear-gradient(135deg,var(--blue),var(--blue-dark)); box-shadow:0 4px 14px rgba(29,78,216,.35); }
+    .sem-line { flex:1; height:2px; background:var(--gray-200); border-radius:1px; }
+
+    /* GRID */
+    .lessons-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:16px; }
+
+    /* CARD */
+    .lesson-card { background:white; border-radius:var(--radius); box-shadow:var(--shadow-sm); border:1px solid var(--gray-200); overflow:hidden; transition:transform .3s,box-shadow .3s; animation:fadeInUp .4s ease both; }
+    .lesson-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+    .lesson-card.hc { border-top:4px solid var(--orange); }
+    .lesson-card.gc { border-top:4px solid var(--blue); }
+    .card-body { padding:20px; }
+    .lesson-num { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; font-size:.8rem; font-weight:800; margin-bottom:10px; }
+    .hc .lesson-num { background:var(--orange-light); color:var(--orange-dark); }
+    .gc .lesson-num { background:var(--blue-light);   color:var(--blue-dark); }
+    .lesson-title { font-size:.92rem; font-weight:700; line-height:1.55; color:var(--gray-800); margin-bottom:16px; }
+    .card-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px; font-family:'Cairo',sans-serif; font-size:.78rem; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:all .2s; }
+    .btn-pdf  { background:var(--orange-light); color:var(--orange-dark); }
+    .btn-pdf:hover  { background:var(--orange); color:white; }
+    .btn-read { background:var(--blue-light); color:var(--blue-dark); }
+    .btn-read:hover { background:var(--blue); color:white; }
+    .btn-soon { background:var(--gray-100); color:var(--gray-600); cursor:not-allowed; opacity:.65; }
+
+    /* EXAMS */
+    .section-title { display:flex; align-items:center; gap:12px; font-size:1.15rem; font-weight:800; color:var(--gray-800); margin:40px 0 18px; }
+    .section-title::before { content:''; display:block; width:5px; height:26px; background:linear-gradient(to bottom,var(--orange),var(--blue)); border-radius:3px; }
+    .exams-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; }
+    .exam-card { background:white; border-radius:var(--radius-sm); padding:15px 16px; box-shadow:var(--shadow-sm); border:1px solid var(--gray-200); display:flex; align-items:center; gap:13px; transition:all .2s; text-decoration:none; color:inherit; }
+    .exam-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:var(--orange-light); }
+    .exam-icon { width:42px; height:42px; background:linear-gradient(135deg,var(--orange-light),#FDE68A); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+    .exam-info strong { display:block; font-size:.85rem; font-weight:700; margin-bottom:2px; }
+    .exam-info span   { font-size:.73rem; color:var(--gray-600); }
+
+    /* FOOTER */
+    footer { background:var(--gray-800); color:rgba(255,255,255,.6); text-align:center; padding:22px; font-size:.82rem; }
+    footer strong { color:var(--orange); }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .lessons-grid .lesson-card:nth-child(1){animation-delay:.04s}
+    .lessons-grid .lesson-card:nth-child(2){animation-delay:.08s}
+    .lessons-grid .lesson-card:nth-child(3){animation-delay:.12s}
+    .lessons-grid .lesson-card:nth-child(4){animation-delay:.16s}
+    .lessons-grid .lesson-card:nth-child(5){animation-delay:.20s}
+
+    @media(max-width:640px){
+      .nav-links{display:none}
+      .stats-row{gap:20px}
+      .lessons-grid{grid-template-columns:1fr}
+      .exams-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <nav class="site-nav">
+      <a href="index.html" class="site-logo">مدرستي<span>.ma</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="3ac.html">الثالثة إعدادي</a></li>
+        <li><a href="bac1.html" class="active">أولى باك</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <div class="level-badge">📚 السنة الأولى باكالوريا – شعبة العلوم</div>
+      <h1 class="hero-title">دروس <span class="hl">التاريخ والجغرافيا</span><br>بين يديك</h1>
+      <p class="hero-sub">ملخصات وموارد بيداغوجية وفق الإطار المرجعي الرسمي</p>
+      <div class="stats-row">
+        <div><span class="stat-num">9</span><span class="stat-lbl">دروس التاريخ</span></div>
+        <div><span class="stat-num">9</span><span class="stat-lbl">دروس الجغرافيا</span></div>
+        <div><span class="stat-num">2</span><span class="stat-lbl">الدورتان</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <div class="tabs-bar">
+    <button class="tab-btn hist active" onclick="switchTab('history',this)">🏛️ دروس التاريخ</button>
+    <button class="tab-btn geo"         onclick="switchTab('geography',this)">🗺️ دروس الجغرافيا</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- ══ التاريخ ══ -->
+  <div id="history" class="tab-panel active">
+
+    <div class="semester-block">
+      <div class="semester-header">
+        <span class="sem-badge s1">🌍 الدورة الأولى</span>
+        <div class="sem-line"></div>
+      </div>
+      <div class="lessons-grid">
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">1</div>
+            <p class="lesson-title">التحولات الاقتصادية والمالية والاجتماعية والفكرية في العالم خلال القرن 19م</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars1.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">2</div>
+            <p class="lesson-title">التنافس الإمبريالي واندلاع الحرب العالمية الأولى</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars2.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">3</div>
+            <p class="lesson-title">اليقظة الفكرية بالمشرق العربي</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars3.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">4</div>
+            <p class="lesson-title">الضغوط الاستعمارية على المغرب ومحاولات الإصلاح</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars4.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="semester-block">
+      <div class="semester-header">
+        <span class="sem-badge s2">🌍 الدورة الثانية</span>
+        <div class="sem-line"></div>
+      </div>
+      <div class="lessons-grid">
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">5</div>
+            <p class="lesson-title">أوروبا من نهاية الحرب العالمية الأولى إلى أزمة 1929م</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars5.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">6</div>
+            <p class="lesson-title">الحرب العالمية الثانية (الأسباب والنتائج)</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars6.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">7</div>
+            <p class="lesson-title">نظام الحماية بالمغرب والاستغلال الاستعماري</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars7.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">8</div>
+            <p class="lesson-title">نضال المغرب من أجل تحقيق الاستقلال واستكمال الوحدة الترابية</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars8.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card hc">
+          <div class="card-body">
+            <div class="lesson-num">9</div>
+            <p class="lesson-title">ملف العولمة والتحديات الراهنة</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/histoire/dars9.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-title">📝 الامتحانات الجهوية</div>
+    <div class="exams-grid">
+      <a href="pdfs/bac1/examens/jehowi2024.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2024</strong><span>موضوع + تصحيح</span></div>
+      </a>
+      <a href="pdfs/bac1/examens/jehowi2023.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2023</strong><span>موضوع + تصحيح</span></div>
+      </a>
+      <a href="pdfs/bac1/examens/jehowi2022.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2022</strong><span>موضوع + تصحيح</span></div>
+      </a>
+      <a href="pdfs/bac1/examens/jehowi2021.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2021</strong><span>موضوع + تصحيح</span></div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ══ الجغرافيا ══ -->
+  <div id="geography" class="tab-panel">
+
+    <div class="semester-block">
+      <div class="semester-header">
+        <span class="sem-badge s1">🗺️ الدورة الأولى</span>
+        <div class="sem-line"></div>
+      </div>
+      <div class="lessons-grid">
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">1</div>
+            <p class="lesson-title">مفهوم التنمية: تعدد المقاربات – التقسيمات الكبرى للعالم – خريطة التنمية</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars1.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">2</div>
+            <p class="lesson-title">المجال المغربي – الموارد الطبيعية والبشرية</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars2.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">3</div>
+            <p class="lesson-title">الاختيارات الكبرى لسياسة إعداد التراب الوطني</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars3.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">4</div>
+            <p class="lesson-title">التهيئة الحضرية والريفية – أزمة المدينة والريف وأشكال التدخل</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars4.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">5</div>
+            <p class="lesson-title">العالم العربي – مشكل الماء وظاهرة التصحر</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars5.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="semester-block">
+      <div class="semester-header">
+        <span class="sem-badge s2">🗺️ الدورة الثانية</span>
+        <div class="sem-line"></div>
+      </div>
+      <div class="lessons-grid">
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">6</div>
+            <p class="lesson-title">الولايات المتحدة الأمريكية قوة اقتصادية عظمى</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars6.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">7</div>
+            <p class="lesson-title">الاتحاد الأوربي نحو اندماج شامل</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars7.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">8</div>
+            <p class="lesson-title">الصين قوة اقتصادية صاعدة</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars8.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card gc">
+          <div class="card-body">
+            <div class="lesson-num">9</div>
+            <p class="lesson-title">ملف الشراكة بين المغرب والاتحاد الأوروبي</p>
+            <div class="card-actions">
+              <a href="pdfs/bac1/geographie/dars9.html" class="btn btn-pdf" target="_blank">📄 تحميل PDF</a>
+              <span class="btn btn-soon">🔒 قريباً</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-title">📝 الامتحانات الجهوية</div>
+    <div class="exams-grid">
+      <a href="pdfs/bac1/examens/jehowi2024.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2024</strong><span>موضوع + تصحيح</span></div>
+      </a>
+      <a href="pdfs/bac1/examens/jehowi2023.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2023</strong><span>موضوع + تصحيح</span></div>
+      </a>
+      <a href="pdfs/bac1/examens/jehowi2022.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2022</strong><span>موضوع + تصحيح</span></div>
+      </a>
+      <a href="pdfs/bac1/examens/jehowi2021.html" class="exam-card" target="_blank">
+        <div class="exam-icon">📋</div>
+        <div class="exam-info"><strong>الامتحان الجهوي 2021</strong><span>موضوع + تصحيح</span></div>
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <strong>مدرستي.ma</strong> — موقع تعليمي للأستاذ أحمد بوعمود &nbsp;|&nbsp; السنة الدراسية 2025–2026
+</footer>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
