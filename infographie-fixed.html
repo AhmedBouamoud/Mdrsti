@@ -128,14 +128,15 @@ body {
 .card-img-wrap {
   position:relative;
   overflow:hidden;
-  aspect-ratio:3/2;
+  aspect-ratio:3/2.2;
   background:#0a0c14;
 }
 .card-img-wrap img {
   width:100%;
   height:100%;
-  object-fit:cover;
-  object-position:top;
+  object-fit:contain;
+  object-position:center;
+  background:#0a0c14;
   transition:transform .4s;
 }
 .inf-card:hover .card-img-wrap img { transform:scale(1.04); }
