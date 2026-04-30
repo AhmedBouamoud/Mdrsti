@@ -6,429 +6,618 @@
 <title>الإنفوغرافيا التعليمية | مدرستي.ma</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--orange:#f97316;--ol:#fed7aa;--od:#c2410c;--blue:#1d4ed8;--bl:#dbeafe;--bd:#1e3a8a;--green:#16a34a;--red:#dc2626;--teal:#0d9488;--purple:#7c3aed;--bg:#f1f5f9;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
+/* ====== RESET & BASE ====== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --orange: #e07b00;
+  --blue: #1a6cb5;
+  --dark: #0f1117;
+  --card-bg: #181c27;
+  --border: rgba(224,123,0,0.25);
+  --text: #e8eaf0;
+  --muted: #8892a4;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  direction: rtl;
+}
 
-/* NAV */
-.topnav{background:linear-gradient(135deg,var(--bd),var(--blue));padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.2)}
-.logo{color:#fff;font-size:1.2rem;font-weight:900;text-decoration:none}.logo span{color:var(--orange)}
-.breadcrumb{font-size:.8rem;color:#93c5fd}.breadcrumb a{color:#93c5fd;text-decoration:none}
+/* ====== NAV ====== */
+.navbar {
+  background: rgba(15,17,23,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top:0; z-index:100;
+}
+.nav-brand { font-size:20px; font-weight:900; color:var(--orange); text-decoration:none; }
+.nav-links { display:flex; gap:24px; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:14px; transition:color .2s; }
+.nav-links a:hover { color:var(--orange); }
+.breadcrumb { font-size:12px; color:var(--muted); }
+.breadcrumb a { color:var(--blue); text-decoration:none; }
 
-/* HERO */
-.hero{background:linear-gradient(135deg,var(--bd) 0%,#1e40af 50%,var(--od) 100%);padding:40px 20px 32px;text-align:center;color:#fff;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(255,255,255,.05) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(249,115,22,.1) 0%,transparent 40%)}
-.hero-inner{position:relative;z-index:1}
-.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;margin-bottom:8px}
-.hero h1 span{color:var(--ol)}
-.hero p{color:#bfdbfe;font-size:.95rem;margin-bottom:20px}
-.hero-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.hstat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:8px;font-size:.82rem;color:#dbeafe}.hstat strong{color:#fff}
+/* ====== HERO ====== */
+.hero {
+  text-align:center;
+  padding: 52px 24px 36px;
+  background: linear-gradient(160deg, rgba(224,123,0,0.06) 0%, transparent 60%);
+}
+.hero h1 { font-size:32px; font-weight:900; color:var(--orange); margin-bottom:10px; }
+.hero p { font-size:15px; color:var(--muted); max-width:500px; margin:0 auto 24px; }
+.hero-stats {
+  display:inline-flex; gap:32px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 28px;
+}
+.hero-stat .num { font-size:22px; font-weight:900; color:var(--orange); }
+.hero-stat .lbl { font-size:11px; color:var(--muted); }
 
-/* FILTERS */
-.filters-wrap{background:#fff;border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:56px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto}
-.f-btn{padding:7px 16px;border-radius:50px;border:2px solid var(--border);background:#fff;color:var(--muted);font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
-.f-btn:hover{border-color:var(--blue);color:var(--blue)}
-.f-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
-.f-btn[data-cat="history"].active{background:var(--od);border-color:var(--od)}
-.f-btn[data-cat="geo"].active{background:var(--teal);border-color:var(--teal)}
-.f-btn[data-cat="morocco"].active{background:var(--green);border-color:var(--green)}
-.f-btn[data-cat="method"].active{background:var(--purple);border-color:var(--purple)}
-.f-btn[data-cat="eu"].active{background:#1e40af;border-color:#1e40af}
-.f-btn[data-cat="culture"].active{background:#d97706;border-color:#d97706}
+/* ====== FILTERS ====== */
+.filters-wrap {
+  padding: 20px 32px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  border-bottom:1px solid var(--border);
+}
+.filter-btn {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  color:var(--muted);
+  padding:7px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  font-family:'Cairo',sans-serif;
+  font-size:13px;
+  transition:all .2s;
+}
+.filter-btn:hover { border-color:var(--orange); color:var(--orange); }
+.filter-btn.active {
+  background:var(--orange);
+  border-color:var(--orange);
+  color:#fff;
+  font-weight:700;
+}
 
-/* GRID */
-.container{max-width:960px;margin:0 auto;padding:24px 16px}
-.section-label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:32px}
-@media(max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px}}
+/* ====== GRID COUNT ====== */
+.grid-header {
+  padding:16px 32px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.grid-count { font-size:13px; color:var(--muted); }
+.grid-count span { color:var(--orange); font-weight:700; }
 
-/* CARD */
-.inf-card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer;transition:.25s;border:2px solid transparent;animation:fu .4s ease both}
-.inf-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.14);border-color:var(--orange)}
-@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.inf-card.hidden{display:none}
-.card-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;background:#f1f5f9}
-.card-body{padding:10px 12px}
-.card-cat{display:inline-block;padding:2px 10px;border-radius:50px;font-size:.68rem;font-weight:700;margin-bottom:5px}
-.cat-history{background:#fee2e2;color:#991b1b}
-.cat-geo{background:#ccfbf1;color:#0f766e}
-.cat-morocco{background:#dcfce7;color:#15803d}
-.cat-method{background:#f3e8ff;color:#6d28d9}
-.cat-eu{background:#dbeafe;color:#1e40af}
-.cat-culture{background:#fef9c3;color:#92400e}
-.card-title{font-size:.82rem;font-weight:700;color:var(--text);line-height:1.4}
-.card-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+/* ====== GRID ====== */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap:20px;
+  padding:16px 32px 48px;
+  max-width:1400px;
+  margin:0 auto;
+}
 
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:.3s}
-.modal.open{opacity:1;pointer-events:all}
-.modal-box{background:#fff;border-radius:16px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:zoomIn .3s ease}
-@keyframes zoomIn{from{transform:scale(.9)}to{transform:scale(1)}}
-.modal-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1}
-.modal-head h3{font-size:.95rem;font-weight:900;color:var(--bd)}
-.modal-close{background:var(--bd);color:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.modal-img{width:100%;display:block}
-.modal-footer{padding:14px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.modal-cat{padding:3px 12px;border-radius:50px;font-size:.78rem;font-weight:700}
-.btn-dl{background:var(--blue);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+/* ====== CARD ====== */
+.inf-card {
+  background:var(--card-bg);
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.07);
+  cursor:pointer;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  position:relative;
+}
+.inf-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--orange);
+  box-shadow:0 8px 32px rgba(224,123,0,0.18);
+}
+.card-img-wrap {
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:3/2;
+  background:#0a0c14;
+}
+.card-img-wrap img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top;
+  transition:transform .4s;
+}
+.inf-card:hover .card-img-wrap img { transform:scale(1.04); }
+.card-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  opacity:0;
+  transition:opacity .3s;
+  display:flex;
+  align-items:flex-end;
+  padding:14px;
+}
+.inf-card:hover .card-overlay { opacity:1; }
+.overlay-icon {
+  width:40px; height:40px;
+  background:var(--orange);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  margin:0 auto;
+}
+.card-body { padding:14px; }
+.card-tag {
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  padding:3px 8px;
+  border-radius:10px;
+  background:rgba(224,123,0,0.15);
+  color:var(--orange);
+  border:1px solid rgba(224,123,0,0.3);
+  margin-bottom:6px;
+}
+.card-title {
+  font-size:14px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:4px;
+  line-height:1.4;
+}
+.card-subtitle {
+  font-size:11px;
+  color:var(--muted);
+}
+.card-badge {
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:rgba(0,0,0,0.75);
+  color:var(--orange);
+  font-size:10px;
+  font-weight:700;
+  padding:3px 8px;
+  border-radius:10px;
+  border:1px solid rgba(224,123,0,0.4);
+}
+/* NEW badge for recent items */
+.card-new {
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:var(--orange);
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  padding:3px 8px;
+  border-radius:10px;
+}
 
-/* COUNTER */
-.count-bar{text-align:center;padding:8px 0 16px;font-size:.82rem;color:var(--muted)}
-.count-bar strong{color:var(--blue)}
+/* ====== HIDDEN ====== */
+.inf-card.hidden { display:none; }
 
-/* NAV ARROWS */
-.modal-nav{display:flex;gap:8px}
-.mnav{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:700}
-.mnav:hover{background:var(--bl);color:var(--bd)}
+/* ====== LIGHTBOX ====== */
+.lightbox {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.92);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(6px);
+}
+.lightbox.open { display:flex; }
+.lb-inner {
+  max-width:960px;
+  width:95%;
+  background:var(--card-bg);
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 24px 64px rgba(0,0,0,0.6);
+}
+.lb-header {
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.lb-title { font-size:15px; font-weight:700; color:var(--orange); }
+.lb-close {
+  background:rgba(255,255,255,0.07);
+  border:none;
+  color:#fff;
+  width:32px; height:32px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s;
+}
+.lb-close:hover { background:rgba(255,0,0,0.3); }
+.lb-img-wrap { position:relative; overflow:hidden; max-height:70vh; }
+.lb-img-wrap img { width:100%; display:block; object-fit:contain; }
+.lb-footer {
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.lb-nav { display:flex; gap:8px; }
+.lb-btn {
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.15);
+  color:#fff;
+  padding:7px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-family:'Cairo',sans-serif;
+  font-size:13px;
+  transition:all .2s;
+}
+.lb-btn:hover { background:var(--orange); border-color:var(--orange); }
+.lb-btn.dl {
+  background:var(--orange);
+  border-color:var(--orange);
+  font-weight:700;
+}
+.lb-counter { font-size:12px; color:var(--muted); }
 
-.footer{background:var(--bd);color:#fff;text-align:center;padding:22px;border-radius:12px;margin-top:10px}
-.footer p{font-size:.83rem;color:#93c5fd;margin-bottom:3px}.footer strong{color:var(--ol)}
+/* ====== FOOTER ====== */
+.site-footer {
+  text-align:center;
+  padding:24px;
+  border-top:1px solid var(--border);
+  font-size:12px;
+  color:var(--muted);
+}
+.site-footer strong { color:var(--orange); }
 </style>
 </head>
 <body>
 
-<nav class="topnav">
-  <a class="logo" href="index.html">🏫 مدرستي<span>.ma</span></a>
-  <div class="breadcrumb"><a href="index.html">الرئيسية</a> › الإنفوغرافيا</div>
+<!-- NAV -->
+<nav class="navbar">
+  <a href="https://ahmedbouamoud.com/" class="nav-brand">🏫 مدرستي.ma</a>
+  <div class="breadcrumb">
+    <a href="https://ahmedbouamoud.com/">الرئيسية</a> › الإنفوغرافيا
+  </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-inner">
-    <h1>🎨 الإنفوغرافيا <span>التعليمية</span></h1>
-    <p>ملخصات بصرية احترافية لمواد التاريخ والجغرافيا والتربية المدنية</p>
-    <div class="hero-stats">
-      <div class="hstat">🖼️ <strong>20</strong> إنفوغرافية</div>
-      <div class="hstat">📜 تاريخ وجغرافيا</div>
-      <div class="hstat">🇲🇦 مغرب وعالم</div>
-      <div class="hstat">👨‍🏫 أ. أحمد بوعمود</div>
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <h1>🎨 الإنفوغرافيا التعليمية</h1>
+  <p>ملخصات بصرية احترافية لمواد التاريخ والجغرافيا والتربية المدنية</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num" id="total-count">30</div><div class="lbl">إنفوغرافية</div></div>
+    <div class="hero-stat"><div class="num">📜</div><div class="lbl">تاريخ وجغرافيا</div></div>
+    <div class="hero-stat"><div class="num">🇲🇦</div><div class="lbl">مغرب وعالم</div></div>
+    <div class="hero-stat"><div class="num">👨‍🏫</div><div class="lbl">أ. أحمد بوعمود</div></div>
   </div>
-</div>
+</section>
 
+<!-- FILTERS -->
 <div class="filters-wrap">
-  <div class="filters">
-    <button class="f-btn active" data-cat="all" onclick="filter('all',this)">🔍 الكل (20)</button>
-    <button class="f-btn" data-cat="history" onclick="filter('history',this)">📜 التاريخ</button>
-    <button class="f-btn" data-cat="geo" onclick="filter('geo',this)">🌍 الجغرافيا</button>
-    <button class="f-btn" data-cat="morocco" onclick="filter('morocco',this)">🇲🇦 تاريخ المغرب</button>
-    <button class="f-btn" data-cat="method" onclick="filter('method',this)">📋 المنهجية</button>
-    <button class="f-btn" data-cat="eu" onclick="filter('eu',this)">🇪🇺 الاتحاد الأوروبي</button>
-    <button class="f-btn" data-cat="culture" onclick="filter('culture',this)">🧠 ثقافة عامة</button>
+  <button class="filter-btn active" data-filter="all">🔍 الكل (<span id="cnt-all">30</span>)</button>
+  <button class="filter-btn" data-filter="history">📜 التاريخ</button>
+  <button class="filter-btn" data-filter="geo">🌍 الجغرافيا</button>
+  <button class="filter-btn" data-filter="morocco">🇲🇦 تاريخ المغرب</button>
+  <button class="filter-btn" data-filter="method">📋 المنهجية</button>
+  <button class="filter-btn" data-filter="eu">🇪🇺 الاتحاد الأوروبي</button>
+  <button class="filter-btn" data-filter="general">🧠 ثقافة عامة</button>
+</div>
+
+<!-- GRID HEADER -->
+<div class="grid-header">
+  <div class="grid-count">عرض <span id="showing">30</span> إنفوغرافية</div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="grid" id="infGrid">
+
+  <!-- ===== INF 01–20 (ORIGINAL) ===== -->
+  <div class="inf-card" data-cat="morocco" data-idx="0" data-title="نضال المغرب من أجل الاستقلال" data-src="https://ahmedbouamoud.com/inf01.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf01.png" alt="نضال المغرب" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇲🇦 تاريخ المغرب</div>
+    <div class="card-body"><div class="card-tag">🇲🇦 تاريخ المغرب</div><div class="card-title">نضال المغرب من أجل الاستقلال</div><div class="card-subtitle">الأولى باكالوريا</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="method" data-idx="1" data-title="طريقة رسم المبيان" data-src="https://ahmedbouamoud.com/inf02.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf02.png" alt="طريقة رسم المبيان" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📋 منهجية</div>
+    <div class="card-body"><div class="card-tag">📋 منهجية</div><div class="card-title">طريقة رسم المبيان</div><div class="card-subtitle">خطوات عملية</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="method" data-idx="2" data-title="دليل المنهجية الشاملة — الجغرافيا" data-src="https://ahmedbouamoud.com/inf03.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf03.png" alt="دليل الجغرافيا" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📋 منهجية</div>
+    <div class="card-body"><div class="card-tag">📋 منهجية</div><div class="card-title">دليل المنهجية الشاملة — الجغرافيا</div><div class="card-subtitle">الأولى باكالوريا</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="morocco" data-idx="3" data-title="المغرب والسلم العالمي" data-src="https://ahmedbouamoud.com/inf04.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf04.png" alt="المغرب والسلم العالمي" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇲🇦 تاريخ المغرب</div>
+    <div class="card-body"><div class="card-tag">🇲🇦 تاريخ المغرب</div><div class="card-title">المغرب والسلم العالمي</div><div class="card-subtitle">الثالثة إعدادي — تربية مدنية</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="general" data-idx="4" data-title="المسابقة الثقافية الكبرى" data-src="https://ahmedbouamoud.com/inf05.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf05.png" alt="مسابقة ثقافية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🧠 ثقافة عامة</div>
+    <div class="card-body"><div class="card-tag">🧠 ثقافة عامة</div><div class="card-title">المسابقة الثقافية الكبرى</div><div class="card-subtitle">غرابة + متعة + ذكاء</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="history" data-idx="5" data-title="دروس التاريخ — الأولى باك" data-src="https://ahmedbouamoud.com/inf06.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf06.png" alt="دروس التاريخ" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📜 التاريخ</div>
+    <div class="card-body"><div class="card-tag">📜 التاريخ</div><div class="card-title">دروس التاريخ — الأولى باك</div><div class="card-subtitle">من التحولات الكبرى إلى الوحدة الترابية</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="6" data-title="التجارة مرآة للاقتصاد المغربي" data-src="https://ahmedbouamoud.com/inf07.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf07.png" alt="التجارة المغربية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">التجارة مرآة للاقتصاد المغربي</div><div class="card-subtitle">الثانية إعدادي</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="morocco" data-idx="7" data-title="سكريبت كرونولوجي — تاريخ المغرب" data-src="https://ahmedbouamoud.com/inf08.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf08.png" alt="تاريخ المغرب" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇲🇦 تاريخ المغرب</div>
+    <div class="card-body"><div class="card-tag">🇲🇦 تاريخ المغرب</div><div class="card-title">سكريبت كرونولوجي — تاريخ المغرب</div><div class="card-subtitle">1844 إلى 1979</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="history" data-idx="8" data-title="التحولات الكبرى إلى نهاية ح.ع.2" data-src="https://ahmedbouamoud.com/inf09.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf09.png" alt="قصة التحولات الكبرى" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📜 التاريخ</div>
+    <div class="card-body"><div class="card-tag">📜 التاريخ</div><div class="card-title">التحولات الكبرى إلى نهاية ح.ع.2</div><div class="card-subtitle">سلسلة مترابطة من الأسباب والنتائج</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="history" data-idx="9" data-title="الثورة الفرنسية وليدة فكر الأنوار" data-src="https://ahmedbouamoud.com/inf10.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf10.png" alt="الثورة الفرنسية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📜 التاريخ</div>
+    <div class="card-body"><div class="card-tag">📜 التاريخ</div><div class="card-title">الثورة الفرنسية وليدة فكر الأنوار</div><div class="card-subtitle">الثانية إعدادي</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="eu" data-idx="10" data-title="الاتحاد الأوروبي نحو اندماج شامل" data-src="https://ahmedbouamoud.com/inf11.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf11.png" alt="الاتحاد الأوروبي" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇪🇺 الاتحاد الأوروبي</div>
+    <div class="card-body"><div class="card-tag">🇪🇺 الاتحاد الأوروبي</div><div class="card-title">الاتحاد الأوروبي نحو اندماج شامل</div><div class="card-subtitle">الثالثة إعدادي</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="11" data-title="خريطة الصناعة بالولايات المتحدة" data-src="https://ahmedbouamoud.com/inf12.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf12.png" alt="صناعة أمريكا" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">خريطة الصناعة بالولايات المتحدة</div><div class="card-subtitle">الأولى باكالوريا</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="12" data-title="خريطة الموارد البحرية بالمغرب" data-src="https://ahmedbouamoud.com/inf13.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf13.png" alt="الموارد البحرية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">خريطة الموارد البحرية بالمغرب</div><div class="card-subtitle">الثالثة إعدادي</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="13" data-title="الموارد البحرية بالمغرب (خريطة تفصيلية)" data-src="https://ahmedbouamoud.com/inf14.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf14.png" alt="الموارد البحرية 2" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">الموارد البحرية بالمغرب (تفصيلية)</div><div class="card-subtitle">الثالثة إعدادي</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="14" data-title="الغطاء النباتي بالمغرب" data-src="https://ahmedbouamoud.com/inf15.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf15.png" alt="الغطاء النباتي" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">الغطاء النباتي بالمغرب</div><div class="card-subtitle">ثروة طبيعية للتنمية المستدامة</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="15" data-title="الأحواض المائية بالمغرب" data-src="https://ahmedbouamoud.com/inf16.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf16.png" alt="الأحواض المائية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">الأحواض المائية بالمغرب</div><div class="card-subtitle">تدبير مستدام للموارد المائية</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="eu" data-idx="16" data-title="تكوين الاتحاد الأوروبي" data-src="https://ahmedbouamoud.com/inf17.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf17.png" alt="تكوين الاتحاد الأوروبي" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇪🇺 الاتحاد الأوروبي</div>
+    <div class="card-body"><div class="card-tag">🇪🇺 الاتحاد الأوروبي</div><div class="card-title">تكوين الاتحاد الأوروبي</div><div class="card-subtitle">من فكرة التعاون إلى 27 دولة</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="17" data-title="خريطة الفلاحة في الولايات المتحدة" data-src="https://ahmedbouamoud.com/inf18.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf18.png" alt="فلاحة أمريكا" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">خريطة الفلاحة في الولايات المتحدة</div><div class="card-subtitle">أكبر قوة زراعية في العالم</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="18" data-title="خريطة التنمية البشرية في العالم" data-src="https://ahmedbouamoud.com/inf19.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf19.png" alt="التنمية البشرية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">خريطة التنمية البشرية في العالم</div><div class="card-subtitle">مؤشر HDI — الأولى باكالوريا</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="method" data-idx="19" data-title="عناصر الإجابة — الامتحان الجهوي" data-src="https://ahmedbouamoud.com/inf20.png">
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf20.png" alt="عناصر الإجابة" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📋 منهجية</div>
+    <div class="card-body"><div class="card-tag">📋 منهجية</div><div class="card-title">عناصر الإجابة — الامتحان الجهوي</div><div class="card-subtitle">نموذج 2012 — الأولى باكالوريا</div></div>
+  </div>
+
+  <!-- ===== INF 21–30 (NEW) ===== -->
+  <div class="inf-card" data-cat="history" data-idx="20" data-title="الحرب العالمية الثانية" data-src="https://ahmedbouamoud.com/inf21.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf21.png" alt="الحرب العالمية الثانية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📜 التاريخ</div>
+    <div class="card-body"><div class="card-tag">📜 التاريخ</div><div class="card-title">الحرب العالمية الثانية (1939–1945)</div><div class="card-subtitle">الأسباب • المراحل • النتائج — 3AC</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="history" data-idx="21" data-title="النازية — الصعود والانهيار" data-src="https://ahmedbouamoud.com/inf22.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf22.png" alt="النازية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📜 التاريخ</div>
+    <div class="card-body"><div class="card-tag">📜 التاريخ</div><div class="card-title">النازية — الصعود والانهيار</div><div class="card-subtitle">الأنظمة الديكتاتورية — 3AC</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="history" data-idx="22" data-title="القضية الفلسطينية والصراع العربي-الإسرائيلي" data-src="https://ahmedbouamoud.com/inf23.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf23.png" alt="القضية الفلسطينية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📜 التاريخ</div>
+    <div class="card-body"><div class="card-tag">📜 التاريخ</div><div class="card-title">القضية الفلسطينية والصراع العربي-الإسرائيلي</div><div class="card-subtitle">خط زمني 1948–اليوم — 3AC</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="23" data-title="اليابان — القوة التكنولوجية" data-src="https://ahmedbouamoud.com/inf24.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf24.png" alt="اليابان" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">اليابان — القوة التكنولوجية العالمية</div><div class="card-subtitle">جغرافيا القوى الكبرى — 3AC</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="24" data-title="نيجيريا — بين الغنى الطبيعي والضعف التنموي" data-src="https://ahmedbouamoud.com/inf25.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf25.png" alt="نيجيريا" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">نيجيريا — بين الغنى الطبيعي والضعف التنموي</div><div class="card-subtitle">جغرافيا التنمية — 3AC</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="geo" data-idx="25" data-title="روسيا — رهانات التحول والتنمية" data-src="https://ahmedbouamoud.com/inf26.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf26.png" alt="روسيا" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🌍 الجغرافيا</div>
+    <div class="card-body"><div class="card-tag">🌍 الجغرافيا</div><div class="card-title">روسيا — رهانات التحول والتنمية</div><div class="card-subtitle">جغرافيا القوى الكبرى — 3AC</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="morocco" data-idx="26" data-title="مراحل الحماية الفرنسية بالمغرب" data-src="https://ahmedbouamoud.com/inf27.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf27.png" alt="الحماية الفرنسية" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇲🇦 تاريخ المغرب</div>
+    <div class="card-body"><div class="card-tag">🇲🇦 تاريخ المغرب</div><div class="card-title">مراحل الحماية الفرنسية بالمغرب (1912–1956)</div><div class="card-subtitle">الأولى باكالوريا</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="morocco" data-idx="27" data-title="المقاومة المسلحة — أبطال الكفاح المغربي" data-src="https://ahmedbouamoud.com/inf28.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf28.png" alt="المقاومة المسلحة" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">🇲🇦 تاريخ المغرب</div>
+    <div class="card-body"><div class="card-tag">🇲🇦 تاريخ المغرب</div><div class="card-title">المقاومة المسلحة — أبطال الكفاح المغربي</div><div class="card-subtitle">الأولى باكالوريا</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="method" data-idx="28" data-title="كيف تكتب موضوعاً مقالياً؟" data-src="https://ahmedbouamoud.com/inf29.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf29.png" alt="الموضوع المقالي" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📋 منهجية</div>
+    <div class="card-body"><div class="card-tag">📋 منهجية</div><div class="card-title">كيف تكتب موضوعاً مقالياً؟</div><div class="card-subtitle">دليل الامتحان الجهوي الموحد</div></div>
+  </div>
+
+  <div class="inf-card" data-cat="method" data-idx="29" data-title="منهجية تحليل الوثيقة التاريخية" data-src="https://ahmedbouamoud.com/inf30.png">
+    <div class="card-new">جديد</div>
+    <div class="card-img-wrap"><img src="https://ahmedbouamoud.com/inf30.png" alt="تحليل الوثيقة" loading="lazy"><div class="card-overlay"><div class="overlay-icon">🔍</div></div></div>
+    <div class="card-badge">📋 منهجية</div>
+    <div class="card-body"><div class="card-tag">📋 منهجية</div><div class="card-title">منهجية تحليل الوثيقة التاريخية</div><div class="card-subtitle">دليل منهجي شامل</div></div>
+  </div>
+
+</div><!-- /grid -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <div class="lb-header">
+      <span class="lb-title" id="lb-title">عنوان الإنفوغرافية</span>
+      <button class="lb-close" id="lb-close">✕</button>
+    </div>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-footer">
+      <div class="lb-nav">
+        <button class="lb-btn" id="lb-prev">→ السابق</button>
+        <button class="lb-btn" id="lb-next">التالي ←</button>
+      </div>
+      <span class="lb-counter" id="lb-counter"></span>
+      <a id="lb-dl" href="#" download class="lb-btn dl">⬇️ تحميل</a>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="count-bar">عرض <strong id="visibleCount">20</strong> إنفوغرافية</div>
-
-  <div class="grid" id="grid">
-
-    <!-- 1 -->
-    <div class="inf-card" data-cat="morocco" data-title="نضال المغرب من أجل الاستقلال واستكمال الوحدة الترابية" data-img="https://ahmedbouamoud.com/inf01.png" onclick="openModal(0)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf01.png" alt="نضال المغرب" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-morocco">🇲🇦 تاريخ المغرب</span>
-        <div class="card-title">نضال المغرب من أجل الاستقلال</div>
-        <div class="card-sub">الأولى باكالوريا</div>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="inf-card" data-cat="method" data-title="طريقة رسم المبيان" data-img="https://ahmedbouamoud.com/inf02.png" onclick="openModal(1)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf02.png" alt="طريقة رسم المبيان" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-method">📋 منهجية</span>
-        <div class="card-title">طريقة رسم المبيان</div>
-        <div class="card-sub">خطوات عملية</div>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="inf-card" data-cat="method geo" data-title="دليل المنهجية الشاملة — الجغرافيا" data-img="https://ahmedbouamoud.com/inf03.png" onclick="openModal(2)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf03.png" alt="دليل الجغرافيا" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-method">📋 منهجية</span>
-        <div class="card-title">دليل المنهجية الشاملة — الجغرافيا</div>
-        <div class="card-sub">الأولى باكالوريا</div>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="inf-card" data-cat="morocco" data-title="المغرب والسلم العالمي" data-img="https://ahmedbouamoud.com/inf04.png" onclick="openModal(3)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf04.png" alt="المغرب والسلم العالمي" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-morocco">🇲🇦 تاريخ المغرب</span>
-        <div class="card-title">المغرب والسلم العالمي</div>
-        <div class="card-sub">الثالثة إعدادي — تربية مدنية</div>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="inf-card" data-cat="culture" data-title="المسابقة الثقافية الكبرى" data-img="https://ahmedbouamoud.com/inf05.png" onclick="openModal(4)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf05.png" alt="مسابقة ثقافية" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-culture">🧠 ثقافة عامة</span>
-        <div class="card-title">المسابقة الثقافية الكبرى</div>
-        <div class="card-sub">غرابة + متعة + ذكاء</div>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="inf-card" data-cat="history" data-title="دروس التاريخ — الأولى باك (خط زمني)" data-img="https://ahmedbouamoud.com/inf06.png" onclick="openModal(5)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf06.png" alt="دروس التاريخ" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-history">📜 التاريخ</span>
-        <div class="card-title">دروس التاريخ — الأولى باك</div>
-        <div class="card-sub">من التحولات الكبرى إلى الوحدة الترابية</div>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="inf-card" data-cat="geo" data-title="التجارة مرآة للاقتصاد المغربي" data-img="https://ahmedbouamoud.com/inf07.png" onclick="openModal(6)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf07.png" alt="التجارة المغربية" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">التجارة مرآة للاقتصاد المغربي</div>
-        <div class="card-sub">الثانية إعدادي</div>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="inf-card" data-cat="morocco history" data-title="سكريبت كرونولوجي — تاريخ المغرب" data-img="https://ahmedbouamoud.com/inf08.png" onclick="openModal(7)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf08.png" alt="تاريخ المغرب" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-morocco">🇲🇦 تاريخ المغرب</span>
-        <div class="card-title">سكريبت كرونولوجي — تاريخ المغرب</div>
-        <div class="card-sub">1844 إلى 1979</div>
-      </div>
-    </div>
-
-    <!-- 9 -->
-    <div class="inf-card" data-cat="history" data-title="التاريخ الأولى باك — قصة التحولات الكبرى" data-img="https://ahmedbouamoud.com/inf09.png" onclick="openModal(8)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf09.png" alt="قصة التحولات الكبرى" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-history">📜 التاريخ</span>
-        <div class="card-title">التحولات الكبرى إلى نهاية ح.ع.2</div>
-        <div class="card-sub">سلسلة مترابطة من الأسباب والنتائج</div>
-      </div>
-    </div>
-
-    <!-- 10 -->
-    <div class="inf-card" data-cat="history" data-title="الثورة الفرنسية وليدة فكر الأنوار" data-img="https://ahmedbouamoud.com/inf10.png" onclick="openModal(9)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf10.png" alt="الثورة الفرنسية" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-history">📜 التاريخ</span>
-        <div class="card-title">الثورة الفرنسية وليدة فكر الأنوار</div>
-        <div class="card-sub">الثانية إعدادي</div>
-      </div>
-    </div>
-
-    <!-- 11 -->
-    <div class="inf-card" data-cat="eu" data-title="الاتحاد الأوروبي نحو اندماج شامل" data-img="https://ahmedbouamoud.com/inf11.png" onclick="openModal(10)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf11.png" alt="الاتحاد الأوروبي" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-eu">🇪🇺 الاتحاد الأوروبي</span>
-        <div class="card-title">الاتحاد الأوروبي نحو اندماج شامل</div>
-        <div class="card-sub">الثالثة إعدادي</div>
-      </div>
-    </div>
-
-    <!-- 12 -->
-    <div class="inf-card" data-cat="geo" data-title="خريطة الصناعة بالولايات المتحدة" data-img="https://ahmedbouamoud.com/inf12.png" onclick="openModal(11)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf12.png" alt="صناعة أمريكا" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">خريطة الصناعة بالولايات المتحدة</div>
-        <div class="card-sub">الأولى باكالوريا</div>
-      </div>
-    </div>
-
-    <!-- 13 -->
-    <div class="inf-card" data-cat="geo morocco" data-title="خريطة الموارد البحرية بالمغرب" data-img="https://ahmedbouamoud.com/inf13.png" onclick="openModal(12)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf13.png" alt="الموارد البحرية" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">خريطة الموارد البحرية بالمغرب</div>
-        <div class="card-sub">الثالثة إعدادي</div>
-      </div>
-    </div>
-
-    <!-- 14 -->
-    <div class="inf-card" data-cat="geo morocco" data-title="خريطة الموارد البحرية — نسخة 2" data-img="https://ahmedbouamoud.com/inf14.png" onclick="openModal(13)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf14.png" alt="الموارد البحرية 2" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">الموارد البحرية بالمغرب (خريطة تفصيلية)</div>
-        <div class="card-sub">الثالثة إعدادي</div>
-      </div>
-    </div>
-
-    <!-- 15 -->
-    <div class="inf-card" data-cat="geo morocco" data-title="الغطاء النباتي بالمغرب" data-img="https://ahmedbouamoud.com/inf15.png" onclick="openModal(14)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf15.png" alt="الغطاء النباتي" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">الغطاء النباتي بالمغرب</div>
-        <div class="card-sub">ثروة طبيعية للتنمية المستدامة</div>
-      </div>
-    </div>
-
-    <!-- 16 -->
-    <div class="inf-card" data-cat="geo morocco" data-title="الأحواض المائية بالمغرب" data-img="https://ahmedbouamoud.com/inf16.png" onclick="openModal(15)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf16.png" alt="الأحواض المائية" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">الأحواض المائية بالمغرب</div>
-        <div class="card-sub">تدبير مستدام للموارد المائية</div>
-      </div>
-    </div>
-
-    <!-- 17 -->
-    <div class="inf-card" data-cat="eu" data-title="تكوين الاتحاد الأوروبي" data-img="https://ahmedbouamoud.com/inf17.png" onclick="openModal(16)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf17.png" alt="تكوين الاتحاد الأوروبي" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-eu">🇪🇺 الاتحاد الأوروبي</span>
-        <div class="card-title">تكوين الاتحاد الأوروبي</div>
-        <div class="card-sub">من فكرة التعاون إلى 27 دولة</div>
-      </div>
-    </div>
-
-    <!-- 18 -->
-    <div class="inf-card" data-cat="geo" data-title="خريطة الفلاحة في الولايات المتحدة" data-img="https://ahmedbouamoud.com/inf18.png" onclick="openModal(17)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf18.png" alt="فلاحة أمريكا" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">خريطة الفلاحة في الولايات المتحدة</div>
-        <div class="card-sub">أكبر قوة زراعية في العالم</div>
-      </div>
-    </div>
-
-    <!-- 19 -->
-    <div class="inf-card" data-cat="geo" data-title="خريطة التنمية البشرية في العالم" data-img="https://ahmedbouamoud.com/inf19.png" onclick="openModal(18)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf19.png" alt="التنمية البشرية" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-geo">🌍 الجغرافيا</span>
-        <div class="card-title">خريطة التنمية البشرية في العالم</div>
-        <div class="card-sub">مؤشر HDI — الأولى باكالوريا</div>
-      </div>
-    </div>
-
-    <!-- 20 -->
-    <div class="inf-card" data-cat="method" data-title="عناصر الإجابة — الامتحان الجهوي 2012" data-img="https://ahmedbouamoud.com/inf20.png" onclick="openModal(19)">
-      <img class="card-img" src="https://ahmedbouamoud.com/inf20.png" alt="عناصر الإجابة" loading="lazy">
-      <div class="card-body">
-        <span class="card-cat cat-method">📋 منهجية</span>
-        <div class="card-title">عناصر الإجابة — الامتحان الجهوي</div>
-        <div class="card-sub">نموذج 2012 — الأولى باكالوريا</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    <p>إعداد: <strong>الأستاذ أحمد بوعمود</strong> — مؤسسة الحنان للتعليم الخاص</p>
-    <p>السنة الدراسية <strong>2025–2026</strong> — مدرستي.ma</p>
-  </div>
-</div>
-
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeOnBg(event)">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3 id="modalTitle">عنوان الإنفوغرافية</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <img class="modal-img" id="modalImg" src="" alt="">
-    <div class="modal-footer">
-      <span class="modal-cat" id="modalCat"></span>
-      <div class="modal-nav">
-        <button class="mnav" onclick="prevImg()">→ السابق</button>
-        <button class="mnav" onclick="nextImg()">التالي ←</button>
-      </div>
-      <a class="btn-dl" id="modalDl" href="#" download>⬇️ تحميل</a>
-    </div>
-  </div>
-</div>
+<!-- FOOTER -->
+<footer class="site-footer">
+  إعداد: <strong>الأستاذ أحمد بوعمود</strong> — مؤسسة الحنان للتعليم الخاص — السنة الدراسية <strong>2025–2026</strong> — مدرستي.ma
+</footer>
 
 <script>
-const cards = document.querySelectorAll('.inf-card');
-const data = Array.from(cards).map(c => ({
-  title: c.dataset.title,
-  img: c.dataset.img,
-  cat: c.dataset.cat
-}));
-
+// ====== DATA ======
+const cards = Array.from(document.querySelectorAll('.inf-card'));
+let visibleCards = [...cards];
 let currentIdx = 0;
 
-function openModal(i) {
-  currentIdx = i;
-  updateModal();
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function updateModal() {
-  const d = data[currentIdx];
-  document.getElementById('modalTitle').textContent = d.title;
-  document.getElementById('modalImg').src = d.img;
-  document.getElementById('modalImg').alt = d.title;
-  document.getElementById('modalDl').href = d.img;
-  document.getElementById('modalDl').download = d.title + '.png';
-  const catEl = document.getElementById('modalCat');
-  const catMap = {
-    history: {text:'📜 التاريخ', cls:'cat-history'},
-    geo: {text:'🌍 الجغرافيا', cls:'cat-geo'},
-    morocco: {text:'🇲🇦 تاريخ المغرب', cls:'cat-morocco'},
-    method: {text:'📋 منهجية', cls:'cat-method'},
-    eu: {text:'🇪🇺 الاتحاد الأوروبي', cls:'cat-eu'},
-    culture: {text:'🧠 ثقافة عامة', cls:'cat-culture'}
-  };
-  const firstCat = d.cat.split(' ')[0];
-  const cm = catMap[firstCat] || {text: firstCat, cls: ''};
-  catEl.className = 'modal-cat ' + cm.cls;
-  catEl.textContent = cm.text;
-  document.querySelector('.modal-box').scrollTop = 0;
-}
-
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closeOnBg(e) {
-  if (e.target === document.getElementById('modal')) closeModal();
-}
-
-function nextImg() {
-  currentIdx = (currentIdx + 1) % data.length;
-  updateModal();
-}
-
-function prevImg() {
-  currentIdx = (currentIdx - 1 + data.length) % data.length;
-  updateModal();
-}
-
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('modal').classList.contains('open')) return;
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'ArrowLeft') nextImg();
-  if (e.key === 'ArrowRight') prevImg();
+// ====== FILTER ======
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    visibleCards = [];
+    cards.forEach(c => {
+      const show = f === 'all' || c.dataset.cat === f;
+      c.classList.toggle('hidden', !show);
+      if (show) visibleCards.push(c);
+    });
+    document.getElementById('showing').textContent = visibleCards.length;
+  });
 });
 
-function filter(cat, btn) {
-  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  let visible = 0;
-  cards.forEach(c => {
-    const match = cat === 'all' || c.dataset.cat.includes(cat);
-    c.classList.toggle('hidden', !match);
-    if (match) visible++;
-  });
-  document.getElementById('visibleCount').textContent = visible;
+// ====== LIGHTBOX ======
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbTitle = document.getElementById('lb-title');
+const lbCounter = document.getElementById('lb-counter');
+const lbDl = document.getElementById('lb-dl');
+
+function openLb(card) {
+  currentIdx = visibleCards.indexOf(card);
+  updateLb();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+function updateLb() {
+  const c = visibleCards[currentIdx];
+  lbImg.src = c.dataset.src;
+  lbTitle.textContent = c.dataset.title;
+  lbCounter.textContent = `${currentIdx + 1} / ${visibleCards.length}`;
+  lbDl.href = c.dataset.src;
+  lbDl.download = c.dataset.title + '.png';
+}
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lb-close').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.getElementById('lb-prev').addEventListener('click', () => {
+  currentIdx = (currentIdx - 1 + visibleCards.length) % visibleCards.length;
+  updateLb();
+});
+document.getElementById('lb-next').addEventListener('click', () => {
+  currentIdx = (currentIdx + 1) % visibleCards.length;
+  updateLb();
+});
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') { currentIdx = (currentIdx + 1) % visibleCards.length; updateLb(); }
+  if (e.key === 'ArrowRight') { currentIdx = (currentIdx - 1 + visibleCards.length) % visibleCards.length; updateLb(); }
+});
+cards.forEach(c => c.addEventListener('click', () => openLb(c)));
 </script>
 </body>
 </html>
