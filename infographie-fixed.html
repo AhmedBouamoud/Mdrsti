@@ -3,81 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الإنفوغرافيا التعليمية | مدرستي.ma</title>
+    <title>مكتبة الإنفوغرافيا | أولى باك علوم - مدرستي.ma</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
-        header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
-        .nav-buttons { display: flex; justify-content: center; gap: 10px; padding: 20px; flex-wrap: wrap; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .btn { padding: 10px 20px; border-radius: 20px; text-decoration: none; color: white; font-weight: bold; font-size: 14px; }
-        .btn-1bac { background: #27ae60; }
-        .btn-3ac { background: #2980b9; }
-        .btn-method { background: #8e44ad; }
-        .section-title { padding: 20px; background: #ecf0f1; margin-top: 20px; border-right: 5px solid #2c3e50; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
-        .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s; border: 1px solid #eee; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: auto; display: block; }
+        :root { --primary: #1a252f; --secondary: #27ae60; --accent: #2980b9; --gold: #f39c12; --light: #f9fbfc; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light); margin: 0; padding: 0; color: #333; }
+        header { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 40px 20px; text-align: center; }
+        .nav-buttons { display: flex; justify-content: center; gap: 10px; padding: 15px; flex-wrap: wrap; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .btn { padding: 12px 20px; border-radius: 25px; text-decoration: none; color: white; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-new { background: var(--gold); border: 2px solid #fff; box-shadow: 0 0 10px rgba(243, 156, 18, 0.3); }
+        .btn-1bac { background: var(--secondary); }
+        .btn-3ac { background: var(--accent); }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; padding: 10px; background: #fff; border-right: 6px solid var(--primary); border-radius: 4px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 20px 0; }
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s; position: relative; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .badge-new { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
+        .card img { width: 100%; height: auto; border-bottom: 1px solid #eee; background: #f0f0f0; }
         .card-body { padding: 15px; text-align: center; }
-        .card-body h3 { font-size: 16px; margin: 0 0 10px 0; color: #333; }
-        .download-link { display: inline-block; background: #e74c3c; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 13px; }
-        footer { text-align: center; padding: 30px; background: #2c3e50; color: white; margin-top: 40px; }
+        .card-body h3 { font-size: 15px; margin: 0 0 15px 0; color: var(--primary); min-height: 42px; display: flex; align-items: center; justify-content: center; }
+        .download-link { background: var(--accent); color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; display: block; }
+        footer { text-align: center; padding: 40px; background: var(--primary); color: white; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🎨 مكتبة الإنفوغرافيا التعليمية</h1>
-    <p>إعداد الأستاذ أحمد بوعمود - منصة مدرستي.ma</p>
+    <h1>🎓 فضاء الاجتماعيات: أولى باك علوم</h1>
+    <p>30 إنفوغرافية أصلية + 20 إنفوغرافية جديدة وحصرية - إعداد الأستاذ أحمد بوعمود</p>
 </header>
 
 <div class="nav-buttons">
-    <a href="#1bac" class="btn btn-1bac">قسم الأولى باكالوريا</a>
-    <a href="#3ac" class="btn btn-3ac">قسم الثالثة إعدادي</a>
-    <a href="#methodology" class="btn btn-method">قسم المنهجية والدعم</a>
+    <a href="#new-series" class="btn btn-new">✨ جديد: سلسلة الـ 20 الذهبية</a>
+    <a href="#1bac" class="btn btn-1bac">الأولى باك (الأصلية)</a>
+    <a href="#3ac" class="btn btn-3ac">الثالثة إعدادي</a>
+    <a href="#methodology" class="btn btn-1bac" style="background:#8e44ad;">المنهجية</a>
 </div>
 
-<h2 id="1bac" class="section-title">📍 ركن الأولى باكالوريا (الامتحان الجهوي)</h2>
-<div class="grid">
-    <div class="card">
-        <img src="https://ahmedbouamoud.com/inf01.png" alt="نضال المغرب من أجل الاستقلال">
-        <div class="card-body">
-            <h3>نضال المغرب من أجل الاستقلال</h3>
-            <a href="https://ahmedbouamoud.com/inf01.png" download class="download-link">⬇️ تحميل الصورة</a>
-        </div>
-    </div>
-    <div class="card">
-        <img src="https://ahmedbouamoud.com/inf12.png" alt="صناعة أمريكا">
-        <div class="card-body">
-            <h3>خريطة الصناعة بالولايات المتحدة</h3>
-            <a href="https://ahmedbouamoud.com/inf12.png" download class="download-link">⬇️ تحميل الصورة</a>
-        </div>
-    </div>
-</div>
+<div class="container">
 
-<h2 id="3ac" class="section-title">📍 ركن الثالثة إعدادي</h2>
-<div class="grid">
-    <div class="card">
-        <img src="https://ahmedbouamoud.com/inf21.png" alt="الحرب العالمية الثانية">
-        <div class="card-body">
-            <h3>الحرب العالمية الثانية (أسباب ونتائج)</h3>
-            <a href="https://ahmedbouamoud.com/inf21.png" download class="download-link">⬇️ تحميل الصورة</a>
-        </div>
+    <div class="section-header" id="new-series">
+        <h2 style="color: var(--gold);">✨ جديد: سلسلة التفوق (أولى باك علوم)</h2>
+        <span>20 إنفوغرافية جديدة</span>
     </div>
-</div>
+    <div class="grid">
+        <div class="card"><span class="badge-new">جديد</span><img src="new01.png" alt="مفهوم التنمية"><div class="card-body"><h3>خريطة ذهنية: مفهوم التنمية (الاقتصادية والبشرية)</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new02.png" alt="المجال المغربي"><div class="card-body"><h3>المجال المغربي: الموارد الطبيعية والبشرية</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new03.png" alt="سياسة إعداد التراب"><div class="card-body"><h3>سياسة إعداد التراب الوطني: المبادئ والأهداف</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new04.png" alt="التهيئة الحضرية"><div class="card-body"><h3>أزمة المدينة والريف وأشكال التدخل</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new05.png" alt="الولايات المتحدة"><div class="card-body"><h3>خطاطة القوة الاقتصادية للولايات المتحدة</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new06.png" alt="الاتحاد الأوروبي"><div class="card-body"><h3>الاتحاد الأوروبي: معطيات الاندماج الشامل</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new07.png" alt="الصين"><div class="card-body"><h3>الصين: قوة اقتصادية صاعدة (العوامل والمظاهر)</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new08.png" alt="اليقظة الفكرية"><div class="card-body"><h3>اليقظة الفكرية بالمشرق العربي: التيارات والأقطاب</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new09.png" alt="الضغوط الاستعمارية"><div class="card-body"><h3>الضغوط الاستعمارية على المغرب ومحاولات الإصلاح</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><img src="new10.png" alt="الحرب العالمية الأولى"><div class="card-body"><h3>العالم غداة الحرب العالمية الأولى (نتائج مؤتمر الصلح)</h3><a href="#" class="download-link">قريباً..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><div class="card-body"><h3>ملخص منهجية: التعامل مع النص التاريخي</h3><a href="#" class="download-link">تحت الإنجاز..</a></div></div>
+        <div class="card"><span class="badge-new">جديد</span><div class="card-body"><h3>المصطلحات والمفاهيم الأساسية (الامتحان الجهوي)</h3><a href="#" class="download-link">تحت الإنجاز..</a></div></div>
+    </div>
 
-<h2 id="methodology" class="section-title">📍 ركن المنهجية والمهارات</h2>
-<div class="grid">
-    <div class="card">
-        <img src="https://ahmedbouamoud.com/inf29.png" alt="الموضوع المقالي">
-        <div class="card-body">
-            <h3>منهجية كتابة الموضوع المقالي</h3>
-            <a href="https://ahmedbouamoud.com/inf29.png" download class="download-link">⬇️ تحميل الصورة</a>
+    <h2 id="1bac" class="section-header">📍 ركن الأولى باكالوريا (الأصلية)</h2>
+    <div class="grid">
+        <div class="card"><img src="inf01.png"><div class="card-body"><h3>نضال المغرب من أجل الاستقلال</h3><a href="inf01.png" download class="download-link">⬇️ تحميل</a></div></div>
+        <div class="card"><img src="inf06.png"><div class="card-body"><h3>دروس التاريخ - التحولات الكبرى</h3><a href="inf06.png" download class="download-link">⬇️ تحميل</a></div></div>
+        <div class="card"><img src="inf12.png"><div class="card-body"><h3>خريطة الصناعة بالولايات المتحدة</h3><a href="inf12.png" download class="download-link">⬇️ تحميل</a></div></div>
         </div>
-    </div>
+
 </div>
 
 <footer>
-    <p>جميع الحقوق محفوظة © 2026 - مدرستي.ma - الأستاذ أحمد بوعمود</p>
+    <p>جميع الحقوق محفوظة © 2026 - مدرستي.ma | الأستاذ أحمد بوعمود</p>
 </footer>
 
 </body>
