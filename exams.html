@@ -3,95 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بنك الامتحانات الجهوية | مدرستي.ma</title>
+    <title>بنك الامتحانات | الأستاذ أحمد بوعمود</title>
     <style>
-        :root { --primary: #1a5f7a; --accent: #eb455f; --secondary: #159895; --gold: #f1c40f; --bg: #f8f9fa; }
+        :root { --primary: #1a5f7a; --accent: #eb455f; --secondary: #159895; --bg: #f4f7f6; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; padding: 0; line-height: 1.6; color: #333; }
-        header { background: linear-gradient(135deg, #2c3e50, var(--primary)); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .container { max-width: 900px; margin: -30px auto 50px; padding: 0 15px; }
-        
-        /* البطاقة الترويجية للتجميعة */
-        .featured-card { background: white; border-radius: 15px; padding: 30px; border-top: 6px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; margin-bottom: 40px; }
-        .btn-main { display: inline-block; background: var(--accent); color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(235, 69, 95, 0.3); transition: 0.3s; border: none; cursor: pointer; }
-        .btn-main:hover { transform: translateY(-3px); background: #d63d55; }
-        
-        .section-title { color: var(--primary); border-right: 6px solid var(--secondary); padding-right: 15px; margin: 40px 0 20px; }
-        
-        /* شبكة عرض الامتحانات */
+        header { background: #2c3e50; color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--accent); }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        .featured-card { background: white; border-radius: 12px; padding: 25px; border-right: 8px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; text-align: center; }
         .exam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .card h3 { margin: 0 0 10px; font-size: 1.1rem; color: #2c3e50; }
-        
-        .btn-group { display: flex; gap: 8px; }
-        .btn-group a { flex: 1; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: bold; color: white; }
-        .btn-reg { background: #2c3e50; }
-        .btn-res { background: #e67e22; }
-        
-        footer { text-align: center; padding: 40px; background: #2c3e50; color: white; margin-top: 50px; }
+        .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #ddd; }
+        .btn { display: inline-block; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; }
+        .btn-download { background-color: var(--primary); color: white; width: 100%; text-align: center; box-sizing: border-box; }
+        .btn-download:hover { background-color: var(--secondary); }
+        .btn-main { background-color: var(--accent); color: white; font-size: 1.1rem; margin-top: 15px; }
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        .btn-group a { flex: 1; text-align: center; font-size: 0.9rem; color: white; padding: 8px; border-radius: 4px; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>📚 مركز تحميل الامتحانات الجهوية</h1>
-    <p>مادة التاريخ والجغرافيا - إعداد الأستاذ أحمد بوعمود</p>
+    <h1>📚 مستودع الامتحانات الجهوية - أولى باك</h1>
+    <p>إعداد وتجميع الأستاذ أحمد بوعمود</p>
 </header>
 
 <div class="container">
-    
     <div class="featured-card">
-        <h2>⭐ التجميعة الشاملة (الإصدار الجديد V2)</h2>
-        <p>تجميعة مختارة للامتحانات الجهوية مع نماذج عناصر الإجابة المرجعية</p>
-        <a href="https://ahmedbouamoud.com/تجميعة امتحانات جهوية - التاريخ والجغرافيا V2.pdf" class="btn-main" download>📥 تحميل التجميعة كاملة (PDF)</a>
+        <h2 style="color: var(--primary);">⭐ التجميعة الشاملة V2 (ملف واحد)</h2>
+        <p>تضم أهم النماذج مع توجيهات منهجية مركزة للتلاميذ</p>
+        <a href="./تجميعة امتحانات جهوية - التاريخ والجغرافيا V2.pdf" download class="btn btn-main">📥 تحميل التجميعة كاملة (PDF)</a>
     </div>
 
-    <h2 class="section-title">📍 أرشيف جهة سوس ماسة</h2>
+    <h2 style="border-right: 5px solid var(--primary); padding-right: 10px;">📍 نماذج جهة سوس ماسة</h2>
     <div class="exam-grid">
         <div class="card">
-            <h3>دورة 2015</h3>
+            <h3>امتحان 2015</h3>
             <div class="btn-group">
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2015-n (3).pdf" class="btn-reg" download>العادية</a>
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2015-r (2).pdf" class="btn-res" download>الاستدراكية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2015-n (3).pdf" download style="background: #34495e;">الدورة العادية</a>
             </div>
         </div>
+
         <div class="card">
-            <h3>دورة 2014</h3>
+            <h3>امتحان 2014</h3>
             <div class="btn-group">
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2014-n (3).pdf" class="btn-reg" download>العادية</a>
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2014-r (2).pdf" class="btn-res" download>الاستدراكية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2014-n (3).pdf" download style="background: #34495e;">العادية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2014-r (2).pdf" download style="background: #e67e22;">الاستدراكية</a>
             </div>
         </div>
+
         <div class="card">
-            <h3>دورة 2013</h3>
+            <h3>امتحان 2013</h3>
             <div class="btn-group">
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2013-n (3).pdf" class="btn-reg" download>العادية</a>
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2013-r (2).pdf" class="btn-res" download>الاستدراكية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2013-n (3).pdf" download style="background: #34495e;">العادية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2013-r (2).pdf" download style="background: #e67e22;">الاستدراكية</a>
             </div>
         </div>
+
         <div class="card">
-            <h3>دورة 2012</h3>
+            <h3>امتحان 2012</h3>
             <div class="btn-group">
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2012-n (5).pdf" class="btn-reg" download>العادية</a>
-                <a href="https://ahmedbouamoud.com/examens-regional-1bac-souss-massa-geo-2012-r (2).pdf" class="btn-res" download>الاستدراكية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2012-n (5).pdf" download style="background: #34495e;">العادية</a>
+                <a href="./examens-regional-1bac-souss-massa-geo-2012-r (2).pdf" download style="background: #e67e22;">الاستدراكية</a>
             </div>
         </div>
     </div>
 
-    <h2 class="section-title">📍 تمارين ومنهجية</h2>
-    <div class="exam-grid">
-        <div class="card" style="border-right: 6px solid #8e44ad;">
-            <h3>تمارين تطبيقية - جغرافيا</h3>
-            <p>سلسلة دعم وتثبيت المكتسبات (أولى باك)</p>
-            <a href="https://ahmedbouamoud.com/exercice-1bac-sm-geo-01.pdf" class="btn-main" style="background:#8e44ad; width:100%; box-sizing: border-box;" download>📥 تحميل السلسلة</a>
-        </div>
+    <h2 style="border-right: 5px solid var(--secondary); padding-right: 10px; margin-top: 40px;">📍 مواد داعمة</h2>
+    <div class="card">
+        <h3>سلسلة تمارين تطبيقية - جغرافيا</h3>
+        <p>تمارين شاملة للتدريب على المبيانات والتحليل</p>
+        <a href="./exercice-1bac-sm-geo-01.pdf" download class="btn btn-download">📥 تحميل السلسلة</a>
     </div>
-
 </div>
 
 <footer>
-    <p>مدرستي.ma - جميع الحقوق محفوظة © 2026</p>
-    <p>أستاذ المادة: أحمد بوعمود</p>
+    <p>جميع الحقوق محفوظة © 2026 - مدرستي.ma</p>
 </footer>
 
 </body>
