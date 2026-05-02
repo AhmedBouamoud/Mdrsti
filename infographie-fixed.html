@@ -1,92 +1,346 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المكتبة الكاملة للإنفوغرافيا | مدرستي.ma</title>
-    <style>
-        :root { --primary: #1a252f; --secondary: #27ae60; --accent: #2980b9; --danger: #e74c3c; --light: #f4f7f6; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light); margin: 0; padding: 0; color: #333; }
-        header { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 30px 20px; text-align: center; }
-        .nav-buttons { display: flex; justify-content: center; gap: 10px; padding: 15px; flex-wrap: wrap; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .btn { padding: 10px 20px; border-radius: 20px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; transition: 0.3s; border:none; }
-        .btn-1bac { background: var(--secondary); }
-        .btn-3ac { background: var(--accent); }
-        .btn-method { background: #8e44ad; }
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        .section-title { padding: 15px; background: #fff; margin-top: 30px; border-right: 6px solid var(--primary); border-radius: 4px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px 0; }
-        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: 0.3s; text-align: center; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: auto; border-bottom: 1px solid #eee; }
-        .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-body h3 { font-size: 14px; margin-bottom: 12px; color: var(--primary); line-height: 1.4; }
-        .download-btn { background: var(--danger); color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مكتبة الإنفوغرافيا التعليمية الشاملة | مدرستي.ma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #e07b2a;
+      --blue: #1a4a8a;
+      --light-bg: #f8f5f0;
+      --card-bg: #ffffff;
+      --border: #e8e0d5;
+      --text: #2c2c2c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Cairo', sans-serif; background: var(--light-bg); color: var(--text); direction: rtl; }
+
+    header {
+      background: linear-gradient(135deg, var(--blue) 0%, #0d2d5e 100%);
+      color: white; text-align: center; padding: 48px 24px 36px; position: relative; overflow: hidden;
+    }
+    header::before {
+      content: ''; position: absolute; top: -60px; left: -60px;
+      width: 220px; height: 220px; background: rgba(224,123,42,0.15); border-radius: 50%;
+    }
+    header h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 900; margin-bottom: 8px; position: relative; }
+    header h1 span { color: var(--orange); }
+    header p { font-size: 0.95rem; opacity: 0.85; position: relative; }
+
+    .stats-bar {
+      background: white; border-bottom: 3px solid var(--orange);
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; padding: 14px 24px;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.5rem; font-weight: 900; color: var(--orange); }
+    .stat-label { font-size: 0.75rem; color: #666; }
+
+    nav {
+      background: white; border-bottom: 2px solid var(--border);
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; padding: 10px 16px;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    nav a {
+      text-decoration: none; color: var(--blue); font-weight: 700; font-size: 0.85rem;
+      padding: 6px 14px; border-radius: 20px; border: 2px solid transparent; transition: all 0.2s;
+    }
+    nav a:hover { background: var(--orange); color: white; border-color: var(--orange); }
+
+    main { max-width: 1200px; margin: 0 auto; padding: 32px 16px 64px; }
+
+    .section-title {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      margin: 48px 0 24px; padding-bottom: 12px; border-bottom: 3px solid var(--orange);
+    }
+    .section-title h2 { font-size: 1.35rem; font-weight: 900; color: var(--blue); }
+    .section-badge { background: var(--orange); color: white; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+    .section-count { font-size: 0.8rem; color: #999; margin-right: auto; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+
+    .card {
+      background: var(--card-bg); border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07); border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s; position: relative;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(26,74,138,0.13); }
+    .card-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; background: #f0ece6; }
+    .card-body { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .card-title { font-size: 0.88rem; font-weight: 700; color: var(--blue); line-height: 1.4; flex: 1; }
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 4px; background: var(--orange);
+      color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700;
+      padding: 6px 10px; border-radius: 8px; white-space: nowrap; transition: background 0.2s;
+      font-family: 'Cairo', sans-serif;
+    }
+    .btn-download:hover { background: #c5661a; }
+    .card.new::before {
+      content: '✦ جديد'; position: absolute; top: 10px; right: 10px;
+      background: var(--orange); color: white; font-size: 0.7rem; font-weight: 900;
+      padding: 3px 10px; border-radius: 10px; z-index: 2; font-family: 'Cairo', sans-serif;
+    }
+
+    footer { background: var(--blue); color: rgba(255,255,255,0.8); text-align: center; padding: 20px; font-size: 0.85rem; }
+    footer span { color: var(--orange); font-weight: 700; }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>🎨 مكتبة الإنفوغرافيا التعليمية الشاملة</h1>
-    <p>الأستاذ أحمد بوعمود - منصة مدرستي.ma</p>
+  <h1>🎨 مكتبة الإنفوغرافيا <span>التعليمية</span> الشاملة</h1>
+  <p>الأستاذ أحمد بوعمود — منصة مدرستي.ma</p>
 </header>
 
-<div class="nav-buttons">
-    <a href="#1bac" class="btn btn-1bac">الأولى باك</a>
-    <a href="#3ac" class="btn btn-3ac">الثالثة إعدادي</a>
-    <a href="#method" class="btn btn-method">منهجية</a>
-    <a href="#morocco" class="btn btn-1bac" style="background:#d35400;">تاريخ المغرب</a>
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">49</div><div class="stat-label">إنفوغرافيا</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">أقسام</div></div>
+  <div class="stat"><div class="stat-num">2025–2026</div><div class="stat-label">السنة الدراسية</div></div>
 </div>
 
-<div class="container">
-    <h2 id="1bac" class="section-title">📍 ركن الأولى باكالوريا</h2>
-    <div class="grid">
-        <div class="card"><img src="inf01.png"> <div class="card-body"><h3>نضال المغرب من أجل الاستقلال</h3><a href="inf01.png" download="inf01.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf03.png"> <div class="card-body"><h3>دليل المنهجية الشاملة - الجغرافيا</h3><a href="inf03.png" download="inf03.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf06.png"> <div class="card-body"><h3>دروس التاريخ - التحولات الكبرى</h3><a href="inf06.png" download="inf06.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf12.png"> <div class="card-body"><h3>خريطة الصناعة بالولايات المتحدة</h3><a href="inf12.png" download="inf12.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf18.png"> <div class="card-body"><h3>خريطة الفلاحة في الولايات المتحدة</h3><a href="inf18.png" download="inf18.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf19.png"> <div class="card-body"><h3>خريطة التنمية البشرية في العالم</h3><a href="inf19.png" download="inf19.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-    </div>
+<nav>
+  <a href="#1bac">🎓 الأولى باك</a>
+  <a href="#3ac">📚 الثالثة إعدادي</a>
+  <a href="#morocco">🇲🇦 تاريخ المغرب</a>
+  <a href="#method">📐 المنهجية</a>
+</nav>
 
-    <h2 id="3ac" class="section-title">📍 ركن الثالثة إعدادي</h2>
-    <div class="grid">
-        <div class="card"><img src="inf04.png"> <div class="card-body"><h3>المغرب والسلم العالمي</h3><a href="inf04.png" download="inf04.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf11.png"> <div class="card-body"><h3>الاتحاد الأوروبي نحو اندماج شامل</h3><a href="inf11.png" download="inf11.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf21.png"> <div class="card-body"><h3>الحرب العالمية الثانية</h3><a href="inf21.png" download="inf21.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf22.png"> <div class="card-body"><h3>النازية: الصعود والانهيار</h3><a href="inf22.png" download="inf22.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf23.png"> <div class="card-body"><h3>القضية الفلسطينية</h3><a href="inf23.png" download="inf23.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf24.png"> <div class="card-body"><h3>اليابان: القوة التكنولوجية</h3><a href="inf24.png" download="inf24.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf25.png"> <div class="card-body"><h3>نيجيريا: الضعف التنموي</h3><a href="inf25.png" download="inf25.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf26.png"> <div class="card-body"><h3>روسيا: رهانات التحول</h3><a href="inf26.png" download="inf26.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf07.png"> <div class="card-body"><h3>التجارة مرآة للاقتصاد المغربي</h3><a href="inf07.png" download="inf07.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf10.png"> <div class="card-body"><h3>الثورة الفرنسية وليدة الأنوار</h3><a href="inf10.png" download="inf10.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-    </div>
+<main>
 
-    <h2 id="morocco" class="section-title">📍 تاريخ المغرب</h2>
-    <div class="grid">
-        <div class="card"><img src="inf08.png"> <div class="card-body"><h3>كرونولوجيا تاريخ المغرب</h3><a href="inf08.png" download="inf08.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf27.png"> <div class="card-body"><h3>مراحل الحماية بالمغرب</h3><a href="inf27.png" download="inf27.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf28.png"> <div class="card-body"><h3>المقاومة المسلحة</h3><a href="inf28.png" download="inf28.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf13.png"> <div class="card-body"><h3>الموارد البحرية بالمغرب</h3><a href="inf13.png" download="inf13.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf14.png"> <div class="card-body"><h3>الموارد البحرية (تفصيلية)</h3><a href="inf14.png" download="inf14.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf15.png"> <div class="card-body"><h3>الغطاء النباتي بالمغرب</h3><a href="inf15.png" download="inf15.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf16.png"> <div class="card-body"><h3>الأحواض المائية بالمغرب</h3><a href="inf16.png" download="inf16.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
+  <!-- ====== الأولى باكالوريا ====== -->
+  <div class="section-title" id="1bac">
+    <h2>📍 ركن الأولى باكالوريا</h2>
+    <span class="section-badge">Bac 1</span>
+    <span class="section-count">7 إنفوغرافيا</span>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf01.png" alt="نضال المغرب من أجل الاستقلال" loading="lazy"/>
+      <div class="card-body"><span class="card-title">نضال المغرب من أجل الاستقلال</span><a class="btn-download" href="inf01.png" download>⬇️ حفظ</a></div>
     </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf03.png" alt="دليل المنهجية الشاملة - الجغرافيا" loading="lazy"/>
+      <div class="card-body"><span class="card-title">دليل المنهجية الشاملة — الجغرافيا</span><a class="btn-download" href="inf03.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf06.png" alt="دروس التاريخ - التحولات الكبرى" loading="lazy"/>
+      <div class="card-body"><span class="card-title">دروس التاريخ — التحولات الكبرى</span><a class="btn-download" href="inf06.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf12.png" alt="خريطة الصناعة بالولايات المتحدة" loading="lazy"/>
+      <div class="card-body"><span class="card-title">خريطة الصناعة بالولايات المتحدة</span><a class="btn-download" href="inf12.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf18.png" alt="خريطة الفلاحة في الولايات المتحدة" loading="lazy"/>
+      <div class="card-body"><span class="card-title">خريطة الفلاحة في الولايات المتحدة</span><a class="btn-download" href="inf18.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf19.png" alt="خريطة التنمية البشرية في العالم" loading="lazy"/>
+      <div class="card-body"><span class="card-title">خريطة التنمية البشرية في العالم</span><a class="btn-download" href="inf19.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf44.png" alt="السياق التاريخي - الأولى باكالوريا" loading="lazy"/>
+      <div class="card-body"><span class="card-title">السياق التاريخي — الأولى باكالوريا</span><a class="btn-download" href="inf44.png" download>⬇️ حفظ</a></div>
+    </div>
+  </div>
 
-    <h2 id="method" class="section-title">📍 المنهجية والدعم</h2>
-    <div class="grid">
-        <div class="card"><img src="inf02.png"> <div class="card-body"><h3>طريقة رسم المبيان</h3><a href="inf02.png" download="inf02.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf29.png"> <div class="card-body"><h3>كيف تكتب موضوعاً مقالياً؟</h3><a href="inf29.png" download="inf29.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf30.png"> <div class="card-body"><h3>منهجية تحليل الوثيقة</h3><a href="inf30.png" download="inf30.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf20.png"> <div class="card-body"><h3>عناصر الإجابة (نموذج 2012)</h3><a href="inf20.png" download="inf20.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf05.png"> <div class="card-body"><h3>المسابقة الثقافية الكبرى</h3><a href="inf05.png" download="inf05.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
-        <div class="card"><img src="inf09.png"> <div class="card-body"><h3>قصة التحولات الكبرى</h3><a href="inf09.png" download="inf09.png" class="download-btn">⬇️ حفظ الصورة</a></div></div>
+  <!-- ====== الثالثة إعدادي ====== -->
+  <div class="section-title" id="3ac">
+    <h2>📍 ركن الثالثة إعدادي</h2>
+    <span class="section-badge">3AC</span>
+    <span class="section-count">24 إنفوغرافيا</span>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf04.png" alt="المغرب والسلم العالمي" loading="lazy"/>
+      <div class="card-body"><span class="card-title">المغرب والسلم العالمي</span><a class="btn-download" href="inf04.png" download>⬇️ حفظ</a></div>
     </div>
-</div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf11.png" alt="الاتحاد الأوروبي نحو اندماج شامل" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الاتحاد الأوروبي نحو اندماج شامل</span><a class="btn-download" href="inf11.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf21.png" alt="الحرب العالمية الثانية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الحرب العالمية الثانية</span><a class="btn-download" href="inf21.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf22.png" alt="النازية: الصعود والانهيار" loading="lazy"/>
+      <div class="card-body"><span class="card-title">النازية: الصعود والانهيار</span><a class="btn-download" href="inf22.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf23.png" alt="القضية الفلسطينية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">القضية الفلسطينية</span><a class="btn-download" href="inf23.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf24.png" alt="اليابان: القوة التكنولوجية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">اليابان: القوة التكنولوجية</span><a class="btn-download" href="inf24.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf25.png" alt="نيجيريا: الضعف التنموي" loading="lazy"/>
+      <div class="card-body"><span class="card-title">نيجيريا: الضعف التنموي</span><a class="btn-download" href="inf25.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf26.png" alt="روسيا: رهانات التحول" loading="lazy"/>
+      <div class="card-body"><span class="card-title">روسيا: رهانات التحول</span><a class="btn-download" href="inf26.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf07.png" alt="التجارة مرآة للاقتصاد المغربي" loading="lazy"/>
+      <div class="card-body"><span class="card-title">التجارة مرآة للاقتصاد المغربي</span><a class="btn-download" href="inf07.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf10.png" alt="الثورة الفرنسية وليدة الأنوار" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الثورة الفرنسية وليدة الأنوار</span><a class="btn-download" href="inf10.png" download>⬇️ حفظ</a></div>
+    </div>
+    <!-- جديدة -->
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf31.png" alt="كفاح المغرب من أجل الاستقلال واستكمال الوحدة الترابية (التفصيلية)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">كفاح المغرب واستكمال الوحدة الترابية (التفصيلية)</span><a class="btn-download" href="inf31.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf32.png" alt="كفاح المغرب من أجل الاستقلال واستكمال الوحدة الترابية (المبسطة)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">كفاح المغرب واستكمال الوحدة الترابية (المبسطة)</span><a class="btn-download" href="inf32.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf33.png" alt="ظاهرة الأنظمة الديكتاتورية: دراسة حالة النازية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">ظاهرة الأنظمة الديكتاتورية: دراسة حالة النازية</span><a class="btn-download" href="inf33.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf34.png" alt="الاتحاد الأوروبي نحو اندماج شامل (المفصّلة)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الاتحاد الأوروبي نحو اندماج شامل (المفصّلة)</span><a class="btn-download" href="inf34.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf35.png" alt="تقييم في التاريخ: الحرب العالمية الثانية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">تقييم في التاريخ: الحرب العالمية الثانية</span><a class="btn-download" href="inf35.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf36.png" alt="اليابان: قوة تكنولوجية رائدة" loading="lazy"/>
+      <div class="card-body"><span class="card-title">اليابان: قوة تكنولوجية رائدة</span><a class="btn-download" href="inf36.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf37.png" alt="الحفاظ على التراث وتطويره" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الحفاظ على التراث وتطويره</span><a class="btn-download" href="inf37.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf38.png" alt="مصر: نموذج تنموي عربي" loading="lazy"/>
+      <div class="card-body"><span class="card-title">مصر: نموذج تنموي عربي</span><a class="btn-download" href="inf38.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf39.png" alt="مكون الجغرافيا: موضوع مقالي 20ن" loading="lazy"/>
+      <div class="card-body"><span class="card-title">مكون الجغرافيا: موضوع مقالي 20ن</span><a class="btn-download" href="inf39.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf45.png" alt="تطبيقات الرسوم البيانية: الأقطاب الاقتصادية الكبرى" loading="lazy"/>
+      <div class="card-body"><span class="card-title">تطبيقات الرسوم البيانية: الأقطاب الاقتصادية الكبرى</span><a class="btn-download" href="inf45.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf46.png" alt="تطبيقات الرسوم البيانية: المغرب والتنمية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">تطبيقات الرسوم البيانية: المغرب والتنمية</span><a class="btn-download" href="inf46.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf47.png" alt="تطبيقات الرسوم البيانية: تمارين (بدون إجابات)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">تطبيقات الرسوم البيانية: تمارين (بدون إجابات)</span><a class="btn-download" href="inf47.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf48.png" alt="تطبيقات الرسوم البيانية: تمارين (مع رسوم ناقصة)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">تطبيقات الرسوم البيانية: تمارين (مع رسوم ناقصة)</span><a class="btn-download" href="inf48.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf49.png" alt="تطبيقات الرسوم البيانية: تمارين (مع الإجابات النموذجية)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">تطبيقات الرسوم البيانية: تمارين (مع الإجابات النموذجية)</span><a class="btn-download" href="inf49.png" download>⬇️ حفظ</a></div>
+    </div>
+  </div>
+
+  <!-- ====== تاريخ المغرب ====== -->
+  <div class="section-title" id="morocco">
+    <h2>📍 تاريخ المغرب</h2>
+    <span class="section-badge">🇲🇦</span>
+    <span class="section-count">7 إنفوغرافيا</span>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf08.png" alt="كرونولوجيا تاريخ المغرب" loading="lazy"/>
+      <div class="card-body"><span class="card-title">كرونولوجيا تاريخ المغرب</span><a class="btn-download" href="inf08.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf27.png" alt="مراحل الحماية بالمغرب" loading="lazy"/>
+      <div class="card-body"><span class="card-title">مراحل الحماية بالمغرب</span><a class="btn-download" href="inf27.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf28.png" alt="المقاومة المسلحة" loading="lazy"/>
+      <div class="card-body"><span class="card-title">المقاومة المسلحة</span><a class="btn-download" href="inf28.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf13.png" alt="الموارد البحرية بالمغرب" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الموارد البحرية بالمغرب</span><a class="btn-download" href="inf13.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf14.png" alt="الموارد البحرية (تفصيلية)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الموارد البحرية (تفصيلية)</span><a class="btn-download" href="inf14.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf15.png" alt="الغطاء النباتي بالمغرب" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الغطاء النباتي بالمغرب</span><a class="btn-download" href="inf15.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf16.png" alt="الأحواض المائية بالمغرب" loading="lazy"/>
+      <div class="card-body"><span class="card-title">الأحواض المائية بالمغرب</span><a class="btn-download" href="inf16.png" download>⬇️ حفظ</a></div>
+    </div>
+  </div>
+
+  <!-- ====== المنهجية والدعم ====== -->
+  <div class="section-title" id="method">
+    <h2>📍 المنهجية والدعم</h2>
+    <span class="section-badge">منهجية</span>
+    <span class="section-count">11 إنفوغرافيا</span>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf02.png" alt="طريقة رسم المبيان" loading="lazy"/>
+      <div class="card-body"><span class="card-title">طريقة رسم المبيان</span><a class="btn-download" href="inf02.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf29.png" alt="كيف تكتب موضوعاً مقالياً؟" loading="lazy"/>
+      <div class="card-body"><span class="card-title">كيف تكتب موضوعاً مقالياً؟</span><a class="btn-download" href="inf29.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf30.png" alt="منهجية تحليل الوثيقة" loading="lazy"/>
+      <div class="card-body"><span class="card-title">منهجية تحليل الوثيقة</span><a class="btn-download" href="inf30.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf20.png" alt="عناصر الإجابة (نموذج 2012)" loading="lazy"/>
+      <div class="card-body"><span class="card-title">عناصر الإجابة (نموذج 2012)</span><a class="btn-download" href="inf20.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf05.png" alt="المسابقة الثقافية الكبرى" loading="lazy"/>
+      <div class="card-body"><span class="card-title">المسابقة الثقافية الكبرى</span><a class="btn-download" href="inf05.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf09.png" alt="قصة التحولات الكبرى" loading="lazy"/>
+      <div class="card-body"><span class="card-title">قصة التحولات الكبرى</span><a class="btn-download" href="inf09.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf40.png" alt="ترسيخ مهارات وقدرات إنجاز المبيانات" loading="lazy"/>
+      <div class="card-body"><span class="card-title">ترسيخ مهارات وقدرات إنجاز المبيانات</span><a class="btn-download" href="inf40.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf41.png" alt="منهجية رسم ووصف الرسوم البيانية" loading="lazy"/>
+      <div class="card-body"><span class="card-title">منهجية رسم ووصف الرسوم البيانية</span><a class="btn-download" href="inf41.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf42.png" alt="دليل المنهجية الشاملة - مادة التاريخ" loading="lazy"/>
+      <div class="card-body"><span class="card-title">دليل المنهجية الشاملة — مادة التاريخ</span><a class="btn-download" href="inf42.png" download>⬇️ حفظ</a></div>
+    </div>
+    <div class="card new">
+      <img class="card-img" src="https://ahmedbouamoud.com/inf43.png" alt="كيف أحدد السياق التاريخي؟" loading="lazy"/>
+      <div class="card-body"><span class="card-title">كيف أحدد السياق التاريخي؟</span><a class="btn-download" href="inf43.png" download>⬇️ حفظ</a></div>
+    </div>
+  </div>
+
+</main>
 
 <footer>
-    <p>جميع الحقوق محفوظة © 2026 - مدرستي.ma - الأستاذ أحمد بوعمود</p>
+  جميع الحقوق محفوظة © 2026 — <span>مدرستي.ma</span> — الأستاذ أحمد بوعمود
 </footer>
 
 </body>
