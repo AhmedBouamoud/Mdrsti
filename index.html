@@ -2,199 +2,3077 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مدرستي | الأستاذ أحمد بوعمود</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>مدرستي — الاجتماعيات</title>
+<script>
+// Generate PNG icons via Canvas then inject manifest
+function drawIcon(size) {
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  const ctx = c.getContext('2d');
+  const s = size / 192;
+
+  // Background
+  ctx.fillStyle = '#0F172A';
+  roundRect(ctx, 0, 0, size, size, 40*s);
+  ctx.fill();
+
+  // Inner card
+  ctx.fillStyle = '#1E293B';
+  roundRect(ctx, 10*s, 10*s, 172*s, 172*s, 34*s);
+  ctx.fill();
+
+  // Left book page
+  ctx.fillStyle = '#1E40AF';
+  ctx.globalAlpha = 0.9;
+  roundRect(ctx, 32*s, 52*s, 52*s, 90*s, 6*s);
+  ctx.fill();
+
+  // Right book page
+  ctx.globalAlpha = 0.75;
+  roundRect(ctx, 108*s, 52*s, 52*s, 90*s, 6*s);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Spine (orange)
+  ctx.fillStyle = '#F97316';
+  roundRect(ctx, 84*s, 48*s, 24*s, 98*s, 7*s);
+  ctx.fill();
+
+  // Lines left page
+  ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+  ctx.lineWidth = 4*s;
+  ctx.lineCap = 'round';
+  [[40,72,78,72],[40,85,78,85],[40,98,70,98],[40,111,74,111]].forEach(([x1,y1,x2,y2]) => {
+    ctx.beginPath(); ctx.moveTo(x1*s,y1*s); ctx.lineTo(x2*s,y2*s); ctx.stroke();
+  });
+
+  // Lines right page
+  ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+  [[114,72,152,72],[114,85,152,85],[114,98,144,98],[114,111,148,111]].forEach(([x1,y1,x2,y2]) => {
+    ctx.beginPath(); ctx.moveTo(x1*s,y1*s); ctx.lineTo(x2*s,y2*s); ctx.stroke();
+  });
+
+  // Orange star badge
+  ctx.fillStyle = '#F97316';
+  ctx.beginPath();
+  ctx.arc(46*s, 44*s, 16*s, 0, Math.PI*2);
+  ctx.fill();
+
+  ctx.fillStyle = 'white';
+  ctx.font = `bold ${16*s}px Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('★', 46*s, 44*s);
+
+  // App name at bottom
+  ctx.fillStyle = '#F97316';
+  ctx.font = `bold ${14*s}px Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('madrassati', 96*s, 162*s);
+
+  return c.toDataURL('image/png');
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  const icon192 = drawIcon(192);
+  const icon512 = drawIcon(512);
+
+  // Set apple touch icon
+  let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+  if (!appleIcon) { appleIcon = document.createElement('link'); appleIcon.rel = 'apple-touch-icon'; document.head.appendChild(appleIcon); }
+  appleIcon.href = icon192;
+
+  // Inject manifest with real PNG data URLs
+  const manifest = {
+    "name": "مدرستي — الاجتماعيات",
+    "short_name": "مدرستي",
+    "description": "تطبيق تعليمي لمادة الاجتماعيات — التاريخ والجغرافيا والتربية على المواطنة — مؤسسة الحنان",
+    "start_url": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#0F172A",
+    "theme_color": "#F97316",
+    "lang": "ar",
+    "dir": "rtl",
+    "categories": ["education"],
+    "icons": [
+      { "src": icon192, "sizes": "192x192", "type": "image/png", "purpose": "any" },
+      { "src": icon192, "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+      { "src": icon512, "sizes": "512x512", "type": "image/png", "purpose": "any" },
+      { "src": icon512, "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    ]
+  };
+
+  const blob = new Blob([JSON.stringify(manifest)], {type: 'application/manifest+json'});
+  const url = URL.createObjectURL(blob);
+  let mlink = document.querySelector('link[rel="manifest"]');
+  if (!mlink) { mlink = document.createElement('link'); mlink.rel = 'manifest'; document.head.appendChild(mlink); }
+  mlink.href = url;
+});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--orange:#F4711A;--orange-dark:#D05A0E;--blue:#1A3A6B;--blue-mid:#1E4D8C;--blue-light:#2556A8;--gold:#F5A623;--green:#2A7D4F;--purple:#7B2D8B;--gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-400:#9CA3AF;--gray-600:#4B5563;--gray-800:#1F2937;--sh:0 2px 12px rgba(26,58,107,.10);--shl:0 8px 40px rgba(26,58,107,.18);--r:14px}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Cairo',sans-serif;background:var(--gray-50);color:var(--gray-800);min-height:100vh}
-header{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-mid) 70%,var(--blue-light) 100%);position:sticky;top:0;z-index:200;box-shadow:0 4px 20px rgba(26,58,107,.35)}
-.h-top{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--orange),var(--gold));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(244,113,26,.4);flex-shrink:0}
-.logo-text h1{color:#fff;font-size:1.2rem;font-weight:900;line-height:1.1}
-.logo-text p{color:rgba(255,255,255,.7);font-size:.68rem}
-.h-tabs{display:flex;padding:0 20px;gap:2px;overflow-x:auto;scrollbar-width:none}
-.h-tabs::-webkit-scrollbar{display:none}
-.tab{padding:9px 16px;background:none;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.6);font-family:'Cairo',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap}
-.tab.on{color:#fff;border-bottom-color:var(--orange)}
-.tab:hover:not(.on){color:rgba(255,255,255,.9)}
-.filters{display:flex;gap:8px;padding:14px 18px;background:#fff;border-bottom:1px solid var(--gray-200);overflow-x:auto;scrollbar-width:none;position:sticky;top:95px;z-index:100}
-.filters::-webkit-scrollbar{display:none}
-.chip{padding:6px 15px;border-radius:20px;border:2px solid var(--gray-200);background:#fff;font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:600;color:var(--gray-600);cursor:pointer;transition:.2s;white-space:nowrap}
-.chip.on{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 3px 10px rgba(244,113,26,.3)}
-.wrap{max-width:960px;margin:0 auto;padding:22px 14px 70px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
-.stat{background:#fff;border-radius:12px;padding:14px 10px;text-align:center;border:1px solid var(--gray-200);box-shadow:var(--sh)}
-.stat-n{font-size:1.7rem;font-weight:900;color:var(--orange);line-height:1}
-.stat-l{font-size:.72rem;color:var(--gray-400);margin-top:3px}
-.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:11px;border-bottom:2px solid var(--gray-200)}
-.sec-head h3{font-size:1rem;font-weight:700;color:var(--blue)}
-.badge{background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:9px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
-.card{background:#fff;border-radius:var(--r);border:1px solid var(--gray-200);box-shadow:var(--sh);cursor:pointer;transition:transform .22s,box-shadow .22s;animation:up .35s ease both;overflow:hidden}
-.card:hover{transform:translateY(-4px);box-shadow:var(--shl)}
-@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.card-top{height:76px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;position:relative}
-.card-top.h{background:linear-gradient(135deg,var(--blue),var(--blue-light))}
-.card-top.g{background:linear-gradient(135deg,var(--green),#3DAA6C)}
-.card-top.c{background:linear-gradient(135deg,var(--purple),#A94EC0)}
-.card-top.e{background:linear-gradient(135deg,var(--orange-dark),var(--orange))}
-.lvl-badge{position:absolute;top:7px;left:8px;background:rgba(255,255,255,.22);color:#fff;font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:7px}
-.card-body{padding:13px 15px}
-.card-title{font-size:.93rem;font-weight:700;line-height:1.4;color:var(--gray-800)}
-.card-desc{font-size:.77rem;color:var(--gray-400);margin-top:5px;line-height:1.5}
-.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
-.subj-tag{font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:7px}
-.subj-tag.h{background:#EBF0FF;color:var(--blue)}
-.subj-tag.g{background:#E8F7EE;color:var(--green)}
-.subj-tag.c{background:#F3E8F9;color:var(--purple)}
-.subj-tag.e{background:#FFF0E8;color:var(--orange-dark)}
-.type-tag{font-size:.7rem;color:var(--gray-400)}
-.card-link{display:block;margin-top:11px;padding:7px;background:var(--gray-100);border-radius:8px;text-align:center;color:var(--blue);font-size:.78rem;font-weight:600;text-decoration:none;transition:.18s}
-.card-link:hover{background:var(--orange);color:#fff}
-.empty{text-align:center;padding:60px 20px;color:var(--gray-400)}
-.empty-ico{font-size:2.8rem;margin-bottom:10px}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:500;align-items:center;justify-content:center;padding:16px}
-.overlay.on{display:flex}
-.modal{background:#fff;border-radius:18px;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:min .28s ease}
-@keyframes min{from{opacity:0;transform:scale(.94) translateY(18px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
-.modal-head h3{font-size:1.05rem;font-weight:700;color:var(--blue);line-height:1.3}
-.modal-x{width:30px;height:30px;border-radius:50%;border:none;background:var(--gray-200);cursor:pointer;font-size:.95rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.18s;margin-right:10px}
-.modal-x:hover{background:var(--orange);color:#fff}
-.modal-body{padding:18px 22px 22px}
-.mrow{display:flex;gap:8px;margin-bottom:10px;font-size:.88rem}
-.mrow strong{color:var(--blue);min-width:75px;flex-shrink:0}
-.mdesc{background:var(--gray-100);border-radius:10px;padding:13px;font-size:.85rem;line-height:1.8;color:var(--gray-600);margin:12px 0}
-.mbtn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;background:var(--orange);color:#fff;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:.18s}
-.mbtn:hover{background:var(--orange-dark)}
-@media(max-width:580px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.h-top{padding:10px 13px}.wrap{padding:16px 11px 60px}}
+  :root {
+    --primary: #F97316;
+    --primary-dark: #EA580C;
+    --primary-light: #FED7AA;
+    --accent: #1E40AF;
+    --accent-light: #3B82F6;
+    --accent-soft: #DBEAFE;
+    --dark: #0F172A;
+    --dark2: #1E293B;
+    --dark3: #334155;
+    --surface: #1E293B;
+    --surface2: #273549;
+    --text: #F1F5F9;
+    --text-muted: #94A3B8;
+    --text-dim: #64748B;
+    --green: #10B981;
+    --red: #EF4444;
+    --yellow: #F59E0B;
+    --purple: #8B5CF6;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    --glow-orange: 0 0 30px rgba(249,115,22,0.3);
+    --glow-blue: 0 0 30px rgba(59,130,246,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Background ambient */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px; left: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(30,64,175,0.1) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen {
+    display: none;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.3s ease;
+  }
+  .screen.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SPLASH / HOME ===== */
+  #splash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .logo-wrap {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .logo-icon {
+    width: 90px; height: 90px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-light));
+    border-radius: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 42px;
+    box-shadow: var(--glow-orange), var(--shadow);
+    animation: pulse-logo 3s ease infinite;
+  }
+
+  @keyframes pulse-logo {
+    0%, 100% { transform: scale(1); box-shadow: var(--glow-orange), var(--shadow); }
+    50% { transform: scale(1.04); box-shadow: 0 0 50px rgba(249,115,22,0.5), var(--shadow); }
+  }
+
+  .logo-badge {
+    position: absolute;
+    top: -6px; left: -6px;
+    background: var(--green);
+    color: white; font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .app-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 38px; font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), #FBBF24, var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .app-subtitle {
+    font-size: 15px; color: var(--text-muted);
+    font-weight: 400; margin-bottom: 4px;
+  }
+
+  .app-school {
+    font-size: 12px; color: var(--primary);
+    font-weight: 600; letter-spacing: 0.5px;
+    background: rgba(249,115,22,0.1);
+    padding: 4px 14px; border-radius: 20px;
+    border: 1px solid rgba(249,115,22,0.2);
+    margin-bottom: 36px;
+  }
+
+  /* Level Cards */
+  .levels-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 24px;
+  }
+
+  .level-card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .level-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--primary));
+    border-radius: 3px 3px 0 0;
+  }
+
+  .level-card:active { transform: scale(0.96); }
+
+  .level-card .emoji { font-size: 32px; margin-bottom: 10px; display: block; }
+  .level-card .level-name { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .level-card .level-desc { font-size: 11px; color: var(--text-muted); }
+  .level-card .level-count {
+    margin-top: 10px;
+    font-size: 11px; font-weight: 700;
+    color: var(--card-accent, var(--primary));
+    background: rgba(249,115,22,0.1);
+    padding: 3px 10px; border-radius: 20px;
+    display: inline-block;
+  }
+
+  .level-card.l1 { --card-accent: #F97316; }
+  .level-card.l2 { --card-accent: #3B82F6; }
+  .level-card.l3 { --card-accent: #10B981; }
+  .level-card.l4 { --card-accent: #8B5CF6; }
+
+  .level-card .level-count {
+    background: rgba(var(--ca-rgb, 249,115,22), 0.1);
+    color: var(--card-accent);
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex; gap: 12px;
+    width: 100%; max-width: 400px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .stat-item { flex: 1; text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 900; color: var(--primary); font-family: 'Cairo', sans-serif; }
+  .stat-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ===== LEVEL SCREEN ===== */
+  .top-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(10px);
+  }
+
+  .back-btn {
+    width: 38px; height: 38px;
+    background: var(--surface2);
+    border: none; border-radius: 10px;
+    color: var(--text); font-size: 18px;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .back-btn:active { transform: scale(0.9); background: var(--primary); }
+
+  .top-title { font-size: 17px; font-weight: 700; flex: 1; }
+  .top-badge {
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* Subject tabs */
+  .subject-tabs {
+    display: flex; gap: 8px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .subject-tabs::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 9px 16px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(249,115,22,0.1);
+  }
+  .tab-btn.active.geo { border-color: var(--accent-light); color: var(--accent-light); background: rgba(59,130,246,0.1); }
+  .tab-btn.active.civic { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.1); }
+
+  /* Semester header */
+  .sem-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 18px 8px;
+  }
+  .sem-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .sem-title { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+
+  /* Lesson cards */
+  .lessons-list { padding: 0 14px 100px; }
+
+  .lesson-card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 14px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lesson-card::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--lc, var(--primary));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .lesson-card:active { transform: scale(0.98); }
+  .lesson-card:active::after { opacity: 1; }
+
+  .lesson-num {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: rgba(var(--ln-rgb, 249,115,22), 0.15);
+    color: var(--lc, var(--primary));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 800;
+    flex-shrink: 0;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .lesson-info { flex: 1; min-width: 0; }
+  .lesson-title { font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; }
+  .lesson-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 8px; flex-wrap: wrap; }
+  .lesson-tag {
+    background: rgba(255,255,255,0.06);
+    padding: 2px 8px; border-radius: 6px;
+    font-size: 10px;
+  }
+
+  .lesson-arrow { color: var(--text-dim); font-size: 16px; flex-shrink: 0; }
+
+  /* ===== LESSON DETAIL ===== */
+  .lesson-hero {
+    background: linear-gradient(135deg, var(--dark2), var(--surface));
+    padding: 24px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .lesson-subject-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .lesson-hero-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 22px; font-weight: 900;
+    line-height: 1.4; margin-bottom: 12px;
+  }
+
+  .lesson-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-muted);
+  }
+
+  /* Content sections */
+  .content-section {
+    margin: 16px 14px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .section-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+
+  .section-title-text { font-size: 14px; font-weight: 700; flex: 1; }
+  .section-arrow { color: var(--text-dim); transition: transform 0.2s; }
+  .section-arrow.open { transform: rotate(90deg); }
+
+  .section-body { padding: 16px; display: none; }
+  .section-body.open { display: block; }
+
+  .key-concept {
+    display: flex; gap: 10px; margin-bottom: 12px;
+    padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .key-concept:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .concept-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 6px;
+  }
+
+  .concept-term { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 3px; }
+  .concept-def { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-right: 20px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 6px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary), var(--accent-light));
+  }
+
+  .timeline-item { position: relative; margin-bottom: 18px; }
+  .timeline-dot {
+    position: absolute;
+    right: -21px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--dark);
+    flex-shrink: 0;
+  }
+
+  .timeline-year {
+    font-size: 12px; font-weight: 800;
+    color: var(--primary); margin-bottom: 3px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .timeline-event { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* Action buttons */
+  .action-row {
+    display: flex; gap: 10px;
+    padding: 16px 14px;
+  }
+
+  .action-btn {
+    flex: 1; padding: 14px;
+    border: none; border-radius: var(--radius);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  .action-btn.primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: var(--glow-orange);
+  }
+  .action-btn.secondary {
+    background: var(--surface);
+    color: var(--accent-light);
+    border: 1px solid rgba(59,130,246,0.3);
+  }
+  .action-btn:active { transform: scale(0.96); }
+
+  /* ===== QUIZ SCREEN ===== */
+  .quiz-progress {
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .progress-bar {
+    flex: 1; height: 6px;
+    background: var(--surface2);
+    border-radius: 10px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent-light));
+    border-radius: 10px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-text { font-size: 12px; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+
+  .quiz-question-card {
+    margin: 16px 14px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .q-category {
+    font-size: 11px; font-weight: 700;
+    color: var(--primary); text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .q-text {
+    font-size: 17px; font-weight: 700;
+    line-height: 1.6; color: var(--text);
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .options-list { padding: 0 14px 20px; }
+
+  .option-btn {
+    width: 100%; padding: 16px;
+    background: var(--surface);
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px; font-weight: 600;
+    text-align: right;
+    cursor: pointer; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 12px;
+    transition: all 0.2s;
+  }
+
+  .option-btn:active { transform: scale(0.98); }
+
+  .option-letter {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    flex-shrink: 0;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .option-btn.correct { border-color: var(--green); background: rgba(16,185,129,0.1); }
+  .option-btn.correct .option-letter { background: var(--green); color: white; }
+  .option-btn.wrong { border-color: var(--red); background: rgba(239,68,68,0.1); }
+  .option-btn.wrong .option-letter { background: var(--red); color: white; }
+
+  .feedback-box {
+    margin: 0 14px 16px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    font-size: 13px; font-weight: 600;
+    display: none;
+    line-height: 1.5;
+  }
+  .feedback-box.correct { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+  .feedback-box.wrong { background: rgba(239,68,68,0.15); color: #FCA5A5; border: 1px solid rgba(239,68,68,0.3); }
+  .feedback-box.show { display: block; }
+
+  .next-btn {
+    margin: 0 14px 20px;
+    width: calc(100% - 28px);
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: none; border-radius: var(--radius);
+    color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px; font-weight: 700;
+    cursor: pointer;
+    display: none;
+    box-shadow: var(--glow-orange);
+    transition: all 0.2s;
+  }
+  .next-btn.show { display: block; }
+  .next-btn:active { transform: scale(0.98); }
+
+  /* ===== RESULT SCREEN ===== */
+  .result-wrap {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 70vh; padding: 30px 20px;
+    text-align: center;
+  }
+
+  .result-circle {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .result-circle.excellent { background: radial-gradient(circle, rgba(16,185,129,0.2), rgba(16,185,129,0.05)); border: 3px solid var(--green); box-shadow: 0 0 40px rgba(16,185,129,0.4); }
+  .result-circle.good { background: radial-gradient(circle, rgba(249,115,22,0.2), rgba(249,115,22,0.05)); border: 3px solid var(--primary); box-shadow: var(--glow-orange); }
+  .result-circle.weak { background: radial-gradient(circle, rgba(239,68,68,0.2), rgba(239,68,68,0.05)); border: 3px solid var(--red); box-shadow: 0 0 40px rgba(239,68,68,0.4); }
+
+  .result-score { font-size: 42px; font-weight: 900; font-family: 'Cairo', sans-serif; }
+  .result-circle.excellent .result-score { color: var(--green); }
+  .result-circle.good .result-score { color: var(--primary); }
+  .result-circle.weak .result-score { color: var(--red); }
+
+  .result-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .result-msg { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+
+  .result-stats {
+    display: flex; gap: 16px; margin-bottom: 28px;
+    background: var(--surface);
+    border-radius: var(--radius); padding: 18px;
+    width: 100%; max-width: 320px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .rs-item { flex: 1; text-align: center; }
+  .rs-num { font-size: 24px; font-weight: 900; font-family: 'Cairo', sans-serif; }
+  .rs-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ===== EXAMS SCREEN ===== */
+  .exam-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin: 0 14px 12px;
+    border: 1px solid rgba(255,255,255,0.07);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; gap: 14px; align-items: center;
+  }
+  .exam-card:active { transform: scale(0.98); border-color: var(--primary); }
+
+  .exam-thumb {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; flex-shrink: 0;
+  }
+
+  .exam-info { flex: 1; }
+  .exam-title { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+  .exam-meta { font-size: 11px; color: var(--text-muted); }
+  .exam-chips { display: flex; gap: 6px; margin-top: 8px; }
+  .exam-chip {
+    font-size: 10px; font-weight: 700;
+    padding: 3px 9px; border-radius: 10px;
+  }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(15,23,42,0.97);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    padding: 10px 0 max(12px, env(safe-area-inset-bottom));
+    z-index: 100;
+  }
+
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 3px;
+    cursor: pointer; padding: 4px;
+    transition: all 0.2s;
+    border: none; background: none;
+    color: var(--text-dim);
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  .nav-item.active { color: var(--primary); }
+  .nav-icon { font-size: 22px; transition: transform 0.2s; }
+  .nav-item.active .nav-icon { transform: translateY(-2px); }
+  .nav-label { font-size: 10px; font-weight: 600; }
+
+  /* ===== SEARCH ===== */
+  .search-wrap {
+    padding: 14px;
+  }
+  .search-input {
+    width: 100%; padding: 14px 18px;
+    background: var(--surface);
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 30px;
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: right;
+  }
+  .search-input:focus { border-color: var(--primary); }
+  .search-input::placeholder { color: var(--text-dim); }
+
+  /* Section divider */
+  .divider {
+    text-align: center; padding: 20px 14px 10px;
+    font-size: 11px; font-weight: 700;
+    color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+
+  /* ===== INFOGRAPHIC STYLES ===== */
+  .info-stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px; }
+  .info-stat-box { background:var(--dark); border-radius:var(--radius-sm); padding:14px 10px; text-align:center; border:1px solid rgba(255,255,255,0.07); position:relative; overflow:hidden; }
+  .info-stat-box::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--isc,var(--primary)); }
+  .info-stat-num { font-size:22px; font-weight:900; color:var(--isc,var(--primary)); font-family:'Cairo',sans-serif; display:block; }
+  .info-stat-label { font-size:10px; color:var(--text-muted); margin-top:3px; }
+  .info-compare { background:var(--dark); border-radius:var(--radius-sm); overflow:hidden; border:1px solid rgba(255,255,255,0.07); margin-bottom:12px; }
+  .info-compare-head { display:grid; grid-template-columns:1fr 1fr; background:rgba(255,255,255,0.05); }
+  .info-compare-head div { padding:10px; text-align:center; font-size:12px; font-weight:800; border-left:1px solid rgba(255,255,255,0.07); }
+  .info-compare-row { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid rgba(255,255,255,0.05); }
+  .info-compare-row div { padding:10px 12px; font-size:12px; color:var(--text-muted); line-height:1.5; border-left:1px solid rgba(255,255,255,0.05); }
+  .info-flow-item { display:flex; align-items:flex-start; gap:12px; background:var(--dark); border-radius:var(--radius-sm); padding:12px; margin-bottom:8px; border-right:3px solid var(--ifc,var(--primary)); }
+  .info-flow-icon { width:36px; height:36px; border-radius:10px; background:rgba(249,115,22,0.15); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .info-flow-title { font-size:13px; font-weight:700; margin-bottom:3px; color:var(--ifc,var(--primary)); }
+  .info-flow-text { font-size:12px; color:var(--text-muted); line-height:1.6; }
+  .info-map-box { background:var(--dark); border-radius:var(--radius-sm); padding:16px; border:1px solid rgba(255,255,255,0.07); margin-bottom:12px; }
+  .info-map-title { font-size:13px; font-weight:800; margin-bottom:12px; }
+  .info-map-item { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .info-map-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .info-map-name { font-size:12px; font-weight:700; min-width:90px; }
+  .info-map-bar-wrap { flex:1; background:rgba(255,255,255,0.06); border-radius:10px; height:8px; overflow:hidden; }
+  .info-map-bar { height:100%; border-radius:10px; transition:width 1s ease; }
+  .info-map-val { font-size:11px; font-weight:700; color:var(--text-muted); min-width:36px; }
+  .info-pyramid-level { margin:0 auto 4px; border-radius:8px; padding:10px 16px; text-align:center; font-size:12px; font-weight:700; color:white; }
+  .points-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3); color:var(--yellow); font-size:12px; font-weight:800; padding:4px 12px; border-radius:20px; }
+
+  /* Scrollable content */
+  .scroll-content { padding-bottom: 90px; }
+
+  /* Notification badge */
+  .notif-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--red);
+    position: absolute; top: 0; right: 0;
+  }
+
+  /* Loading shimmer */
+  .shimmer {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-sm);
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+
+  /* ===== GUIDE SCREEN ===== */
+  .guide-hero {
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(30,64,175,0.12));
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: center;
+  }
+  .guide-section {
+    margin: 14px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.07);
+    overflow: hidden;
+  }
+  .guide-section-head {
+    padding: 14px 16px;
+    background: rgba(249,115,22,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+  }
+  .guide-section-head span { font-size: 14px; font-weight: 800; flex:1; }
+  .guide-section-body { padding: 16px; display: none; }
+  .guide-section-body.open { display: block; }
+  .guide-step {
+    display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+  }
+  .guide-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--primary); color: white;
+    font-size: 13px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .guide-step-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+  .guide-step-text b { color: var(--text); }
+  .guide-code {
+    background: var(--dark); border-radius: 10px;
+    padding: 12px 14px; margin: 8px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 12px; color: #F97316;
+    direction: ltr; text-align: left;
+    border: 1px solid rgba(255,255,255,0.07);
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .guide-tip {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 10px; padding: 12px 14px;
+    font-size: 12px; color: var(--green);
+    margin: 8px 0; line-height: 1.8;
+  }
+  .guide-warn {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 10px; padding: 12px 14px;
+    font-size: 12px; color: var(--yellow);
+    margin: 8px 0; line-height: 1.8;
+  }
+
+  /* Utility */
+  .mt-4 { margin-top: 4px; }
+  .mb-2 { margin-bottom: 2px; }
+
+  /* Float decoration */
+  .floating-shapes {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.04;
+  }
+  .shape.s1 { width: 300px; height: 300px; background: var(--primary); top: -100px; right: -100px; }
+  .shape.s2 { width: 200px; height: 200px; background: var(--accent-light); bottom: 100px; left: -80px; }
+  .shape.s3 { width: 150px; height: 150px; background: var(--green); top: 50%; right: -60px; }
+
+  /* Profile screen */
+  .profile-hero {
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(30,64,175,0.1));
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; margin: 0 auto 14px;
+    box-shadow: var(--glow-orange);
+  }
+  .profile-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .profile-school { font-size: 12px; color: var(--primary); }
+
+  .pref-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    margin: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.07);
+    overflow: hidden;
+  }
+  .pref-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pref-item:last-child { border-bottom: none; }
+  .pref-icon { font-size: 20px; flex-shrink: 0; }
+  .pref-label { flex: 1; font-size: 14px; font-weight: 600; }
+  .pref-value { font-size: 12px; color: var(--primary); font-weight: 700; }
+
+  .progress-ring-wrap { position: relative; display: inline-flex; }
+  .progress-ring-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 900; color: var(--primary);
+    font-family: 'Cairo', sans-serif;
+  }
+
+  /* ===== LOGIN SCREEN ===== */
+  #login-screen {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 30px 22px;
+    background: var(--dark);
+    position: relative;
+    z-index: 1;
+  }
+
+  #login-screen::before {
+    content: '';
+    position: fixed; top: -150px; right: -150px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(249,115,22,0.13) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  #login-screen::after {
+    content: '';
+    position: fixed; bottom: -100px; left: -100px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(30,64,175,0.13) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+
+  .login-inner { width: 100%; max-width: 380px; position: relative; z-index: 1; }
+
+  .app-icon-wrap {
+    display: flex; flex-direction: column;
+    align-items: center; margin-bottom: 30px;
+  }
+
+  .app-icon-svg {
+    width: 96px; height: 96px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #1E293B, #0F172A);
+    border: 1.5px solid rgba(249,115,22,0.35);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(249,115,22,0.22), 0 10px 36px rgba(0,0,0,0.5);
+    margin-bottom: 14px;
+    animation: icon-float 4s ease-in-out infinite;
+  }
+
+  @keyframes icon-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+
+  .login-app-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 34px; font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), #FBBF24, var(--accent-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px; text-align: center;
+  }
+
+  .login-app-sub {
+    font-size: 12px; color: var(--text-muted);
+    text-align: center; line-height: 1.7;
+  }
+
+  .login-card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    padding: 26px 22px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    margin-top: 20px;
+  }
+
+  .login-head { text-align: center; margin-bottom: 22px; }
+  .login-head-title { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+  .login-head-sub { font-size: 12px; color: var(--text-muted); }
+
+  .input-group { margin-bottom: 14px; }
+
+  .input-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--text-muted); margin-bottom: 7px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .input-field {
+    width: 100%; padding: 13px 15px;
+    background: var(--dark);
+    border: 2px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-align: right; direction: rtl;
+  }
+
+  .input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.14);
+  }
+
+  .input-field::placeholder { color: var(--text-dim); }
+
+  .pass-toggle-wrap { position: relative; }
+  .pass-toggle {
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    color: var(--text-dim); font-size: 17px;
+    cursor: pointer; padding: 4px;
+  }
+
+  .login-btn {
+    width: 100%; padding: 15px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: none; border-radius: var(--radius-sm);
+    color: white; font-family: 'Tajawal', sans-serif;
+    font-size: 16px; font-weight: 800;
+    cursor: pointer; margin-top: 6px;
+    box-shadow: var(--glow-orange);
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:active { transform: scale(0.98); opacity: 0.95; }
+
+  .login-error {
+    margin-top: 12px; padding: 10px 14px;
+    background: rgba(239,68,68,0.14);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #FCA5A5; border-radius: var(--radius-sm);
+    font-size: 13px; text-align: center; display: none;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .login-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 18px 0; font-size: 11px; color: var(--text-dim);
+  }
+  .login-divider::before, .login-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+  .student-btn {
+    width: 100%; padding: 13px;
+    background: transparent;
+    border: 2px solid rgba(59,130,246,0.28);
+    border-radius: var(--radius-sm);
+    color: var(--accent-light);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .student-btn:active { background: rgba(59,130,246,0.1); transform: scale(0.98); }
+
+  .login-footer {
+    text-align: center; margin-top: 22px;
+    font-size: 11px; color: var(--text-dim); line-height: 1.9;
+  }
+  .login-footer b { color: var(--primary); }
+
+  /* Top bar role indicator */
+  .role-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    display: inline-block;
+    box-shadow: 0 0 7px var(--green);
+    margin-left: 5px;
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="h-top">
-    <a class="logo" href="#">
-      <div class="logo-icon">📚</div>
-      <div class="logo-text"><h1>مدرستي.ma</h1><p>الأستاذ أحمد بوعمود | مؤسسة الحنان | 2025-2026</p></div>
-    </a>
-  </div>
-  <div class="h-tabs">
-    <button class="tab on" onclick="setTab('all',this)">📋 الكل</button>
-    <button class="tab" onclick="setTab('درس',this)">📖 الدروس</button>
-    <button class="tab" onclick="setTab('تمرين',this)">✏️ التمارين</button>
-    <button class="tab" onclick="setTab('اختبار',this)">📝 الاختبارات</button>
-    <a class="tab" href="/infographie-fixed.html">🎨 الإنفوغرافيا</a>
-  </div>
-</header>
-<div class="filters">
-  <button class="chip on" onclick="setLvl('all',this)">الكل</button>
-  <button class="chip" onclick="setLvl('3AC',this)">3 إعدادي</button>
-  <button class="chip" onclick="setLvl('TC',this)">الجذع المشترك</button>
-  <button class="chip" onclick="setLvl('BAC1',this)">الأولى باك</button>
-  <button class="chip" onclick="setLvl('BAC2',this)">الثانية باك</button>
+
+<div class="floating-shapes">
+  <div class="shape s1"></div>
+  <div class="shape s2"></div>
+  <div class="shape s3"></div>
 </div>
-<div class="wrap">
-  <div class="stats">
-    <div class="stat"><div class="stat-n" id="sL">0</div><div class="stat-l">درس</div></div>
-    <div class="stat"><div class="stat-n" id="sE">0</div><div class="stat-l">تمرين</div></div>
-    <div class="stat"><div class="stat-n" id="sX">0</div><div class="stat-l">اختبار</div></div>
-    <div class="stat"><div class="stat-n" id="sP">0</div><div class="stat-l">ملف PDF</div></div>
+
+<!-- ====== LOGIN SCREEN ====== -->
+<div id="login-screen" class="screen active">
+  <div class="login-inner">
+
+    <!-- App Icon + Title -->
+    <div class="app-icon-wrap">
+      <div class="app-icon-svg">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Book base -->
+          <rect x="8" y="14" width="20" height="34" rx="3" fill="#1E40AF" opacity="0.9"/>
+          <rect x="32" y="14" width="20" height="34" rx="3" fill="#1E40AF" opacity="0.7"/>
+          <!-- Spine -->
+          <rect x="27" y="12" width="6" height="38" rx="2" fill="#F97316"/>
+          <!-- Lines on left page -->
+          <line x1="12" y1="22" x2="24" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="12" y1="27" x2="24" y2="27" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="12" y1="32" x2="21" y2="32" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <!-- Lines on right page -->
+          <line x1="36" y1="22" x2="48" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <line x1="36" y1="27" x2="48" y2="27" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <line x1="36" y1="32" x2="45" y2="32" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <!-- Star/shine -->
+          <circle cx="44" cy="16" r="5" fill="#F97316" opacity="0.9"/>
+          <text x="41" y="20" font-size="7" fill="white" font-weight="bold">★</text>
+        </svg>
+      </div>
+      <div class="login-app-title">مدرستي</div>
+      <div class="login-app-sub">الاجتماعيات — تاريخ وجغرافيا وتربية مدنية<br>السنة الدراسية 2025–2026</div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <div class="login-head">
+        <div class="login-head-title">🔐 دخول الأستاذ</div>
+        <div class="login-head-sub">سجّل دخولك للوصول إلى لوحة التحكم</div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-label">👤 اسم المستخدم</div>
+        <input class="input-field" type="text" id="login-user" placeholder="أدخل اسم المستخدم" autocomplete="off" autocorrect="off" spellcheck="false">
+      </div>
+
+      <div class="input-group">
+        <div class="input-label">🔑 كلمة المرور</div>
+        <div class="pass-toggle-wrap">
+          <input class="input-field" type="password" id="login-pass" placeholder="أدخل كلمة المرور">
+          <button class="pass-toggle" onclick="togglePass()" id="pass-eye">👁</button>
+        </div>
+      </div>
+
+      <button class="login-btn" onclick="doLogin()">
+        <span>دخول</span> <span>→</span>
+      </button>
+
+      <div class="login-error" id="login-error">
+        ❌ اسم المستخدم أو كلمة المرور غير صحيحة
+      </div>
+
+      <div class="login-divider">أو</div>
+
+      <button class="student-btn" onclick="enterAsStudent()">
+        📚 دخول كتلميذ (بدون حساب)
+      </button>
+    </div>
+
+    <div class="login-footer">
+      إعداد: <b>الأستاذ أحمد بوعمود</b><br>
+      مؤسسة الحنان الخاصة — منذ 1983<br>
+      <b>مدرستي.ma</b>
+    </div>
+
   </div>
-  <div id="out"></div>
 </div>
-<div class="overlay" id="ov" onclick="closeIfBg(event)">
-  <div class="modal">
-    <div class="modal-head"><h3 id="mt">—</h3><button class="modal-x" onclick="closeM()">✕</button></div>
-    <div class="modal-body" id="mb"></div>
+
+<!-- ====== SPLASH / HOME ====== -->
+<div id="splash" class="screen">
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:50px">
+        <rect x="8" y="14" width="20" height="34" rx="3" fill="#1E40AF" opacity="0.9"/>
+        <rect x="32" y="14" width="20" height="34" rx="3" fill="#1E40AF" opacity="0.7"/>
+        <rect x="27" y="12" width="6" height="38" rx="2" fill="#F97316"/>
+        <line x1="12" y1="22" x2="24" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <line x1="12" y1="27" x2="24" y2="27" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <line x1="36" y1="22" x2="48" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="36" y1="27" x2="48" y2="27" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+    </div>
+    <span class="logo-badge">2025–2026</span>
+  </div>
+  <div class="app-title">مدرستي</div>
+  <div class="app-subtitle">الاجتماعيات — تاريخ وجغرافيا وتربية مدنية</div>
+  <div id="user-welcome-badge" style="font-size:12px;color:var(--green);font-weight:700;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:30px;padding:5px 14px;margin-bottom:20px;display:none;align-items:center;gap:6px">
+    <span class="role-dot"></span> <span id="welcome-text">مرحباً</span>
+  </div>
+  <div class="app-school" id="school-label">مؤسسة الحنان — الأستاذ أحمد بوعمود</div>
+
+  <div class="levels-grid">
+    <div class="level-card l1" onclick="openLevel('3ac')">
+      <span class="emoji">🏫</span>
+      <div class="level-name">السنة الثالثة</div>
+      <div class="level-desc">إعدادي — 3AC</div>
+      <span class="level-count">24 درساً</span>
+    </div>
+    <div class="level-card l2" onclick="openLevel('bac1')">
+      <span class="emoji">🎓</span>
+      <div class="level-name">الأولى باك</div>
+      <div class="level-desc">التأهيلي — Bac 1</div>
+      <span class="level-count">18 درساً</span>
+    </div>
+    <div class="level-card l3" onclick="openLevel('bac2')">
+      <span class="emoji">🏆</span>
+      <div class="level-name">الثانية باك</div>
+      <div class="level-desc">الامتحان الوطني</div>
+      <span class="level-count">12 درساً</span>
+    </div>
+    <div class="level-card l4" onclick="showScreen('exams-screen')">
+      <span class="emoji">📝</span>
+      <div class="level-name">الامتحانات</div>
+      <div class="level-desc">نماذج جهوية</div>
+      <span class="level-count">19 نموذجاً</span>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">54</div>
+      <div class="stat-label">درساً</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">120+</div>
+      <div class="stat-label">سؤالاً</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">19</div>
+      <div class="stat-label">امتحاناً</div>
+    </div>
   </div>
 </div>
+
+<!-- ====== LEVEL SCREEN ====== -->
+<div id="level-screen" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">←</button>
+    <div class="top-title" id="level-title">السنة الثالثة إعدادي</div>
+    <span class="top-badge" id="level-badge" style="background:rgba(249,115,22,0.15);color:var(--primary);">3AC</span>
+  </div>
+
+  <div class="subject-tabs">
+    <button class="tab-btn active hist" onclick="switchSubject('hist')">📜 التاريخ</button>
+    <button class="tab-btn geo" onclick="switchSubject('geo')">🌍 الجغرافيا</button>
+    <button class="tab-btn civic" onclick="switchSubject('civic')">⚖️ التربية على المواطنة</button>
+  </div>
+
+  <div class="scroll-content" id="lessons-container">
+    <!-- Dynamically filled -->
+  </div>
+</div>
+
+<!-- ====== LESSON DETAIL ====== -->
+<div id="lesson-screen" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" id="lesson-back-btn" onclick="backToLevel()">←</button>
+    <div class="top-title" id="lesson-top-title">الدرس</div>
+    <span class="top-badge" style="background:rgba(249,115,22,0.15);color:var(--primary);">درس</span>
+  </div>
+
+  <div class="scroll-content">
+    <div class="lesson-hero">
+      <div class="lesson-subject-tag" id="lesson-subject-tag">📜 التاريخ</div>
+      <div class="lesson-hero-title" id="lesson-hero-title">عنوان الدرس</div>
+      <div class="lesson-chips" id="lesson-chips"></div>
+    </div>
+
+    <!-- إنفوغرافيا الدرس -->
+    <div id="lesson-infographic" style="padding:14px 14px 0;display:none"></div>
+    <div id="lesson-sections"></div>
+
+    <div class="action-row">
+      <button class="action-btn primary" onclick="startQuiz()">🧠 ابدأ الكويز</button>
+      <button class="action-btn secondary" onclick="showSummary()">📋 ملخص</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== QUIZ ====== -->
+<div id="quiz-screen" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" onclick="exitQuiz()">✕</button>
+    <div class="top-title" id="quiz-title">كويز</div>
+    <span class="top-badge" id="quiz-badge" style="background:rgba(249,115,22,0.15);color:var(--primary);">0/5</span>
+  </div>
+
+  <div class="quiz-progress">
+    <div class="progress-bar"><div class="progress-fill" id="quiz-progress" style="width:0%"></div></div>
+    <div class="progress-text" id="quiz-prog-text">1 / 5</div>
+  </div>
+
+  <div class="quiz-question-card">
+    <div class="q-category" id="q-category">📜 التاريخ</div>
+    <div class="q-text" id="q-text">السؤال هنا...</div>
+  </div>
+
+  <div class="options-list" id="options-container"></div>
+
+  <div class="feedback-box" id="feedback-box"></div>
+  <button class="next-btn" id="next-btn" onclick="nextQuestion()">التالي ←</button>
+</div>
+
+<!-- ====== RESULT ====== -->
+<div id="result-screen" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" onclick="exitQuiz()">✕</button>
+    <div class="top-title">نتيجة الكويز</div>
+  </div>
+
+  <div class="result-wrap">
+    <div class="result-circle" id="result-circle">
+      <div class="result-score" id="result-score">0%</div>
+    </div>
+    <div class="result-title" id="result-title">أحسنت!</div>
+    <div class="result-msg" id="result-msg">مرحباً بك</div>
+
+    <div class="result-stats">
+      <div class="rs-item">
+        <div class="rs-num" id="rs-correct" style="color:var(--green)">0</div>
+        <div class="rs-label">صحيحة</div>
+      </div>
+      <div class="rs-item">
+        <div class="rs-num" id="rs-wrong" style="color:var(--red)">0</div>
+        <div class="rs-label">خاطئة</div>
+      </div>
+      <div class="rs-item">
+        <div class="rs-num" id="rs-total" style="color:var(--primary)">0</div>
+        <div class="rs-label">إجمالي</div>
+      </div>
+    </div>
+
+    <div class="action-row" style="width:100%;max-width:360px">
+      <button class="action-btn primary" onclick="startQuiz()">🔄 إعادة</button>
+      <button class="action-btn secondary" onclick="backToLevel()">← الدروس</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== EXAMS ====== -->
+<div id="exams-screen" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">←</button>
+    <div class="top-title">الامتحانات الجهوية</div>
+    <span class="top-badge" style="background:rgba(59,130,246,0.15);color:var(--accent-light);">19</span>
+  </div>
+
+  <div class="scroll-content">
+    <div class="divider">نماذج الامتحانات</div>
+
+    <div class="exam-card" onclick="openExam(0)">
+      <div class="exam-thumb" style="background:rgba(249,115,22,0.15)">📝</div>
+      <div class="exam-info">
+        <div class="exam-title">نموذج امتحان جهوي — الاجتماعيات 3AC</div>
+        <div class="exam-meta">السنة الثالثة إعدادي • الدورة الثانية 2025</div>
+        <div class="exam-chips">
+          <span class="exam-chip" style="background:rgba(249,115,22,0.15);color:var(--primary)">تاريخ</span>
+          <span class="exam-chip" style="background:rgba(59,130,246,0.15);color:var(--accent-light)">جغرافيا</span>
+          <span class="exam-chip" style="background:rgba(16,185,129,0.15);color:var(--green)">مدنية</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-card" onclick="openExam(1)">
+      <div class="exam-thumb" style="background:rgba(59,130,246,0.15)">📄</div>
+      <div class="exam-info">
+        <div class="exam-title">نموذج امتحان جهوي — الاجتماعيات 3AC</div>
+        <div class="exam-meta">السنة الثالثة إعدادي • الدورة الأولى 2025</div>
+        <div class="exam-chips">
+          <span class="exam-chip" style="background:rgba(249,115,22,0.15);color:var(--primary)">تاريخ</span>
+          <span class="exam-chip" style="background:rgba(59,130,246,0.15);color:var(--accent-light)">جغرافيا</span>
+          <span class="exam-chip" style="background:rgba(16,185,129,0.15);color:var(--green)">مدنية</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-card" onclick="openExam(2)">
+      <div class="exam-thumb" style="background:rgba(16,185,129,0.15)">🎓</div>
+      <div class="exam-info">
+        <div class="exam-title">نموذج امتحان جهوي — الأولى باك</div>
+        <div class="exam-meta">سوس ماسة • 2024</div>
+        <div class="exam-chips">
+          <span class="exam-chip" style="background:rgba(139,92,246,0.15);color:var(--purple)">BAC 1</span>
+          <span class="exam-chip" style="background:rgba(249,115,22,0.15);color:var(--primary)">تاريخ</span>
+          <span class="exam-chip" style="background:rgba(59,130,246,0.15);color:var(--accent-light)">جغرافيا</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-card" onclick="openExam(3)">
+      <div class="exam-thumb" style="background:rgba(139,92,246,0.15)">📋</div>
+      <div class="exam-info">
+        <div class="exam-title">نموذج امتحان جهوي — الأولى باك</div>
+        <div class="exam-meta">جهة مراكش آسفي • 2023</div>
+        <div class="exam-chips">
+          <span class="exam-chip" style="background:rgba(139,92,246,0.15);color:var(--purple)">BAC 1</span>
+          <span class="exam-chip" style="background:rgba(249,115,22,0.15);color:var(--primary)">تاريخ</span>
+          <span class="exam-chip" style="background:rgba(59,130,246,0.15);color:var(--accent-light)">جغرافيا</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-card">
+      <div class="exam-thumb" style="background:rgba(245,158,11,0.15)">🔒</div>
+      <div class="exam-info">
+        <div class="exam-title">المزيد من النماذج</div>
+        <div class="exam-meta">قريباً • نماذج إضافية من مختلف الجهات</div>
+        <div class="exam-chips">
+          <span class="exam-chip" style="background:rgba(245,158,11,0.15);color:var(--yellow)">قريباً</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== PROFILE ====== -->
+<div id="profile-screen" class="screen">
+
+  <!-- Hero with real photo -->
+  <div style="background:linear-gradient(160deg,#0F172A,#1E293B);padding:28px 20px 22px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.07);position:relative;overflow:hidden">
+    <div style="position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(249,115,22,0.15),transparent);border-radius:50%"></div>
+    <div style="position:absolute;bottom:-40px;left:-40px;width:140px;height:140px;background:radial-gradient(circle,rgba(59,130,246,0.12),transparent);border-radius:50%"></div>
+    <div style="position:relative;z-index:1">
+      <div style="position:relative;display:inline-block;margin-bottom:14px">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+k3r/eH50j/cb6GuCNwNnrn1q4Q5iZSsd55sf99fzpd6/wB4fnXlMpE2pwwnlYzuYnuev+FbKyIMFcDHTFEYc1wlK1jvty/3h+dG5f7w/OuGW4A75qQXI9qv2RHtDtdy+o/Ok8xN23euT2zXHrcistFiuvE007op8mEIrehP+TUShYpTuei7h6ijcPUVyKyKowGwV7dQRUi3ClsH5W9v880/ZsOc6rcPUUZHqK5cXARs8HtmpFuV3Eg8GlyBznSZHqKMj1Fc/wDaB60faB60+QXOdBkeooyPUVz/ANpHrSfaAe9Hsw9odDkeooyPUVz3nUebR7MPaHQ5HqKMj1Fc8JDThJR7MPaG/keooyPUVhh6UP70cgc5t5HrS5HrWKJKeHpcg+c16KpWZzI30oqWrFJ3LU3+pf8A3T/KvDY5LiCUCO5fGOzZA/Cvcpv9S/8Aun+VeASjyFMiqQc4AHTPas5Sa2NYJPc2Ue5S4klMQeTy9zqSAdvHI/nVpNZhPyukiEdmx+nrWFFug2gksQBwenSpmljd1Z42kCdVJ5x6e1KFaUdEDpRlqzoY9Qt5DjeVP+0KtRyBxlHDD2Ncm0kSqxh8xQeVUnOP8afBdyYwjEkEcDtWyxLW6IeHT2Z12Xx1FVbBnMlxMCPmfGaxm1CeRgC7h+2Gx+YqZb2WzkEQUFWG4A9vXmn7eMpIn2MkmjoDI+DjrT/MbA+U1iR63EX2ujgf3l5FaEd5HKoZJVIPTJxXRGUZbMwlCUd0XhM2fumnC4PpVTzflznIHemrcBm2qyk+gNVZE6l77SfWlFwPWqAuISxUyruHBGaR7y1jkVGmUE9KPdDU0vtFOE9UVIcZUkj6Yp4DdqdkK5dE9OExqmFf0p430rILlwS1IJTVJS3pUqlqVh3LXnH1FAlNVsmgPilyhcurJUquTVFZcd6kW4ApNDubGn/61/8AdoqHSZvMnkHov9aK557m8NjUlGYnHqprxP7C1s7+YjqpbKB2B6fSvbJv9TJ/un+VeJQM5tg0ruzHCjcSTgf/AKqxqbG0CK4Z5Idi7i2SMY6DvUCQyp82QfXcMVbdVa4Voj83bIxRdPM6MWiXCclwoGB71mmaqwyOFWTJfJA52+tQPNEcgBd2cAimxAbxsnxjllYZBqdomjX5olJP8Q7UixlvKDKu4nr6cVPdEPI0kbBiDjAOMVHseSVBkggYHuKY1sVkZlUZyeD2pE9Rw2P8xyWHIUnAqYbmA2k7u+cHOPaqZmib5d21s9ccCpRKYmySChGdx6g/WnqMmn1aS2iUODh+MgAbR6//AKqqv4g+zsxlV957spLfX/OapR+dqOqcnKjkBOCq++a259NtIhGESNSxB4XJPuW6k1tflV2c/wAUrIzYteniuhcPkopwNqZz+J6Vdv8AXICiyYVkYZ3eh/pVya0jmXaEGPTFYt9pLRROsZZVYcgdKyWIV9Td4V20EsfFNzb3LqLlXjwWYOM457eldRp/iJr2NpAi7VHUgrXnE6eU5MkG5yMEoCfzHpVvSJmSKS3Mxji3ZxJ1xXSqjezOWVK26PSE1uIECWMqT/dOauRalay/dmXPo3B/WuVYRyAHKlsfwgioS2ODlv8Ae70LESWjH7CMldHciX3o833rioXaJvlYr6HOK04NXkjG2UCTH8WcGto4iL3MpYeS21OhMppPM9656TUpZyTHKYh2X0+tMe8ulxm4OPbHNP28ExLDzZ0fmH1o3n1rmxq1wpXY4cdCHGf5Veg1djgS26g98NVKvATw80df4dYm7myf+Wf9aKreFL2K5vp1RSCIweue9FYVGnK6LhFxVmdTN/qX/wB0/wAq8UmlEUCmT+Fckj1/ya9rl/1T/wC6a8Jdbi8wAvyr8zAnof8A61c9TobwJEMj5cqMMPlUkfrSLBMqSncyh1IfnO4VJLYeVbxyyySDeMhU/nS22+QtFbW0jnry2c/r9ahW6GupXii8oMyqTkfxjINOV5CQy+URwMH/ABqyZTHyAiYOOHPrQbhbhQZpwgHCh3AGR9T0pFdNB9oHEqFgFYnGVxyP/wBVU5sySsnXnOcY/WrO8mZfs8sMrrk8MGA/Ki0sp76YKI0kPUhXXj6jPFJeYrmcbcvkoSpB5Lc8+lOeG5jgdNgAYDBY4/yK0J44bZJSWCiNizBWDYx2rJub2W+sZftFhJbpjMciyZP4jHWnzWepShKcG0W9Ea2QSbCsnO95G6E+vvUjT/arvehJUdz3rlYdPu8COK/nVGXDKduWH4DgVS1aSbThHv1C62O218t0HfGMVc/efImZ04uK52tD0Qatp0T+U97brL0KmQAg1d++mRhlPTHINeZ3Xjewh09LWC0tHITarCHAXjgkZwffvXN2fjPVtPvPOglRFY/NAqARH/gP9aJ4VJe7LUuni7v3kezPaRFyxRM4rnNcsUhZb2EgNGRvA7rmoNM8dWV7hb9TayHow5T8+o/Grl9JDcRuYXDo6Ebgcg8VgoyhLU6JOFSDsye0YyLuLZyvIB4HParK5IOefSksIENmpj5GME47jg1KY1QlQT9MYraT1OWDXKRASjIQrntu6fpTY5iwZSpVs4ORjJ9qnC7ujdfUU8wEKCSCD0yaExuw2NWVwCF596eyEZIcHA6A/wCNJ5CnILbQcc+lMWKeOQFCJAD90U7iGqq7j8p6YJxTXY5yr4IOckY49KtNCXXKwOjDmkWJFVizbieuRzVXEdR4AZm1S6DY4gHT/eoqTwIo/tW6IQD9wOn+8KKtbGM9zupf9U/+6a8YidkUkxQkO5wXUk4/yK9nl/1T/wC6a84tPCV1NYJPNOIomUMpC7uvToeOtRNN2sODS3Mbz3uYCskcaqmVACkH8OTxUenWltcXQHnyxxKMkuQDx0HTmuo/4Qa7ChkvoCMZwyMM1S1HwHrF19ke3ewtZoC/mGKR9kgOMZUr1AohDuVOa6GXLFZJO6xzsX4HKFRknjJ+nNTw6MHZVmktXllc4ZiGUD6nGK1rXwbqjSpDeTRCDKDfC/zkbSGPI9cEVqDwJax8LfXGOvKqaHDyEptapnJS6YlvNCV8hon3AiPHOBzwDWvYWsNjGVEkZLnczqMDHal1jw/JpUtuYWmuSwbjYBjp3/GuT8X+KYPC9r/ZdnKt1qLIC5dQRACP1PoPzrCpTcvdRtCpb3mXfEc2n295tS8so/teFaM43Fu4x1GT3rC1CI3EsUUpdIwNyqOMt0zXla3s8+tx3Mru5jbznbPJ289fwr1MalZXrQyWspk85BN1yFB7Y7daK0LWNsNO6kgsFWNihyxB+8ayfGumG4sEmiQEIctj0xit2GNfOc9SauxwwyKVlG5SMHJ4rFTalc6PZpx5TwmWwmVgAhOemB1rU0vw1darcxWcEZeY4Lf3UHqxr0K/0TQzcBYlk8xjyI32qPqe1dLothbafb+TaxpHGBuYoc7j6k966XiNNFqc/wBT112PFdetJNI1OfT/ADd7Rt94DGeAf61X0zV7yyk2pcOsZ+8vUH8K6DxTaef4tv5G+YgqQPbArOi0pZXLErGApbLLxx645roh70Vc45rlm0j0Pw0dS1fSbi5sgoTeVIDgEN3AP5H8a660s3TTk+2K/ngZOT1P9ag+H/g6+0Pwte3uulrCJmFwkYYkom35i6gZzwOOtdnpOn6bq1ot3ay3DRltuGlKkfUc49aiULsIzSOKu7K5WCGa2t5ZnbmRY1+6PWqhF/PcLGljcnk8hOwr1GXw1ZtGdrTK3Zg5z/Oq58MLEB+/mZufmRAP60lFoHNPY87KXy7UOnXIYDcVdMHH1p8KagbYyCzSGTft2yHIYYz1HQ12k+gyJK0qveSIF+5t+YnOOCDjGKVPCzEMFu5twYbt0ZAYE9evYfyp8ouc4b7PrdyqFY4gGz5e1x27e9bMmlSNp8P7thcK2+U7QAR6Z9K2I7WxsJCHkWR1Y/eGNp9Meoq6L+2fCrMg9jXPUqJOyNYxbVyn4Jhki1S53pgGHht2c/N/9aitbQrS2i1O4ntnwHjAZAcgHPUelFdMGmrowkrPU35f9S/+6f5VzlhqBfSIbcxfu/JTZICTnp14rpJP9W2fQ14f4dvrm48XPHc305SJ2SOAHahweB6HGenen1F0PaYriMxquGJAwfkNOkvLeGMyTSCJB1aQFQPxNeceIPiHpWlXNxZRIZr2P5CUk+UHg849/wD9YrzbWPFVxrtwzXN08zAZVA2EQeyjiqUbiue2ar8QtC01GEcxu5R0SEcf99Hj+dcJrPxb1WWF4rLT0sw3SUv5jAe3GK83e5klhaJpCEYEcHkfSodJu7UX8MGtvKbSMkSMmS2MYVsdwDgke1XypE3bNTU/Emo6qR9su5pgV+UtIeD3rjrudpJXdmySepNa+uXVkmJNPk3xDAPDABuQcE84IAPtnFc00m9d3qM0mNEtucyXKjq0LYr0S1hjsbGzkUADylTI+lebW8oiuo3PQ/KfoeK9DiuBc+HlUH5o8Y9iK5MR0OzC2uzZhufkDoQTUlzqKoBA0gV34z6ViWLl1Ue/Stp9JtNQt5Fu4gxYYORzj2rkaSep3JtrQuC3sptNa3CowfljuGSfWuReW40mYpp4LQOcbSxwv4Gt6OysLe38mawilVRhJovkdegzkdcYrm9Ru7mHUPIt/Ourc5xvUbk9Mnua1SM3KS3LkGnw6rC0tyzRXSk7ZI+v/wBcV0fgOy0+w8RpJqcAvPLI2SHhYX7Nt6E/Xp1Fcqlw1oYYQ4E1w2F749TXR6JfoJpYLa2neBOGk2dX7kn1pqpKOwpwjNa7nrfjzWo9E8H3ty0ay+YohRGGVJbjn2xk1ifCu/huvDsqebunW6IfceTlcj9M/lWL4t8QWupfDt9NdJpb/ahTCcZVhzn6Vyvw28UHQb67tbqxeSGaMHkYG5c4PI9CRXbFqUbnmSUoysz6DYB1KnoRg1wXxA8fnww8NhpwjfUGxJJ5gyqR/wCJ/lVSfxZHar5llH9nJUuIzK5V8dsHivFdT1a71XVbjULxibmaQs5xjHt7AdKqlabJneJ6FovxS1fR9avIPEK/bYjKSREy5h/3McFeRxmvZNMv4dVsINStnJt7iMPGCMHB9fevkZ5GNxIcn72a9m8B+Pbo+H7bS4bFGa0Ai8wg4I7Z5xn1qqkUlcIu5va75EV/K7kIJJ9kZ2giOQ7gJM9vSsqQRRwTnJle2QG+PknNwBH8vt78VH8QbZbnQL2cTRBkaNy27/WYP3R6feOPpVj7BePpoFszqqwf6M6OcjMWMv8A3uenWvMmtbndB6WOl8JbhqN0GySYw2Tx1bhfw/rRWT8KXku9FW+mk3yyKyuT1LBzkn9PyorrpK0bHNUd5XPQZeIn/wB0184eKbO00FobqyvJ21KdjIikrhB3fjkdcD3+lfR07bYJGxnCk/pXyFczPdu9wxzM5yw9PYewrS12RfQoTSEv5sRKyL1XrSvMJQt5DL5U6naR2P1p+wTH+646EdajlspPLaWNMt/y0jH8Y9R6GruQSvq0s2yK3g3TYw5Y4VTWfLPfLNud03IcYCVLaXgtyM/Mh6Pjn6H3FTXpjkMc8f3JRg+xFO4xEt2bTXlkdnfYep4H0rOH3SD1rWt23afPGf4VNYsG6Teo5YHNJggaun0bUD9n8stxIvP1rANoosjcG5i3g4MHO7HrRYTEO0WcZ+ZT71lUjzI0hNxlc6201AwXKkn5c8iu7s54bqBfnwcdRXlJn3jJOGHWpofEFxZLtJ+UdCe1ckqd9juhWS32PQtRsvMcvHNgjkkcE1gzTGy3NICT056n2rGj8Zqy7fmY9a0fDszazqP2q4GIUOI19PU/WlyOK1NPaRk7RLOj+H9S1XWEvbrbCn8Geqj6V3DWFto9o/2VGMhyWZnJ3H3FOWdLdQRgZFZxlm1rUlsoiyrjfM0Y3MkY6kDuf8azu5uw2lFXZs6BoMmv6VeX8xaG3hRvJK4/eSAEnH+yOn1+lcn/AGXfanqcEVjbyPNcZCoGwCR1yTxjivZoHtotAa1061nitktCIiybRjae55JrC0W3gjutAk2lVjtGkLnjklup+prsilC1jglP2l7l6P4f6VPbQ/2kZ5Z1Qb9smFDY524GcZrw/wAY6ZHpPinVLJNwSKb92GO47SARz9DX0Tc69ptov725QfSvIvE1npmt+MpdVbUYvs0rx4hWJnZwoAx6c4/WtYVacHuZOnUmtjzt9Lu45bzMWfsqLJMVOQqsQAfzYV6rBpd7p2i6PbKA+bJJS0S7B8xJwx7kAgZPWmLBYw3uuHR9HS1KWgnuYLrOBGMMoCEHkkA81Z1OMT6No1750r/boTLIpOAp44AHbkiorTdSOi0NaKVKd29Tm/EUjRRCyeaMvMjHZu3cjAAPbv8Aoaz7O6vL7TLdUuryKPYFllMpCjsQijGfr0HvUusWk8HkXUUfKkgqq8lSM4x68U3w/deZpMaAkqjsoHpzn+tYpNQOhVOaex1/wTuW8/UbEyEiHeQp7fOOaKX4NsE8Q+IrfGCrBh9CaK6I7HLUep67c/8AHrL/ALjfyr46ZQW+QkSLyPevsW6/49Zv9xv5V8ZurSgSxMQw6j0q0ZMsxyrIfm+VqvgmMACsdZxK21/kl9+hqY3vlEJKCAOjen1qhEGp2oXdcRr1/wBYg7j1+tZ8EjNFJDuyAwYVqXd6FiyU3e4PBFY9uypeY/gPT6dRQBsRkJprSd2QisSKf7PMcr98flWpLIGt/JB43cD6msm5QGY4Py+vpSY0TNP5ny5XOe3Wot5jmV1PIOaU2zSxA7TuBxuHTp0pHikSIscNt9aBli6vYyR5YLNjk5wKq3DN5SNJkswyAemKjXB+YDj09DQ4zy+T2qOULjYnYN8uMnjpXc+BLoSq8BOHVjjHv0/rXCbyjKQMY5rS0nUP7NvRcRlgO6j/ABpVYc0bI0pS5ZXPXtsrI4djhe1cnJfvZ+LIruB+baMgZPBZuoP4VRvvGt3Pbsluiw5GCxOWNZFuLiS3+0qryKBlmHZu+axo0XF3ka1q6kuWJ7rpGrapreE0i3Tcy5J34IHfPtV2Xwr4wuXG+eGKNyA587acfhmuX+Eni6DSJZdNvWVEuyCkxH3X6YPsf0NevvrEbBvm5Q7SAOp9KbowT11IVabWhytr4Hurf70drJIRzJK/mfkGHH5VhJ4D8R/26LhZbOJReC63hgNhHTCgfpXoiagsyqWEoLDIQjmq41ArKVkYxkHBAGRjtVxkobESUp7kMHhS0hvb67uL25nn1CIRXG7aqMoGMAAcVznjKyh0fTdKtYgVhiLpFs52qAMDnmutkvooVZ3fIx37CuJ8dT/aDZIrhlUs2M9OgqZTurFU4e8c/cGGfTHRiGjJAJPGCeh5rl9K1OLS3e1aFDG0pIU9AP8Ae65+oro5VVdJuSRjOA3Hb1/rXETwqolWYxsUkZVOMhvce3es3KysdMKab0PT/hLcwzeO/EDQKVSS2jfB+oFFZvwPGPF2qY4H2FTgD/poKK6IO8TkqK0mj3O6/wCPSb/cb+VfFquykPGecfnX2jdf8ek3+438q+K954LIf95eD/8AXq0Zs0I1guk2ygAkdCKq3MDwjarebF6HqPoakt5lzhXB/wBk8H8jwadOxbjeA2OgHT6jtVCMhmaNSASY+6ntVTOyQY6Dp9K05IycnIJ9RWVMP3gA45wRSGXVZiqOWO4DOfftULk7ie9OUMUOD/EP5U1j1oA0bAbWB+0eQ2OCRxSTSB5HRlSRtuAU4/Goo7pxGQ2ORxuXNMgupLK7juIgpkQ5G4ZFAFHZskPalfBQMe2APx5NdfNpsfiTTRfWO37VH8vlBQuQP4D75zg98/lykq/MIWUqwY7sjkYwMYpJjGzCI+UEUglc59aZyrdMe1W3RRGMIFKqBnqarNhWzTAuyCEbVicsCoJJ9a1NNvdmnSWoQZ+YbgegPXP+e9YasuMqrfnxUiSMhLRk7/0xSsBt2rMs+9vlRB1r6h0GFb3Q9LvSVZ5raKQuMEcqP65r5MSczKr5PI6Z6e1fQ3wh1k3fg2O2dsmylaLn+6fmX+Z/KlO1tRxud59n8p8Fm2+ig/rWJqGrWH2uSKeZlK4++gA59CQMiuik2tGT1BNc/qFx87LLIhj3BX80DG32OOKydilcrF4JmNtbajAdyY+aQFx6YJ9PfNZPiyyTTbe0ydzybhyfQDn9aqai8TTNFaur265CsYsH6881n3wa/ito5XcR26lUCuec8knOeazbibwhK6ZU8oPatHKflf5Svsa4bUUW1YWvV8OpVvUHqP0ruH01Xjwt1MG/6afMP0rm9csoYdVjmvXVmaKTCx8bjjAP54NZuzN4tpnS/AwhvFGpH+IWKj/yIKKX4GxeX4r1X5lbNmOR/wBdBRXVT+FHHX/iM9zuv+PSb/cb+VfGMaspHGe+K+zrr/j1m/3G/lXxuqFWBDAjtWiMWWWs4ZY8sinPfvWbcRS233SZIvRu1aUdzGkZDyAex61Umu45cqCAe2aYjPZww3KT+PX86zpgVlB7E1ckG1jxgHqKqTkY5/CgZKkuwFMffIOfTGaUKXGACWJ4AquxDIMmr2l3kcFxun3bGRkbZjIyMZGf84zQMmWMi1DBiC3aq3lO7hVUEscD2qeSUMiqrKAO2aeskVqiSCVWdWztBzQImsbubRbmYQOrAoEdXzhj+Hp/9asuW4knv2nmJaR2Jc4xkmmmc+b5jEkltx5otgJLlS43F3Gc0AX5Z4207y8KGBznIFUoAtzIsAdVYg7SRwT6Gpb8qGEUahVUdhWfkq6leCOaALPzW8xR1wwPI7VZE5IwMKD1FMlcXUYYj5x1+tQxk9D1FAye3O3enocivTvhBrqadr8tjcOFt7xMZJwFdQSD+IyPyry6IHzHbt0rQs7qS0njniJDxuGB9xzSaurDR9N32v26bvsrtI2eOMLXP3F4944a4ZnYZwT2/Ks21vBe2cFwqgCaMOOfUVKCc8j8q4ndnbGCWxISofB78cqcUPDsjztz7qcio9/904NAmdOVcgnrikVqNAVmAVupwOM81h39gdQ8WQWgKkpYSE5IIG5gK6GK8jjYGSNpDn72RkH1rEsniu/FGr36szLGEtYsewyx/PFOPciTex13ww0u50zXruMhRa/ZAqDbhlZXw2T3yef04ora8I6hBd+IGWIEMbMvKCMfPvUEj69fxorphqjknudpdf8AHpN/uN/Kvi62lMeFY5Q9jX2jdf8AHpN/uN/Kvi+OIPt+laIhluaKEx+ZkkH1GapMLVuCQPzFWmjNtC4kZfKfsTyD6iqDRJKflkVj7nBqhEM7wqQqOWHqapTgbQQe9WZHigdoymXBxjrUEqPKjuAECDJHekMjTnkniplZN3Izjnmqqk08HFAydmUnJAqNnG3A4AphOBk1JDEJDl+BgmgCNVLnLcL1rQgi8iPzXGHYYRfQetLDAQ4kRN+MYB9cVYe2dYZJ5z83YUCM6c8Fj1NVVGWJ9BU8uXYKoLHsBzk1bv8ASrnRbz7PdIMyRKwOOORn8wcj8KQ7FOJtje1TMozuHQ1AoINToCOO1MCaEZXHpU0Y+U+5qKPKmpRwwHpQB614RkkbwrZFgwADKDtOMBjWyDu4BXgdutO8GaZOngjTN8rL5gaQRrEx4ZiRkrzzXR3Gj3JhSOK3tyozuKEOxHtuAI/Os3QjLW9jVYhrSxysxkRCwCED1zUE6T4RmkWMMM7UXlfY5ror7S4UgjQ2dysg+9I5ZAPfjcKq3OmQSRpIt2HlIwY41DYP4c/pUPDS6MtYhdTmbu5GnafLO0pPlKWwUHJ7c/lVLSrSaDTIw80iSSZmlCkcs3J7Vta14WvLu0t8yxwQmQO4k4ZgOwB96qSaVqYjDiaRkPRljUj+VL2UktilVi3udP8ADKXf4yvo9xbZp4zk9zIP/rUVD8JLe4XxTq89wsik26ou9Nu4Bhz/ACorSKsrGE3eVz1u6/49Jv8Acb+VfFkbu4CodgP8Vfad1/x6Tf7jfyr4uiVI13yuEjXqatGbJ4tOjc5bc57kmo55LO2bYiebL2VOajlu3uVABaG3b7oH35P8B71KY/KQRW8QR2+8e4HufWqEZUvmGRiVwx6heo+pqtKzCMrgAegq/MyrHsUEgZ6dW9fwqGOMycyrjIyEx0pDM4Ein56etXYrMSS7gBt9MVb8hIgHRQr4zkCiwXKUNoxOZAcj+H0+vvVn7G4HPHtVmFzFFsRAWPRqhkWU5Lv06juaLCuOiiCMd0gAHcGmXl9vTyYySvdj3qxHbRvGRJu3dahmsEA6EA9GWgDe8C6Os92+pz48uA4jB7v6/gP511mtaTZa1bCFoy0g/wBXKnVD/Ue1cJa3V9a2C28Fy8caksFUAZz1Jqwl9qyOZBqEuf8AabNR7O8uZmvtEo8qOfurSaxu5rW4TbLExVlpFP4j1rYujc6tdG4ujuYAKGwBwO3FOh8JazclXtrUSQuMrKHAB9jnnParehmtTLQ8itrw3oc3iHXILGEEK7ZkfH3Ix95v6fU1ah8B6+7DdbRRjPLNMoAr1jwXoS+HtO8uNbc3cpBeZjw49MjoB/jU8yHY7OyW1060jgjdI4Y1CoJH6KOAMmrZllMhBji8nGM5O7/CobdZPKRp7dJXxy8eGH4A84o/tK0kujaFnSblcMjKAcZ6kYpXAli+zWULGJTCmckIpPP0GaJLWO+CSN5TxnqJLcFj+JwRT7S1eBmY3c0wYceZtwPpgU+6mFugbypJSxxtjGT/APqoTs7hYpyaFZFeBJGM5ASQ7c/7pyKonSJ7iIxxTSQKrZAliCE/ih5/EVrR26SOtyRKkhH3SxAX2I6VP8w6bTVc7QrEfhqxlsbiVZIouU4kV9x69ORn3oq5o7XLTSfaI40+X5djls8/Sihtt3Y0asyGSGRAcFlIGfpXz6f2ftedt8usaY5UfKhWTaD+VFFICS2+AOupcedPrOnO3XhJOv5dKln+BXiCRtsesabGh+8wSTcfpxRRTuKw22+AmtQTSS/2tp2SNqALJ8o/KiL4B6yEk8zV9PMjn7wR+P0ooouFh6fAbWETauq6f9dj5J/Kmn4C60ysDq+nZOAPkk/wooouwsEfwF1tDn+19OJ7/JJ/hTv+FEa28u+XVtOIH3QEf/Ciii7Cw8/AvWt2f7V07/vh/wDCnRfAzWkDK2q6cVJyo2vx+lFFF2FhD8C9bLE/2tp2D22P/hTv+FG6yVwdV0/OP7r/AOFFFHMwsSL8EtZUEf2rYEbcfdf/AArZ0z4U6pZWxik1C0J3EgoHHBooqZLmVmVBuDui9/wrfUChRr21dSMEMrEGp4vAGowWf2SK9tI4M58tEIHXJ7dzRRU+zRbqyZs6boOs2MKwG5smjDluUYnB7D0rX/syQ9ZFP1ooqrK1iG7u4z+xiqMI3WMsMZTjFJbaNLboVa6eYk53SnJ+nTpRRTESnTpezp+tRNocMkyzOkbTLjDnORiiigC9bWzQuzMVORjiiiigD//Z"
+          style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid #F97316;box-shadow:0 0 28px rgba(249,115,22,0.45),0 8px 24px rgba(0,0,0,0.5)"
+          alt="الأستاذ أحمد بوعمود">
+        <div style="position:absolute;bottom:3px;left:3px;width:17px;height:17px;background:#10B981;border-radius:50%;border:2px solid #0F172A;box-shadow:0 0 6px #10B981"></div>
+      </div>
+      <div style="font-family:'Cairo',sans-serif;font-size:21px;font-weight:900;margin-bottom:5px">الأستاذ أحمد بوعمود</div>
+      <div style="font-size:12px;color:#F97316;font-weight:700;margin-bottom:10px;background:rgba(249,115,22,0.1);display:inline-block;padding:4px 14px;border-radius:20px;border:1px solid rgba(249,115,22,0.2)">
+        🏫 مؤسسة الحنان — التاريخ والجغرافيا والتربية على المواطنة
+      </div>
+      <div style="font-size:11px;color:#94A3B8;line-height:1.8;max-width:300px;margin:0 auto">
+        أستاذ متخصص في مادة الاجتماعيات • مستويات 3AC و Bac1<br>
+        مؤسس مشروع <b style="color:#F97316">مدرستي.ma</b> للتعليم الرقمي المجاني
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-content">
+
+    <!-- نبذة -->
+    <div style="margin:14px;background:var(--surface);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.07);overflow:hidden">
+      <div style="padding:12px 16px;background:rgba(249,115,22,0.08);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px">
+        <span style="font-size:16px">📝</span>
+        <span style="font-size:13px;font-weight:800;color:var(--primary)">نبذة عني</span>
+      </div>
+      <div style="padding:16px;font-size:13px;color:var(--text-muted);line-height:2">
+        أستاذ للتاريخ والجغرافيا والتربية على المواطنة بمؤسسة الحنان الخاصة منذ أكثر من <b style="color:var(--text)">عشرين سنة</b>.
+        أُدرِّس في مستويَي <b style="color:var(--primary)">الثالثة إعدادي</b> و<b style="color:var(--primary)">الأولى باكالوريا</b>، وأسعى دائماً إلى تطوير أساليب التدريس وجعل مادة الاجتماعيات أكثر تفاعلاً وجاذبية.
+        <br>
+        مؤسس مشروع <b style="color:var(--primary)">مدرستي.ma</b> — منصة تعليمية رقمية مجانية تضم دروساً وامتحانات وكويزات لفائدة طلاب المغرب.
+      </div>
+    </div>
+
+    <!-- إحصائيات -->
+    <div class="divider">إحصائيات التطبيق</div>
+    <div style="margin:0 14px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="background:var(--surface);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:22px;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif">35</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:3px">درساً</div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:22px;font-weight:900;color:var(--accent-light);font-family:'Cairo',sans-serif">140+</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:3px">سؤالاً</div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:22px;font-weight:900;color:var(--green);font-family:'Cairo',sans-serif" id="total-points">0</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:3px">نقاطي ⭐</div>
+      </div>
+    </div>
+
+    <!-- معلومات المؤسسة -->
+    <div class="divider">معلومات المؤسسة</div>
+    <div class="pref-card">
+      <div class="pref-item">
+        <span class="pref-icon">🏛️</span>
+        <span class="pref-label">المؤسسة</span>
+        <span class="pref-value">مؤسسة الحنان — منذ 1983</span>
+      </div>
+      <div class="pref-item">
+        <span class="pref-icon">📅</span>
+        <span class="pref-label">السنة الدراسية</span>
+        <span class="pref-value">2025–2026</span>
+      </div>
+      <div class="pref-item">
+        <span class="pref-icon">🌐</span>
+        <span class="pref-label">الموقع</span>
+        <span class="pref-value">مدرستي.ma</span>
+      </div>
+      <div class="pref-item">
+        <span class="pref-icon">📋</span>
+        <span class="pref-label">المرجع الرسمي</span>
+        <span class="pref-value">المذكرة 25-019</span>
+      </div>
+    </div>
+
+    <div class="divider">الإعدادات</div>
+    <div class="pref-card">
+      <div class="pref-item" onclick="doLogout()" style="cursor:pointer">
+        <span class="pref-icon">🚪</span>
+        <span class="pref-label">تسجيل الخروج</span>
+        <span class="pref-value" style="color:var(--red)">خروج</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== BOTTOM NAV ====== -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="nav-item active" onclick="navTo('home')">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">الرئيسية</span>
+  </button>
+  <button class="nav-item" onclick="navTo('lessons')">
+    <span class="nav-icon">📚</span>
+    <span class="nav-label">الدروس</span>
+  </button>
+  <button class="nav-item" onclick="navTo('exams')">
+    <span class="nav-icon">📝</span>
+    <span class="nav-label">الامتحانات</span>
+  </button>
+  <button class="nav-item" onclick="navTo('profile')">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">الملف</span>
+  </button>
+</nav>
+
 <script>
-const DB=[
-  {t:"الثورة الصناعية والرأسمالية",m:"h",l:"3AC",n:"درس",u:"",d:"ظهور الرأسمالية والثورة الصناعية في أوروبا القرن 18-19"},
-  {t:"الإمبريالية الأوروبية",m:"h",l:"3AC",n:"درس",u:"",d:"توسع الدول الأوروبية واستعمار أفريقيا وآسيا"},
-  {t:"الضغوطات الاستعمارية على المغرب",m:"h",l:"3AC",n:"درس",u:"",d:"المراحل والمعاهدات التي أفضت إلى فرض الحماية 1912"},
-  {t:"الحرب العالمية الأولى",m:"h",l:"3AC",n:"درس",u:"",d:"أسباب ومجريات ونتائج الحرب 1914–1918"},
-  {t:"الأنظمة الديكتاتورية",m:"h",l:"3AC",n:"درس",u:"",d:"الفاشية في إيطاليا والنازية في ألمانيا"},
-  {t:"الحرب العالمية الثانية",m:"h",l:"3AC",n:"درس",u:"",d:"أسباب ومجريات ونتائج الحرب 1939–1945"},
-  {t:"المسألة الفلسطينية",m:"h",l:"3AC",n:"درس",u:"",d:"نشأة المسألة الفلسطينية والصراع العربي الإسرائيلي"},
-  {t:"نضال المغرب من أجل الاستقلال",m:"h",l:"3AC",n:"درس",u:"",d:"مراحل الكفاح الوطني المسلح وعودة الملك محمد الخامس"},
-  {t:"بناء الدولة المغربية الحديثة",m:"h",l:"3AC",n:"درس",u:"",d:"مسيرة بناء مؤسسات الدولة بعد الاستقلال 1956"},
-  {t:"المغرب — وحدة وتنوع",m:"g",l:"3AC",n:"درس",u:"",d:"التنوع الجغرافي والبشري للمغرب وعوامل وحدته"},
-  {t:"اتحاد المغرب العربي",m:"g",l:"3AC",n:"درس",u:"",d:"نشأة الاتحاد وتحدياته وآفاق المستقبل"},
-  {t:"الاتحاد الأوروبي",m:"g",l:"3AC",n:"درس",u:"",d:"بناء الاتحاد الأوروبي وتكامله الاقتصادي والسياسي"},
-  {t:"الولايات المتحدة الأمريكية",m:"g",l:"3AC",n:"درس",u:"",d:"القوة الأمريكية الاقتصادية والعسكرية والتكنولوجية"},
-  {t:"اليابان",m:"g",l:"3AC",n:"درس",u:"",d:"النموذج الاقتصادي الياباني وتحدياته"},
-  {t:"روسيا الاتحادية",m:"g",l:"3AC",n:"درس",u:"",d:"روسيا بعد تفكك الاتحاد السوفياتي وموقعها في العالم"},
-  {t:"مصر",m:"g",l:"3AC",n:"درس",u:"",d:"مصر قوة إقليمية في العالم العربي والأفريقي"},
-  {t:"نيجيريا",m:"g",l:"3AC",n:"درس",u:"",d:"نيجيريا قوة صاعدة في أفريقيا جنوب الصحراء"},
-  {t:"المشاركة المدنية",m:"c",l:"3AC",n:"درس",u:"",d:"مفهوم المشاركة وأشكالها في الحياة المدنية"},
-  {t:"التراث الثقافي",m:"c",l:"3AC",n:"درس",u:"",d:"التراث المادي واللامادي وأهمية الحفاظ عليه"},
-  {t:"الموارد الطبيعية والبيئة",m:"c",l:"3AC",n:"درس",u:"",d:"حماية الموارد الطبيعية والتنمية المستدامة"},
-  {t:"المغرب والحوار الحضاري",m:"c",l:"3AC",n:"درس",u:"",d:"انخراط المغرب في الحوار بين الثقافات والحضارات"},
-  {t:"المواطنة والإعلام",m:"c",l:"3AC",n:"درس",u:"",d:"دور الإعلام في تشكيل الوعي المواطن"},
-  {t:"التحولات الاقتصادية والاجتماعية في القرن 19",m:"h",l:"BAC1",n:"درس",u:"",d:"الثورة الصناعية والرأسمالية وانعكاساتها الاجتماعية على أوروبا"},
-  {t:"الإمبريالية الأوروبية",m:"h",l:"BAC1",n:"درس",u:"",d:"أسباب الإمبريالية ومظاهرها وانعكاساتها على الشعوب المستعمَرة"},
-  {t:"الحرب العالمية الأولى وتداعياتها",m:"h",l:"BAC1",n:"درس",u:"",d:"أسباب الحرب ومجرياتها ونتائجها ومعاهداتها (1914-1918)"},
-  {t:"الأزمة الاقتصادية العالمية 1929",m:"h",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/1XSr6f3Q4kzp-OwUHauPjWnq6YOQDkxOr/view",d:"أسباب الأزمة وانعكاساتها على أوروبا والعالم — مع نموذج امتحان جهوي"},
-  {t:"الأنظمة الشمولية والديكتاتوريات",m:"h",l:"BAC1",n:"درس",u:"",d:"الفاشية في إيطاليا والنازية في ألمانيا — المقاربة والمقارنة"},
-  {t:"الحرب العالمية الثانية ونتائجها",m:"h",l:"BAC1",n:"درس",u:"",d:"مجريات الحرب 1939-1945 ونتائجها السياسية والاقتصادية والبشرية"},
-  {t:"الضغوطات الاستعمارية على المغرب ومحاولات الإصلاح",m:"h",l:"BAC1",n:"درس",u:"",d:"الضغوط العسكرية والتجارية والدبلوماسية على المغرب ومحاولات مقاومتها"},
-  {t:"المغرب من الحماية إلى الاستقلال",m:"h",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/16Fz7LP1g6v4IyzTMNzfBJLjLLbN3L8s_/view",d:"مراحل الكفاح الوطني والمسلح من 1912 إلى الاستقلال 1956"},
-  {t:"استكمال الوحدة الترابية",m:"h",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/17zpL9tF8Mu8CTz6eITC-9VHGW_gqUpPg/view",d:"استرجاع الأقاليم الجنوبية والمسيرة الخضراء 1975"},
-  {t:"بناء دولة الاستقلال",m:"h",l:"BAC1",n:"درس",u:"",d:"مسار بناء المؤسسات وتحديث المغرب بعد 1956"},
-  {t:"مفهوم التنمية والتقسيمات الكبرى للعالم",m:"g",l:"BAC1",n:"درس",u:"",d:"مفهوم التنمية البشرية والمقاربات الكبرى وتقسيمات العالم"},
-  {t:"المجال المغربي — الموارد الطبيعية والبشرية",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04OTJ3YmpyczBnLVk/view",d:"وضعية الموارد الطبيعية والبشرية بالمغرب وأساليب تدبيرها"},
-  {t:"الاختيارات الكبرى لسياسة إعداد التراب الوطني",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04WXRlN3R6dkdqVXc/view",d:"أهداف ومبادئ سياسة إعداد التراب وأبرز الاختيارات الكبرى"},
-  {t:"التهيئة الحضرية والريفية",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04ODZCbkx5SHRYbTQ/view",d:"مظاهر أزمة المدينة والريف بالمغرب وأشكال التدخل"},
-  {t:"العالم العربي — مشكل الماء وظاهرة التصحر",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04ZHA5cmV4bmVrRTA/view",d:"توزيع الموارد المائية بالعالم العربي وظاهرة التصحر وسبل مواجهتها"},
-  {t:"الولايات المتحدة الأمريكية — قوة اقتصادية عظمى",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04QndQUzgxLTFTZVE/view",d:"مقومات القوة الأمريكية الاقتصادية ومظاهرها وتحدياتها"},
-  {t:"الاتحاد الأوروبي — نحو اندماج شامل",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04bng4UlAzQ0RNa2M/view",d:"بناء الاتحاد الأوروبي وتكامله الاقتصادي والسياسي"},
-  {t:"الصين — قوة اقتصادية صاعدة",m:"g",l:"BAC1",n:"درس",u:"https://drive.google.com/file/d/0B_OldEQSvt04d2ljbS1QWUVNSGs/view",d:"مظاهر وأسس الصعود الاقتصادي الصيني وأبرز التحديات"},
-  {t:"التحولات الاقتصادية العالمية",m:"g",l:"BAC1",n:"درس",u:"",d:"العولمة الاقتصادية وتحولات الاقتصاد العالمي"},
-  {t:"التنمية البشرية والتفاوتات",m:"g",l:"BAC1",n:"درس",u:"",d:"مؤشرات التنمية البشرية والتفاوتات في العالم"},
-  {t:"البيئة والتنمية المستدامة",m:"g",l:"BAC1",n:"درس",u:"",d:"قضايا البيئة ومفهوم التنمية المستدامة"},
-  {t:"الوحدة المغاربية",m:"g",l:"BAC1",n:"درس",u:"",d:"مقومات الوحدة المغاربية وتحديات الاندماج"},
-  {t:"المغرب والتجارة الخارجية",m:"g",l:"BAC1",n:"درس",u:"",d:"بنية التجارة الخارجية للمغرب وانعكاساتها"},
-  {t:"تمرين — الثورة الصناعية",m:"h",l:"3AC",n:"تمرين",u:"",d:"أسئلة وثائقية حول الثورة الصناعية والرأسمالية"},
-  {t:"تمرين — الإمبريالية",m:"h",l:"3AC",n:"تمرين",u:"",d:"أسئلة وثائقية حول التوسع الاستعماري الأوروبي"},
-  {t:"تمرين — الولايات المتحدة",m:"g",l:"3AC",n:"تمرين",u:"",d:"أسئلة حول مقومات القوة الأمريكية"},
-  {t:"تمرين — الأزمة الاقتصادية 1929",m:"h",l:"BAC1",n:"تمرين",u:"",d:"أسئلة وثائقية حول أزمة 1929"},
-  {t:"تمرين — التنمية البشرية",m:"g",l:"BAC1",n:"تمرين",u:"",d:"أسئلة حول مؤشر التنمية البشرية"},
-  {t:"اختبار — الفصل الأول (تاريخ)",m:"e",l:"3AC",n:"اختبار",u:"",d:"اختبار شامل لدروس الفصل الأول في التاريخ"},
-  {t:"اختبار — الفصل الثاني (جغرافيا)",m:"e",l:"3AC",n:"اختبار",u:"",d:"اختبار شامل لدروس الفصل الثاني في الجغرافيا"},
-  {t:"اختبار جهوي نموذجي — BAC1",m:"e",l:"BAC1",n:"اختبار",u:"",d:"اختبار جهوي نموذجي في التاريخ والجغرافيا"},
+// ======== DATA ========
+const DATA = {
+  '3ac': {
+    title: 'السنة الثالثة إعدادي',
+    badge: '3AC',
+    subjects: {
+      hist: {
+        label: 'التاريخ',
+        icon: '📜',
+        color: 'var(--primary)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'h1', title: 'الرأسمالية الأوروبية في القرن 19', tags: ['الثورة الصناعية', 'الطبقات الاجتماعية'] },
+              { id: 'h2', title: 'الإمبريالية نتاج الرأسمالية', tags: ['الاستعمار', 'التوسع الأوروبي'] },
+              { id: 'h3', title: 'الضغوط الاستعمارية على المغرب', tags: ['القرن 19', 'الأزمات الدولية'] },
+              { id: 'h4', title: 'الحرب العالمية الأولى: الأسباب والنتائج', tags: ['1914–1918', 'مؤتمر السلام'] },
+              { id: 'h5', title: 'سقوط الدولة العثمانية والتدخل الاستعماري في المشرق', tags: ['التجزئة', 'الانتداب'] },
+              { id: 'h6', title: 'الأزمة الاقتصادية لسنة 1929', tags: ['الأزمة', 'الانهيار الاقتصادي'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'h7', title: 'الأنظمة الديكتاتورية: النازية', tags: ['هتلر', 'ألمانيا'] },
+              { id: 'h8', title: 'الحرب العالمية الثانية: الأسباب والنتائج', tags: ['1939–1945', 'المحور والحلفاء'] },
+              { id: 'h9', title: 'القضية الفلسطينية والصراع العربي الإسرائيلي', tags: ['1948', 'فلسطين'] },
+              { id: 'h10', title: 'النضال من أجل الاستقلال والوحدة الترابية', tags: ['حركة التحرر', '1956'] },
+              { id: 'h11', title: 'بناء الدولة المغربية الحديثة بعد 1956', tags: ['الاستقلال', 'التنمية'] },
+            ]
+          }
+        ]
+      },
+      geo: {
+        label: 'الجغرافيا',
+        icon: '🌍',
+        color: 'var(--accent-light)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'g1', title: 'المغرب العربي: الوحدة والتنوع', tags: ['شمال أفريقيا', 'الموارد البشرية'] },
+              { id: 'g2', title: 'المغرب العربي بين التكامل والتحديات', tags: ['الاندماج', 'العوائق'] },
+              { id: 'g3', title: 'اتحاد المغرب العربي كتكتل إقليمي استراتيجي', tags: ['1989', 'التعاون'] },
+              { id: 'g4', title: 'الاتحاد الأوروبي: إمكاناته ومكانته الاقتصادية', tags: ['أوروبا', 'الاقتصاد'] },
+              { id: 'g5', title: 'الاتحاد الأوروبي بين الاندماج والتنافسية', tags: ['السوق الموحدة', 'اليورو'] },
+              { id: 'g6', title: 'عوائق التكتلات الإقليمية: الاتحاد الأوروبي والمغرب العربي', tags: ['مقارنة', 'التحليل'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'g7', title: 'الولايات المتحدة الأمريكية: قوة عالمية', tags: ['الاقتصاد', 'التأثير الدولي'] },
+              { id: 'g8', title: 'اليابان: قوة تكنولوجية', tags: ['التكنولوجيا', 'التنمية'] },
+              { id: 'g9', title: 'روسيا: تحولات وتحديات التنمية', tags: ['ما بعد السوفيت', 'التحول'] },
+              { id: 'g10', title: 'مصر: نموذج التنمية العربية', tags: ['النيل', 'الاقتصاد'] },
+              { id: 'g11', title: 'نيجيريا: الثروات الطبيعية وضعف التنمية', tags: ['أفريقيا', 'النفط'] },
+              { id: 'g12', title: 'تطبيق منهجية جغرافية على ظاهرة اقتصادية', tags: ['المنهجية', 'التحليل'] },
+            ]
+          }
+        ]
+      },
+      civic: {
+        label: 'التربية على المواطنة',
+        icon: '⚖️',
+        color: 'var(--green)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'c1', title: 'المشاركة: حق وواجب (مجلس التلاميذ)', tags: ['الديمقراطية', 'المشاركة'] },
+              { id: 'c2', title: 'معالجة مشكلة اجتماعية من أمثلة محلية', tags: ['المجتمع', 'الحلول'] },
+              { id: 'c3', title: 'مسؤولية الدولة في حل المشكلات الاجتماعية', tags: ['الدولة', 'الحوكمة'] },
+              { id: 'c4', title: 'مؤسسة محمد الخامس للتضامن', tags: ['التضامن', 'المجتمع'] },
+              { id: 'c5', title: 'الأخلاق في الحياة العامة', tags: ['الأخلاق', 'المواطنة'] },
+              { id: 'c6', title: 'إلى أين نلجأ حين تُنتهك الحقوق الدستورية', tags: ['الحقوق', 'الحماية'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'c7', title: 'صون التراث وتنميته', tags: ['التراث', 'الهوية'] },
+              { id: 'c8', title: 'صون الموارد الطبيعية', tags: ['البيئة', 'الاستدامة'] },
+              { id: 'c9', title: 'تقاسم الأرض مع العالم', tags: ['السلام', 'التعاون'] },
+              { id: 'c10', title: 'المغرب والحوار بين الأديان', tags: ['التسامح', 'الدين'] },
+              { id: 'c11', title: 'المغرب والسلام العالمي', tags: ['الدبلوماسية', 'الأمم المتحدة'] },
+              { id: 'c12', title: 'اقتراح برامج إعلامية لتعزيز قيم المواطنة', tags: ['الإعلام', 'المواطنة'] },
+            ]
+          }
+        ]
+      }
+    }
+  },
+  'bac1': {
+    title: 'الأولى باكالوريا',
+    badge: 'Bac 1',
+    subjects: {
+      hist: {
+        label: 'التاريخ',
+        icon: '📜',
+        color: 'var(--primary)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'bh1', title: 'العالم في مطلع القرن العشرين', tags: ['التوازنات الدولية', 'الإمبريالية'] },
+              { id: 'bh2', title: 'الحرب الباردة ونظام القطبية الثنائية', tags: ['أمريكا', 'الاتحاد السوفيتي'] },
+              { id: 'bh3', title: 'مراحل الحرب الباردة', tags: ['التوترات', 'التعايش السلمي'] },
+              { id: 'bh4', title: 'نهاية الحرب الباردة وعالم ما بعدها', tags: ['سقوط الاتحاد السوفيتي', 'النظام الجديد'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'bh5', title: 'المغرب الراهن: التحديات والرهانات', tags: ['التنمية', 'الإصلاحات'] },
+              { id: 'bh6', title: 'المغرب وتحولات العالم المعاصر', tags: ['العولمة', 'الانفتاح'] },
+            ]
+          }
+        ]
+      },
+      geo: {
+        label: 'الجغرافيا',
+        icon: '🌍',
+        color: 'var(--accent-light)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'bg1', title: 'الوحدة الترابية للمغرب', tags: ['الجغرافيا السياسية', 'الصحراء'] },
+              { id: 'bg2', title: 'التوزيع السكاني والمجال الترابي', tags: ['الديموغرافيا', 'السكان'] },
+              { id: 'bg3', title: 'المشكلات البيئية والتهيئة الترابية', tags: ['البيئة', 'التهيئة'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'bg4', title: 'العالم العربي: الموارد والتحديات', tags: ['النفط', 'التنمية'] },
+              { id: 'bg5', title: 'الجنوب الأمريكي: الإمكانات والتحديات', tags: ['أمريكا اللاتينية', 'التنوع'] },
+              { id: 'bg6', title: 'آسيا: قوة ناشئة على الساحة الدولية', tags: ['الصين', 'الهند'] },
+            ]
+          }
+        ]
+      },
+      civic: {
+        label: 'التربية على المواطنة',
+        icon: '⚖️',
+        color: 'var(--green)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'bc1', title: 'الديمقراطية وحقوق الإنسان', tags: ['الحقوق', 'الحرية'] },
+              { id: 'bc2', title: 'المواطنة وقيمها', tags: ['الوطنية', 'الانتماء'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'bc3', title: 'المغرب والمنظمات الدولية', tags: ['الأمم المتحدة', 'الدبلوماسية'] },
+              { id: 'bc4', title: 'التنمية المستدامة وقضايا البيئة', tags: ['البيئة', 'الاستدامة'] },
+            ]
+          }
+        ]
+      }
+    }
+  },
+  'bac2': {
+    title: 'الثانية باكالوريا',
+    badge: 'Bac 2',
+    subjects: {
+      hist: {
+        label: 'التاريخ',
+        icon: '📜',
+        color: 'var(--primary)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'b2h1', title: 'الحضارات القديمة والعالم الإسلامي', tags: ['التاريخ القديم', 'الإسلام'] },
+              { id: 'b2h2', title: 'عصر الأنوار والثورات الحديثة', tags: ['الثورة الفرنسية', 'الأنوار'] },
+              { id: 'b2h3', title: 'القرن العشرون: الحروب والسلام', tags: ['التاريخ الحديث', 'العلاقات الدولية'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'b2h4', title: 'تحولات العالم بعد الحرب الباردة', tags: ['العولمة', 'القطبية الأحادية'] },
+              { id: 'b2h5', title: 'المغرب في العالم المعاصر', tags: ['الانفتاح', 'الشراكات'] },
+            ]
+          }
+        ]
+      },
+      geo: {
+        label: 'الجغرافيا',
+        icon: '🌍',
+        color: 'var(--accent-light)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'b2g1', title: 'العولمة وتحولات المجال الجغرافي', tags: ['العولمة', 'الاقتصاد'] },
+              { id: 'b2g2', title: 'القوى الكبرى في العالم المعاصر', tags: ['الولايات المتحدة', 'الصين'] },
+            ]
+          },
+          {
+            title: 'الفصل الدراسي الثاني',
+            lessons: [
+              { id: 'b2g3', title: 'التحديات البيئية العالمية', tags: ['التغير المناخي', 'البيئة'] },
+              { id: 'b2g4', title: 'المغرب في سياقه الجيواستراتيجي', tags: ['الموقع', 'الجيوسياسة'] },
+            ]
+          }
+        ]
+      },
+      civic: {
+        label: 'التربية على المواطنة',
+        icon: '⚖️',
+        color: 'var(--green)',
+        semesters: [
+          {
+            title: 'الفصل الدراسي الأول',
+            lessons: [
+              { id: 'b2c1', title: 'التحولات الدستورية في المغرب', tags: ['دستور 2011', 'الإصلاح'] },
+              { id: 'b2c2', title: 'حقوق الإنسان في السياق المغربي', tags: ['CNDH', 'الحقوق'] },
+            ]
+          }
+        ]
+      }
+    }
+  }
+};
+
+// ======== LESSON CONTENT ========
+const LESSON_CONTENT = {
+  'h4': {
+    subject: 'التاريخ', subjectIcon: '📜', subjectColor: 'var(--primary)',
+    chips: ['1914–1918', 'أوروبا', 'الفصل الثاني'],
+    sections: [
+      {
+        icon: '🎯', title: 'المفاهيم الأساسية', color: 'rgba(249,115,22,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'الحرب العالمية الأولى', def: 'نزاع مسلح دولي اندلع سنة 1914 وانتهى سنة 1918، اشترك فيه معظم دول العالم في معسكرين متحاربين.' },
+          { term: 'التحالف الثلاثي', def: 'تحالف يضم ألمانيا والنمسا-المجر وإيطاليا، أسس عام 1882 للتوازن الأوروبي.' },
+          { term: 'الوفاق الثلاثي', def: 'تحالف يضم بريطانيا وفرنسا وروسيا لمواجهة التمدد الألماني.' },
+          { term: 'معاهدة فرساي', def: 'معاهدة السلام الموقعة سنة 1919، فرضت شروطاً قاسية على ألمانيا.' },
+        ]
+      },
+      {
+        icon: '🔥', title: 'أسباب الحرب', color: 'rgba(239,68,68,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'الأسباب البعيدة', def: 'التنافس الاستعماري بين القوى الأوروبية، صراع المصالح الاقتصادية، ظهور التكتلات العسكرية.' },
+          { term: 'الأسباب القريبة', def: 'اغتيال ولي عهد النمسا-المجر الأرشيدوق فرانز فرديناند في سراييفو يونيو 1914.' },
+          { term: 'سباق التسلح', def: 'تنافس الدول الأوروبية على تطوير جيوشها وأسلحتها مما أشعل فتيل التوتر.' },
+        ]
+      },
+      {
+        icon: '📅', title: 'التسلسل الزمني', color: 'rgba(59,130,246,0.15)',
+        type: 'timeline',
+        items: [
+          { year: '1914', event: 'اغتيال الأرشيدوق فرانز فرديناند • إعلان الحرب • الحرب الخاطفة تفشل' },
+          { year: '1915–1916', event: 'حرب المواضع والخنادق • معركتا فردان والسوم' },
+          { year: '1917', event: 'دخول الولايات المتحدة الحرب • الثورة الروسية وانسحاب روسيا' },
+          { year: '1918', event: 'انهيار ألمانيا وحلفائها • الهدنة في نوفمبر 1918' },
+          { year: '1919', event: 'مؤتمر السلام في باريس • معاهدة فرساي' },
+        ]
+      },
+      {
+        icon: '🌍', title: 'نتائج الحرب', color: 'rgba(16,185,129,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'الخسائر البشرية', def: 'سقوط ملايين الضحايا العسكريين والمدنيين، وتدمير واسع للبنيات التحتية الأوروبية.' },
+          { term: 'إعادة رسم الخريطة', def: 'تفكك الإمبراطوريات العثمانية والنمساوية المجرية والروسية وظهور دول جديدة.' },
+          { term: 'عصبة الأمم', def: 'إنشاء أول منظمة دولية لصون السلام عام 1919 بمبادرة من الرئيس الأمريكي ويلسون.' },
+        ]
+      }
+    ]
+  },
+  'h9': {
+    subject: 'التاريخ', subjectIcon: '📜', subjectColor: 'var(--primary)',
+    chips: ['فلسطين', '1948', 'الصراع العربي الإسرائيلي'],
+    sections: [
+      {
+        icon: '🎯', title: 'المفاهيم الأساسية', color: 'rgba(249,115,22,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'الصهيونية', def: 'حركة سياسية ظهرت في أواخر القرن 19 تدعو إلى إقامة وطن قومي لليهود في فلسطين.' },
+          { term: 'وعد بلفور 1917', def: 'تصريح أصدرته بريطانيا يدعم إقامة وطن قومي لليهود في فلسطين.' },
+          { term: 'النكبة 1948', def: 'تهجير قسري لأكثر من 700 ألف فلسطيني من أراضيهم عند إعلان قيام دولة إسرائيل.' },
+        ]
+      },
+      {
+        icon: '📅', title: 'أبرز المحطات', color: 'rgba(59,130,246,0.15)',
+        type: 'timeline',
+        items: [
+          { year: '1917', event: 'وعد بلفور: بريطانيا تدعم إقامة وطن قومي يهودي في فلسطين' },
+          { year: '1948', event: 'إعلان قيام دولة إسرائيل • النكبة • الحرب العربية الإسرائيلية الأولى' },
+          { year: '1967', event: 'حرب الأيام الستة • احتلال الضفة الغربية وغزة والجولان' },
+          { year: '1973', event: 'حرب أكتوبر (رمضان) • استعادة جزء من سيناء' },
+          { year: '1993', event: 'اتفاقيات أوسلو بين منظمة التحرير الفلسطينية وإسرائيل' },
+        ]
+      }
+    ]
+  },
+  'g7': {
+    subject: 'الجغرافيا', subjectIcon: '🌍', subjectColor: 'var(--accent-light)',
+    chips: ['أمريكا', 'القوة العالمية', 'الفصل الثاني'],
+    sections: [
+      {
+        icon: '🎯', title: 'المفاهيم الأساسية', color: 'rgba(59,130,246,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'الهيمنة الاقتصادية', def: 'تمثل الولايات المتحدة نحو 25% من الناتج الإجمالي العالمي.' },
+          { term: 'الهيمنة العسكرية', def: 'تمتلك الولايات المتحدة أكبر ميزانية دفاعية في العالم وقواعد عسكرية في أكثر من 70 دولة.' },
+          { term: 'القوة الناعمة', def: 'التأثير الثقافي الأمريكي من خلال السينما والموسيقى والتكنولوجيا وهيمنة الدولار.' },
+        ]
+      },
+      {
+        icon: '📊', title: 'مقومات القوة الأمريكية', color: 'rgba(249,115,22,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'الموارد الطبيعية', def: 'تتمتع بثروات ضخمة من النفط والغاز والفحم والمعادن والأراضي الزراعية.' },
+          { term: 'التقدم التكنولوجي', def: 'رائدة في مجالات الذكاء الاصطناعي، الفضاء، الصناعة الدوائية والرقمية.' },
+          { term: 'الهجرة والتنوع', def: 'تجذب الكفاءات العلمية من العالم، مما يغذي نمو الابتكار والإنتاج.' },
+        ]
+      }
+    ]
+  },
+  'c1': {
+    subject: 'التربية على المواطنة', subjectIcon: '⚖️', subjectColor: 'var(--green)',
+    chips: ['المشاركة', 'مجلس التلاميذ', 'الفصل الأول'],
+    sections: [
+      {
+        icon: '🎯', title: 'المفاهيم الأساسية', color: 'rgba(16,185,129,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'المشاركة المدنية', def: 'انخراط المواطن في الشأن العام والحياة الجماعية عبر آليات ديمقراطية مشروعة.' },
+          { term: 'مجلس التلاميذ', def: 'هيئة تمثيلية داخل المؤسسة التعليمية يمثل فيها التلاميذ زملاءهم أمام الإدارة.' },
+          { term: 'الديمقراطية التشاركية', def: 'نموذج يشمل المواطن في صنع القرار بشكل مباشر، لا عبر الممثلين فقط.' },
+        ]
+      },
+      {
+        icon: '⚖️', title: 'حقوق وواجبات', color: 'rgba(245,158,11,0.15)',
+        type: 'concepts',
+        items: [
+          { term: 'حق المشاركة', def: 'الحق في التعبير عن الرأي والتصويت والانخراط في الحياة الجماعية داخل المؤسسة.' },
+          { term: 'واجب التعبير', def: 'الالتزام بإيصال صوت الجماعة عبر القنوات الشرعية واحترام آراء الآخرين.' },
+          { term: 'الانتخابات المدرسية', def: 'آلية ديمقراطية يختار فيها التلاميذ ممثليهم في مجلس المؤسسة.' },
+        ]
+      }
+    ]
+  }
+};
+
+// ======== QUIZ DATA ========
+const QUIZZES = {
+  // ===== HISTORY QUIZZES =====
+  'h1': [
+    { q: 'ما هو القطاع الذي بدأت فيه الثورة الصناعية؟', opts: ['الزراعة', 'النسيج (الغزل والنسيج)', 'التعدين', 'التجارة'], correct: 1, exp: 'بدأت الثورة الصناعية في قطاع النسيج بانجلترا مع اختراع الآلة البخارية.' },
+    { q: 'ما الطبقة الاجتماعية التي استفادت أكثر من الثورة الصناعية؟', opts: ['الطبقة العاملة', 'الفلاحون', 'البورجوازية الكبرى (الرأسماليون)', 'النبلاء'], correct: 2, exp: 'استفاد أصحاب المصانع (البورجوازية الكبرى) من تراكم الثروات وزيادة الأرباح.' },
+    { q: 'ما المقصود بالبروليتاريا؟', opts: ['أصحاب المصانع', 'العمال الذين لا يملكون إلا قوة عملهم', 'صغار التجار', 'الفلاحون الأثرياء'], correct: 1, exp: 'البروليتاريا هي الطبقة العاملة التي تعمل مقابل أجر في المصانع.' },
+    { q: 'ما مصدر تراكم الرأسمالية؟', opts: ['الزراعة فقط', 'الاستعمار فقط', 'فائض القيمة الناتج عن استغلال العمال', 'الضرائب'], correct: 2, exp: 'يتراكم الرأسمال من خلال استغلال العمال وتحويل فائض إنتاجهم إلى ربح.' },
+  ],
+  'h2': [
+    { q: 'ما النسبة التقريبية لأفريقيا التي كانت مستعمَرة عام 1914؟', opts: ['50%', '70%', '85%', '100%'], correct: 2, exp: 'بحلول عام 1914، كان نحو 85% من القارة الأفريقية تحت السيطرة الأوروبية.' },
+    { q: 'ما الدافع الاقتصادي الأساسي للإمبريالية؟', opts: ['نشر الحضارة', 'البحث عن مواد خام وأسواق جديدة', 'التعاون الدولي', 'نشر الأديان'], correct: 1, exp: 'الدافع الاقتصادي كان الأساس: البحث عن مواد خام وأسواق لتصريف الإنتاج.' },
+    { q: 'ما المقصود بـ"العبء الأبيض"؟', opts: ['ثقل الجيوش الاستعمارية', 'ادعاء مهمة تحضير الشعوب المستعمَرة', 'ضرائب الحرب', 'وزن الأسلحة'], correct: 1, exp: 'عبارة استعارها المستعمرون لتبرير الاستعمار بادعاء "تحضير" الشعوب الأخرى.' },
+  ],
+  'h3': [
+    { q: 'ما معاهدة الحماية التي فُرضت على المغرب؟', opts: ['معاهدة لالة مغنية 1845', 'معاهدة فاس 1912', 'اتفاقية مدريد 1880', 'معاهدة فرساي 1919'], correct: 1, exp: 'معاهدة فاس (30 مارس 1912) هي التي أخضعت المغرب للحماية الفرنسية.' },
+    { q: 'متى انعقد مؤتمر الجزيرة الخضراء؟', opts: ['1880', '1900', '1906', '1912'], correct: 2, exp: 'مؤتمر الجزيرة الخضراء 1906 كرّس الهيمنة الدولية على المغرب.' },
+    { q: 'ما معركة إيسلي؟', opts: ['معركة بين المغرب والعثمانيين', 'انتصار عسكري فرنسي على المغرب 1844', 'معركة في الصحراء', 'مواجهة مغربية إسبانية'], correct: 1, exp: 'معركة إيسلي 1844: هزيمة المغرب أمام فرنسا وإرغامه على التوقيع بمعاهدة لالة مغنية.' },
+  ],
+  'h4': [
+    { q: 'متى اندلعت الحرب العالمية الأولى؟', opts: ['1912', '1914', '1916', '1918'], correct: 1, exp: 'اندلعت الحرب العالمية الأولى في صيف 1914 إثر اغتيال ولي عهد النمسا.' },
+    { q: 'ما المعاهدة التي أنهت الحرب العالمية الأولى رسمياً؟', opts: ['معاهدة باريس', 'معاهدة فرساي 1919', 'اتفاقية جنيف', 'معاهدة لوزان'], correct: 1, exp: 'معاهدة فرساي 1919 وضعت نهاية رسمية للحرب وعاقبت ألمانيا بشدة.' },
+    { q: 'من اغتيل في سراييفو مما أشعل الحرب؟', opts: ['القيصر نيقولا', 'الإمبراطور فيلهلم الثاني', 'الأرشيدوق فرانز فرديناند', 'الملك جورج الخامس'], correct: 2, exp: 'اغتيال الأرشيدوق فرانز فرديناند في 28 يونيو 1914 كان الشرارة المباشرة.' },
+    { q: 'ما دول الوفاق (Entente)؟', opts: ['ألمانيا والنمسا وإيطاليا', 'فرنسا وبريطانيا وروسيا', 'فرنسا وألمانيا وبريطانيا', 'اليابان وأمريكا وروسيا'], correct: 1, exp: 'دول الوفاق: فرنسا وبريطانيا وروسيا، انضمت إليها الولايات المتحدة لاحقاً.' },
+    { q: 'متى دخلت الولايات المتحدة الحرب؟', opts: ['1914', '1915', '1917', '1918'], correct: 2, exp: 'دخلت الولايات المتحدة الحرب عام 1917 إلى جانب الحلفاء.' },
+  ],
+  'h5': [
+    { q: 'ما اتفاقية سايكس-بيكو؟', opts: ['معاهدة سلام بعد الحرب', 'اتفاقية سرية لتقسيم المشرق العربي بين فرنسا وبريطانيا 1916', 'تحالف عسكري', 'حدود المغرب'], correct: 1, exp: 'سايكس-بيكو 1916: اتفاقية سرية بين فرنسا وبريطانيا لتقسيم المشرق العربي.' },
+    { q: 'ماذا أخذت فرنسا بموجب سايكس-بيكو؟', opts: ['العراق وفلسطين', 'سوريا ولبنان', 'الجزيرة العربية', 'مصر والسودان'], correct: 1, exp: 'حصلت فرنسا على سوريا ولبنان، وبريطانيا على العراق وفلسطين.' },
+    { q: 'متى انهارت الدولة العثمانية؟', opts: ['1914', '1918', '1923', '1945'], correct: 1, exp: 'انهارت الدولة العثمانية بعد هزيمتها في الحرب العالمية الأولى عام 1918.' },
+  ],
+  'h6': [
+    { q: 'متى انطلقت أزمة 1929؟', opts: ['يناير 1929', 'أكتوبر 1929 (انهيار بورصة وول ستريت)', 'يناير 1930', 'أكتوبر 1927'], correct: 1, exp: 'انطلقت الأزمة بانهيار بورصة وول ستريت في أكتوبر 1929.' },
+    { q: 'ما النتيجة السياسية الأبرز لأزمة 1929؟', opts: ['ازدهار الديمقراطية', 'صعود الأنظمة الفاشية والنازية', 'توحيد أوروبا', 'تراجع الاستعمار'], correct: 1, exp: 'أفرزت الأزمة بطالة ضخمة وأزمة اجتماعية مهّدت لصعود النازية والفاشية.' },
+    { q: 'ما سياسة "نيو ديل"؟', opts: ['سياسة الاستعمار الأمريكية', 'برنامج روزفلت لإنعاش الاقتصاد الأمريكي', 'اتفاقية تجارية دولية', 'سياسة عسكرية'], correct: 1, exp: 'النيو ديل (New Deal) هو برنامج الرئيس روزفلت لإنعاش الاقتصاد بعد الأزمة.' },
+  ],
+  'h7': [
+    { q: 'في أي سنة وصل هتلر إلى السلطة؟', opts: ['1929', '1931', '1933', '1935'], correct: 2, exp: 'وصل هتلر إلى السلطة في يناير 1933 بعد فوز حزبه في الانتخابات.' },
+    { q: 'ما المقصود بـ"الهولوكوست"؟', opts: ['معارك الحرب', 'الإبادة الجماعية لليهود على يد النازية (6 ملايين ضحية)', 'انهيار ألمانيا', 'محاكم نورنبرغ'], correct: 1, exp: 'الهولوكوست هو إبادة منهجية لليهود وأقليات أخرى راح ضحيتها 6 ملايين شخص.' },
+    { q: 'ما الجيستابو (Gestapo)؟', opts: ['الجيش الألماني', 'الشرطة السرية النازية', 'حزب هتلر', 'قوات الاحتلال'], correct: 1, exp: 'الجيستابو هي الشرطة السرية الألمانية النازية التي مارست القمع والتعذيب.' },
+  ],
+  'h8': [
+    { q: 'ما الحدث الذي أشعل الحرب العالمية الثانية؟', opts: ['اغتيال هتلر', 'الغزو الألماني لبولندا 1939', 'قصف بيرل هاربر', 'الأزمة الاقتصادية'], correct: 1, exp: 'الغزو الألماني لبولندا في 1 سبتمبر 1939 أشعل الحرب العالمية الثانية.' },
+    { q: 'ما الحدث الذي أنهى الحرب في المحيط الهادئ؟', opts: ['الغزو البري لليابان', 'القنبلة الذرية على هيروشيما وناغازاكي 1945', 'استسلام ألمانيا', 'معركة الكورال'], correct: 1, exp: 'القنبلة الذرية على هيروشيما 6 أغسطس 1945 وناغازاكي 9 أغسطس عجّلت باستسلام اليابان.' },
+    { q: 'ما المنظمة الدولية التي أُسست بعد الحرب العالمية الثانية؟', opts: ['عصبة الأمم', 'الأمم المتحدة (1945)', 'الناتو', 'الاتحاد الأوروبي'], correct: 1, exp: 'أُسست الأمم المتحدة عام 1945 لمنع الحروب وحفظ السلم الدولي.' },
+  ],
+  'h9': [
+    { q: 'متى صدر وعد بلفور؟', opts: ['1915', '1917', '1919', '1948'], correct: 1, exp: 'صدر وعد بلفور عام 1917 من بريطانيا يدعم وطناً قومياً لليهود في فلسطين.' },
+    { q: 'ما المقصود بـ"النكبة"؟', opts: ['حرب 1967', 'تهجير الفلسطينيين عام 1948', 'معاهدة أوسلو', 'حرب أكتوبر 1973'], correct: 1, exp: 'النكبة: تهجير قسري لأكثر من 700 ألف فلسطيني عند إعلان قيام إسرائيل.' },
+    { q: 'في أي سنة وُقّعت اتفاقيات أوسلو؟', opts: ['1967', '1973', '1993', '2000'], correct: 2, exp: 'وقّعت اتفاقيات أوسلو 1993 بين منظمة التحرير الفلسطينية وإسرائيل.' },
+    { q: 'ما حرب 1967؟', opts: ['حرب الاستنزاف', 'حرب الأيام الستة التي احتلت فيها إسرائيل الضفة وغزة والجولان', 'حرب لبنان', 'النكبة'], correct: 1, exp: 'حرب 1967 (النكسة): احتلت إسرائيل الضفة الغربية وقطاع غزة وسيناء والجولان.' },
+  ],
+  'h10': [
+    { q: 'متى نُفي الملك محمد الخامس؟', opts: ['1950', '1951', '1953', '1955'], correct: 2, exp: 'نُفي محمد الخامس في 20 أغسطس 1953 من قِبَل السلطات الاستعمارية الفرنسية.' },
+    { q: 'متى تحقق استقلال المغرب؟', opts: ['1955', '2 مارس 1956', '1957', '1960'], correct: 1, exp: 'تحقق استقلال المغرب رسمياً في 2 مارس 1956.' },
+    { q: 'ما المسيرة الخضراء؟', opts: ['احتجاج سلمي ضد الحكومة', 'مسيرة 350 ألف مغربي إلى الصحراء 1975 لاستردادها', 'مبادرة بيئية', 'تحالف عسكري'], correct: 1, exp: 'المسيرة الخضراء نوفمبر 1975: 350 ألف مغربي عبروا إلى الصحراء الغربية.' },
+    { q: 'متى أُسس حزب الاستقلال؟', opts: ['1934', '1940', '1944', '1950'], correct: 2, exp: 'أُسس حزب الاستقلال عام 1944 وأصدر وثيقة المطالبة بالاستقلال.' },
+  ],
+  'h11': [
+    { q: 'ما أول دستور مغربي؟', opts: ['1956', '1958', '1962', '1970'], correct: 2, exp: 'أول دستور مغربي صدر عام 1962 في عهد الملك الحسن الثاني.' },
+    { q: 'ما دستور 2011؟', opts: ['دستور الاستقلال', 'دستور إصلاحي شامل في سياق الربيع العربي', 'دستور الحماية', 'دستور الجمهورية'], correct: 1, exp: 'دستور 2011 أُنجز في سياق احتجاجات الربيع العربي ويُعدّ أكثر الدساتير ديمقراطية.' },
+    { q: 'ما المقصود بـ"المغربة"؟', opts: ['ترحيل الأجانب', 'استرداد المغرب للأراضي المستعمَرة', 'سياسة نقل الملكية من الأجانب للمغاربة', 'تدريس اللغة العربية'], correct: 2, exp: 'المغربة: سياسة نقل ملكية المقاولات والأراضي من يد الأجانب إلى المغاربة.' },
+  ],
+
+  // ===== GEOGRAPHY QUIZZES =====
+  'g1': [
+    { q: 'كم عدد دول المغرب العربي؟', opts: ['3', '4', '5', '6'], correct: 2, exp: 'يتكون المغرب العربي من 5 دول: المغرب، الجزائر، تونس، ليبيا، موريتانيا.' },
+    { q: 'ما أكبر دول المغرب العربي مساحةً؟', opts: ['المغرب', 'ليبيا', 'الجزائر', 'موريتانيا'], correct: 2, exp: 'الجزائر هي أكبر دول المغرب العربي بمساحة 2.38 مليون كم².' },
+    { q: 'ما عوامل الوحدة في المغرب العربي؟', opts: ['الاقتصاد المشترك فقط', 'اللغة العربية والإسلام والتاريخ المشترك والموقع الجغرافي', 'الدساتير المتشابهة', 'العملة المشتركة'], correct: 1, exp: 'يجمع المغرب العربي: اللغة العربية، الإسلام، التاريخ المشترك، والموقع الجغرافي.' },
+  ],
+  'g2': [
+    { q: 'ما نسبة التبادل التجاري الداخلي بين دول المغرب العربي؟', opts: ['20%', '10%', '3%', '50%'], correct: 2, exp: 'التبادل الداخلي لا يتجاوز 3% وهو رقم ضعيف جداً مقارنة بالاتحاد الأوروبي (70%).' },
+    { q: 'ما أبرز عائق أمام تكامل المغرب العربي؟', opts: ['الفقر', 'الخلاف المغربي-الجزائري وإغلاق الحدود', 'غياب الموارد', 'التباين الديني'], correct: 1, exp: 'الخلاف حول الصحراء وإغلاق الحدود منذ 1994 يُعطّلان التكامل المغاربي.' },
+  ],
+  'g3': [
+    { q: 'متى تأسس اتحاد المغرب العربي؟', opts: ['1969', '1975', '1989', '1995'], correct: 2, exp: 'تأسس اتحاد المغرب العربي في مراكش عام 1989.' },
+    { q: 'منذ متى توقفت قمم اتحاد المغرب العربي؟', opts: ['1989', '1994', '2000', '2010'], correct: 1, exp: 'توقفت القمم منذ 1994 بسبب تفاقم الخلاف المغربي-الجزائري.' },
+  ],
+  'g4': [
+    { q: 'كم عدد دول الاتحاد الأوروبي؟', opts: ['25', '27', '30', '32'], correct: 1, exp: 'يضم الاتحاد الأوروبي 27 دولة بعد خروج بريطانيا (Brexit).' },
+    { q: 'ما العملة الموحدة للاتحاد الأوروبي؟', opts: ['الدولار', 'الجنيه', 'اليورو', 'الفرنك'], correct: 2, exp: 'اليورو هو العملة الموحدة التي اعتُمدت عام 1999 وتستخدمها 20 دولة.' },
+    { q: 'ما نسبة الاتحاد الأوروبي من الناتج الإجمالي العالمي؟', opts: ['10%', '15%', '22%', '35%'], correct: 2, exp: 'يمثل الاتحاد الأوروبي نحو 22% من الناتج الإجمالي العالمي.' },
+  ],
+  'g5': [
+    { q: 'متى وُقّعت معاهدة روما المؤسِّسة للسوق المشتركة؟', opts: ['1945', '1951', '1957', '1963'], correct: 2, exp: 'معاهدة روما 1957 أسست السوق الأوروبية المشتركة بين 6 دول.' },
+    { q: 'ما البريكزيت؟', opts: ['انضمام بريطانيا للاتحاد', 'خروج بريطانيا من الاتحاد الأوروبي 2016', 'إصلاح الاتحاد الأوروبي', 'أزمة اليورو'], correct: 1, exp: 'Brexit: خروج المملكة المتحدة من الاتحاد الأوروبي إثر استفتاء 2016.' },
+  ],
+  'g6': [
+    { q: 'ما نسبة التبادل الداخلي في الاتحاد الأوروبي؟', opts: ['20%', '40%', '70%', '90%'], correct: 2, exp: 'يبلغ التبادل الداخلي في الاتحاد الأوروبي نحو 70% مقارنة بـ3% في المغرب العربي.' },
+    { q: 'ما أبرز ما يميز الاتحاد الأوروبي عن اتحاد المغرب العربي؟', opts: ['الحجم السكاني', 'وجود عملة موحدة وبرلمان وحدود مفتوحة', 'الموقع الجغرافي', 'الدين المشترك'], correct: 1, exp: 'يتميز الاتحاد الأوروبي بعملة موحدة وبرلمان مشترك وحرية تنقل الأشخاص والبضائع.' },
+  ],
+  'g7': [
+    { q: 'ما نسبة الولايات المتحدة من الناتج الإجمالي العالمي؟', opts: ['10%', '15%', '25%', '40%'], correct: 2, exp: 'تمثل الولايات المتحدة نحو 25% من الناتج الإجمالي العالمي.' },
+    { q: 'ما المقصود بالقوة الناعمة الأمريكية؟', opts: ['قوة الجيش', 'التأثير الثقافي والإعلامي والتكنولوجي على العالم', 'ثرواتها الطبيعية', 'حجم سكانها'], correct: 1, exp: 'القوة الناعمة: التأثير الثقافي (هوليوود، GAFAM) والإعلامي والتكنولوجي الأمريكي.' },
+    { q: 'ما عدد القواعد العسكرية الأمريكية حول العالم تقريباً؟', opts: ['200', '400', '800+', '1500'], correct: 2, exp: 'تمتلك الولايات المتحدة أكثر من 800 قاعدة عسكرية في 70 دولة.' },
+  ],
+  'g8': [
+    { q: 'ما المرتبة التي يحتلها الاقتصاد الياباني عالمياً؟', opts: ['الأول', 'الثاني', 'الثالث', 'الرابع'], correct: 2, exp: 'يحتل الاقتصاد الياباني المرتبة الثالثة عالمياً.' },
+    { q: 'ما التحدي الأكبر الذي تواجهه اليابان؟', opts: ['نقص المياه', 'شيخوخة السكان ونقص الموارد الطبيعية', 'البطالة المرتفعة', 'الفقر المدقع'], correct: 1, exp: 'اليابان تعاني من شيخوخة سكانية حادة ونقص كبير في الموارد الطبيعية.' },
+  ],
+  'g9': [
+    { q: 'متى تفكك الاتحاد السوفيتي وظهرت روسيا الاتحادية؟', opts: ['1985', '1989', '1991', '1995'], correct: 2, exp: 'تفكك الاتحاد السوفيتي عام 1991 وأُعلن عن روسيا الاتحادية.' },
+    { q: 'ما أبرز ثروات روسيا الطبيعية؟', opts: ['الفوسفاط والأسماك', 'الغاز والنفط والمعادن', 'الأخشاب فقط', 'الزراعة فقط'], correct: 1, exp: 'روسيا تمتلك احتياطيات ضخمة من الغاز والنفط وهي أكبر مصدر للغاز في العالم.' },
+  ],
+  'g10': [
+    { q: 'ما مصدر الثروة الرئيسي لمصر؟', opts: ['النفط فقط', 'قناة السويس والسياحة والزراعة', 'التكنولوجيا', 'التعدين'], correct: 1, exp: 'ترتكز الاقتصاد المصري على قناة السويس والسياحة وزراعة وادي النيل.' },
+    { q: 'ما الأزمة المائية التي تهدد مصر حالياً؟', opts: ['جفاف البحر المتوسط', 'سد النهضة الإثيوبي على النيل', 'تراجع الأمطار', 'تلوث النيل'], correct: 1, exp: 'سد النهضة الإثيوبي يهدد الحصة المائية لمصر ويمثل أزمة استراتيجية.' },
+  ],
+  'g11': [
+    { q: 'ما تناقض نيجيريا الشهير؟', opts: ['غنية بالسكان وفقيرة بالأراضي', 'غنية بالثروات الطبيعية لكن يعاني سكانها من الفقر', 'متقدمة صناعياً لكن ضعيفة زراعياً', 'قوية عسكرياً لكن محدودة سياسياً'], correct: 1, exp: 'نيجيريا ثرية بالنفط والموارد لكن أكثر من 40% من سكانها يعيشون تحت خط الفقر.' },
+    { q: 'ما أهم مورد اقتصادي لنيجيريا؟', opts: ['الذهب', 'القطن', 'النفط', 'الفوسفاط'], correct: 2, exp: 'النفط يمثل 90% من صادرات نيجيريا وهي أكبر منتج نفطي في أفريقيا.' },
+  ],
+  'g12': [
+    { q: 'ما خطوات تحليل الوثيقة الجغرافية؟', opts: ['القراءة السريعة فقط', 'الطبيعة والمصدر والتاريخ ثم استخراج المعطيات وتفسيرها', 'الحفظ والإعادة', 'الوصف البصري فقط'], correct: 1, exp: 'التحليل يمر بـ: تحديد الطبيعة والمصدر — قراءة المعطيات — الوصف — التفسير — التقييم.' },
+    { q: 'كيف يُبنى النص الجغرافي؟', opts: ['جمل قصيرة بلا ترتيب', 'مقدمة + عرض مُعلَّل بالأرقام + خاتمة', 'وصف بلا تفسير', 'قائمة أرقام فقط'], correct: 1, exp: 'النص الجغرافي: مقدمة توطئة + عرض مُعلَّل بأرقام + خاتمة تركيبية.' },
+  ],
+
+  // ===== CIVIC EDUCATION QUIZZES =====
+  'c1': [
+    { q: 'ما مجلس التلاميذ؟', opts: ['هيئة حكومية', 'هيئة تمثيلية داخل المؤسسة التعليمية', 'منظمة دولية', 'نقابة للمعلمين'], correct: 1, exp: 'مجلس التلاميذ هيئة تمثيلية يمثل فيها التلاميذ زملاءهم أمام إدارة المؤسسة.' },
+    { q: 'ما الفرق بين الديمقراطية التمثيلية والتشاركية؟', opts: ['لا فرق', 'التشاركية تشمل المواطن مباشرة في القرار', 'التمثيلية أفضل دائماً', 'التشاركية للكبار فقط'], correct: 1, exp: 'الديمقراطية التشاركية تتيح للمواطن المشاركة المباشرة في القرار.' },
+    { q: 'لماذا المشاركة المدنية واجب وليس حقاً فقط؟', opts: ['لأن القانون يفرضها', 'لأنها تعزز الحياة الجماعية وتنمي المسؤولية', 'لأن الأستاذ يطلب ذلك', 'لا أحد يعلم السبب'], correct: 1, exp: 'المشاركة واجب لأنها ترسّخ الشعور بالانتماء وتحقق التعاون الجماعي.' },
+  ],
+  'c2': [
+    { q: 'ما الخطوة الأولى في معالجة مشكلة اجتماعية؟', opts: ['إيجاد الحل فوراً', 'تحديد المشكلة وتشخيصها وقياس حجمها', 'الشكوى للسلطات', 'الصبر وانتظار الحل'], correct: 1, exp: 'الخطوة الأولى دائماً هي التشخيص الدقيق: ما المشكلة؟ من المتضررون؟ ما الأسباب؟' },
+    { q: 'ما دور المجتمع المدني في حل المشكلات؟', opts: ['لا دور له', 'التوعية والمساهمة في الحلول والضغط على الدولة', 'الانتظار فقط', 'المعارضة فقط'], correct: 1, exp: 'المجتمع المدني (جمعيات، مؤسسات) يلعب دوراً محورياً في التوعية وتقديم الحلول.' },
+  ],
+  'c3': [
+    { q: 'ما السلط الثلاث للدولة المغربية؟', opts: ['الجيش والشرطة والمحاكم', 'التشريعية والتنفيذية والقضائية', 'الوزارات والجماعات والمحاكم', 'الملك والحكومة والبرلمان'], correct: 1, exp: 'السلط الثلاث: التشريعية (البرلمان) — التنفيذية (الحكومة) — القضائية (المحاكم).' },
+    { q: 'ما INDH؟', opts: ['حزب سياسي', 'المبادرة الوطنية للتنمية البشرية لمحاربة الفقر', 'هيئة انتخابية', 'تلفزيون عمومي'], correct: 1, exp: 'INDH مبادرة أطلقها الملك محمد السادس عام 2005 لمحاربة الفقر والهشاشة.' },
+  ],
+  'c4': [
+    { q: 'متى أُسست مؤسسة محمد الخامس للتضامن؟', opts: ['1956', '1975', '1999', '2011'], correct: 2, exp: 'أُسست مؤسسة محمد الخامس للتضامن عام 1999 في عهد الملك محمد السادس.' },
+    { q: 'ما مجالات عمل المؤسسة؟', opts: ['السياسة والانتخابات', 'مساعدة الفئات الهشة والتعليم والإدماج', 'التجارة والاستثمار', 'الشؤون الدينية'], correct: 1, exp: 'تعمل المؤسسة في: مساعدة الفئات الهشة، ذوو الاحتياجات الخاصة، ضحايا الكوارث.' },
+  ],
+  'c5': [
+    { q: 'ما القيم الأساسية للأخلاق في الحياة العامة؟', opts: ['الولاء السياسي', 'النزاهة والشفافية والمسؤولية والمساواة', 'الامتثال العمي', 'الإنتاجية فقط'], correct: 1, exp: 'أخلاق الحياة العامة: النزاهة — الشفافية — المسؤولية — المساواة — العدل.' },
+    { q: 'ما الهيئة المغربية لمكافحة الفساد؟', opts: ['المحكمة الدستورية', 'ICPC (الهيئة الوطنية للنزاهة)', 'الوزارة الأولى', 'البنك المركزي'], correct: 1, exp: 'ICPC (الهيئة الوطنية للنزاهة ومكافحة الرشوة) مكلفة بالوقاية من الفساد.' },
+  ],
+  'c6': [
+    { q: 'ما CNDH؟', opts: ['منظمة دولية', 'المجلس الوطني لحقوق الإنسان في المغرب', 'حزب سياسي', 'وزارة العدل'], correct: 1, exp: 'CNDH: المجلس الوطني لحقوق الإنسان، هيئة دستورية لحماية الحقوق ومراقبتها.' },
+    { q: 'ما ديوان المظالم؟', opts: ['سجن للمجرمين', 'هيئة استقبال شكاوى المواطنين ضد الإدارة', 'محكمة استئناف', 'مجلس وزاري'], correct: 1, exp: 'ديوان المظالم: هيئة تُعنى باستقبال شكاوى المواطنين ضد الإدارات العمومية.' },
+  ],
+  'c7': [
+    { q: 'ما الفرق بين التراث المادي واللامادي؟', opts: ['لا فرق', 'المادي: مبانٍ وأشياء ملموسة — اللامادي: موسيقى وعادات وتقاليد', 'المادي أهم دائماً', 'اللامادي تاريخي فقط'], correct: 1, exp: 'التراث المادي: المدن العتيقة والقصور. اللامادي: الموسيقى والحِرَف والأمثال.' },
+    { q: 'من تصنّف التراث الثقافي العالمي؟', opts: ['الأمم المتحدة مباشرة', 'اليونسكو (UNESCO)', 'الاتحاد الأفريقي', 'الدول منفردةً'], correct: 1, exp: 'UNESCO (منظمة التربية والثقافة والعلوم) هي التي تصنّف التراث الثقافي العالمي.' },
+  ],
+  'c8': [
+    { q: 'ما هدف المغرب في مجال الطاقة المتجددة للعام 2030؟', opts: ['20%', '30%', '52%', '100%'], correct: 2, exp: 'يهدف المغرب إلى إنتاج 52% من كهربائه من مصادر متجددة بحلول 2030.' },
+    { q: 'ما المورد الطبيعي الذي يشكّل أزمة في المغرب؟', opts: ['الغاز', 'الماء بسبب الجفاف والطلب المتزايد', 'الفوسفاط', 'الأسماك'], correct: 1, exp: 'يعاني المغرب من شح الموارد المائية خاصة في ظل التغيرات المناخية.' },
+  ],
+  'c9': [
+    { q: 'ما مبدأ "تقاسم الأرض مع العالم"؟', opts: ['توزيع الأراضي الزراعية', 'التضامن الدولي في حماية الموارد المشتركة للبشرية', 'الحدود الدولية', 'الهجرة الشرعية'], correct: 1, exp: 'يعني المسؤولية المشتركة تجاه الكوكب والموارد الطبيعية والبيئة كملك مشترك للبشرية.' },
+    { q: 'كم دولة عضو في الأمم المتحدة؟', opts: ['150', '175', '193', '200'], correct: 2, exp: 'تضم الأمم المتحدة 193 دولة عضواً وهي أشمل منظمة دولية.' },
+  ],
+  'c10': [
+    { q: 'ما إعلان مراكش 2016؟', opts: ['معاهدة تجارية', 'إعلان حول حقوق الأقليات الدينية في الدول الإسلامية', 'اتفاقية عسكرية', 'قرار بيئي'], correct: 1, exp: 'إعلان مراكش 2016: وثيقة أممية لحماية حقوق الأقليات الدينية في الدول ذات الأغلبية المسلمة.' },
+    { q: 'ما ثوابت الإسلام المغربي؟', opts: ['التشدد والانغلاق', 'الاعتدال والتسامح والمذهب المالكي', 'الإسلام السياسي فقط', 'الطائفية'], correct: 1, exp: 'يتميز الإسلام المغربي بالاعتدال والتسامح ضمن المذهب المالكي والطريقة الأشعرية.' },
+  ],
+  'c11': [
+    { q: 'ما عدد بعثات حفظ السلام التي شارك فيها المغرب تقريباً؟', opts: ['10', '20', '40+', '100'], correct: 2, exp: 'شارك المغرب في أكثر من 40 بعثة لحفظ السلام تحت راية الأمم المتحدة.' },
+    { q: 'متى انضم المغرب إلى الأمم المتحدة؟', opts: ['1945', '1950', '1956', '1960'], correct: 2, exp: 'انضم المغرب إلى الأمم المتحدة عام 1956 مباشرة بعد حصوله على الاستقلال.' },
+  ],
+  'c12': [
+    { q: 'ما HACA؟', opts: ['حزب سياسي', 'الهيئة العليا للاتصال السمعي البصري المغربية', 'جريدة وطنية', 'وزارة الإعلام'], correct: 1, exp: 'HACA: الهيئة العليا للاتصال السمعي البصري تنظّم وسائل الإعلام السمعية والبصرية.' },
+    { q: 'ما دور الإعلام في تعزيز المواطنة؟', opts: ['الترفيه فقط', 'التوعية الحقوقية وترسيخ القيم المدنية ومكافحة الإشاعة', 'الدعاية السياسية', 'الإعلان التجاري'], correct: 1, exp: 'الإعلام المسؤول يُعزز التربية على المواطنة ويُحارب خطاب الكراهية وينشر قيم المواطنة.' },
+  ],
+};
+
+
+// ======== EXTENDED LESSON CONTENT (إنفوغرافيا + محتوى كامل) ========
+const INFOGRAPHIC = {
+  // ===== HISTORY 3AC =====
+  'h1': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1760</span><div class="info-stat-label">بداية الثورة الصناعية</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">3</span><div class="info-stat-label">طبقات اجتماعية كبرى</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">XIX</span><div class="info-stat-label">قرن التحولات الكبرى</div></div>
+    </div>
+    <div class="info-map-box">
+      <div class="info-map-title">🏭 القوى الصناعية الكبرى (القرن 19)</div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#F97316"></div><div class="info-map-name">بريطانيا</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:90%;background:#F97316"></div></div><div class="info-map-val">90%</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#3B82F6"></div><div class="info-map-name">ألمانيا</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:70%;background:#3B82F6"></div></div><div class="info-map-val">70%</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#10B981"></div><div class="info-map-name">فرنسا</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:60%;background:#10B981"></div></div><div class="info-map-val">60%</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#8B5CF6"></div><div class="info-map-name">الولايات المتحدة</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:50%;background:#8B5CF6"></div></div><div class="info-map-val">50%</div></div>
+    </div>
+    <div style="padding:4px 0">
+      <div class="info-pyramid-level" style="width:40%;background:#F97316">البورجوازية الكبرى</div>
+      <div class="info-pyramid-level" style="width:65%;background:#3B82F6">البورجوازية الصغرى</div>
+      <div class="info-pyramid-level" style="width:90%;background:#334155;border:1px solid rgba(255,255,255,0.1)">الطبقة العاملة (البروليتاريا)</div>
+    </div>
+  </div>`,
+
+  'h2': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1880</span><div class="info-stat-label">ذروة التوسع الاستعماري</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">85%</span><div class="info-stat-label">أفريقيا مستعمَرة 1914</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">6</span><div class="info-stat-label">قوى استعمارية كبرى</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">💰</div><div><div class="info-flow-title">الدوافع الاقتصادية</div><div class="info-flow-text">البحث عن مواد خام — أسواق جديدة — مجالات للاستثمار الرأسمالي</div></div></div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">⚔️</div><div><div class="info-flow-title">الدوافع السياسية</div><div class="info-flow-text">التنافس بين الدول الأوروبية على النفوذ والهيمنة الدولية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">📖</div><div><div class="info-flow-title">الدوافع الأيديولوجية</div><div class="info-flow-text">العنصرية — "العبء الأبيض" — ادعاء نشر الحضارة والتنصير</div></div></div>
+  </div>`,
+
+  'h3': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1844</span><div class="info-stat-label">معركة إيسلي</div></div>
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1906</span><div class="info-stat-label">مؤتمر الجزيرة الخضراء</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1912</span><div class="info-stat-label">معاهدة الحماية</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">⚔️</div><div><div class="info-flow-title">المعارك والأزمات</div><div class="info-flow-text">معركة إيسلي 1844 — معركة تطوان 1860 — أزمة أكادير 1911</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">📜</div><div><div class="info-flow-title">المعاهدات المفروضة</div><div class="info-flow-text">معاهدة لالة مغنية 1845 — مؤتمر مدريد 1880 — اتفاقية الجزيرة الخضراء 1906 — معاهدة فاس 1912</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">🦁</div><div><div class="info-flow-title">المقاومة المغربية</div><div class="info-flow-text">المقاومة المسلحة في الجبال والأطلس — رفض السلاطين الاستسلام — دور القبائل</div></div></div>
+  </div>`,
+
+  'h4': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">20M</span><div class="info-stat-label">قتيل عسكري</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1914</span><div class="info-stat-label">بداية الحرب</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1919</span><div class="info-stat-label">معاهدة فرساي</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#F97316">دول الوفاق (Entente)</div><div style="color:#3B82F6">دول التحالف (Triple Alliance)</div></div>
+      <div class="info-compare-row"><div>فرنسا — بريطانيا — روسيا — الولايات المتحدة (1917)</div><div>ألمانيا — النمسا-المجر — إيطاليا ثم تركيا</div></div>
+      <div class="info-compare-row"><div>الانتصار النهائي نوفمبر 1918</div><div>الهزيمة — معاهدة فرساي المذلة</div></div>
+    </div>
+  </div>`,
+
+  'h5': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1918</span><div class="info-stat-label">سقوط الدولة العثمانية</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1916</span><div class="info-stat-label">اتفاقية سايكس-بيكو</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1923</span><div class="info-stat-label">معاهدة لوزان</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">🏛️</div><div><div class="info-flow-title">أسباب سقوط الدولة العثمانية</div><div class="info-flow-text">الضعف الداخلي — الهزيمة في الحرب العالمية الأولى — حركات التحرر القومي</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">✂️</div><div><div class="info-flow-title">التقسيم الاستعماري للمشرق</div><div class="info-flow-text">اتفاقية سايكس-بيكو 1916: فرنسا تأخذ سوريا ولبنان — بريطانيا تأخذ العراق وفلسطين</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">📋</div><div><div class="info-flow-title">نظام الانتداب</div><div class="info-flow-text">عصبة الأمم تمنح الانتداب لفرنسا وبريطانيا على أراضي المشرق العربي</div></div></div>
+  </div>`,
+
+  'h6': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1929</span><div class="info-stat-label">انهيار بورصة وول ستريت</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">25%</span><div class="info-stat-label">نسبة البطالة في أمريكا</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">80%</span><div class="info-stat-label">انهيار الأسعار الصناعية</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">📉</div><div><div class="info-flow-title">الأسباب</div><div class="info-flow-text">المضاربة في البورصة — فائض الإنتاج — ضعف القدرة الشرائية — الديون الأوروبية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🌍</div><div><div class="info-flow-title">الانتشار العالمي</div><div class="info-flow-text">الأزمة انتقلت من أمريكا إلى أوروبا وبقية العالم عبر البنوك والتجارة الدولية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">🏛️</div><div><div class="info-flow-title">النتائج السياسية</div><div class="info-flow-text">صعود الفاشية والنازية — سياسة الاكتفاء الذاتي — نيو ديل روزفلت في أمريكا</div></div></div>
+  </div>`,
+
+  'h7': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1933</span><div class="info-stat-label">وصول هتلر للسلطة</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">6M</span><div class="info-stat-label">ضحايا الهولوكوست</div></div>
+      <div class="info-stat-box" style="--isc:#8B5CF6"><span class="info-stat-num">1945</span><div class="info-stat-label">سقوط النازية</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">📉</div><div><div class="info-flow-title">أسباب صعود النازية</div><div class="info-flow-text">إذلال ألمانيا بمعاهدة فرساي — أزمة 1929 — الفراغ السياسي — الدعاية الهتلرية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">☠️</div><div><div class="info-flow-title">مبادئ النازية</div><div class="info-flow-text">العنصرية — تفوق الجنس الآري — معاداة السامية — الزعيم الأوحد (الفوهرر)</div></div></div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">🏛️</div><div><div class="info-flow-title">تركيز السلطة</div><div class="info-flow-text">إلغاء الأحزاب — السيطرة على الإعلام — قوانين نورنبرغ — الجيستابو</div></div></div>
+  </div>`,
+
+  'h8': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">55M</span><div class="info-stat-label">قتيل في الحرب</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1939</span><div class="info-stat-label">بداية الحرب</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">1945</span><div class="info-stat-label">نهاية الحرب</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#10B981">الحلفاء (Alliés)</div><div style="color:#EF4444">دول المحور (Axe)</div></div>
+      <div class="info-compare-row"><div>بريطانيا — فرنسا — الاتحاد السوفيتي — الولايات المتحدة</div><div>ألمانيا النازية — إيطاليا الفاشية — اليابان</div></div>
+      <div class="info-compare-row"><div>النصر النهائي 1945 — تأسيس الأمم المتحدة</div><div>الهزيمة الكاملة — محاكم نورنبرغ</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F59E0B"><div class="info-flow-icon">💣</div><div><div class="info-flow-title">القنبلة الذرية</div><div class="info-flow-text">أغسطس 1945: القنبلة الذرية على هيروشيما وناغازاكي — استسلام اليابان — نهاية الحرب</div></div></div>
+  </div>`,
+
+  'h9': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1917</span><div class="info-stat-label">وعد بلفور</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1948</span><div class="info-stat-label">النكبة</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1993</span><div class="info-stat-label">اتفاقيات أوسلو</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">📜</div><div><div class="info-flow-title">وعد بلفور 1917</div><div class="info-flow-text">تعهد بريطانيا بإقامة وطن قومي لليهود في فلسطين دون مراعاة سكانها العرب</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🏃</div><div><div class="info-flow-title">النكبة 1948</div><div class="info-flow-text">تهجير أكثر من 700 ألف فلسطيني — إعلان قيام دولة إسرائيل — الحرب الأولى</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">🤝</div><div><div class="info-flow-title">مسار السلام</div><div class="info-flow-text">اتفاقيات أوسلو 1993 — السلطة الفلسطينية — تعثر مفاوضات الدولتين</div></div></div>
+  </div>`,
+
+  'h10': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1944</span><div class="info-stat-label">وثيقة الاستقلال</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">1956</span><div class="info-stat-label">الاستقلال</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1975</span><div class="info-stat-label">المسيرة الخضراء</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">✊</div><div><div class="info-flow-title">الكفاح الوطني</div><div class="info-flow-text">وثيقة المطالبة 1944 — دور حزب الاستقلال — جيش التحرير — نفي محمد الخامس 1953</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">👑</div><div><div class="info-flow-title">عودة الملك والاستقلال</div><div class="info-flow-text">عودة محمد الخامس نوفمبر 1955 — الاستقلال 2 مارس 1956 — جلاء القوات الأجنبية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">🟢</div><div><div class="info-flow-title">استكمال الوحدة الترابية</div><div class="info-flow-text">طرفاية 1958 — سيدي إفني 1969 — المسيرة الخضراء 1975 — اتفاقية مدريد</div></div></div>
+  </div>`,
+
+  'h11': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">1956</span><div class="info-stat-label">الاستقلال</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1962</span><div class="info-stat-label">أول دستور</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">2011</span><div class="info-stat-label">دستور الإصلاح</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🏛️</div><div><div class="info-flow-title">بناء المؤسسات</div><div class="info-flow-text">تأسيس الجيش الملكي — إصلاح التعليم — توحيد الإدارة — بناء البنية التحتية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">📜</div><div><div class="info-flow-title">المسيرة الدستورية</div><div class="info-flow-text">دستور 1962 — دستور 1996 (الغرفتين) — دستور 2011 (إصلاحات عميقة)</div></div></div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">📈</div><div><div class="info-flow-title">التنمية الاقتصادية</div><div class="info-flow-text">المغربة — إصلاح الأراضي — المخططات التنموية — الانفتاح الاقتصادي</div></div></div>
+  </div>`,
+
+  // ===== GEOGRAPHY 3AC =====
+  'g1': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">5</span><div class="info-stat-label">دول المغرب العربي</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">6M</span><div class="info-stat-label">كم² مساحة إجمالية</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">100M</span><div class="info-stat-label">ساكن تقريباً</div></div>
+    </div>
+    <div class="info-map-box">
+      <div class="info-map-title">🌍 دول المغرب العربي — المساحة (مليون كم²)</div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#10B981"></div><div class="info-map-name">الجزائر</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:90%;background:#10B981"></div></div><div class="info-map-val">2.38</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#F97316"></div><div class="info-map-name">المغرب</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:28%;background:#F97316"></div></div><div class="info-map-val">0.71</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#3B82F6"></div><div class="info-map-name">ليبيا</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:66%;background:#3B82F6"></div></div><div class="info-map-val">1.76</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#8B5CF6"></div><div class="info-map-name">تونس</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:6%;background:#8B5CF6"></div></div><div class="info-map-val">0.16</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#F59E0B"></div><div class="info-map-name">موريتانيا</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:40%;background:#F59E0B"></div></div><div class="info-map-val">1.03</div></div>
+    </div>
+  </div>`,
+
+  'g2': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">1989</span><div class="info-stat-label">تأسيس الاتحاد</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">5</span><div class="info-stat-label">دول أعضاء</div></div>
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">2</span><div class="info-stat-label">دول في خلاف مستمر</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#10B981">عوامل التكامل</div><div style="color:#EF4444">عوائق التكامل</div></div>
+      <div class="info-compare-row"><div>الوحدة الجغرافية — اللغة والدين والثقافة المشتركة</div><div>الخلاف المغربي-الجزائري — إغلاق الحدود</div></div>
+      <div class="info-compare-row"><div>التكامل الاقتصادي الممكن (نفط جزائر، سياحة مغرب)</div><div>التباين السياسي — ضعف التبادل التجاري (3% فقط)</div></div>
+    </div>
+  </div>`,
+
+  'g3': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1989</span><div class="info-stat-label">تأسيس الاتحاد</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">5</span><div class="info-stat-label">دول — مراكش</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">3%</span><div class="info-stat-label">نسبة التبادل الداخلي</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🎯</div><div><div class="info-flow-title">أهداف الاتحاد</div><div class="info-flow-text">إقامة سوق مشتركة — التنسيق السياسي — التكامل الاقتصادي — قوة تفاوضية أمام الاتحاد الأوروبي</div></div></div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">🚧</div><div><div class="info-flow-title">عوائق التحقيق</div><div class="info-flow-text">تعطل القمم منذ 1994 — إغلاق الحدود المغربية-الجزائرية — غياب إرادة سياسية حقيقية</div></div></div>
+  </div>`,
+
+  'g4': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">27</span><div class="info-stat-label">دولة عضو</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">450M</span><div class="info-stat-label">ساكن</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">22%</span><div class="info-stat-label">من الناتج العالمي</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#10B981">الإمكانات</div><div style="color:#EF4444">التحديات</div></div>
+      <div class="info-compare-row"><div>سوق داخلي موحّد — العملة الموحدة (اليورو)</div><div>التفاوت بين الدول الأعضاء</div></div>
+      <div class="info-compare-row"><div>قوة تصديرية عالمية — تكنولوجيا متقدمة</div><div>شيخوخة السكان — تداعيات البريكزيت</div></div>
+    </div>
+  </div>`,
+
+  'g5': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1957</span><div class="info-stat-label">معاهدة روما</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1999</span><div class="info-stat-label">اعتماد اليورو</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">2016</span><div class="info-stat-label">البريكزيت</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">🏛️</div><div><div class="info-flow-title">مراحل الاندماج</div><div class="info-flow-text">1957: السوق المشتركة — 1993: السوق الداخلي الموحد — 1999: اليورو — 2004: التوسع الكبير</div></div></div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">⚠️</div><div><div class="info-flow-title">أزمات الاندماج</div><div class="info-flow-text">أزمة اليورو 2010 — خروج بريطانيا — الصعود الشعبوي — أزمة المهاجرين</div></div></div>
+  </div>`,
+
+  'g6': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">27</span><div class="info-stat-label">دول (الاتحاد الأوروبي)</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">5</span><div class="info-stat-label">دول (المغرب العربي)</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">3%</span><div class="info-stat-label">تبادل داخلي مغاربي</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#3B82F6">الاتحاد الأوروبي</div><div style="color:#F97316">اتحاد المغرب العربي</div></div>
+      <div class="info-compare-row"><div>عملة موحدة — حدود مفتوحة — برلمان مشترك</div><div>لا عملة — حدود مغلقة — قمم متوقفة</div></div>
+      <div class="info-compare-row"><div>70% تبادل داخلي — ناتج: 22% عالمي</div><div>3% تبادل — اقتصادات منفصلة</div></div>
+    </div>
+  </div>`,
+
+  'g7': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">25%</span><div class="info-stat-label">من الناتج العالمي</div></div>
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">800+</span><div class="info-stat-label">قاعدة عسكرية</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">330M</span><div class="info-stat-label">ساكن</div></div>
+    </div>
+    <div class="info-map-box">
+      <div class="info-map-title">💪 أبعاد القوة الأمريكية</div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#F97316"></div><div class="info-map-name">الاقتصادي</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:95%;background:#F97316"></div></div><div class="info-map-val">★★★★★</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#EF4444"></div><div class="info-map-name">العسكري</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:98%;background:#EF4444"></div></div><div class="info-map-val">★★★★★</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#3B82F6"></div><div class="info-map-name">التكنولوجي</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:90%;background:#3B82F6"></div></div><div class="info-map-val">★★★★★</div></div>
+      <div class="info-map-item"><div class="info-map-dot" style="background:#8B5CF6"></div><div class="info-map-name">القوة الناعمة</div><div class="info-map-bar-wrap"><div class="info-map-bar" style="width:85%;background:#8B5CF6"></div></div><div class="info-map-val">★★★★☆</div></div>
+    </div>
+  </div>`,
+
+  'g8': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">3ème</span><div class="info-stat-label">اقتصاد العالم</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">125M</span><div class="info-stat-label">ساكن</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">1%</span><div class="info-stat-label">ميزانية الدفاع</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">🚀</div><div><div class="info-flow-title">أسرار النهضة اليابانية</div><div class="info-flow-text">جودة الإنتاج (Kaizen) — الشراكة بين الدولة والشركات — الاستثمار في البحث والتطوير</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">⚠️</div><div><div class="info-flow-title">تحديات اليابان</div><div class="info-flow-text">شيخوخة السكان — نقص الموارد الطبيعية — التنافس الصيني — الكوارث الطبيعية</div></div></div>
+  </div>`,
+
+  'g9': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">1991</span><div class="info-stat-label">تفكك الاتحاد السوفيتي</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">17M</span><div class="info-stat-label">كم² مساحة</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">145M</span><div class="info-stat-label">ساكن</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">📉</div><div><div class="info-flow-title">صعوبات مرحلة التحول</div><div class="info-flow-text">انهيار الاقتصاد الموجّه — بروز الأوليغارشية — الأزمات الاجتماعية — نزاعات الأقليات</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">⚡</div><div><div class="info-flow-title">مقومات القوة الروسية</div><div class="info-flow-text">ثروات طبيعية هائلة (غاز — نفط — معادن) — قوة عسكرية نووية — مقعد في مجلس الأمن</div></div></div>
+  </div>`,
+
+  'g10': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">100M</span><div class="info-stat-label">ساكن</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">6650</span><div class="info-stat-label">كم طول النيل</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">2ème</span><div class="info-stat-label">اقتصاد أفريقي</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">💪</div><div><div class="info-flow-title">مقومات القوة المصرية</div><div class="info-flow-text">قناة السويس — السياحة — الزراعة على ضفاف النيل — الجيش الأقوى عربياً</div></div></div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">⚠️</div><div><div class="info-flow-title">تحديات التنمية</div><div class="info-flow-text">الاكتظاظ السكاني — شح المياه — البطالة — أزمة سد النهضة</div></div></div>
+  </div>`,
+
+  'g11': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">220M</span><div class="info-stat-label">ساكن</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1ère</span><div class="info-stat-label">منتج نفطي أفريقي</div></div>
+      <div class="info-stat-box" style="--isc:#EF4444"><span class="info-stat-num">40%</span><div class="info-stat-label">يعيشون تحت خط الفقر</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#10B981">الثروات</div><div style="color:#EF4444">ضعف التنمية</div></div>
+      <div class="info-compare-row"><div>نفط — غاز — معادن — أراضٍ زراعية خصبة</div><div>الفساد — عدم الاستقرار السياسي — الفقر</div></div>
+      <div class="info-compare-row"><div>أكبر اقتصاد في أفريقيا جنوب الصحراء</div><div>ضعف البنية التحتية — البطالة — التفاوت</div></div>
+    </div>
+  </div>`,
+
+  'g12': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">3</span><div class="info-stat-label">أنواع الوثائق الجغرافية</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">5</span><div class="info-stat-label">خطوات التحليل</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">20</span><div class="info-stat-label">نقطة — الامتحان الجهوي</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">📊</div><div><div class="info-flow-title">خطوات تحليل الوثيقة</div><div class="info-flow-text">1. تحديد الموضوع 2. قراءة البيانات 3. وصف الظاهرة 4. تفسيرها 5. تقييمها</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">✍️</div><div><div class="info-flow-title">صياغة النص الجغرافي</div><div class="info-flow-text">مقدمة + عرض مُعلَّل بالأرقام + خاتمة — استخدام الروابط المنطقية</div></div></div>
+  </div>`,
+
+  // ===== CIVIC EDUCATION 3AC =====
+  'c1': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">2</span><div class="info-stat-label">نوعا الديمقراطية</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">100%</span><div class="info-stat-label">حق المشاركة للجميع</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1</span><div class="info-stat-label">مجلس تلاميذ لكل مؤسسة</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#3B82F6">الديمقراطية التمثيلية</div><div style="color:#10B981">الديمقراطية التشاركية</div></div>
+      <div class="info-compare-row"><div>انتخاب ممثلين يتخذون القرار نيابةً عن الشعب</div><div>مشاركة المواطن مباشرة في صنع القرار</div></div>
+      <div class="info-compare-row"><div>الانتخابات التشريعية والرئاسية</div><div>الاستفتاء — المجالس المحلية — مجلس التلاميذ</div></div>
+    </div>
+  </div>`,
+
+  'c2': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">3</span><div class="info-stat-label">مستويات معالجة المشكلة</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">5</span><div class="info-stat-label">خطوات منهجية</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">∞</span><div class="info-stat-label">حلول ممكنة</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🔍</div><div><div class="info-flow-title">تحديد المشكلة</div><div class="info-flow-text">رصد الظاهرة — قياس حجمها — تحديد المتضررين — تشخيص الأسباب</div></div></div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">💡</div><div><div class="info-flow-title">اقتراح الحلول</div><div class="info-flow-text">الحلول الفردية — الجماعية — المؤسسية — دور المجتمع المدني</div></div></div>
+  </div>`,
+
+  'c3': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">3</span><div class="info-stat-label">سلط الدولة</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">2011</span><div class="info-stat-label">دستور الإصلاحات</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">∞</span><div class="info-stat-label">مسؤولياتها الاجتماعية</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">⚖️</div><div><div class="info-flow-title">آليات تدخل الدولة</div><div class="info-flow-text">القوانين — الميزانية العامة — المؤسسات الاجتماعية — البرامج الحكومية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🤝</div><div><div class="info-flow-title">الشراكة مع المجتمع المدني</div><div class="info-flow-text">الجمعيات — التعاونيات — المبادرة الوطنية للتنمية البشرية (INDH)</div></div></div>
+  </div>`,
+
+  'c4': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">1999</span><div class="info-stat-label">تأسيس المؤسسة</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">SM5</span><div class="info-stat-label">على اسم محمد الخامس</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">∞</span><div class="info-stat-label">مستفيداً عبر البرامج</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">❤️</div><div><div class="info-flow-title">مجالات التدخل</div><div class="info-flow-text">مساعدة الفئات الهشة — دعم التعليم — إعادة الإدماج — مساعدات الكوارث</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🏆</div><div><div class="info-flow-title">إنجازات المؤسسة</div><div class="info-flow-text">توزيع مساعدات رمضان — دعم ذوي الاحتياجات الخاصة — بناء مراكز الإيواء</div></div></div>
+  </div>`,
+
+  'c5': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">5</span><div class="info-stat-label">قيم أخلاق الحياة العامة</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">2011</span><div class="info-stat-label">كرّس الدستور الشفافية</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">ICPC</span><div class="info-stat-label">هيئة مكافحة الفساد</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">⭐</div><div><div class="info-flow-title">قيم الحياة العامة</div><div class="info-flow-text">النزاهة — الشفافية — المسؤولية — المساواة — احترام المصلحة العامة</div></div></div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">⚠️</div><div><div class="info-flow-title">آفة الفساد</div><div class="info-flow-text">الرشوة — محسوبية — الغش — التملص الضريبي — إساءة استخدام السلطة</div></div></div>
+  </div>`,
+
+  'c6': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">3</span><div class="info-stat-label">هيئات الطعن والحماية</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">2011</span><div class="info-stat-label">الدستور يحصّن الحقوق</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">CNDH</span><div class="info-stat-label">المجلس الوطني لحقوق الإنسان</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">⚖️</div><div><div class="info-flow-title">المسالك القضائية</div><div class="info-flow-text">المحاكم الابتدائية — محاكم الاستئناف — المحكمة الدستورية — المجلس الأعلى للسلطة القضائية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">📢</div><div><div class="info-flow-title">هيئات غير قضائية</div><div class="info-flow-text">CNDH — ديوان المظالم — البرلمان — منظمات حقوق الإنسان</div></div></div>
+  </div>`,
+
+  'c7': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">2</span><div class="info-stat-label">نوعا التراث</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">UNESCO</span><div class="info-stat-label">مصنّف عالمياً</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">مكنّاس</span><div class="info-stat-label">مثال على التراث المادي</div></div>
+    </div>
+    <div class="info-compare">
+      <div class="info-compare-head"><div style="color:#F97316">التراث المادي</div><div style="color:#3B82F6">التراث اللامادي</div></div>
+      <div class="info-compare-row"><div>المدن العتيقة — القصور — المساجد — المتاحف</div><div>الموسيقى — الحرف التقليدية — الأمثال — الطقوس</div></div>
+      <div class="info-compare-row"><div>فاس — مراكش — مكناس — الرباط</div><div>الحَيحَة — الملحون — صناعة الزليج</div></div>
+    </div>
+  </div>`,
+
+  'c8': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">3</span><div class="info-stat-label">أنواع الموارد</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">2030</span><div class="info-stat-label">أهداف المناخ المغربية</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">52%</span><div class="info-stat-label">طاقة متجددة 2030</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#10B981"><div class="info-flow-icon">🌿</div><div><div class="info-flow-title">الموارد الطبيعية المغربية</div><div class="info-flow-text">الماء — الغابات — الفوسفاط — الشواطئ — السهول الزراعية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#EF4444"><div class="info-flow-icon">⚠️</div><div><div class="info-flow-title">مخاطر التدهور</div><div class="info-flow-text">إزالة الغابات — التلوث — الجفاف — الاستنزاف المفرط للمياه الجوفية</div></div></div>
+  </div>`,
+
+  'c9': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">193</span><div class="info-stat-label">دولة في الأمم المتحدة</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1945</span><div class="info-stat-label">تأسيس الأمم المتحدة</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">SDG</span><div class="info-stat-label">17 هدفاً للتنمية</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">🌍</div><div><div class="info-flow-title">مفهوم تقاسم الأرض</div><div class="info-flow-text">التضامن الدولي — التنمية المستدامة — الموارد المشتركة — الأجيال القادمة</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🤝</div><div><div class="info-flow-title">دور المغرب</div><div class="info-flow-text">التعاون جنوب-جنوب — المساهمة في قوات حفظ السلام — المشاركة في المؤتمرات الدولية</div></div></div>
+  </div>`,
+
+  'c10': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">3</span><div class="info-stat-label">أديان إبراهيمية</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">2016</span><div class="info-stat-label">إعلان مراكش</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">رابطة</span><div class="info-stat-label">العلماء الأفارقة</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">☪️</div><div><div class="info-flow-title">مبادئ الإسلام المغربي</div><div class="info-flow-text">التسامح — الاعتدال — الانفتاح — المذهب المالكي — الطريقة الأشعرية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">🕊️</div><div><div class="info-flow-title">الحوار الديني</div><div class="info-flow-text">إعلان مراكش 2016 حول حقوق الأقليات — مبادرات الملك للحوار — دبلوماسية دينية</div></div></div>
+  </div>`,
+
+  'c11': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">40+</span><div class="info-stat-label">بعثة سلام مغربية</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">1956</span><div class="info-stat-label">المغرب عضو في الأمم المتحدة</div></div>
+      <div class="info-stat-box" style="--isc:#10B981"><span class="info-stat-num">UA</span><div class="info-stat-label">الاتحاد الأفريقي</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#3B82F6"><div class="info-flow-icon">🕊️</div><div><div class="info-flow-title">مساهمات المغرب في السلام</div><div class="info-flow-text">المشاركة في قوات حفظ السلام — الوساطة في النزاعات الأفريقية — تعليم الأئمة الأفارقة</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">🤝</div><div><div class="info-flow-title">الدبلوماسية المغربية</div><div class="info-flow-text">عضوية في 40+ منظمة دولية — علاقات متوازنة مع الشرق والغرب — ريادة التعاون جنوب-جنوب</div></div></div>
+  </div>`,
+
+  'c12': `<div>
+    <div class="info-stats-row">
+      <div class="info-stat-box" style="--isc:#8B5CF6"><span class="info-stat-num">3</span><div class="info-stat-label">أنواع الإعلام</div></div>
+      <div class="info-stat-box" style="--isc:#F97316"><span class="info-stat-num">HACA</span><div class="info-stat-label">الهيئة العليا للاتصال</div></div>
+      <div class="info-stat-box" style="--isc:#3B82F6"><span class="info-stat-num">2011</span><div class="info-stat-label">الدستور يصون حرية الإعلام</div></div>
+    </div>
+    <div class="info-flow-item" style="--ifc:#8B5CF6"><div class="info-flow-icon">📺</div><div><div class="info-flow-title">دور الإعلام في المواطنة</div><div class="info-flow-text">التوعية الحقوقية — التربية على القيم — محاربة خطاب الكراهية — تعزيز الهوية الوطنية</div></div></div>
+    <div class="info-flow-item" style="--ifc:#F97316"><div class="info-flow-icon">📱</div><div><div class="info-flow-title">الإعلام الرقمي</div><div class="info-flow-text">مواقع إخبارية — المدونات — شبكات التواصل الاجتماعي — تحديات الأخبار الزائفة</div></div></div>
+  </div>`,
+};
+
+// ======== EXAM DATA (نماذج امتحانات كاملة) ========
+const EXAM_DATA = [
+  {
+    title: 'نموذج امتحان جهوي — الاجتماعيات 3AC',
+    subtitle: 'الدورة الثانية 2025 — جميع الجهات',
+    level: '3AC', color: 'var(--primary)',
+    duration: '120 دقيقة', totalPoints: 40,
+    parts: [
+      {
+        subject: '📜 التاريخ', points: 14, color: 'var(--primary)',
+        questions: [
+          { type: 'doc', num: 1, text: 'عرّف المفاهيم التالية: الرأسمالية — الإمبريالية — الحرب العالمية الأولى', points: 3 },
+          { type: 'analysis', num: 2, text: 'انطلاقاً من الوثيقة، اشرح الأسباب الاقتصادية للإمبريالية الأوروبية في نهاية القرن 19', points: 5 },
+          { type: 'essay', num: 3, text: 'في فقرة منظمة، بيّن نتائج الحرب العالمية الأولى السياسية والاقتصادية والاجتماعية', points: 6 },
+        ]
+      },
+      {
+        subject: '🌍 الجغرافيا', points: 14, color: 'var(--accent-light)',
+        questions: [
+          { type: 'map', num: 1, text: 'تعرّف على دول المغرب العربي الخمس وضع على الخريطة موقع كل دولة', points: 4 },
+          { type: 'analysis', num: 2, text: 'انطلاقاً من معطيات الجدول، قارن بين إمكانات الاتحاد الأوروبي واتحاد المغرب العربي', points: 5 },
+          { type: 'essay', num: 3, text: 'أنتج نصاً جغرافياً حول مكانة الولايات المتحدة الأمريكية في الاقتصاد العالمي', points: 5 },
+        ]
+      },
+      {
+        subject: '⚖️ التربية على المواطنة', points: 12, color: 'var(--green)',
+        questions: [
+          { type: 'comprehension', num: 1, text: 'انطلاقاً من الوثيقة، استخرج مظاهر المشاركة المدنية لدى التلاميذ', points: 4 },
+          { type: 'essay', num: 2, text: 'قدّم اقتراحاً عملياً لحل مشكلة اجتماعية في محيطك المدرسي', points: 8 },
+        ]
+      },
+    ]
+  },
+  {
+    title: 'نموذج امتحان جهوي — الاجتماعيات 3AC',
+    subtitle: 'الدورة الأولى 2025 — جهة الدار البيضاء سطات',
+    level: '3AC', color: 'var(--accent-light)',
+    duration: '120 دقيقة', totalPoints: 40,
+    parts: [
+      {
+        subject: '📜 التاريخ', points: 14, color: 'var(--primary)',
+        questions: [
+          { type: 'doc', num: 1, text: 'حدّد طبيعة الوثيقة ومصدرها والفترة التاريخية التي تتناولها', points: 3 },
+          { type: 'analysis', num: 2, text: 'استخرج من الوثيقة مظاهر الأزمة الاقتصادية لسنة 1929', points: 5 },
+          { type: 'essay', num: 3, text: 'بيّن في فقرة مدعّمة بالمعطيات كيف قادت النازية إلى اندلاع الحرب العالمية الثانية', points: 6 },
+        ]
+      },
+      {
+        subject: '🌍 الجغرافيا', points: 14, color: 'var(--accent-light)',
+        questions: [
+          { type: 'analysis', num: 1, text: 'بالاعتماد على مؤشرات التنمية، قيّم مدى نجاح مصر كنموذج للتنمية العربية', points: 6 },
+          { type: 'essay', num: 2, text: 'أنتج نصاً جغرافياً حول مشكلة نيجيريا: الثروات الطبيعية وضعف التنمية', points: 8 },
+        ]
+      },
+      {
+        subject: '⚖️ التربية على المواطنة', points: 12, color: 'var(--green)',
+        questions: [
+          { type: 'comprehension', num: 1, text: 'اشرح مفهوم التراث وأهمية صونه في الحفاظ على الهوية الوطنية', points: 5 },
+          { type: 'essay', num: 2, text: 'اقترح برنامجاً إعلامياً مدرسياً لتعزيز قيم المواطنة لدى التلاميذ', points: 7 },
+        ]
+      },
+    ]
+  },
 ];
-const SUBJ={h:'تاريخ',g:'جغرافيا',c:'التربية على المواطنة',e:'اختبارات'};
-const LVL={'3AC':'3 إعدادي','TC':'جذع مشترك','BAC1':'أولى باك','BAC2':'ثانية باك'};
-const ICO={h:'⚔️',g:'🌍',c:'🏛️',e:'📝'};
-let curTab='all',curLvl='all';
-function filtered(){return DB.filter(r=>(curTab==='all'||r.n===curTab)&&(curLvl==='all'||r.l===curLvl))}
-function stats(){
-  document.getElementById('sL').textContent=DB.filter(r=>r.n==='درس').length;
-  document.getElementById('sE').textContent=DB.filter(r=>r.n==='تمرين').length;
-  document.getElementById('sX').textContent=DB.filter(r=>r.n==='اختبار').length;
-  document.getElementById('sP').textContent=DB.filter(r=>r.u&&r.u.length>4).length;
+
+// ======== POINTS SYSTEM ========
+function getPoints() {
+  try { return JSON.parse(localStorage.getItem('madrassati_points') || '{"total":0,"history":[]}'); } catch(e) { return {total:0,history:[]}; }
 }
-function render(){
-  const list=filtered(),out=document.getElementById('out');
-  if(!list.length){out.innerHTML='<div class="empty"><div class="empty-ico">📭</div><p>لا توجد عناصر في هذا التصنيف</p></div>';return}
-  const label=curTab==='all'?'جميع المحتويات':curTab==='درس'?'الدروس':curTab==='تمرين'?'التمارين':'الاختبارات';
-  out.innerHTML=`<div class="sec-head"><h3>${label}</h3><span class="badge">${list.length}</span></div><div class="grid">${list.map((r,i)=>`<div class="card" style="animation-delay:${i*.04}s" onclick="openM(${DB.indexOf(r)})"><div class="card-top ${r.m}">${ICO[r.m]||'📚'}<span class="lvl-badge">${LVL[r.l]||r.l}</span></div><div class="card-body"><div class="card-title">${r.t}</div>${r.d?`<div class="card-desc">${r.d.slice(0,72)}${r.d.length>72?'...':''}</div>`:''}<div class="card-foot"><span class="subj-tag ${r.m}">${SUBJ[r.m]||'عام'}</span><span class="type-tag">${r.n}</span></div>${r.u?`<a class="card-link" href="${r.u}" target="_blank" onclick="event.stopPropagation()">📎 فتح الملف</a>`:''}</div></div>`).join('')}</div>`;
+function addPoints(pts, reason) {
+  const data = getPoints();
+  data.total += pts;
+  data.history.unshift({pts, reason, date: new Date().toLocaleDateString('ar-MA')});
+  if (data.history.length > 20) data.history = data.history.slice(0,20);
+  try { localStorage.setItem('madrassati_points', JSON.stringify(data)); } catch(e) {}
+  updatePointsDisplay();
 }
-function openM(i){
-  const r=DB[i];
-  document.getElementById('mt').textContent=r.t;
-  document.getElementById('mb').innerHTML=`<div class="mrow"><strong>المادة:</strong><span>${SUBJ[r.m]||'—'}</span></div><div class="mrow"><strong>المستوى:</strong><span>${LVL[r.l]||r.l}</span></div><div class="mrow"><strong>النوع:</strong><span>${r.n}</span></div>${r.d?`<div class="mdesc">${r.d}</div>`:''}${r.u?`<a class="mbtn" href="${r.u}" target="_blank">📎 فتح / تحميل الملف</a>`:`<p style="color:var(--gray-400);font-size:.83rem">لم يُضَف رابط بعد — سيُتاح قريباً.</p>`}`;
-  document.getElementById('ov').classList.add('on');
+function updatePointsDisplay() {
+  const el = document.getElementById('total-points');
+  if (el) el.textContent = getPoints().total;
 }
-function closeM(){document.getElementById('ov').classList.remove('on')}
-function closeIfBg(e){if(e.target===document.getElementById('ov'))closeM()}
-function setTab(v,el){curTab=v;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');render()}
-function setLvl(v,el){curLvl=v;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');render()}
-stats();render();
+
+// Default quiz for lessons without specific quiz
+const DEFAULT_QUIZ = [
+  { q: 'ما هو المحور الرئيسي لهذا الدرس؟', opts: ['التاريخ الاقتصادي', 'الدراسة والتحليل النقدي للمصادر', 'الحفظ والاسترجاع', 'الرياضيات'], correct: 1, exp: 'الهدف الأساسي هو التحليل النقدي للمصادر ومقارنة وجهات النظر.' },
+  { q: 'ما أهمية دراسة الاجتماعيات؟', opts: ['فقط لاجتياز الامتحان', 'فهم التاريخ والمجتمع وتطوير التفكير النقدي', 'لا فائدة منها', 'للتسلية فقط'], correct: 1, exp: 'دراسة الاجتماعيات تساعد على فهم الحاضر من خلال الماضي وتطوير روح المواطنة.' },
+  { q: 'ما المنهجية الصحيحة لتحليل الوثيقة التاريخية؟', opts: ['القراءة السريعة فقط', 'تحديد المصدر والطبيعة والسياق ثم التحليل', 'الحفظ الحرفي', 'تجاهل السياق'], correct: 1, exp: 'تحليل الوثيقة يبدأ بتحديد طبيعتها ومصدرها وسياقها قبل استخراج المعطيات.' },
+];
+
+// ======== STATE ========
+let currentLevel = '3ac';
+let currentSubject = 'hist';
+let currentLesson = null;
+let quizQuestions = [];
+let quizIndex = 0;
+let quizScore = 0;
+let answered = false;
+
+// ======== NAVIGATION ========
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const hideNav = ['quiz-screen', 'result-screen', 'login-screen'].includes(id);
+  document.getElementById('bottom-nav').style.display = hideNav ? 'none' : 'flex';
+}
+
+function navTo(tab) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navBtns = document.querySelectorAll('.nav-item');
+  const navMap = { home: 0, lessons: 1, exams: 2, profile: 3 };
+  if (navBtns[navMap[tab]]) navBtns[navMap[tab]].classList.add('active');
+
+  if (tab === 'home') showScreen('splash');
+  else if (tab === 'lessons') {
+    openLevel(currentLevel);
+  }
+  else if (tab === 'exams') showScreen('exams-screen');
+  else if (tab === 'profile') showScreen('profile-screen');
+}
+
+function goHome() {
+  showScreen('splash');
+  document.querySelectorAll('.nav-item')[0].classList.add('active');
+  document.querySelectorAll('.nav-item').forEach((n, i) => { if(i !== 0) n.classList.remove('active'); });
+}
+
+function openLevel(level) {
+  currentLevel = level;
+  const data = DATA[level];
+  document.getElementById('level-title').textContent = data.title;
+  document.getElementById('level-badge').textContent = data.badge;
+  currentSubject = 'hist';
+
+  // Reset tabs
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-btn')[0].classList.add('active');
+
+  renderLessons();
+  showScreen('level-screen');
+
+  document.querySelectorAll('.nav-item')[1].classList.add('active');
+  document.querySelectorAll('.nav-item').forEach((n, i) => { if(i !== 1) n.classList.remove('active'); });
+}
+
+function switchSubject(subj) {
+  currentSubject = subj;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const idx = { hist: 0, geo: 1, civic: 2 };
+  document.querySelectorAll('.tab-btn')[idx[subj]].classList.add('active');
+  renderLessons();
+}
+
+function renderLessons() {
+  const data = DATA[currentLevel].subjects[currentSubject];
+  const container = document.getElementById('lessons-container');
+  const colorMap = { hist: 'var(--primary)', geo: 'var(--accent-light)', civic: 'var(--green)' };
+  const color = colorMap[currentSubject];
+
+  let html = '';
+  data.semesters.forEach(sem => {
+    html += `<div class="sem-header">
+      <div class="sem-dot" style="background:${color}"></div>
+      <span class="sem-title">${sem.title}</span>
+    </div><div class="lessons-list">`;
+
+    sem.lessons.forEach((lesson, i) => {
+      const num = i + 1;
+      html += `<div class="lesson-card" style="--lc:${color}" onclick="openLesson('${lesson.id}', '${lesson.title}')">
+        <div class="lesson-num" style="color:${color}; background:${color}15">${num}</div>
+        <div class="lesson-info">
+          <div class="lesson-title">${lesson.title}</div>
+          <div class="lesson-meta">
+            ${lesson.tags.map(t => `<span class="lesson-tag">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="lesson-arrow">›</div>
+      </div>`;
+    });
+
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function openLesson(id, title) {
+  currentLesson = id;
+  document.getElementById('lesson-top-title').textContent = title;
+
+  const content = LESSON_CONTENT[id];
+
+  // Show infographic if available
+  const infoEl = document.getElementById('lesson-infographic');
+  if (INFOGRAPHIC[id]) {
+    infoEl.style.display = 'block';
+    infoEl.innerHTML = INFOGRAPHIC[id];
+  } else {
+    infoEl.style.display = 'none';
+    infoEl.innerHTML = '';
+  }
+
+  if (content) {
+    // Subject tag
+    const tag = document.getElementById('lesson-subject-tag');
+    tag.textContent = content.subjectIcon + ' ' + content.subject;
+    tag.style.background = content.subjectColor + '20';
+    tag.style.color = content.subjectColor;
+
+    // Title
+    document.getElementById('lesson-hero-title').textContent = title;
+
+    // Chips
+    document.getElementById('lesson-chips').innerHTML =
+      content.chips.map(c => `<span class="chip">${c}</span>`).join('');
+
+    // Sections
+    let secHtml = '';
+    content.sections.forEach((sec, si) => {
+      secHtml += `<div class="content-section">
+        <div class="section-header" onclick="toggleSection(${si})">
+          <div class="section-icon" style="background:${sec.color}">${sec.icon}</div>
+          <span class="section-title-text">${sec.title}</span>
+          <span class="section-arrow" id="arr-${si}">›</span>
+        </div>
+        <div class="section-body" id="body-${si}">`;
+
+      if (sec.type === 'concepts') {
+        sec.items.forEach(item => {
+          secHtml += `<div class="key-concept">
+            <div class="concept-dot" style="background:${content.subjectColor || 'var(--primary)'}"></div>
+            <div>
+              <div class="concept-term">${item.term}</div>
+              <div class="concept-def">${item.def}</div>
+            </div>
+          </div>`;
+        });
+      } else if (sec.type === 'timeline') {
+        secHtml += '<div class="timeline">';
+        sec.items.forEach(item => {
+          secHtml += `<div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">${item.year}</div>
+            <div class="timeline-event">${item.event}</div>
+          </div>`;
+        });
+        secHtml += '</div>';
+      }
+
+      secHtml += '</div></div>';
+    });
+
+    document.getElementById('lesson-sections').innerHTML = secHtml;
+    // Open first section
+    setTimeout(() => { const b = document.getElementById('body-0'); if(b) { b.classList.add('open'); const a = document.getElementById('arr-0'); if(a) a.style.transform = 'rotate(90deg)'; } }, 100);
+
+  } else {
+    // Generic lesson placeholder (no LESSON_CONTENT, but infographic already shown above)
+    const subj = DATA[currentLevel].subjects[currentSubject];
+    document.getElementById('lesson-subject-tag').textContent = subj.icon + ' ' + subj.label;
+    document.getElementById('lesson-subject-tag').style.background = subj.color + '20';
+    document.getElementById('lesson-subject-tag').style.color = subj.color;
+    document.getElementById('lesson-hero-title').textContent = title;
+    document.getElementById('lesson-chips').innerHTML = `<span class="chip">الفصل الأول</span><span class="chip">${subj.label}</span>`;
+    document.getElementById('lesson-sections').innerHTML = `
+      <div class="content-section">
+        <div class="section-header" onclick="toggleSection(0)">
+          <div class="section-icon" style="background:rgba(249,115,22,0.15)">📖</div>
+          <span class="section-title-text">محتوى الدرس</span>
+          <span class="section-arrow" id="arr-0">›</span>
+        </div>
+        <div class="section-body open" id="body-0">
+          <div class="key-concept">
+            <div class="concept-dot" style="background:var(--primary)"></div>
+            <div>
+              <div class="concept-term">${title}</div>
+              <div class="concept-def">هذا الدرس يتناول موضوعاً محورياً ضمن مقرر مادة الاجتماعيات. سيتم إثراء المحتوى قريباً بمفاهيم تفصيلية وخط زمني ومعلومات منهجية.</div>
+            </div>
+          </div>
+          <div class="key-concept">
+            <div class="concept-dot" style="background:var(--accent-light)"></div>
+            <div>
+              <div class="concept-term">المنهجية</div>
+              <div class="concept-def">قراءة الوثائق بعناية، استخراج المعطيات، الربط بين الأسباب والنتائج، وصياغة الإجابة بأسلوب علمي.</div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  showScreen('lesson-screen');
+}
+
+function toggleSection(i) {
+  const body = document.getElementById('body-' + i);
+  const arr = document.getElementById('arr-' + i);
+  body.classList.toggle('open');
+  arr.style.transform = body.classList.contains('open') ? 'rotate(90deg)' : '';
+}
+
+function backToLevel() {
+  showScreen('level-screen');
+}
+
+function showSummary() {
+  alert('📋 ملخص الدرس سيكون متاحاً قريباً ضمن تحديثات التطبيق!');
+}
+
+// ======== QUIZ ========
+function startQuiz() {
+  quizQuestions = QUIZZES[currentLesson] || DEFAULT_QUIZ;
+  quizIndex = 0;
+  quizScore = 0;
+  answered = false;
+  document.getElementById('quiz-title').textContent = 'كويز — ' + document.getElementById('lesson-top-title').textContent.substring(0, 15) + '...';
+  loadQuestion();
+  showScreen('quiz-screen');
+}
+
+function loadQuestion() {
+  const q = quizQuestions[quizIndex];
+  const total = quizQuestions.length;
+
+  // Progress
+  const pct = (quizIndex / total) * 100;
+  document.getElementById('quiz-progress').style.width = pct + '%';
+  document.getElementById('quiz-prog-text').textContent = (quizIndex + 1) + ' / ' + total;
+  document.getElementById('quiz-badge').textContent = quizScore + '/' + total;
+
+  // Category
+  const subjData = DATA[currentLevel].subjects[currentSubject];
+  document.getElementById('q-category').innerHTML = (subjData ? subjData.icon + ' ' + subjData.label : '📜 التاريخ');
+
+  // Question
+  document.getElementById('q-text').textContent = q.q;
+
+  // Options
+  const letters = ['أ', 'ب', 'ج', 'د'];
+  const container = document.getElementById('options-container');
+  container.innerHTML = q.opts.map((opt, i) => `
+    <button class="option-btn" onclick="selectAnswer(${i})">
+      <span class="option-letter">${letters[i]}</span>
+      <span>${opt}</span>
+    </button>
+  `).join('');
+
+  // Reset
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('next-btn').className = 'next-btn';
+  answered = false;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+
+  const q = quizQuestions[quizIndex];
+  const btns = document.querySelectorAll('.option-btn');
+  const correct = q.correct;
+  const feedback = document.getElementById('feedback-box');
+  const nextBtn = document.getElementById('next-btn');
+
+  btns.forEach((btn, i) => {
+    if (i === correct) btn.classList.add('correct');
+    else if (i === idx && idx !== correct) btn.classList.add('wrong');
+  });
+
+  if (idx === correct) {
+    quizScore++;
+    feedback.className = 'feedback-box correct show';
+    feedback.innerHTML = '✅ إجابة صحيحة! ' + q.exp;
+  } else {
+    feedback.className = 'feedback-box wrong show';
+    feedback.innerHTML = '❌ إجابة خاطئة. الجواب الصحيح: ' + q.opts[correct] + '. ' + q.exp;
+  }
+
+  const total = quizQuestions.length;
+  document.getElementById('quiz-badge').textContent = quizScore + '/' + total;
+
+  nextBtn.className = 'next-btn show';
+  nextBtn.textContent = quizIndex < total - 1 ? 'التالي ←' : 'عرض النتيجة 🏆';
+}
+
+function nextQuestion() {
+  quizIndex++;
+  if (quizIndex >= quizQuestions.length) {
+    showResult();
+  } else {
+    loadQuestion();
+  }
+}
+
+function showResult() {
+  const total = quizQuestions.length;
+  const pct = Math.round((quizScore / total) * 100);
+
+  document.getElementById('result-score').textContent = pct + '%';
+  document.getElementById('rs-correct').textContent = quizScore;
+  document.getElementById('rs-wrong').textContent = total - quizScore;
+  document.getElementById('rs-total').textContent = total;
+
+  const circle = document.getElementById('result-circle');
+  const title = document.getElementById('result-title');
+  const msg = document.getElementById('result-msg');
+
+  if (pct >= 80) {
+    circle.className = 'result-circle excellent';
+    title.textContent = '🌟 ممتاز!';
+    msg.textContent = 'أداء رائع! أنت متمكن من هذا الدرس. استمر في هذا المستوى!';
+  } else if (pct >= 50) {
+    circle.className = 'result-circle good';
+    title.textContent = '👍 جيد!';
+    msg.textContent = 'نتيجة مقبولة، لكن راجع الدرس مرة أخرى لتقوية فهمك.';
+  } else {
+    circle.className = 'result-circle weak';
+    title.textContent = '📚 راجع الدرس';
+    msg.textContent = 'لا تستسلم! أعد قراءة الدرس وحاول مرة أخرى.';
+  }
+
+  showScreen('result-screen');
+}
+
+function exitQuiz() {
+  showScreen('lesson-screen');
+  document.getElementById('bottom-nav').style.display = 'flex';
+}
+
+function openExam(i) {
+  const titles = [
+    'نموذج امتحان جهوي — الاجتماعيات 3AC (الدورة الثانية 2025)',
+    'نموذج امتحان جهوي — الاجتماعيات 3AC (الدورة الأولى 2025)',
+    'نموذج امتحان جهوي — الأولى باك (سوس ماسة 2024)',
+    'نموذج امتحان جهوي — الأولى باك (مراكش آسفي 2023)',
+  ];
+  alert('📄 ' + titles[i] + '\n\nسيتم فتح نموذج الامتحان كاملاً مع التصحيح في التحديث القادم.\n\nإعداد: الأستاذ أحمد بوعمود — مؤسسة الحنان');
+}
+
+// ======== AUTH ========
+const ACCOUNTS = {
+  'ahmed.bouamoud': { pass: 'hanane2025', role: 'teacher', name: 'الأستاذ أحمد بوعمود' },
+  'admin': { pass: 'admin123', role: 'teacher', name: 'المدير' },
+};
+
+let currentUser = null;
+
+function doLogin() {
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value.trim();
+  const errEl = document.getElementById('login-error');
+
+  if (!user || !pass) {
+    errEl.textContent = '⚠️ يرجى إدخال اسم المستخدم وكلمة المرور';
+    errEl.style.display = 'block'; return;
+  }
+
+  const account = ACCOUNTS[user.toLowerCase()];
+  if (account && account.pass === pass) {
+    currentUser = { ...account, username: user };
+    errEl.style.display = 'none';
+    enterApp();
+  } else {
+    errEl.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
+    errEl.style.display = 'block';
+    document.getElementById('login-pass').value = '';
+    // Shake animation
+    const card = document.querySelector('.login-card');
+    card.style.animation = 'none';
+    card.style.transform = 'translateX(8px)';
+    setTimeout(() => { card.style.transform = 'translateX(-8px)'; }, 80);
+    setTimeout(() => { card.style.transform = 'translateX(5px)'; }, 160);
+    setTimeout(() => { card.style.transform = ''; }, 240);
+  }
+}
+
+function enterAsStudent() {
+  currentUser = { role: 'student', name: 'تلميذ' };
+  enterApp();
+}
+
+function enterApp() {
+  // Update welcome badge
+  const badge = document.getElementById('user-welcome-badge');
+  const welcomeText = document.getElementById('welcome-text');
+  if (currentUser.role === 'teacher') {
+    welcomeText.textContent = 'مرحباً، ' + currentUser.name;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+  showScreen('splash');
+}
+
+function doLogout() {
+  if (!confirm('هل تريد تسجيل الخروج؟')) return;
+  currentUser = null;
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+  document.getElementById('login-error').style.display = 'none';
+  showScreen('login-screen');
+  document.getElementById('bottom-nav').style.display = 'none';
+}
+
+function togglePass() {
+  const inp = document.getElementById('login-pass');
+  const eye = document.getElementById('pass-eye');
+  if (inp.type === 'password') { inp.type = 'text'; eye.textContent = '🙈'; }
+  else { inp.type = 'password'; eye.textContent = '👁'; }
+}
+
+// Allow Enter key on login
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('login-screen').classList.contains('active')) {
+    doLogin();
+  }
+});
+
+// Init
+window.onload = () => {
+  showScreen('login-screen');
+  document.getElementById('bottom-nav').style.display = 'none';
+  // Register inline Service Worker (no external sw.js needed)
+  if ('serviceWorker' in navigator) {
+    const swCode = `
+const CACHE = 'madrassati-v2';
+self.addEventListener('install', e => {
+  self.skipWaiting();
+});
+self.addEventListener('activate', e => {
+  self.clients.claim();
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(r => r || fetch(e.request).then(res => {
+      const clone = res.clone();
+      caches.open(CACHE).then(c => c.put(e.request, clone));
+      return res;
+    })).catch(() => caches.match(e.request))
+  );
+});`;
+    const swBlob = new Blob([swCode], {type: 'application/javascript'});
+    const swUrl = URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swUrl, {scope: '/'}).catch(() => {});
+  }
+};
 </script>
 </body>
 </html>

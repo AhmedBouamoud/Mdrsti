@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الرأسمالية الأوروبية في القرن 19 | مدرستي — الحنان</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================
+   VARIABLES & RESET
+===================================================== */
+:root {
+  --orange:      #E8661A;
+  --orange-light:#FEF0E6;
+  --orange-mid:  #F5A05A;
+  --blue:        #1A4FA0;
+  --blue-light:  #E8EFF9;
+  --blue-mid:    #4A7EC7;
+  --dark:        #1A1A2A;
+  --text:        #2D2D3A;
+  --muted:       #6B7280;
+  --border:      #E5E7EB;
+  --bg:          #F8F7F4;
+  --white:       #FFFFFF;
+  --green:       #16A34A;
+  --red:         #DC2626;
+  --gold:        #B45309;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.08);
+  --shadow:      0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,.14);
+  --radius:      12px;
+  --radius-lg:   20px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* =====================================================
+   PRINT STYLES — النجمة هنا
+===================================================== */
+@media print {
+  body { background: white; font-size: 12pt; }
+  .no-print, .nav-bar, .print-btn, .breadcrumb-bar { display: none !important; }
+  .lesson-page { max-width: 100%; padding: 0; }
+  .hero { break-inside: avoid; background: white !important; border: 2pt solid #E8661A; }
+  .section-card { break-inside: avoid; box-shadow: none; border: 1pt solid #ccc; }
+  .section-card + .section-card { margin-top: 12pt; }
+  .concept-grid { grid-template-columns: 1fr 1fr; }
+  a { text-decoration: none; color: inherit; }
+  .footer-bar { display: none; }
+  .hero-meta { color: #555 !important; }
+  @page { margin: 1.5cm; size: A4; }
+}
+
+/* =====================================================
+   NAV BAR
+===================================================== */
+.nav-bar {
+  background: var(--dark);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,.3);
+}
+
+.nav-logo {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-logo span { color: var(--orange-mid); }
+
+.nav-links { display: flex; gap: 6px; }
+.nav-link {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all .2s;
+}
+.nav-link:hover { background: rgba(255,255,255,.1); color: white; }
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+.breadcrumb-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.breadcrumb-bar a { color: var(--blue); text-decoration: none; }
+.breadcrumb-bar a:hover { text-decoration: underline; }
+.breadcrumb-sep { color: var(--border); }
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+.lesson-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* =====================================================
+   HERO HEADER
+===================================================== */
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #2A2040 100%);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(232,102,26,.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(26,79,160,.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-subject {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(232,102,26,.2);
+  border: 1px solid rgba(232,102,26,.4);
+  color: var(--orange-mid);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+  letter-spacing: .5px;
+}
+
+.hero-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.chip {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.8);
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.hero-meta {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,.55);
+}
+.meta-item strong { color: rgba(255,255,255,.85); }
+
+/* Print button */
+.print-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: white;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.print-btn:hover { background: rgba(255,255,255,.2); }
+
+/* =====================================================
+   SECTION CARDS
+===================================================== */
+.section-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.section-badge {
+  margin-right: auto;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.section-body { padding: 24px; }
+
+/* =====================================================
+   INTRO BOX
+===================================================== */
+.intro-box {
+  background: var(--blue-light);
+  border-right: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+.intro-box .question {
+  font-weight: 700;
+  color: var(--blue);
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =====================================================
+   CONCEPT GRID
+===================================================== */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.concept-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  position: relative;
+  border-top: 3px solid var(--orange);
+}
+
+.concept-card.blue-top { border-top-color: var(--blue); }
+.concept-card.green-top { border-top-color: var(--green); }
+.concept-card.gold-top { border-top-color: var(--gold); }
+
+.concept-term {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.concept-def {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* =====================================================
+   AXES & CONTENT
+===================================================== */
+.axis-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--dark);
+  margin: 24px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--orange-light);
+}
+
+.axis-title .axis-num {
+  width: 28px; height: 28px;
+  background: var(--orange);
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.axis-title.blue-axis .axis-num { background: var(--blue); }
+.axis-title.green-axis .axis-num { background: var(--green); }
+
+.content-para {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text);
+  margin-bottom: 14px;
+  text-align: justify;
+}
+
+.highlight {
+  background: var(--orange-light);
+  color: var(--orange);
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.highlight.blue { background: var(--blue-light); color: var(--blue); }
+
+/* =====================================================
+   COMPARISON TABLE
+===================================================== */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0;
+}
+
+.compare-table th {
+  padding: 12px 16px;
+  font-weight: 800;
+  font-size: 13px;
+  text-align: center;
+}
+
+.compare-table th:first-child { background: var(--dark); color: white; }
+.compare-table th:nth-child(2) { background: var(--orange); color: white; }
+.compare-table th:nth-child(3) { background: var(--blue); color: white; }
+.compare-table th:nth-child(4) { background: var(--green); color: white; }
+
+.compare-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.compare-table tr:nth-child(even) td { background: var(--bg); }
+.compare-table td:first-child {
+  font-weight: 700;
+  color: var(--dark);
+  background: var(--bg) !important;
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+.timeline {
+  position: relative;
+  padding-right: 24px;
+  margin: 16px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 8px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--orange), var(--blue));
+}
+
+.tl-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.tl-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--orange);
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--orange);
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  right: -33px;
+  z-index: 1;
+}
+
+.tl-dot.blue { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+.tl-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+
+.tl-year {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--orange);
+  min-width: 45px;
+  padding-top: 1px;
+}
+
+.tl-year.blue { color: var(--blue); }
+
+.tl-content { flex: 1; }
+.tl-content strong {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 2px;
+}
+.tl-content span { font-size: 12.5px; color: var(--muted); }
+
+/* =====================================================
+   STATS ROW
+===================================================== */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.stat-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-box::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--orange);
+}
+.stat-box.blue::before { background: var(--blue); }
+.stat-box.green::before { background: var(--green); }
+.stat-box.gold::before { background: var(--gold); }
+
+.stat-num {
+  font-family: 'Cairo', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 4px;
+  display: block;
+}
+.stat-box.blue .stat-num { color: var(--blue); }
+.stat-box.green .stat-num { color: var(--green); }
+.stat-box.gold .stat-num { color: var(--gold); }
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   INFO BOXES
+===================================================== */
+.info-box {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 13.5px;
+  line-height: 1.8;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.info-box .ib-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.info-box.orange { background: var(--orange-light); border-right: 3px solid var(--orange); }
+.info-box.blue   { background: var(--blue-light);   border-right: 3px solid var(--blue); }
+.info-box.green  { background: #F0FDF4; border-right: 3px solid var(--green); }
+.info-box.red    { background: #FEF2F2; border-right: 3px solid var(--red); }
+
+.info-box strong { font-weight: 800; }
+
+/* =====================================================
+   FLOW ITEMS (سلسلة منطقية)
+===================================================== */
+.flow-list { margin: 14px 0; }
+
+.flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  border-right: 3px solid var(--orange);
+}
+
+.flow-item.blue  { border-right-color: var(--blue); }
+.flow-item.green { border-right-color: var(--green); }
+.flow-item.gold  { border-right-color: var(--gold); }
+
+.flow-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--orange-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.flow-item.blue  .flow-icon { background: var(--blue-light); }
+.flow-item.green .flow-icon { background: #F0FDF4; }
+
+.flow-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.flow-item.blue  .flow-title { color: var(--blue); }
+.flow-item.green .flow-title { color: var(--green); }
+.flow-item.gold  .flow-title { color: var(--gold); }
+
+.flow-text { font-size: 13px; color: var(--text); line-height: 1.7; }
+
+/* =====================================================
+   GLOSSARY TABLE
+===================================================== */
+.glossary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.glossary-table th {
+  background: var(--dark);
+  color: white;
+  padding: 10px 16px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.glossary-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.glossary-table tr:nth-child(even) td { background: var(--bg); }
+
+.glossary-table td:first-child {
+  font-weight: 800;
+  color: var(--orange);
+  width: 30%;
+}
+
+/* =====================================================
+   SUMMARY BOX
+===================================================== */
+.summary-box {
+  background: linear-gradient(135deg, var(--dark) 0%, #2A2040 100%);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  color: white;
+  margin-top: 24px;
+}
+
+.summary-box h3 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--orange-mid);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-points {
+  list-style: none;
+}
+
+.summary-points li {
+  font-size: 13.5px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.85);
+}
+
+.summary-points li::before {
+  content: '◆';
+  color: var(--orange-mid);
+  font-size: 10px;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.footer-bar {
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+.footer-bar strong { color: var(--orange); }
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 640px) {
+  .hero { padding: 24px 20px 28px; }
+  .hero-title { font-size: 22px; }
+  .section-body { padding: 16px; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .compare-table { font-size: 11px; }
+  .compare-table th, .compare-table td { padding: 8px 10px; }
+  .print-btn { display: none; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav-bar no-print">
+  <a href="index.html" class="nav-logo">📚 مدرستي<span>.ma</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">🏠 الرئيسية</a>
+    <a href="3ac.html" class="nav-link">الثالثة إعدادي</a>
+    <a href="bac1.html" class="nav-link">الأولى باك</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar no-print">
+  <a href="index.html">الرئيسية</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="3ac.html">الثالثة إعدادي</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="3ac.html#histoire">التاريخ</a>
+  <span class="breadcrumb-sep">›</span>
+  الرأسمالية الأوروبية في القرن 19
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="lesson-page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <button class="print-btn no-print" onclick="window.print()">🖨️ طباعة الدرس</button>
+
+    <div class="hero-subject">📜 التاريخ — الفصل الأول</div>
+    <h1 class="hero-title">الرأسمالية الأوروبية في القرن التاسع عشر</h1>
+    <p class="hero-subtitle">الثورة الصناعية — الطبقات الاجتماعية — الفكر الاقتصادي الرأسمالي</p>
+
+    <div class="hero-chips">
+      <span class="chip">الثالثة إعدادي</span>
+      <span class="chip">الفصل الأول</span>
+      <span class="chip">الدرس الأول</span>
+      <span class="chip">المذكرة 25-019</span>
+    </div>
+
+    <div class="hero-meta">
+      <div class="meta-item">🏫 <strong>مؤسسة الحنان</strong></div>
+      <div class="meta-item">👨‍🏫 <strong>الأستاذ أحمد بوعمود</strong></div>
+      <div class="meta-item">📅 <strong>2025–2026</strong></div>
+      <div class="meta-item">⏱️ <strong>حصتان (2×55 د)</strong></div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 1: مقدمة وإشكالية
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FEF0E6;">🎯</div>
+      <div class="section-title">المدخل والإشكالية</div>
+      <span class="section-badge" style="background:var(--orange-light);color:var(--orange);">تمهيد</span>
+    </div>
+    <div class="section-body">
+      <div class="intro-box">
+        <div class="question">❓ الإشكالية المحورية</div>
+        كيف حوّلت الثورة الصناعية الاقتصاد الأوروبي في القرن 19؟ وما الطبقات الاجتماعية التي أفرزها النظام الرأسمالي؟
+      </div>
+
+      <p class="content-para">
+        شكّل القرن التاسع عشر منعطفاً حاسماً في تاريخ البشرية؛ إذ شهدت أوروبا تحولات جذرية على المستوى الاقتصادي والاجتماعي، كانت الثورة الصناعية محركها الأساسي. فمن الزراعة التقليدية إلى التصنيع الواسع، ومن العمل اليدوي إلى الآلة البخارية، انبثق نظام اقتصادي جديد سيطر على العالم: <span class="highlight">الرأسمالية</span>.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-num">1760</span>
+          <div class="stat-label">بداية الثورة الصناعية في إنجلترا</div>
+        </div>
+        <div class="stat-box blue">
+          <span class="stat-num">XIX</span>
+          <div class="stat-label">القرن المحوري في تاريخ الرأسمالية</div>
+        </div>
+        <div class="stat-box green">
+          <span class="stat-num">3</span>
+          <div class="stat-label">طبقات اجتماعية كبرى أفرزها النظام</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 2: المفاهيم الأساسية
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#E8EFF9;">📖</div>
+      <div class="section-title">المفاهيم والمصطلحات الأساسية</div>
+      <span class="section-badge" style="background:var(--blue-light);color:var(--blue);">7 مفاهيم</span>
+    </div>
+    <div class="section-body">
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-term">💰 الرأسمالية</div>
+          <div class="concept-def">نظام اقتصادي يقوم على الملكية الخاصة لوسائل الإنتاج، وحرية السوق، وتراكم الثروة بهدف تحقيق الربح.</div>
+        </div>
+        <div class="concept-card blue-top">
+          <div class="concept-term">🏭 الثورة الصناعية</div>
+          <div class="concept-def">تحول عميق في أساليب الإنتاج، انطلق من إنجلترا منتصف القرن 18، قائم على الآلة البخارية واستغلال الفحم الحجري.</div>
+        </div>
+        <div class="concept-card green-top">
+          <div class="concept-term">⚙️ وسائل الإنتاج</div>
+          <div class="concept-def">الأدوات والمصانع والأراضي والآلات التي تُستخدم في الإنتاج. امتلاكها يحدد الانتماء الطبقي في المجتمع الرأسمالي.</div>
+        </div>
+        <div class="concept-card gold-top">
+          <div class="concept-term">👔 البورجوازية</div>
+          <div class="concept-def">الطبقة المالكة لوسائل الإنتاج (مصانع، بنوك، تجارة). تنقسم إلى كبرى (الرأسماليون) وصغرى (أصحاب الأعمال الصغيرة والتجار).</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">👷 البروليتاريا</div>
+          <div class="concept-def">الطبقة العاملة التي لا تملك إلا قوة عملها، تعمل مقابل أجر في المصانع الرأسمالية في ظروف صعبة.</div>
+        </div>
+        <div class="concept-card blue-top">
+          <div class="concept-term">📈 فائض القيمة</div>
+          <div class="concept-def">الفرق بين قيمة ما ينتجه العامل وما يحصل عليه كأجر. مصدر الربح الرأسمالي وفق ماركس.</div>
+        </div>
+        <div class="concept-card green-top">
+          <div class="concept-term">🏦 الاحتكار</div>
+          <div class="concept-def">سيطرة شركة أو مجموعة صغيرة على قطاع إنتاجي بأكمله، مما يقضي على المنافسة ويمكّن من التحكم في الأسعار.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 3: المحور الأول — الثورة الصناعية
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FEF0E6;">🏭</div>
+      <div class="section-title">المحور الأول: الثورة الصناعية ونشأة الرأسمالية</div>
+      <span class="section-badge" style="background:var(--orange-light);color:var(--orange);">المحور 1</span>
+    </div>
+    <div class="section-body">
+
+      <div class="axis-title">
+        <span class="axis-num">1</span>
+        مقومات الثورة الصناعية
+      </div>
+
+      <p class="content-para">
+        انطلقت الثورة الصناعية من <span class="highlight">إنجلترا</span> في النصف الثاني من القرن الثامن عشر، لتنتشر تدريجياً إلى بقية أوروبا وأمريكا الشمالية. وقد توافرت لإنجلترا جملة من الشروط أتاحت لها السبق الصناعي:
+      </p>
+
+      <div class="flow-list">
+        <div class="flow-item">
+          <div class="flow-icon">⛏️</div>
+          <div>
+            <div class="flow-title">الثروات الطبيعية</div>
+            <div class="flow-text">احتياطيات ضخمة من <strong>الفحم الحجري</strong> والحديد — توفّر المياه (الأنهار للطاقة) — الموارد الزراعية.</div>
+          </div>
+        </div>
+        <div class="flow-item blue">
+          <div class="flow-icon">💰</div>
+          <div>
+            <div class="flow-title">الرساميل والاستثمار</div>
+            <div class="flow-text">ثروات متراكمة من <span class="highlight blue">التجارة الاستعمارية</span> — نظام مصرفي متطور — مستثمرون جاهزون لتمويل المشاريع.</div>
+          </div>
+        </div>
+        <div class="flow-item green">
+          <div class="flow-icon">🔬</div>
+          <div>
+            <div class="flow-title">الاختراعات التقنية</div>
+            <div class="flow-text">الآلة البخارية (جيمس واط 1769) — النول الآلي — المحرك الحراري — السكك الحديدية (1825).</div>
+          </div>
+        </div>
+        <div class="flow-item gold">
+          <div class="flow-icon">👥</div>
+          <div>
+            <div class="flow-title">اليد العاملة الوفيرة</div>
+            <div class="flow-text">موجة الهجرة الريفية نحو المدن — تفكك نظام الحرفيين التقليديين — توافر عمالة رخيصة للمصانع.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="axis-title blue-axis">
+        <span class="axis-num" style="background:var(--blue)">2</span>
+        مراحل الثورة الصناعية وانتشارها
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1760</div>
+          <div class="tl-content">
+            <strong>البداية في إنجلترا</strong>
+            <span>أول مصانع النسيج — الآلة البخارية الأولى — استخدام الفحم بدل الخشب</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot blue"></div>
+          <div class="tl-year blue">1820</div>
+          <div class="tl-content">
+            <strong>الانتشار الأوروبي</strong>
+            <span>بلجيكا وفرنسا وألمانيا تنطلق صناعياً — بناء أول خطوط السكك الحديدية</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot green"></div>
+          <div class="tl-year" style="color:var(--green)">1850</div>
+          <div class="tl-content">
+            <strong>الثورة الصناعية الثانية</strong>
+            <span>الكهرباء والبترول — الصلب والكيمياء — صناعة السيارات والسفن — الاحتكارات الكبرى</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 0 2px var(--gold)"></div>
+          <div class="tl-year" style="color:var(--gold)">1880</div>
+          <div class="tl-content">
+            <strong>الرأسمالية الاحتكارية</strong>
+            <span>تركّز الثروة في أيدي الاحتكارات (Trusts) — البنوك تموّل الصناعة — الانطلاق نحو التوسع الاستعماري</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box blue">
+        <span class="ib-icon">💡</span>
+        <div><strong>ملاحظة منهجية:</strong> تُميّز الدراسة بين ثورتين صناعيتين: الأولى (1760–1850) قائمة على البخار والنسيج، والثانية (1850–1914) قائمة على الكهرباء والنفط والصلب.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 4: المحور الثاني — الطبقات الاجتماعية
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#F0FDF4;">👥</div>
+      <div class="section-title">المحور الثاني: البنية الاجتماعية في المجتمع الرأسمالي</div>
+      <span class="section-badge" style="background:#F0FDF4;color:var(--green);">المحور 2</span>
+    </div>
+    <div class="section-body">
+      <p class="content-para">
+        أفرز التصنيع الرأسمالي بنية اجتماعية جديدة قائمة على <span class="highlight">علاقة الملكية بوسائل الإنتاج</span>، وحلّت محلّ التراتبية الإقطاعية القديمة. نشأت طبقتان رئيسيتان متعارضتان المصالح، فضلاً عن طبقة وسطى:
+      </p>
+
+      <div class="compare-table-wrap" style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>الجانب</th>
+              <th>البورجوازية الكبرى</th>
+              <th>البورجوازية الصغرى</th>
+              <th>البروليتاريا (العمال)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>من هم؟</td>
+              <td>أصحاب المصانع والبنوك والمناجم الكبرى</td>
+              <td>صغار التجار والحرفيون وموظفو الدولة</td>
+              <td>عمال المصانع والمناجم والسكك الحديدية</td>
+            </tr>
+            <tr>
+              <td>الملكية</td>
+              <td>يملكون وسائل الإنتاج</td>
+              <td>ملكية محدودة (متجر، ورشة صغيرة)</td>
+              <td>لا يملكون إلا قوة عملهم</td>
+            </tr>
+            <tr>
+              <td>الدخل</td>
+              <td>أرباح ضخمة — حياة فارهة</td>
+              <td>دخل متوسط — حياة مستقرة</td>
+              <td>أجر زهيد — حياة قاسية</td>
+            </tr>
+            <tr>
+              <td>ظروف العمل</td>
+              <td>لا يعملون يدوياً</td>
+              <td>عمل ذهني وتجاري</td>
+              <td>14-16 ساعة/يوم — أطفال وأسر بالكامل</td>
+            </tr>
+            <tr>
+              <td>موقفهم السياسي</td>
+              <td>يدافعون عن حرية السوق والملكية</td>
+              <td>يطالبون بالديمقراطية وحق التصويت</td>
+              <td>ينظمون النقابات ويطالبون بحقوق العمل</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="axis-title">
+        <span class="axis-num">3</span>
+        ظروف البروليتاريا وبداية النضال العمالي
+      </div>
+
+      <p class="content-para">
+        عاش عمال المصانع في القرن التاسع عشر في ظروف بالغة القسوة: أجور متدنية لا تكفي لتلبية الحاجات الأساسية، ساعات عمل مُضنية تصل إلى 16 ساعة يومياً، عمل الأطفال منذ سن السابعة، وغياب تام لأي حماية قانونية. أفرز هذا الواقع حركة عمالية منظّمة:
+      </p>
+
+      <div class="flow-list">
+        <div class="flow-item">
+          <div class="flow-icon">⚒️</div>
+          <div>
+            <div class="flow-title">تأسيس النقابات (Trade Unions)</div>
+            <div class="flow-text">تنظيمات عمالية نضالية للمطالبة بتخفيض ساعات العمل وتحسين الأجور وتحظير عمل الأطفال. قاومتها الدولة في البداية ثم اعترفت بها.</div>
+          </div>
+        </div>
+        <div class="flow-item blue">
+          <div class="flow-icon">📜</div>
+          <div>
+            <div class="flow-title">الأيديولوجيات النضالية</div>
+            <div class="flow-text"><strong>الاشتراكية:</strong> المطالبة بالعدالة الاجتماعية — <strong>الشيوعية (ماركس وإنغلز):</strong> المانيفيست الشيوعي 1848 — "يا عمال العالم اتحدوا!"</div>
+          </div>
+        </div>
+        <div class="flow-item green">
+          <div class="flow-icon">⚖️</div>
+          <div>
+            <div class="flow-title">التشريعات العمالية الأولى</div>
+            <div class="flow-text">تحت ضغط الحركة العمالية، سنّت بعض الدول قوانين تحدّ من ساعات العمل (10 ساعات في إنجلترا 1847) وتحظر عمل الأطفال الصغار.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 5: المحور الثالث — الفكر الاقتصادي
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FEF3C7;">🧠</div>
+      <div class="section-title">المحور الثالث: الفكر الاقتصادي في ظل الرأسمالية</div>
+      <span class="section-badge" style="background:#FEF3C7;color:var(--gold);">المحور 3</span>
+    </div>
+    <div class="section-body">
+
+      <div class="axis-title" style="border-bottom-color:#FEF3C7">
+        <span class="axis-num" style="background:var(--gold)">أ</span>
+        الفكر الليبرالي الرأسمالي
+      </div>
+
+      <p class="content-para">
+        أرست الرأسمالية فكراً اقتصادياً متماسكاً دافع عنه كبار الاقتصاديين. يرتكز هذا الفكر على مبادئ راسخة:
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card gold-top">
+          <div class="concept-term">🏛️ آدم سميث (1776)</div>
+          <div class="concept-def">"ثروة الأمم" — نظرية "اليد الخفية": السوق الحرة تُنظّم نفسها بنفسها دون تدخل الدولة، والمصلحة الخاصة تخدم المصلحة العامة.</div>
+        </div>
+        <div class="concept-card gold-top">
+          <div class="concept-term">📊 داڤيد ريكاردو</div>
+          <div class="concept-def">نظرية قيمة العمل — نظرية الميزة النسبية في التجارة الدولية — الأجور تتحدد بحسب العرض والطلب.</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">⚡ المبادئ الليبرالية</div>
+          <div class="concept-def">حرية السوق — الملكية الخاصة — المنافسة الحرة — عدم تدخل الدولة (Laissez-faire) — العقد بين صاحب العمل والعامل.</div>
+        </div>
+      </div>
+
+      <div class="axis-title blue-axis">
+        <span class="axis-num" style="background:var(--blue)">ب</span>
+        النقد الماركسي للرأسمالية
+      </div>
+
+      <p class="content-para">
+        في مواجهة الليبرالية الاقتصادية، نشأ فكر نقدي راديكالي قاده <span class="highlight">كارل ماركس وفريدريك إنغلز</span>. المانيفيست الشيوعي (1848) ثم "رأس المال" (1867) كانا أبرز وثائق هذا التيار:
+      </p>
+
+      <div class="info-box red">
+        <span class="ib-icon">📌</span>
+        <div>
+          <strong>أطروحة ماركس الجوهرية:</strong> الرأسمالية نظام استغلال؛ يستولي أصحاب المصانع على فائض قيمة عمل العمال. الصراع الطبقي بين البورجوازية والبروليتاريا حتمي، وسيُفضي إلى انهيار الرأسمالية وقيام المجتمع الشيوعي.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 6: خلاصة الدرس وجدول التركيب
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#E8EFF9;">🔁</div>
+      <div class="section-title">جدول التركيب والمقارنة</div>
+      <span class="section-badge" style="background:var(--blue-light);color:var(--blue);">تركيب</span>
+    </div>
+    <div class="section-body">
+      <div class="compare-table-wrap" style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>العنصر</th>
+              <th>في النظام الإقطاعي (قبل)</th>
+              <th>في النظام الرأسمالي (بعد)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>أساس الاقتصاد</td>
+              <td>الزراعة والأرض</td>
+              <td>الصناعة والرأسمال</td>
+            </tr>
+            <tr>
+              <td>وحدة الإنتاج</td>
+              <td>المزرعة والورشة الحرفية</td>
+              <td>المصنع والشركة الكبرى</td>
+            </tr>
+            <tr>
+              <td>مصدر الطاقة</td>
+              <td>الحيوان والإنسان والرياح</td>
+              <td>البخار ثم الكهرباء والنفط</td>
+            </tr>
+            <tr>
+              <td>البنية الاجتماعية</td>
+              <td>نبلاء — رجال دين — أقنان</td>
+              <td>بورجوازية — بروليتاريا — طبقة وسطى</td>
+            </tr>
+            <tr>
+              <td>دور الدولة</td>
+              <td>ملكية مطلقة — حماية النبلاء</td>
+              <td>حماية الملكية — ضبط السوق (ليبرالية)</td>
+            </tr>
+            <tr>
+              <td>الفكر الاقتصادي</td>
+              <td>المركنتيلية — الفيزيوقراطية</td>
+              <td>الليبرالية الاقتصادية — الاشتراكية</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       القسم 7: المعجم المفاهيمي
+  ========================================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FEF0E6;">📚</div>
+      <div class="section-title">المعجم المفاهيمي للدرس</div>
+      <span class="section-badge" style="background:var(--orange-light);color:var(--orange);">10 مصطلحات</span>
+    </div>
+    <div class="section-body">
+      <table class="glossary-table">
+        <thead>
+          <tr>
+            <th>المصطلح</th>
+            <th>التعريف</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>الرأسمالية</td><td>نظام اقتصادي يقوم على الملكية الخاصة لوسائل الإنتاج وحرية السوق وتحقيق الربح.</td></tr>
+          <tr><td>الثورة الصناعية</td><td>التحول من الإنتاج اليدوي إلى الإنتاج الآلي انطلق من إنجلترا (1760).</td></tr>
+          <tr><td>البورجوازية</td><td>الطبقة المالكة لوسائل الإنتاج في المجتمع الرأسمالي.</td></tr>
+          <tr><td>البروليتاريا</td><td>الطبقة العاملة التي تبيع قوة عملها مقابل أجر.</td></tr>
+          <tr><td>فائض القيمة</td><td>الفرق بين قيمة الإنتاج وما يحصل عليه العامل كأجر — مصدر ربح الرأسمالي.</td></tr>
+          <tr><td>الاحتكار (Trust)</td><td>سيطرة شركة أو مجموعة على قطاع إنتاجي كامل.</td></tr>
+          <tr><td>Laissez-faire</td><td>مبدأ عدم تدخل الدولة في الاقتصاد — ركيزة الليبرالية الاقتصادية.</td></tr>
+          <tr><td>اليد الخفية</td><td>مفهوم آدم سميث: السوق تُنظّم نفسها تلقائياً دون تدخل خارجي.</td></tr>
+          <tr><td>النقابة (Trade Union)</td><td>تنظيم عمالي للدفاع عن حقوق العمال وتحسين ظروف العمل.</td></tr>
+          <tr><td>المانيفيست الشيوعي</td><td>وثيقة ماركس وإنغلز 1848 التي تحلّل الصراع الطبقي وتدعو إلى الثورة العمالية.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- =========================================
+       خلاصة الدرس
+  ========================================= -->
+  <div class="summary-box">
+    <h3>✅ خلاصة الدرس</h3>
+    <ul class="summary-points">
+      <li>انطلقت الثورة الصناعية من إنجلترا في النصف الثاني من القرن 18 بفضل توافر الفحم والرساميل والاختراعات التقنية.</li>
+      <li>أفرزت الرأسمالية نظاماً اقتصادياً جديداً يقوم على الملكية الخاصة وحرية السوق وتراكم الثروة.</li>
+      <li>قسّم النظام الرأسمالي المجتمع إلى بورجوازية (تملك وسائل الإنتاج) وبروليتاريا (تبيع قوة عملها).</li>
+      <li>عاش العمال في ظروف قاسية مما ولّد حركة عمالية منظمة طالبت بتحسين ظروف العمل والحقوق الاجتماعية.</li>
+      <li>في مواجهة الليبرالية الاقتصادية، نشأ فكر ماركسي ينتقد الرأسمالية ويدعو إلى إلغاء الملكية الخاصة.</li>
+      <li>أفضى التصنيع إلى تمركز الثروة في يد الاحتكارات الكبرى، مما دفع الدول الصناعية نحو التوسع الاستعماري.</li>
+    </ul>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer-bar no-print">
+  <strong>الأستاذ أحمد بوعمود</strong> — مؤسسة الحنان — السنة الدراسية 2025–2026 |
+  الثالثة إعدادي — التاريخ — الدرس 1
+</footer>
+
+</body>
+</html>

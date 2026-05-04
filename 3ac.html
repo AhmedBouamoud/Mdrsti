@@ -1,61 +1,176 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>الثالثة إعدادي | مدرستي.ma</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الثالثة إعدادي — الاجتماعيات | مدرستي.ma</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Cairo',sans-serif;direction:rtl;background:#F8FAFC;color:#1E293B}
-header{background:linear-gradient(135deg,#1D4ED8,#1E3A8A);color:white;padding:0}
-.header-inner{max-width:1100px;margin:0 auto;padding:20px 24px}
-.site-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.site-logo{font-size:1.5rem;font-weight:900;color:white;text-decoration:none}
-.site-logo span{color:#F97316}
-.nav-links{display:flex;gap:6px;list-style:none}
-.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.88rem;padding:6px 14px;border-radius:20px;transition:all .2s}
-.nav-links a:hover{background:rgba(255,255,255,.15);color:white}
-.nav-links a.active{background:#F97316;color:white}
-.hero{padding:10px 0 44px;text-align:center}
-.hero h1{font-size:2rem;font-weight:900;margin-bottom:10px}
-.hero h1 span{color:#F97316}
-.hero p{color:rgba(255,255,255,.7);font-size:.95rem}
-main{max-width:1100px;margin:40px auto;padding:0 24px 60px;text-align:center}
-.coming-soon{background:white;border-radius:16px;padding:60px 40px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
-.coming-soon .icon{font-size:4rem;margin-bottom:20px}
-.coming-soon h2{font-size:1.4rem;font-weight:900;color:#1E293B;margin-bottom:10px}
-.coming-soon p{color:#64748B;font-size:.95rem;line-height:1.8}
-.back-btn{display:inline-flex;align-items:center;gap:8px;background:#1D4ED8;color:white;text-decoration:none;padding:10px 24px;border-radius:20px;font-weight:700;font-size:.9rem;margin-top:24px}
-footer{background:#1E293B;color:rgba(255,255,255,.5);text-align:center;padding:20px;font-size:.8rem;margin-top:40px}
-footer strong{color:#F97316}
+:root{--orange:#E8661A;--orange-light:#FEF0E6;--blue:#1A4FA0;--blue-light:#E8EFF9;--green:#16A34A;--dark:#1A1A2A;--text:#2D2D3A;--muted:#6B7280;--border:#E5E7EB;--bg:#F8F7F4;--white:#FFF;--radius:12px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+.nav-bar{background:var(--dark);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+.nav-logo{font-weight:900;font-size:18px;color:white;text-decoration:none;}
+.nav-logo span{color:#F5A05A;}
+.nav-link{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px;transition:all .2s;}
+.nav-link:hover{background:rgba(255,255,255,.1);color:white;}
+.hero{background:linear-gradient(135deg,var(--dark),#2A1A3A);padding:48px 24px;text-align:center;color:white;}
+.hero-badge{display:inline-block;background:rgba(232,102,26,.2);border:1px solid rgba(232,102,26,.4);color:#F5A05A;font-size:12px;font-weight:700;padding:4px 14px;border-radius:30px;margin-bottom:16px;}
+.hero h1{font-size:32px;font-weight:900;margin-bottom:8px;}
+.hero p{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat .num{font-size:28px;font-weight:900;color:#F5A05A;}
+.hero-stat .lbl{font-size:11px;color:rgba(255,255,255,.5);}
+.container{max-width:960px;margin:0 auto;padding:32px 20px 60px;}
+.subject-block{margin-bottom:40px;}
+.subject-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.subject-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.subject-title{font-size:20px;font-weight:900;color:var(--dark);}
+.subject-count{margin-right:auto;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;}
+.semester-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin:16px 0 10px;display:flex;align-items:center;gap:8px;}
+.semester-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.lessons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.lesson-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:12px;transition:all .2s;border-right:3px solid transparent;}
+.lesson-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.1);}
+.lesson-card.hist{border-right-color:var(--orange);}
+.lesson-card.geo{border-right-color:var(--blue);}
+.lesson-card.civic{border-right-color:var(--green);}
+.lesson-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;}
+.lesson-num.hist{background:var(--orange-light);color:var(--orange);}
+.lesson-num.geo{background:var(--blue-light);color:var(--blue);}
+.lesson-num.civic{background:#F0FDF4;color:var(--green);}
+.lesson-info{flex:1;min-width:0;}
+.lesson-title{font-size:13px;font-weight:700;line-height:1.4;margin-bottom:3px;}
+.lesson-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-size:10px;background:var(--bg);color:var(--muted);padding:2px 7px;border-radius:6px;}
+.lesson-arrow{color:var(--muted);font-size:16px;flex-shrink:0;}
+.print-note{background:var(--blue-light);border:1px solid rgba(26,79,160,.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:28px;font-size:13px;color:var(--blue);display:flex;align-items:center;gap:10px;}
+footer{text-align:center;padding:24px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);}
+footer strong{color:var(--orange);}
+@media(max-width:640px){.hero h1{font-size:24px;}.lessons-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <nav class="site-nav">
-      <a href="index.html" class="site-logo">مدرستي<span>.ma</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="3ac.html" class="active">الثالثة إعدادي</a></li>
-        <li><a href="bac1.html">أولى باك</a></li>
-      </ul>
-    </nav>
-    <div class="hero">
-      <h1>السنة الثالثة <span>إعدادي</span></h1>
-      <p>الاجتماعيات — التاريخ والجغرافيا والتربية على المواطنة</p>
+
+<nav class="nav-bar">
+  <a href="index.html" class="nav-logo">📚 مدرستي<span>.ma</span></a>
+  <div style="display:flex;gap:6px">
+    <a href="index.html" class="nav-link">🏠 الرئيسية</a>
+    <a href="bac1.html" class="nav-link">الأولى باك</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">الثالثة إعدادي (3AC)</div>
+  <h1>مادة الاجتماعيات</h1>
+  <p>التاريخ — الجغرافيا — التربية على المواطنة | المذكرة 25-019</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">11</div><div class="lbl">درس تاريخ</div></div>
+    <div class="hero-stat"><div class="num">12</div><div class="lbl">درس جغرافيا</div></div>
+    <div class="hero-stat"><div class="num">12</div><div class="lbl">درس مواطنة</div></div>
+    <div class="hero-stat"><div class="num">35</div><div class="lbl">درساً إجمالاً</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="print-note">
+    🖨️ <div>كل درس يحتوي على <strong>زر طباعة</strong> — تنسيق A4 مثالي — اضغطه مباشرة من صفحة الدرس.</div>
+  </div>
+
+  <!-- ===== التاريخ ===== -->
+  <div class="subject-block" id="histoire">
+    <div class="subject-header">
+      <div class="subject-icon" style="background:var(--orange-light)">📜</div>
+      <div class="subject-title">التاريخ</div>
+      <span class="subject-count" style="background:var(--orange-light);color:var(--orange)">11 درساً</span>
+    </div>
+
+    <div class="semester-label">الفصل الدراسي الأول</div>
+    <div class="lessons-grid">
+      <a href="h1.html" class="lesson-card hist"><div class="lesson-num hist">1</div><div class="lesson-info"><div class="lesson-title">الرأسمالية الأوروبية في القرن التاسع عشر</div><div class="lesson-tags"><span class="tag">الثورة الصناعية</span><span class="tag">الطبقات الاجتماعية</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h2.html" class="lesson-card hist"><div class="lesson-num hist">2</div><div class="lesson-info"><div class="lesson-title">الإمبريالية نتاج الرأسمالية</div><div class="lesson-tags"><span class="tag">الاستعمار</span><span class="tag">مؤتمر برلين</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h3.html" class="lesson-card hist"><div class="lesson-num hist">3</div><div class="lesson-info"><div class="lesson-title">الضغوط الاستعمارية على المغرب ومحاولات الإصلاح</div><div class="lesson-tags"><span class="tag">القرن 19</span><span class="tag">معاهدة فاس 1912</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h4.html" class="lesson-card hist"><div class="lesson-num hist">4</div><div class="lesson-info"><div class="lesson-title">الحرب العالمية الأولى: الأسباب والنتائج</div><div class="lesson-tags"><span class="tag">1914-1918</span><span class="tag">معاهدة فرساي</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h5.html" class="lesson-card hist"><div class="lesson-num hist">5</div><div class="lesson-info"><div class="lesson-title">سقوط الدولة العثمانية والتدخل الاستعماري في المشرق</div><div class="lesson-tags"><span class="tag">سايكس-بيكو</span><span class="tag">الانتداب</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h6.html" class="lesson-card hist"><div class="lesson-num hist">6</div><div class="lesson-info"><div class="lesson-title">الأزمة الاقتصادية العالمية لسنة 1929</div><div class="lesson-tags"><span class="tag">وول ستريت</span><span class="tag">نيو ديل</span></div></div><div class="lesson-arrow">›</div></a>
+    </div>
+
+    <div class="semester-label">الفصل الدراسي الثاني</div>
+    <div class="lessons-grid">
+      <a href="h7.html" class="lesson-card hist"><div class="lesson-num hist">7</div><div class="lesson-info"><div class="lesson-title">الأنظمة الديكتاتورية: دراسة حالة النازية</div><div class="lesson-tags"><span class="tag">هتلر</span><span class="tag">الهولوكوست</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h8.html" class="lesson-card hist"><div class="lesson-num hist">8</div><div class="lesson-info"><div class="lesson-title">الحرب العالمية الثانية: الأسباب والنتائج</div><div class="lesson-tags"><span class="tag">1939-1945</span><span class="tag">الأمم المتحدة</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h9.html" class="lesson-card hist"><div class="lesson-num hist">9</div><div class="lesson-info"><div class="lesson-title">القضية الفلسطينية والصراع العربي الإسرائيلي</div><div class="lesson-tags"><span class="tag">النكبة 1948</span><span class="tag">أوسلو</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h10.html" class="lesson-card hist"><div class="lesson-num hist">10</div><div class="lesson-info"><div class="lesson-title">نضال المغرب من أجل الاستقلال والوحدة الترابية</div><div class="lesson-tags"><span class="tag">الاستقلال 1956</span><span class="tag">المسيرة الخضراء</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="h11.html" class="lesson-card hist"><div class="lesson-num hist">11</div><div class="lesson-info"><div class="lesson-title">بناء الدولة المغربية الحديثة بعد 1956</div><div class="lesson-tags"><span class="tag">الدساتير</span><span class="tag">INDH</span></div></div><div class="lesson-arrow">›</div></a>
     </div>
   </div>
-</header>
-<main>
-  <div class="coming-soon">
-    <div class="icon">🚧</div>
-    <h2>الدروس قيد الإعداد</h2>
-    <p>يعمل الأستاذ أحمد بوعمود على إعداد دروس السنة الثالثة إعدادي<br/>ستكون جاهزة قريباً إن شاء الله</p>
-    <a href="index.html" class="back-btn">→ العودة للرئيسية</a>
+
+  <!-- ===== الجغرافيا ===== -->
+  <div class="subject-block" id="geographie">
+    <div class="subject-header">
+      <div class="subject-icon" style="background:var(--blue-light)">🌍</div>
+      <div class="subject-title">الجغرافيا</div>
+      <span class="subject-count" style="background:var(--blue-light);color:var(--blue)">12 درساً</span>
+    </div>
+
+    <div class="semester-label">الفصل الدراسي الأول</div>
+    <div class="lessons-grid">
+      <a href="g1.html" class="lesson-card geo"><div class="lesson-num geo">1</div><div class="lesson-info"><div class="lesson-title">المغرب العربي: الوحدة والتنوع</div><div class="lesson-tags"><span class="tag">5 دول</span><span class="tag">الموقع والسكان</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g2.html" class="lesson-card geo"><div class="lesson-num geo">2</div><div class="lesson-info"><div class="lesson-title">المغرب العربي بين التكامل والتحديات</div><div class="lesson-tags"><span class="tag">التبادل 3%</span><span class="tag">العوائق</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g3.html" class="lesson-card geo"><div class="lesson-num geo">3</div><div class="lesson-info"><div class="lesson-title">اتحاد المغرب العربي كتكتل إقليمي استراتيجي</div><div class="lesson-tags"><span class="tag">1989</span><span class="tag">مراكش</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g4.html" class="lesson-card geo"><div class="lesson-num geo">4</div><div class="lesson-info"><div class="lesson-title">الاتحاد الأوروبي: إمكاناته ومكانته الاقتصادية</div><div class="lesson-tags"><span class="tag">27 دولة</span><span class="tag">اليورو</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g5.html" class="lesson-card geo"><div class="lesson-num geo">5</div><div class="lesson-info"><div class="lesson-title">الاتحاد الأوروبي بين الاندماج والتنافسية</div><div class="lesson-tags"><span class="tag">شنغن</span><span class="tag">البريكزيت</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g6.html" class="lesson-card geo"><div class="lesson-num geo">6</div><div class="lesson-info"><div class="lesson-title">عوائق التكتلات الإقليمية: مقارنة</div><div class="lesson-tags"><span class="tag">الاتحاد الأوروبي</span><span class="tag">المغرب العربي</span></div></div><div class="lesson-arrow">›</div></a>
+    </div>
+
+    <div class="semester-label">الفصل الدراسي الثاني</div>
+    <div class="lessons-grid">
+      <a href="g7.html" class="lesson-card geo"><div class="lesson-num geo">7</div><div class="lesson-info"><div class="lesson-title">الولايات المتحدة الأمريكية: قوة عالمية</div><div class="lesson-tags"><span class="tag">25% الناتج العالمي</span><span class="tag">القوة الناعمة</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g8.html" class="lesson-card geo"><div class="lesson-num geo">8</div><div class="lesson-info"><div class="lesson-title">اليابان: القوة التكنولوجية</div><div class="lesson-tags"><span class="tag">Kaizen</span><span class="tag">3ème اقتصاد</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g9.html" class="lesson-card geo"><div class="lesson-num geo">9</div><div class="lesson-info"><div class="lesson-title">روسيا: تحولات وتحديات التنمية</div><div class="lesson-tags"><span class="tag">1991</span><span class="tag">الغاز والنفط</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g10.html" class="lesson-card geo"><div class="lesson-num geo">10</div><div class="lesson-info"><div class="lesson-title">مصر: نموذج التنمية العربية</div><div class="lesson-tags"><span class="tag">قناة السويس</span><span class="tag">100M ساكن</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g11.html" class="lesson-card geo"><div class="lesson-num geo">11</div><div class="lesson-info"><div class="lesson-title">نيجيريا: الثروات الطبيعية وضعف التنمية</div><div class="lesson-tags"><span class="tag">النفط والفقر</span><span class="tag">220M ساكن</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="g12.html" class="lesson-card geo"><div class="lesson-num geo">12</div><div class="lesson-info"><div class="lesson-title">تطبيق منهجية جغرافية على ظاهرة اقتصادية</div><div class="lesson-tags"><span class="tag">النص الجغرافي</span><span class="tag">تحليل الوثائق</span></div></div><div class="lesson-arrow">›</div></a>
+    </div>
   </div>
-</main>
-<footer><strong>مدرستي.ma</strong> — موقع تعليمي للأستاذ أحمد بوعمود | مؤسسة الحنان | 2025–2026</footer>
+
+  <!-- ===== التربية على المواطنة ===== -->
+  <div class="subject-block" id="citoyennete">
+    <div class="subject-header">
+      <div class="subject-icon" style="background:#F0FDF4">⚖️</div>
+      <div class="subject-title">التربية على المواطنة</div>
+      <span class="subject-count" style="background:#F0FDF4;color:var(--green)">12 درساً</span>
+    </div>
+
+    <div class="semester-label">الفصل الدراسي الأول</div>
+    <div class="lessons-grid">
+      <a href="c1.html" class="lesson-card civic"><div class="lesson-num civic">1</div><div class="lesson-info"><div class="lesson-title">المشاركة: حق وواجب — مجلس التلاميذ</div><div class="lesson-tags"><span class="tag">الديمقراطية</span><span class="tag">المشاركة</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c2.html" class="lesson-card civic"><div class="lesson-num civic">2</div><div class="lesson-info"><div class="lesson-title">معالجة مشكلة اجتماعية من أمثلة محلية</div><div class="lesson-tags"><span class="tag">المنهجية</span><span class="tag">الحلول</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c3.html" class="lesson-card civic"><div class="lesson-num civic">3</div><div class="lesson-info"><div class="lesson-title">مسؤولية الدولة في حل المشكلات الاجتماعية</div><div class="lesson-tags"><span class="tag">INDH</span><span class="tag">الدولة الاجتماعية</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c4.html" class="lesson-card civic"><div class="lesson-num civic">4</div><div class="lesson-info"><div class="lesson-title">مؤسسة محمد الخامس للتضامن</div><div class="lesson-tags"><span class="tag">1999</span><span class="tag">التضامن</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c5.html" class="lesson-card civic"><div class="lesson-num civic">5</div><div class="lesson-info"><div class="lesson-title">الأخلاق في الحياة العامة</div><div class="lesson-tags"><span class="tag">النزاهة</span><span class="tag">مكافحة الفساد</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c6.html" class="lesson-card civic"><div class="lesson-num civic">6</div><div class="lesson-info"><div class="lesson-title">إلى أين نلجأ حين تُنتهك حقوقنا</div><div class="lesson-tags"><span class="tag">CNDH</span><span class="tag">القضاء</span></div></div><div class="lesson-arrow">›</div></a>
+    </div>
+
+    <div class="semester-label">الفصل الدراسي الثاني</div>
+    <div class="lessons-grid">
+      <a href="c7.html" class="lesson-card civic"><div class="lesson-num civic">7</div><div class="lesson-info"><div class="lesson-title">صون التراث وتنميته</div><div class="lesson-tags"><span class="tag">UNESCO</span><span class="tag">المادي واللامادي</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c8.html" class="lesson-card civic"><div class="lesson-num civic">8</div><div class="lesson-info"><div class="lesson-title">صون الموارد الطبيعية</div><div class="lesson-tags"><span class="tag">الفوسفاط</span><span class="tag">الطاقة المتجددة</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c9.html" class="lesson-card civic"><div class="lesson-num civic">9</div><div class="lesson-info"><div class="lesson-title">تقاسم الأرض مع العالم</div><div class="lesson-tags"><span class="tag">التضامن الدولي</span><span class="tag">SDG</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c10.html" class="lesson-card civic"><div class="lesson-num civic">10</div><div class="lesson-info"><div class="lesson-title">المغرب والحوار بين الأديان</div><div class="lesson-tags"><span class="tag">إعلان مراكش</span><span class="tag">التسامح</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c11.html" class="lesson-card civic"><div class="lesson-num civic">11</div><div class="lesson-info"><div class="lesson-title">المغرب والسلام العالمي</div><div class="lesson-tags"><span class="tag">حفظ السلام</span><span class="tag">الدبلوماسية</span></div></div><div class="lesson-arrow">›</div></a>
+      <a href="c12.html" class="lesson-card civic"><div class="lesson-num civic">12</div><div class="lesson-info"><div class="lesson-title">برامج إعلامية لتعزيز قيم المواطنة</div><div class="lesson-tags"><span class="tag">HACA</span><span class="tag">الإعلام الرقمي</span></div></div><div class="lesson-arrow">›</div></a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>الأستاذ أحمد بوعمود</strong> — مؤسسة الحنان الخاصة — السنة الدراسية 2025–2026<br>
+  مادة الاجتماعيات — الثالثة إعدادي — المذكرة 25-019
+</footer>
+
 </body>
 </html>
