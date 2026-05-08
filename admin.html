@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة الإضافة</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="logo">AB</div><div><h1>لوحة إضافة مورد</h1><p>الأستاذ أحمد بوعمود</p></div></header>
+<main class="adminbox">
+<div class="notice"><b>طريقة العمل من الهاتف:</b><br>املأ الخانات، اختر الصورة، اضغط توليد. انسخ الكود الناتج وأضفه داخل ملف <b>assets/data/resources.json</b>. ضع الصورة في <b>assets/img</b> بنفس الاسم الظاهر.</div>
+<label>عنوان المورد</label><input id="title" placeholder="مثال: خريطة ذهنية لمشكل الماء">
+<label>المستوى</label><select id="level"><option>الأولى باك</option><option>الثالثة إعدادي</option><option>جذع مشترك</option></select>
+<label>الصنف</label><select id="type"><option>درس</option><option>إنفوغرافيا</option><option>تمارين وامتحانات</option><option>منهجية</option></select>
+<label>وصف قصير</label><textarea id="desc" placeholder="وصف موجز للمورد"></textarea>
+<label>اسم ملف الصورة</label><input id="img" placeholder="water-map.jpg">
+<label>رابط PDF أو الصفحة</label><input id="link" placeholder="# أو رابط الملف">
+<button onclick="generate()">توليد الكود</button>
+<textarea id="output" rows="12" readonly></textarea>
+<button onclick="copyCode()">نسخ الكود</button>
+<a href="index.html" class="back">العودة للموقع</a>
+</main>
+<script>
+function slugify(s){return s.trim().toLowerCase().replace(/\s+/g,'-').replace(/["']/g,'')}
+function generate(){const data={id:Date.now(),title:title.value,level:level.value,type:type.value,description:desc.value,image:'assets/img/'+img.value,link:link.value||'#',date:new Date().toISOString().slice(0,10)};output.value=JSON.stringify(data,null,2)+','}
+function copyCode(){output.select();document.execCommand('copy');alert('تم النسخ')}
+</script>
+</body></html>
