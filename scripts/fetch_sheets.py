@@ -1,48 +1,48 @@
 #!/usr/bin/env python3
-"""
-يقرأ Google Sheets ويولّد ملف data.json للموقع
-"""
+"""يقرأ Google Sheets ويولّد data.json"""
 import json, urllib.request, csv, io, sys
 
 SHEETS = {
-    "3ac":  "1AfvzuwlVJ5T5E4wV86gE7yDefL_BQk2KlVa9FccIi4g",
-    "1bac": "1Rz4Wif8pSwB7E0ulcCVM0933Poa0PoAeeT8DcQGPX2U",
-    "manhajiya": "1D1RDpYA2XnjAuBCyYlTRlsPjYwOs_NRr30CKggvSsuA",
-    "infographie": "1de8IlX_t05ymVetHCvOK2g36fIaYWx3nvTXdUylnmgo",
+    "3ac":  "1PITPOxTO83DdOLdn-oFz-_RBwqu1eZwzESDcDMqgi6w",
+    "1bac": "1YfVByIBWridKn_Y3w82AweRZeAqmAgcmyQehTJB4W_Q",
+    "manhajiya": "1KrJjKXXnlAoJTpR-fMtVlcH0Yy0FslFAiZAW2qR9Jbg",
+    "infographie": "1Ri2-Tr4-VtWjasceV5XmxTHVi9S8qLfOaYEDMRjyQA4",
 }
 
 def fetch_csv(sheet_id):
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv"
-    try:
-        with urllib.request.urlopen(url, timeout=15) as r:
-            return r.read().decode("utf-8-sig")
-    except Exception as e:
-        print(f"⚠️ خطأ في جلب {sheet_id}: {e}", file=sys.stderr)
-        return ""
+    urls = [
+        f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv",
+        f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv",
+    ]
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                return r.read().decode("utf-8-sig")
+        except Exception as e:
+            print(f"   محاولة فشلت: {e}", file=sys.stderr)
+    return ""
 
 def parse_csv(text):
     rows = []
     reader = csv.DictReader(io.StringIO(text))
     for row in reader:
-        rows.append({k.strip(): v.strip() for k, v in row.items() if k})
+        rows.append({k.strip(): (v.strip() if v else "") for k, v in row.items() if k})
     return rows
 
 data = {}
 for key, sid in SHEETS.items():
-    print(f"📥 جلب {key}...")
+    print(f"جلب {key}...")
     text = fetch_csv(sid)
     if text:
         rows = parse_csv(text)
         data[key] = rows
-        print(f"   ✅ {len(rows)} سطر")
+        print(f"   تم {len(rows)} سطر")
     else:
         data[key] = []
+        print(f"   تعذر الجلب - تأكد أن الجدول عام")
 
 with open("data.json", "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
-print(f"\n✅ تم توليد data.json")
-print(f"   3AC: {len(data.get('3ac',[]))} درس")
-print(f"   1Bac: {len(data.get('1bac',[]))} درس")
-print(f"   منهجية: {len(data.get('manhajiya',[]))} عنصر")
-print(f"   إنفوغرافيك: {len(data.get('infographie',[]))} عنصر")
+print(f"\nالمجموع: 3AC={len(data.get('3ac',[]))} 1Bac={len(data.get('1bac',[]))} منهجية={len(data.get('manhajiya',[]))} إنفوغرافيك={len(data.get('infographie',[]))}")
