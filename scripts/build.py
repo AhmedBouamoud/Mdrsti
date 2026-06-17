@@ -140,10 +140,21 @@ meths_js = f"const METHODOLOGIES = {json.dumps(meths,ensure_ascii=False)};"
 # Stats
 total = sum(len(v) for v in lessons_3ac.values()) + sum(len(v) for v in lessons_1bac.values())
 
-# Replace in HTML
-html = re.sub(r'const LESSONS = \{.*?\};', lessons_js, html, flags=re.DOTALL)
-html = re.sub(r'const INFOS = \[.*?\];', infos_js, html, flags=re.DOTALL)
-html = re.sub(r'const METHODOLOGIES = \[.*?\];', meths_js, html, flags=re.DOTALL)
+# Replace in HTML — only when sheets actually returned data
+if total > 0:
+    html = re.sub(r'const LESSONS = \{.*?\};', lessons_js, html, flags=re.DOTALL)
+else:
+    print("⚠️  بيانات الدروس فارغة من Google Sheets — المحتوى الحالي في index.html محفوظ")
+
+if infos:
+    html = re.sub(r'const INFOS = \[.*?\];', infos_js, html, flags=re.DOTALL)
+else:
+    print("⚠️  بيانات الإنفوغرافيك فارغة — المحتوى الحالي محفوظ")
+
+if meths:
+    html = re.sub(r'const METHODOLOGIES = \[.*?\];', meths_js, html, flags=re.DOTALL)
+else:
+    print("⚠️  بيانات المنهجيات فارغة — المحتوى الحالي محفوظ")
 
 # Update stats
 for pattern, repl in [
