@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/projects",
+      "destination": "/projects/index.html"
+    },
+    {
+      "source": "/projects/",
+      "destination": "/projects/index.html"
+    }
+  ]
+}
