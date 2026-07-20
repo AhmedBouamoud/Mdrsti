@@ -1,0 +1,13 @@
+https://profhanane.netlify.app/ | http=200 | size=318142 | etag="7b0e97045773e8c4850a002dadc84d09-ssl" | title=مدرستي — الاجتماعيات  | site_id=33c27215-f48f-456e-8459-55c4b19b0c69 | repo=https://github.com/AhmedBouamoud/Mdrsti | custom=None
+https://mdrsti.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://mdrsti-new.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://hanane-today.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://hanane.netlify.app/ | http=200 | size=71366 | etag= | title=Hanane - The Most Amazing Person 💕  | site_id= | repo= | custom=
+https://ecole-al-hanane.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://alhanane.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://mdrsti-new-63932.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://mdrsti-new-23182.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://mdrsti-new-41cd2.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+https://mdrsti-new-5c36e.netlify.app/ | http=404 | size=50 | etag= | title= | site_id= | repo= | custom=
+TARGET hanane.today | etag=ae95b5c4362ca2a0cccdccb51b72ae04-ssl | title=مدرستي | الأستاذ أحمد بوعمود
+2026-07-20T11:51:45Z
