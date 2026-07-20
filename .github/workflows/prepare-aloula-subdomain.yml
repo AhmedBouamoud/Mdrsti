@@ -1,0 +1,43 @@
+name: Prepare aloula.hanane.today
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prepare-aloula-subdomain.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make lesson pages portable between folder and subdomain
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          marker = '<base href="/rihlat-aloula-bac/">'
+          for name in ('index.html', 'lesson.html', 'about.html'):
+              path = Path('rihlat-aloula-bac') / name
+              text = path.read_text(encoding='utf-8')
+              text = text.replace(marker, '')
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit portable-path update
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rihlat-aloula-bac/index.html rihlat-aloula-bac/lesson.html rihlat-aloula-bac/about.html
+          git diff --cached --quiet || git commit -m 'Prepare رحلة الأولى باك for aloula.hanane.today'
+          git push origin main
