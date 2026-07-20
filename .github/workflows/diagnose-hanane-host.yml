@@ -1,0 +1,41 @@
+name: Diagnose hanane.today host
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-hanane-host.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Capture response headers
+        shell: bash
+        run: |
+          mkdir -p .deployment-status
+          {
+            echo '=== ROOT ==='
+            curl -sSIL --connect-timeout 5 --max-time 20 https://hanane.today/ || true
+            echo
+            echo '=== FIRST BAC ==='
+            curl -sSIL --connect-timeout 5 --max-time 20 https://hanane.today/rihlat-aloula-bac || true
+            echo
+            date -u +'%Y-%m-%dT%H:%M:%SZ'
+          } > .deployment-status/hanane-host-headers.txt
+      - name: Save headers
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/hanane-host-headers.txt
+          git diff --cached --quiet || git commit -m 'Record hanane.today hosting headers'
+          git push origin main
