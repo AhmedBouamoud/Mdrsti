@@ -1,0 +1,49 @@
+name: Verify Rihlat Aloula live URL
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-rihlat-aloula-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify hanane.today route
+        shell: bash
+        run: |
+          set +e
+          url='https://hanane.today/rihlat-aloula-bac'
+          status=pending
+          code=000
+          matched=false
+          for attempt in $(seq 1 18); do
+            code=$(curl -L -sS --connect-timeout 5 --max-time 15 -o /tmp/live.html -w '%{http_code}' "$url")
+            matched=false
+            grep -q 'رحلة الأولى باك' /tmp/live.html 2>/dev/null && matched=true
+            if [ "$code" = '200' ] && [ "$matched" = true ]; then
+              status=online
+              break
+            fi
+            sleep 10
+          done
+          mkdir -p .deployment-status
+          checked_at=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          printf '{\n  "url": "%s",\n  "status": "%s",\n  "http_code": "%s",\n  "content_match": %s,\n  "checked_at": "%s"\n}\n' "$url" "$status" "$code" "$matched" "$checked_at" > .deployment-status/rihlat-aloula-live.json
+      - name: Save verification
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/rihlat-aloula-live.json
+          git diff --cached --quiet || git commit -m 'Verify رحلة الأولى باك live URL'
+          git push origin main
