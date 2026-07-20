@@ -4,6 +4,8 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/projects", "destination": "/projects.html" },
-    { "source": "/projects/", "destination": "/projects.html" }
+    { "source": "/projects/", "destination": "/projects.html" },
+    { "source": "/rihlat-aloula-bac", "destination": "/rihlat-aloula-bac/index.html" },
+    { "source": "/rihlat-aloula-bac/", "destination": "/rihlat-aloula-bac/index.html" }
   ]
 }
