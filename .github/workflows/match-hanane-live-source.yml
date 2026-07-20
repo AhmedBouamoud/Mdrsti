@@ -1,0 +1,63 @@
+name: Match hanane.today live source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/match-hanane-live-source.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  match:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compare live homepage with repository candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .deployment-status
+          curl -sSL --connect-timeout 10 --max-time 60 https://hanane.today/ -o /tmp/hanane-live.html
+          live_sha=$(sha256sum /tmp/hanane-live.html | awk '{print $1}')
+          live_size=$(wc -c < /tmp/hanane-live.html | tr -d ' ')
+          out=.deployment-status/hanane-live-source-match.txt
+          printf 'LIVE | size=%s | sha256=%s\n' "$live_size" "$live_sha" > "$out"
+          candidates=(
+            'AhmedBouamoud/Mdrsti|index.html'
+            'AhmedBouamoud/Mdrsti|index-4.html'
+            'AhmedBouamoud/Mdrsti|index-6.html'
+            'AhmedBouamoud/Mdrsti|index-7.html'
+            'AhmedBouamoud/Al-Hanan-|index.html'
+            'AhmedBouamoud/Al-Hanan-|index-7.html'
+          )
+          for item in "${candidates[@]}"; do
+            repo=${item%%|*}
+            path=${item#*|}
+            url="https://raw.githubusercontent.com/${repo}/main/${path}"
+            file="/tmp/$(echo "$repo-$path" | tr '/ ' '__')"
+            code=$(curl -sSL --connect-timeout 10 --max-time 60 -o "$file" -w '%{http_code}' "$url" || true)
+            if [ "$code" = '200' ]; then
+              sha=$(sha256sum "$file" | awk '{print $1}')
+              size=$(wc -c < "$file" | tr -d ' ')
+              match=no
+              [ "$sha" = "$live_sha" ] && match=yes
+              printf '%s/%s | http=%s | size=%s | sha256=%s | exact_match=%s\n' "$repo" "$path" "$code" "$size" "$sha" "$match" >> "$out"
+            else
+              printf '%s/%s | http=%s\n' "$repo" "$path" "$code" >> "$out"
+            fi
+          done
+          date -u +'%Y-%m-%dT%H:%M:%SZ' >> "$out"
+      - name: Save match result
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/hanane-live-source-match.txt
+          git diff --cached --quiet || git commit -m 'Match hanane.today live homepage source'
+          git push origin main
