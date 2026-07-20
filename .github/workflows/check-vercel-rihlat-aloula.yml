@@ -42,6 +42,11 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
           git add .deployment-status/rihlat-aloula-vercel-check.txt
-          git diff --cached --quiet || git commit -m 'Check رحلة الأولى باك on Vercel'
-          git push origin main
+          if git diff --cached --quiet; then
+            echo 'No status change.'
+          else
+            git commit -m 'Check رحلة الأولى باك on Vercel'
+            git push origin main
+          fi
