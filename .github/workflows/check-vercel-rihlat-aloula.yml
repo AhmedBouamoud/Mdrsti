@@ -1,0 +1,47 @@
+name: Check Vercel Rihlat Aloula
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-vercel-rihlat-aloula.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check Vercel production URLs
+        shell: bash
+        run: |
+          mkdir -p .deployment-status
+          out=.deployment-status/rihlat-aloula-vercel-check.txt
+          : > "$out"
+          for url in \
+            'https://mdrsti.vercel.app/rihlat-aloula-bac' \
+            'https://mdrsti.vercel.app/rihlat-aloula-bac/' \
+            'https://ahmedbouamoud.com/rihlat-aloula-bac' \
+            'https://www.ahmedbouamoud.com/rihlat-aloula-bac' \
+            'https://aloula.hanane.today'; do
+            code=$(curl -L -sS --connect-timeout 8 --max-time 25 -o /tmp/vercel-check.html -w '%{http_code}' "$url" || true)
+            match=no
+            grep -q 'رحلة الأولى باك' /tmp/vercel-check.html 2>/dev/null && match=yes
+            title=$(grep -o '<title>[^<]*' /tmp/vercel-check.html 2>/dev/null | head -1 | sed 's/<title>//' | tr '\n' ' ')
+            printf '%s | http=%s | match=%s | title=%s\n' "$url" "$code" "$match" "$title" >> "$out"
+          done
+          date -u +'%Y-%m-%dT%H:%M:%SZ' >> "$out"
+      - name: Save check
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/rihlat-aloula-vercel-check.txt
+          git diff --cached --quiet || git commit -m 'Check رحلة الأولى باك on Vercel'
+          git push origin main
