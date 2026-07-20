@@ -1,0 +1,6 @@
+https://hanane.today/rihlat-aloula-bac | http=404 | match=no | title=Page not found 
+https://hanane.today/rihlat-aloula-bac/ | http=404 | match=no | title=Page not found 
+https://hanane.today/rihlat-aloula-bac/index.html | http=404 | match=no | title=Page not found 
+https://profhanane.netlify.app/rihlat-aloula-bac | http=200 | match=yes | title=رحلة الأولى باك | الاجتماعيات 
+https://profhanane.netlify.app/rihlat-aloula-bac/index.html | http=200 | match=yes | title=رحلة الأولى باك | الاجتماعيات 
+2026-07-20T11:50:00Z
