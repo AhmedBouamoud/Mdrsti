@@ -1,0 +1,46 @@
+name: Final check Rihlat Aloula on hanane.today
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/final-check-rihlat-aloula.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check live URLs
+        shell: bash
+        run: |
+          mkdir -p .deployment-status
+          : > .deployment-status/rihlat-aloula-final-check.txt
+          for url in \
+            'https://hanane.today/rihlat-aloula-bac' \
+            'https://hanane.today/rihlat-aloula-bac/' \
+            'https://hanane.today/rihlat-aloula-bac/index.html' \
+            'https://profhanane.netlify.app/rihlat-aloula-bac' \
+            'https://profhanane.netlify.app/rihlat-aloula-bac/index.html'; do
+            code=$(curl -L -sS --connect-timeout 5 --max-time 15 -o /tmp/check.html -w '%{http_code}' "$url" || true)
+            match=no
+            grep -q 'رحلة الأولى باك' /tmp/check.html 2>/dev/null && match=yes
+            title=$(grep -o '<title>[^<]*' /tmp/check.html 2>/dev/null | head -1 | sed 's/<title>//' | tr '\n' ' ')
+            printf '%s | http=%s | match=%s | title=%s\n' "$url" "$code" "$match" "$title" >> .deployment-status/rihlat-aloula-final-check.txt
+          done
+          date -u +'%Y-%m-%dT%H:%M:%SZ' >> .deployment-status/rihlat-aloula-final-check.txt
+      - name: Save check
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/rihlat-aloula-final-check.txt
+          git diff --cached --quiet || git commit -m 'Final-check رحلة الأولى باك live URLs'
+          git push origin main
