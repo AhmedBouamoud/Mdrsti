@@ -1,0 +1,36 @@
+name: Inspect Netlify site metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-netlify-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch public Netlify metadata
+        shell: bash
+        run: |
+          mkdir -p .deployment-status
+          curl -sS --connect-timeout 5 --max-time 20 \
+            https://api.netlify.com/api/v1/sites/profhanane.netlify.app \
+            > .deployment-status/profhanane-netlify-site.json || true
+          test -s .deployment-status/profhanane-netlify-site.json || echo '{"error":"empty response"}' > .deployment-status/profhanane-netlify-site.json
+      - name: Save metadata
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/profhanane-netlify-site.json
+          git diff --cached --quiet || git commit -m 'Inspect profhanane Netlify site metadata'
+          git push origin main
