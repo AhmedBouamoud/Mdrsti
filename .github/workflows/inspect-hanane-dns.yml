@@ -1,0 +1,49 @@
+name: Inspect hanane.today DNS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-hanane-dns.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Resolve DNS records
+        shell: bash
+        run: |
+          mkdir -p .deployment-status
+          {
+            echo 'hanane.today A:'
+            dig +short A hanane.today
+            echo 'hanane.today CNAME:'
+            dig +short CNAME hanane.today
+            echo 'www.hanane.today CNAME:'
+            dig +short CNAME www.hanane.today
+            echo 'www.hanane.today A:'
+            dig +short A www.hanane.today
+            echo 'hanane.today NS:'
+            dig +short NS hanane.today
+            echo 'rihla.hanane.today CNAME:'
+            dig +short CNAME rihla.hanane.today
+            echo 'rihla.hanane.today A:'
+            dig +short A rihla.hanane.today
+            date -u +'%Y-%m-%dT%H:%M:%SZ'
+          } > .deployment-status/hanane-dns.txt
+      - name: Save DNS result
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/hanane-dns.txt
+          git diff --cached --quiet || git commit -m 'Inspect hanane.today DNS records'
+          git push origin main
