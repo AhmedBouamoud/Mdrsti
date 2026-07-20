@@ -1,0 +1,29 @@
+=== ROOT ===
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss
+content-type: text/html; charset=UTF-8
+date: Mon, 20 Jul 2026 11:40:08 GMT
+etag: "ae95b5c4362ca2a0cccdccb51b72ae04-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000
+x-nf-request-id: 01KXZN71RP2G65M0W35RVRH0GR
+content-length: 1224418
+
+
+=== FIRST BAC ===
+HTTP/2 404 
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss
+content-type: text/html; charset=utf-8
+date: Mon, 20 Jul 2026 11:40:09 GMT
+etag: 1777595443-ssl
+server: Netlify
+strict-transport-security: max-age=31536000
+x-nf-request-id: 01KXZN72DEQ77ER9Q8TAZ49VWS
+
+
+2026-07-20T11:40:09Z
