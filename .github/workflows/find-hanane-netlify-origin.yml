@@ -1,0 +1,65 @@
+name: Find hanane.today Netlify origin
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/find-hanane-netlify-origin.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  find:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Probe likely Netlify site names
+        shell: bash
+        run: |
+          set +e
+          mkdir -p .deployment-status
+          out=.deployment-status/hanane-netlify-origin-candidates.txt
+          : > "$out"
+          candidates=(
+            profhanane
+            mdrsti
+            mdrsti-new
+            hanane-today
+            hanane
+            ecole-al-hanane
+            alhanane
+            mdrsti-new-63932
+            mdrsti-new-23182
+            mdrsti-new-41cd2
+            mdrsti-new-5c36e
+          )
+          for name in "${candidates[@]}"; do
+            url="https://${name}.netlify.app/"
+            headers=$(mktemp)
+            body=$(mktemp)
+            code=$(curl -sSL --connect-timeout 5 --max-time 15 -D "$headers" -o "$body" -w '%{http_code}' "$url" || true)
+            etag=$(grep -i '^etag:' "$headers" | tail -1 | tr -d '\r' | cut -d' ' -f2-)
+            title=$(grep -o '<title>[^<]*' "$body" 2>/dev/null | head -1 | sed 's/<title>//' | tr '\n' ' ')
+            size=$(wc -c < "$body" | tr -d ' ')
+            api=$(curl -sS --connect-timeout 5 --max-time 15 "https://api.netlify.com/api/v1/sites/${name}.netlify.app" || true)
+            site_id=$(printf '%s' "$api" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("id",""))' 2>/dev/null)
+            repo=$(printf '%s' "$api" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("repo_url",""))' 2>/dev/null)
+            custom=$(printf '%s' "$api" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("custom_domain",""))' 2>/dev/null)
+            printf '%s | http=%s | size=%s | etag=%s | title=%s | site_id=%s | repo=%s | custom=%s\n' "$url" "$code" "$size" "$etag" "$title" "$site_id" "$repo" "$custom" >> "$out"
+            rm -f "$headers" "$body"
+          done
+          echo 'TARGET hanane.today | etag=ae95b5c4362ca2a0cccdccb51b72ae04-ssl | title=مدرستي | الأستاذ أحمد بوعمود' >> "$out"
+          date -u +'%Y-%m-%dT%H:%M:%SZ' >> "$out"
+      - name: Save candidates
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/hanane-netlify-origin-candidates.txt
+          git diff --cached --quiet || git commit -m 'Find hanane.today Netlify origin site'
+          git push origin main
