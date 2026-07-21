@@ -1,0 +1,54 @@
+name: Diagnose Aloula live source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-aloula-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inspect DNS, headers, and content
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .deployment-status
+          target='https://aloula.hanane.today/'
+          netlify='https://profhanane.netlify.app/rihlat-aloula-bac/'
+          {
+            echo 'checked_at='$(date -u +%FT%TZ)
+            echo '--- DNS CNAME ---'
+            dig +short CNAME aloula.hanane.today || true
+            echo '--- DNS A ---'
+            dig +short A aloula.hanane.today || true
+            echo '--- TARGET HEADERS ---'
+            curl -sSIL --max-time 30 "$target" || true
+            echo '--- NETLIFY HEADERS ---'
+            curl -sSIL --max-time 30 "$netlify" || true
+            echo '--- CONTENT HASHES ---'
+            printf 'target='; curl -sSL --max-time 30 "$target" | sha256sum | cut -d' ' -f1
+            printf 'netlify='; curl -sSL --max-time 30 "$netlify" | sha256sum | cut -d' ' -f1
+            echo '--- VERSION MARKERS ---'
+            printf 'target='; curl -sSL --max-time 30 "$target" | grep -Eo 'نسخة (المعاينة الأولى 0\.1|المحتوى 2\.0)' | head -1 || true
+            printf 'netlify='; curl -sSL --max-time 30 "$netlify" | grep -Eo 'نسخة (المعاينة الأولى 0\.1|المحتوى 2\.0)' | head -1 || true
+          } > .deployment-status/aloula-live-diagnosis.txt
+
+      - name: Save diagnosis
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .deployment-status/aloula-live-diagnosis.txt
+          git diff --cached --quiet || git commit -m 'Record Aloula live source diagnosis'
+          git push origin main
