@@ -1,0 +1,53 @@
+name: Publish Aloula content bundle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.aloula-package/aloula-bundle.zip'
+      - '.github/workflows/publish-aloula-bundle.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install approved Aloula bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          package='.aloula-package/aloula-bundle.zip'
+          if [ ! -s "$package" ]; then
+            echo 'No Aloula bundle is present yet.'
+            exit 0
+          fi
+          rm -rf /tmp/aloula-release
+          mkdir -p /tmp/aloula-release
+          unzip -q "$package" -d /tmp/aloula-release
+          test -s /tmp/aloula-release/rihlat-aloula-bac/index.html
+          test -s /tmp/aloula-release/rihlat-aloula-bac/data/lessons.json
+          test -s /tmp/aloula-release/rihlat-aloula-bac/lessons/06-world-war-two.html
+          rm -rf rihlat-aloula-bac
+          cp -R /tmp/aloula-release/rihlat-aloula-bac ./rihlat-aloula-bac
+
+      - name: Commit generated static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A rihlat-aloula-bac
+          if git diff --cached --quiet; then
+            echo 'Aloula production files are already current.'
+          else
+            git commit -m 'Publish Aloula lessons and infographics 2.0'
+            git push origin main
+          fi
