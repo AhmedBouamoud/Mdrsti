@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - '.aloula-package/chunk*.b64'
       - '.aloula-package/aloula-bundle.zip'
       - '.github/workflows/publish-aloula-bundle.yml'
   workflow_dispatch:
@@ -20,13 +21,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install approved Aloula bundle
+      - name: Assemble and install approved Aloula bundle
         shell: bash
         run: |
           set -euo pipefail
           package='.aloula-package/aloula-bundle.zip'
+          if compgen -G '.aloula-package/chunk*.b64' > /dev/null; then
+            cat .aloula-package/chunk*.b64 | tr -d '\n\r' | base64 --decode > /tmp/aloula-bundle.zip
+            package='/tmp/aloula-bundle.zip'
+          fi
           if [ ! -s "$package" ]; then
-            echo 'No Aloula bundle is present yet.'
+            echo 'No complete Aloula bundle is present yet.'
             exit 0
           fi
           rm -rf /tmp/aloula-release
