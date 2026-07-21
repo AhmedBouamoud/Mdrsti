@@ -1,0 +1,42 @@
+checked_at=2026-07-21T11:00:04Z
+--- DNS CNAME ---
+--- DNS A ---
+13.52.188.95
+52.52.192.191
+--- TARGET HEADERS ---
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=stale
+content-type: text/html; charset=UTF-8
+date: Tue, 21 Jul 2026 11:00:04 GMT
+etag: "dd369945af02c49dcd4dc816d6c7e69a-ssl"
+permissions-policy: camera=(), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+server: Netlify
+strict-transport-security: max-age=31536000
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-nf-request-id: 01KY25AD43MYGXJ3VQR10WBM0T
+content-length: 17553
+
+--- NETLIFY HEADERS ---
+HTTP/2 200 
+accept-ranges: bytes
+age: 1
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss
+content-type: text/html; charset=UTF-8
+date: Tue, 21 Jul 2026 11:00:05 GMT
+etag: "1d7647e484d17d404bd6b432a71318ba-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-nf-request-id: 01KY25ADCXQM9V8RFC2XB6VTYD
+content-length: 9161
+
+--- CONTENT HASHES ---
+target=984a2bf32a5a4b4a7944eb10a4b962bb0757f61c971e321ec8a2cb2d96c6a13e
+netlify=c7e613c6bcbf851dcc624428cd55d1c1d7433e5b95b7d1e89849ce3c83d7e911
+--- VERSION MARKERS ---
+target=netlify=نسخة المحتوى 2.0
