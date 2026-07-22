@@ -1,13 +1,13 @@
-checked_at=2026-07-21T11:02:11Z
+checked_at=2026-07-22T22:23:02Z
 --- DNS CNAME ---
 --- DNS A ---
-52.52.192.191
 13.52.188.95
+52.52.192.191
 --- NETLIFY PUBLIC SITE LOOKUP ---
-{"id":"99605edb-90bc-4efd-9901-c076e81a67ad","name":"hanane-edu","custom_domain":"hanane.today","url":"https://hanane.today","ssl_url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","account_slug":"ahmedbouamoud","account_name":"ecole al hanane","repo_url":"https://github.com/AhmedBouamoud/mdrsti-new","build_settings":{},"deploy_id":"6a5ec74429390c0007f712c7","published_deploy":{"id":"6a5ec74429390c0007f712c7","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a5ec74429390c0007f712c5","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-21T01:11:32.067Z","updated_at":"2026-07-21T01:11:53.368Z","commit_ref":"0d04bba65ef86f7f5c702114fc9b10d062349f24","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/0d04bba65ef86f7f5c702114fc9b10d062349f24","title":"Record رحلة الأولى باك domain status","review_url":null,"published_at":"2026-07-21T01:11:41.082Z","context":"production","deploy_time":6,"public":true,"plugin_state":"none"},"public":true,"screenshot_url":"https://d33wubrfki0l68.cloudfront.net/6a5ec74429390c0007f712c7/screenshot_2026-07-21-01-11-44-0000.webp"}
+{"id":"99605edb-90bc-4efd-9901-c076e81a67ad","name":"hanane-edu","custom_domain":"hanane.today","url":"https://hanane.today","ssl_url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","account_slug":"ahmedbouamoud","account_name":"ecole al hanane","repo_url":"https://github.com/AhmedBouamoud/mdrsti-new","build_settings":{},"deploy_id":"6a614067ca75880008f154a6","published_deploy":{"id":"6a614067ca75880008f154a6","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a614067ca75880008f154a4","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-22T22:12:55.401Z","updated_at":"2026-07-22T22:13:19.514Z","commit_ref":"9aab56c0ee62e5a2cae1cde83a5cfd5904338cad","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/9aab56c0ee62e5a2cae1cde83a5cfd5904338cad","title":"Monitor aloula.hanane.today status","review_url":null,"published_at":"2026-07-22T22:13:12.571Z","context":"production","deploy_time":15,"public":true,"plugin_state":"none"},"public":true,"screenshot_url":"https://d33wubrfki0l68.cloudfront.net/6a614067ca75880008f154a6/screenshot_2026-07-22-22-13-16-0000.webp"}
 http_status=200
 --- NETLIFY PUBLIC DEPLOYS LOOKUP ---
-[{"id":"6a5ec74429390c0007f712c7","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a5ec74429390c0007f712c5","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-21T01:11:32.067Z","updated_at":"2026-07-21T01:11:53.368Z","commit_ref":"0d04bba65ef86f7f5c702114fc9b10d062349f24","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/0d04bba65ef86f7f5c702114fc9b10d062349f24","title":"Record رحلة الأولى باك domain status","review_url":null,"published_at":"2026-07-21T01:11:41.082Z","context":"production","deploy_time":6,"public":true,"plugin_state":"none"},{"id":"6a5ec73b5ddb9d0008c7c309","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a5ec73b5ddb9d0008c7c307","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-21T01:11:23.748Z","updated_at":"2026-07-21T01:11:42.200Z","commit_ref":"3faef6997792112a9eda2129446b89418352a044","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/3faef6997792112a9eda2129446b89418352a044","title":"Fix lesson cards and make homepage resilient without JavaScript","review_url":null,"published_at":"2026-07-21T01:11:31.482Z","context":"production","deploy_time":6,"public":true,"plugin_state":"none"},{"id":"6a5ec3637740bd00088e2234","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a5ec3637740bd00088e2232","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-21T00:54:59.256Z","updated_at":"2026-07-21T00:55:13.514Z","commit_ref":"6f96b43e9555dfe0c8a96abbdbb98a41153d715c","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/6f96b43e9555dfe0c8a96abbdbb98a41153d715c","title":"Diagnose رحلة الأولى باك hosting URLs","review_url":null,"published_at":"2026-07-21T00:55:07.537Z","context":"production","deploy_time":6,"public":true,"plugin_state":"none"}]
+[{"id":"6a614067ca75880008f154a6","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a614067ca75880008f154a4","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-22T22:12:55.401Z","updated_at":"2026-07-22T22:13:19.514Z","commit_ref":"9aab56c0ee62e5a2cae1cde83a5cfd5904338cad","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/9aab56c0ee62e5a2cae1cde83a5cfd5904338cad","title":"Monitor aloula.hanane.today status","review_url":null,"published_at":"2026-07-22T22:13:12.571Z","context":"production","deploy_time":15,"public":true,"plugin_state":"none"},{"id":"6a612b14907f2400081a683d","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a612b14907f2400081a683b","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-22T20:41:56.120Z","updated_at":"2026-07-22T20:42:27.116Z","commit_ref":"73719500501bf97639ffe0e8fe99f28873dc081a","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/73719500501bf97639ffe0e8fe99f28873dc081a","title":"Monitor aloula.hanane.today status","review_url":null,"published_at":"2026-07-22T20:42:14.903Z","context":"production","deploy_time":17,"public":true,"plugin_state":"none"},{"id":"6a61257d1f67bd0008670d3d","site_id":"99605edb-90bc-4efd-9901-c076e81a67ad","build_id":"6a61257d1f67bd0008670d3b","state":"ready","name":"hanane-edu","url":"https://hanane.today","admin_url":"https://app.netlify.com/projects/hanane-edu","deploy_url":"http://main--hanane-edu.netlify.app","deploy_ssl_url":"https://main--hanane-edu.netlify.app","created_at":"2026-07-22T20:18:05.730Z","updated_at":"2026-07-22T20:18:27.381Z","commit_ref":"80672aaafd5140e4b6c122d0d681ae80f8760c5a","review_id":null,"skipped":null,"locked":null,"branch":"main","commit_url":"https://github.com/AhmedBouamoud/mdrsti-new/commit/80672aaafd5140e4b6c122d0d681ae80f8760c5a","title":"Monitor aloula.hanane.today status","review_url":null,"published_at":"2026-07-22T20:18:22.432Z","context":"production","deploy_time":15,"public":true,"plugin_state":"none"}]
 http_status=200
 --- TARGET HEADERS ---
 HTTP/2 200 
@@ -16,16 +16,16 @@ age: 0
 cache-control: public,max-age=0,must-revalidate
 cache-status: "Netlify Edge"; fwd=miss
 content-type: text/html; charset=UTF-8
-date: Tue, 21 Jul 2026 11:02:12 GMT
-etag: "dd369945af02c49dcd4dc816d6c7e69a-ssl"
+date: Wed, 22 Jul 2026 22:23:03 GMT
+etag: "8196a9a8419162cb19e0d48d85acf787-ssl"
 permissions-policy: camera=(), microphone=(), geolocation=()
 referrer-policy: strict-origin-when-cross-origin
 server: Netlify
 strict-transport-security: max-age=31536000
 x-content-type-options: nosniff
 x-frame-options: SAMEORIGIN
-x-nf-request-id: 01KY25EACK8DAT81B5PVDCRB67
-content-length: 17553
+x-nf-request-id: 01KY5YSQ1V17W36E7W3RH927KZ
+content-length: 4394
 
 --- CANDIDATE HEADERS ---
 HTTP/2 200 
@@ -34,15 +34,15 @@ age: 0
 cache-control: public,max-age=0,must-revalidate
 cache-status: "Netlify Edge"; fwd=miss
 content-type: text/html; charset=UTF-8
-date: Tue, 21 Jul 2026 11:02:13 GMT
-etag: "c2a59cb020886ade363d7d39311c2858-ssl"
+date: Wed, 22 Jul 2026 22:23:04 GMT
+etag: "225782e277b04452a419694bda35681d-ssl"
 server: Netlify
 strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-nf-request-id: 01KY25EAH8T4NWNV1VG0EANPGV
+x-nf-request-id: 01KY5YSQB063H37FNVG0RC1M1G
 content-length: 9161
 
 --- CONTENT HASHES ---
-target=984a2bf32a5a4b4a7944eb10a4b962bb0757f61c971e321ec8a2cb2d96c6a13e
+target=64713cefa1abc35458ecd6cff597062d1e725e7413c20ea12d37635e8189c5df
 candidate=c7e613c6bcbf851dcc624428cd55d1c1d7433e5b95b7d1e89849ce3c83d7e911
 --- VERSION MARKERS ---
 target=candidate=نسخة المحتوى 2.0
