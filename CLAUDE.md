@@ -91,7 +91,10 @@
 - لا حاجة لأي ملفات PNG خارجية
 
 ## 5. بيانات الموقع
-- الموقع: profhanane.netlify.app
+- الموقع: ahmedbouamoud.com (مشروع Netlify: ahmedbouamoud)
+- index.html = الواجهة الشخصية للأستاذ (روابط المنصات حسب المستوى + اليوتيوب + من أنا)
+- madrasati.html = تطبيق «مدرستي» الأصلي (51 درسا + امتحانات + إنفوغرافيا + منهجية)
+- brand/ = شعار «أ» والأيقونات (الهوية: كحلي #0B2242 وذهبي #C9A24A، خط Cairo)
 - GitHub: AhmedBouamoud/Mdrsti
 - Push يتطلب توكن المستخدم (يُستخدم مؤقتاً ثم يُحذف فوراً من الـ remote URL)
 - Branch الرئيسي: main
