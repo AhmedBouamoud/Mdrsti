@@ -344,10 +344,10 @@ html,body{height:100%;font-family:'Cairo',sans-serif;background:var(--navy);colo
 </div>
 
 <!-- ===== SPLASH SCREEN ===== -->
-<div class="screen active" id="splash">
+<div class="screen" id="splash">
   <div class="splash-logo">م</div>
   <h1 class="splash-title">مدرستي</h1>
-  <p class="splash-sub">الاجتماعيات — تاريخ • جغرافيا • مواطنة<br>السنة الدراسية 2025–2026</p>
+  <p class="splash-sub">الاجتماعيات — تاريخ • جغرافيا • مواطنة<br>السنة الدراسية 2026–2027</p>
   <div class="splash-stats">
     <div class="splash-stat"><div class="num">51</div><div class="lbl">درساً</div></div>
     <div class="splash-stat"><div class="num">19</div><div class="lbl">امتحاناً</div></div>
@@ -362,7 +362,7 @@ html,body{height:100%;font-family:'Cairo',sans-serif;background:var(--navy);colo
 </div>
 
 <!-- ===== MAIN APP ===== -->
-<div class="screen" id="app">
+<div class="screen active" id="app">
 
   <!-- NAV BAR -->
   <div class="nav-bar">
@@ -372,7 +372,8 @@ html,body{height:100%;font-family:'Cairo',sans-serif;background:var(--navy);colo
     </div>
     <div class="nav-actions">
       <button class="nav-btn" id="admin-nav-btn" onclick="goPage('admin')" title="لوحة الأستاذ" style="display:none">⚙️</button>
-      <button class="nav-btn" onclick="goSplash()" title="خروج">🚪</button>
+      <button class="nav-btn" id="teacher-login-btn" onclick="showLogin()" title="دخول الأستاذ">🔐</button>
+      <button class="nav-btn" id="teacher-exit-btn" onclick="logout()" title="خروج الأستاذ" style="display:none">🚪</button>
     </div>
   </div>
 
@@ -504,7 +505,7 @@ html,body{height:100%;font-family:'Cairo',sans-serif;background:var(--navy);colo
         <div class="admin-avatar">أ</div>
         <div class="admin-info">
           <h3>الأستاذ أحمد بوعمود</h3>
-          <p>مؤسسة الحنان الخاصة — أكادير | 2025-2026</p>
+          <p>مؤسسة الحنان الخاصة — أكادير | 2026-2027</p>
         </div>
       </div>
 
@@ -1940,6 +1941,8 @@ function doLogin() {
   if((u === CREDS.user || u === 'admin') && (p === CREDS.pass || p === 'admin123')) {
     isTeacher = true;
     document.getElementById('admin-nav-btn').style.display = 'flex';
+    document.getElementById('teacher-login-btn').style.display = 'none';
+    document.getElementById('teacher-exit-btn').style.display = 'flex';
     closeLogin();
     showApp();
     goPage('admin');
@@ -1968,6 +1971,8 @@ function goSplash() {
 function logout() {
   isTeacher = false;
   document.getElementById('admin-nav-btn').style.display = 'none';
+  document.getElementById('teacher-login-btn').style.display = 'flex';
+  document.getElementById('teacher-exit-btn').style.display = 'none';
   goPage('home');
   showToast('تم تسجيل الخروج');
 }
@@ -2319,6 +2324,9 @@ try {
   if(st) document.getElementById('notion-token').value = st;
   if(sd) document.getElementById('notion-db').value = sd;
 } catch(e){}
+
+// ===== واجهة التلميذ مباشرة عند الفتح =====
+enterStudent();
 
 // ===== TOAST =====
 function showToast(msg) {
