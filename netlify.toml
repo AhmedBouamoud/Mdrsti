@@ -1,0 +1,15 @@
+# Static site served directly from the repository root.
+# No build step is required — the HTML files are published as-is.
+#
+# Framework auto-detection wrongly identifies this project as a "Cecil"
+# static-site generator because of the root config.yml (which is actually a
+# Decap CMS config). That makes deploys try to run `cecil` and fail, leaving
+# the site blank. The settings below pin the publish directory to the repo
+# root, disable any build command, and turn off framework detection.
+[build]
+  publish = "."
+  command = ""
+
+[dev]
+  framework = "#static"
+  publish = "."
